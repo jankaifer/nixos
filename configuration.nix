@@ -6,7 +6,8 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
 
@@ -47,7 +48,6 @@
   i18n.defaultLocale = "en_US.UTF-8";
   console = {
     font = "ter-i32b";
-    # keyMap = "us";
     useXkbConfig = true;
     earlySetup = true;
     packages = with pkgs; [ terminus_font ];
@@ -56,7 +56,7 @@
   services = {
     xserver = {
       enable = true;
-      
+
       desktopManager.xterm.enable = false;
       windowManager.i3 = {
         enable = true;
@@ -76,8 +76,9 @@
     };
 
     printing.enable = true;
-
     gnome3.gnome-keyring.enable = true;
+    openssh.enable = true;
+    autorandr.enable = true;
   };
 
   # Enable sound.
@@ -100,10 +101,10 @@
       version = "0.1";
 
       src = pkgs.fetchFromGitHub {
-      	owner = "kasiopea-org";
-	      repo = "${name}";
-	      rev = "${version}";
-	      # sha256 = "...";
+        owner = "kasiopea-org";
+        repo = "${name}";
+        rev = "${version}";
+        # sha256 = "...";
       };
 
       # meta = {
@@ -116,7 +117,8 @@
     pythonWithMyPackages = pythonFull.withPackages (pythonPackages: with pythonPackages; [
       pisek
     ]);
-  in [
+  in
+  [
     # CLI Utils
     wget
     iw
@@ -128,6 +130,7 @@
     gnumake
     gcc
     black
+    nixpkgs-fmt
 
     # CLI Apps
     vim
@@ -144,6 +147,7 @@
     discord
     slack-dark
     vscode
+
   ];
 
   environment.variables = {
@@ -152,7 +156,7 @@
     XDG_CACHE_HOME = "$HOME/.cache";
 
     ANDROID_HOME = "$HOME/Android/Sdk"; # Set the home of the android SDK
-    
+
     TERMINAL = "kitty";
     BROWSER = "google-chrome-stable";
   };
@@ -165,11 +169,6 @@
   #   enable = true;
   #   enableSSHSupport = true;
   # };
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
