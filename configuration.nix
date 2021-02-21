@@ -53,23 +53,32 @@
     packages = with pkgs; [ terminus_font ];
   };
 
-  services.xserver = {
-    enable = true;
-    desktopManager.xterm.enable = false;
-    windowManager.i3 = {
+  services = {
+    xserver = {
       enable = true;
-      package = pkgs."i3-gaps";
-      configFile = ./configs/i3.conf;
+      
+      desktopManager.xterm.enable = false;
+      windowManager.i3 = {
+        enable = true;
+        package = pkgs."i3-gaps";
+        configFile = ./configs/i3.conf;
+      };
+      libinput.enable = true;
+
+      layout = "fck";
+      extraLayouts.fck = {
+        description = "Fancy czech keyboard";
+        languages = [ "eng" "cs" ];
+        symbolsFile = builtins.fetchurl {
+          url = "https://gitlab.com/JanKaifer/fck/-/raw/master/cz";
+        };
+      };
     };
-    libinput.enable = true;
+
+    printing.enable = true;
+
+    gnome3.gnome-keyring.enable = true;
   };
-
-  # Configure keymap in X11
-  services.xserver.layout = "us";
-  services.xserver.xkbOptions = "caps:escape";
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
 
   # Enable sound.
   sound.enable = true;
@@ -83,13 +92,42 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = with pkgs; let
+    pythonVersion = "38";
+    pythonFull = pkgs."python${pythonVersion}Full";
+    pisek = pkgs."python${pythonVersion}Packages".buildPythonPackage rec {
+      name = "pisek";
+      version = "0.1";
+
+      src = pkgs.fetchFromGitHub {
+      	owner = "kasiopea-org";
+	      repo = "${name}";
+	      rev = "${version}";
+	      # sha256 = "...";
+      };
+
+      # meta = {
+      #  homepage = "https://github.com/dlenski/vpn-slice";
+      #  description = "vpnc-script replacement for easy and secure split-tunnel VPN setup";
+      #  license = stdenv.lib.licenses.gpl3Plus;
+      #  maintainers = with maintainers; [ dlenski ];
+      #};
+    };
+    pythonWithMyPackages = pythonFull.withPackages (pythonPackages: with pythonPackages; [
+      pisek
+    ]);
+  in [
     # CLI Utils
     wget
     iw
     tree
     lshw
     git
+    #pythonWithMyPackages
+    pythonFull
+    gnumake
+    gcc
+    black
 
     # CLI Apps
     vim
@@ -152,4 +190,3 @@
     fira-code-symbols
   ];
 }
-
