@@ -78,13 +78,11 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.pearman = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "networkmanager" ];
   };
 
   nixpkgs.config.allowUnfree = true;
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
     # CLI Utils
     wget
@@ -93,7 +91,7 @@
     lshw
     git
 
-    # Cli Apps
+    # CLI Apps
     vim
     htop
 
