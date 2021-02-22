@@ -4,11 +4,18 @@
 
 { config, pkgs, ... }:
 
+with builtins;
 {
   imports =
+    let
+      home-manager = fetchGit {
+        url = "https://github.com/nix-community/home-manager.git";
+        ref = "release-20.09";
+      };
+    in
     [
-      # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      (import "${home-manager}/nixos")
     ];
 
   # fix errors in hardware-configuration.nix
@@ -86,7 +93,6 @@
   sound.enable = true;
   hardware.pulseaudio.enable = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.pearman = {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" ];
@@ -120,7 +126,6 @@
     ]);
   in
   [
-    # CLI Utils
     wget
     iw
     tree
@@ -132,23 +137,9 @@
     gcc
     black
     nixpkgs-fmt
-
-    # CLI Apps
+    home-manager
     vim
     htop
-
-    # GUI Tools
-    arandr
-
-    # GUI Apps
-    firefox
-    google-chrome
-    gitkraken
-    zoom-us
-    discord
-    slack-dark
-    vscode
-
   ];
 
   environment.variables = {
@@ -189,4 +180,6 @@
     fira-code
     fira-code-symbols
   ];
+
+  home-manager.users.pearman = ./home.nix;
 }
