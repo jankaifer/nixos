@@ -70,8 +70,12 @@ with builtins;
         package = pkgs."i3-gaps";
         configFile = ./configs/i3.conf;
       };
-      libinput.enable = true;
-      libinput.naturalScrolling = true;
+      libinput = {
+        enable = true;
+        # TODO: apply naturalscrolling only to touchpad
+        naturalScrolling = true;
+        additionalOptions = ''MatchIsTouchpad "on"'';
+      };
 
       layout = "fck";
       extraLayouts.fck = {
@@ -87,6 +91,7 @@ with builtins;
     gnome3.gnome-keyring.enable = true;
     openssh.enable = true;
     autorandr.enable = true;
+    autorandr.defaultTarget = "c9";
   };
 
   # Enable sound.
@@ -95,7 +100,10 @@ with builtins;
 
   users.users.pearman = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" ];
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+    ];
   };
 
   nixpkgs.config.allowUnfree = true;
