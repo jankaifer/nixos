@@ -17,6 +17,7 @@ with builtins;
     slack-dark
     vscode
     vlc
+    kitty
   ];
 
   programs.git = {
@@ -81,7 +82,7 @@ with builtins;
       };
   };
 
-  # xdg.configFile = {
-  #   "i3/config".source = "${configsFolder}/i3.conf";
-  # };
+  xdg.configFile = {
+    "kitty/kitty.conf".source = "${configsFolder}/kitty.conf";
+  };
 }
