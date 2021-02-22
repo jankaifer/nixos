@@ -64,6 +64,7 @@
         configFile = ./configs/i3.conf;
       };
       libinput.enable = true;
+      libinput.naturalScrolling = true;
 
       layout = "fck";
       extraLayouts.fck = {
