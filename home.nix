@@ -8,17 +8,28 @@ with builtins;
     allowUnfree = true;
   };
 
+  # xsession.enable = true;
+  # xsession.windowManager.command = "i3";
+
   home.packages = with pkgs; [
     firefox
     google-chrome
     gitkraken
     zoom-us
     discord
+    slack
     slack-dark
     vscode
     vlc
     kitty
   ];
+
+
+  xresources.properties = {
+    # "Xft.dpi" = 276;
+    "Xcursor.size" = 64;
+  };
+
 
   programs.git = {
     enable = true;
@@ -59,6 +70,17 @@ with builtins;
             DP-2 = thinkVision;
           };
           config = {
+            DP-2 = {
+              enable = true;
+              primary = true;
+              scale = {
+                x = .75;
+                y = .75;
+              };
+              position = "0x0";
+              mode = "3840x2160";
+              rate = "60.00";
+            };
             eDP-1 = {
               enable = true;
               primary = false;
@@ -66,14 +88,7 @@ with builtins;
                 x = .5;
                 y = .5;
               };
-              position = "960x2160";
-              mode = "3840x2160";
-              rate = "60.00";
-            };
-            DP-2 = {
-              enable = true;
-              primary = true;
-              position = "0x0";
+              position = "480x1620";
               mode = "3840x2160";
               rate = "60.00";
             };

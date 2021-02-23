@@ -103,6 +103,7 @@ with builtins;
     extraGroups = [
       "wheel"
       "networkmanager"
+      "video"
     ];
   };
 
@@ -111,6 +112,7 @@ with builtins;
   environment.systemPackages = with pkgs; let
     pythonVersion = "38";
     pythonFull = pkgs."python${pythonVersion}Full";
+    pythonPackages = pkgs."python${pythonVersion}Packages";
     pisek = pkgs."python${pythonVersion}Packages".buildPythonPackage rec {
       name = "pisek";
       version = "0.1";
@@ -148,6 +150,7 @@ with builtins;
     home-manager
     vim
     htop
+    pythonPackages.ipython
   ];
 
   environment.variables = {
@@ -188,6 +191,15 @@ with builtins;
     fira-code
     fira-code-symbols
   ];
+
+  programs.light.enable = true;
+  services.actkbd = {
+    enable = true;
+    bindings = [
+      { keys = [ 224 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/light -T .8"; }
+      { keys = [ 225 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/light -T 1.25"; }
+    ];
+  };
 
   home-manager.users.pearman = ./home.nix;
 }
