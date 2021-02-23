@@ -154,6 +154,8 @@ with builtins;
     acpi
     parted
     zsh-powerlevel10k
+    zsh-you-should-use
+    direnv
   ];
 
   users.defaultUserShell = pkgs.zsh;
@@ -161,13 +163,20 @@ with builtins;
   programs.zsh = {
     enable = true;
     promptInit = ''
+      eval "$(direnv hook zsh)"
       source ${./configs/p10k.zsh}
       source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
     '';
     enableBashCompletion = true;
 
     ohMyZsh.enable = true;
-    ohMyZsh.plugins = [ ];
+    ohMyZsh.plugins = [
+      "git"
+      "vi-mode"
+      "extract"
+      "yarn"
+      "wd"
+    ];
   };
 
   environment.variables = {
