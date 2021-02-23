@@ -11,19 +11,22 @@ with builtins;
   # xsession.enable = true;
   # xsession.windowManager.command = "i3";
 
-  home.packages = with pkgs; [
+  home.packages = with pkgs; with ((import ./mypkgs) { pkgs = pkgs; }); [
     firefox
     google-chrome
     zoom-us
     vlc
     kitty
+    real-vnc-viewer
 
     # Electron evil apps
+    signal-desktop
     vscode
     gitkraken
     spotify
     discord
     slack-dark
+    etcher
   ];
 
 
