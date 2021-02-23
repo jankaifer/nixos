@@ -156,11 +156,14 @@ with builtins;
     zsh-powerlevel10k
   ];
 
-  # users.defaultUserShell = pkgs.zsh;
+  users.defaultUserShell = pkgs.zsh;
 
   programs.zsh = {
     enable = true;
-    promptInit = "source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+    promptInit = ''
+      source ${./configs/p10k.zsh}
+      source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
+    '';
     enableBashCompletion = true;
 
     ohMyZsh.enable = true;
@@ -204,6 +207,7 @@ with builtins;
   fonts.fonts = with pkgs; [
     fira-code
     fira-code-symbols
+    nerdfonts
   ];
 
   programs.light.enable = true;
