@@ -42,11 +42,6 @@ with builtins;
     userEmail = "jan@kaifer.cz";
   };
 
-  programs.vim = {
-    enable = true;
-    extraConfig = readFile ./configs/.vimrc;
-  };
-
   programs.autorandr = {
     enable = true;
     profiles =
@@ -109,5 +104,9 @@ with builtins;
 
   xdg.configFile = {
     "kitty/kitty.conf".source = "${configsFolder}/kitty.conf";
+  };
+
+  home.file = {
+    ".vimrc".source = ./configs/.vimrc;
   };
 }
