@@ -171,10 +171,8 @@ with builtins;
 
     ohMyZsh.enable = true;
     ohMyZsh.plugins = [
-      "git"
       "vi-mode"
       "extract"
-      "yarn"
       "wd"
     ];
   };
