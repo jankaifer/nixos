@@ -17,7 +17,7 @@ with builtins;
     zoom-us
     vlc
     kitty
-    # real-vnc-viewer broken
+    real-vnc-viewer
 
     # Electron evil apps
     signal-desktop
