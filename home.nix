@@ -25,7 +25,7 @@ with builtins;
     gitkraken
     spotify
     discord
-    slack-dark
+    slack
     etcher
   ];
 

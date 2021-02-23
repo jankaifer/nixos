@@ -151,7 +151,21 @@ with builtins;
     vim
     htop
     pythonPackages.ipython
+    acpi
+    parted
+    zsh-powerlevel10k
   ];
+
+  # users.defaultUserShell = pkgs.zsh;
+
+  programs.zsh = {
+    enable = true;
+    promptInit = "source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+    enableBashCompletion = true;
+
+    ohMyZsh.enable = true;
+    ohMyZsh.plugins = [ ];
+  };
 
   environment.variables = {
     XDG_CONFIG_HOME = "$HOME/.config";
