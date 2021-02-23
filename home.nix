@@ -14,14 +14,16 @@ with builtins;
   home.packages = with pkgs; [
     firefox
     google-chrome
-    gitkraken
     zoom-us
-    discord
-    slack
-    slack-dark
-    vscode
     vlc
     kitty
+
+    # Electron evil apps
+    vscode
+    gitkraken
+    spotify
+    discord
+    slack-dark
   ];
 
 
