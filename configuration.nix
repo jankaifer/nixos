@@ -156,9 +156,14 @@ with builtins;
     zsh-powerlevel10k
     zsh-you-should-use
     direnv
+    nodejs
+    nodePackages.yarn
+    nodePackages.npm
   ];
 
   users.defaultUserShell = pkgs.zsh;
+
+  programs.vim.defaultEditor = true;
 
   programs.zsh = {
     enable = true;

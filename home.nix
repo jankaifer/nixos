@@ -42,6 +42,11 @@ with builtins;
     userEmail = "jan@kaifer.cz";
   };
 
+  programs.vim = {
+    enable = true;
+    extraConfig = readFile ./configs/.vimrc;
+  };
+
   programs.autorandr = {
     enable = true;
     profiles =
