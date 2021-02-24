@@ -19,7 +19,7 @@ with builtins;
     ];
 
   # fix errors in hardware-configuration.nix
-  boot.kernelModules = [ "iwlwifi" ];
+  boot.kernelModules = [ "iwlwifi" "dm_crypt" ];
   hardware.enableRedistributableFirmware = true;
   # fileSystems."/" = {
   #   device = "/dev/VolGroup00/lvolnixos";
@@ -64,6 +64,7 @@ with builtins;
     xserver = {
       enable = true;
 
+      displayManager.lightdm.enable = true;
       desktopManager.xterm.enable = false;
       windowManager.i3 = {
         enable = true;
@@ -97,6 +98,19 @@ with builtins;
   # Enable sound.
   sound.enable = true;
   hardware.pulseaudio.enable = true;
+
+  security.pam = {
+    services.lightdm.enableGnomeKeyring = true;
+    #   mount.enable = true;
+    #   mount.extraVolumes = [
+    #     ''
+    #       <volume cipher="aes-cbc-essiv:sha256" path="/dev/nvme0n1p7" mountpoint="/home/pearman/secure"/>
+
+    #       <cryptmount>${pkgs.cryptsetup}/bin/cryptsetup open %(VOLUME) %(MNTPT)</cryptmount>
+    #       <cryptumount>${pkgs.cryptsetup}/bin/cryptsetup close %(MNTPT)</cryptumount>
+    #     ''
+    #   ];
+  };
 
   users.users.pearman = {
     isNormalUser = true;
@@ -141,7 +155,6 @@ with builtins;
     tree
     lshw
     git
-    #pythonWithMyPackages
     pythonFull
     gnumake
     gcc
@@ -159,6 +172,7 @@ with builtins;
     nodejs
     nodePackages.yarn
     nodePackages.npm
+    cryptsetup
   ];
 
   users.defaultUserShell = pkgs.zsh;
@@ -173,6 +187,9 @@ with builtins;
       source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
     '';
     enableBashCompletion = true;
+    shellAliases = {
+      try = "nix run";
+    };
 
     ohMyZsh.enable = true;
     ohMyZsh.plugins = [

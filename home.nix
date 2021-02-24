@@ -18,6 +18,10 @@ with builtins;
     vlc
     kitty
     real-vnc-viewer
+    gnome3.seahorse
+    gparted
+    maim
+    xclip
 
     # Electron evil apps
     signal-desktop
@@ -34,7 +38,6 @@ with builtins;
     # "Xft.dpi" = 276;
     "Xcursor.size" = 64;
   };
-
 
   programs.git = {
     enable = true;
@@ -108,5 +111,8 @@ with builtins;
 
   home.file = {
     ".vimrc".source = ./configs/.vimrc;
+    ".xinitrc".text = ''
+      autorandr -c --force
+    '';
   };
 }
