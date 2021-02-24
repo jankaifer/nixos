@@ -101,15 +101,13 @@ with builtins;
 
   security.pam = {
     services.lightdm.enableGnomeKeyring = true;
-    #   mount.enable = true;
-    #   mount.extraVolumes = [
-    #     ''
-    #       <volume cipher="aes-cbc-essiv:sha256" path="/dev/nvme0n1p7" mountpoint="/home/pearman/secure"/>
 
-    #       <cryptmount>${pkgs.cryptsetup}/bin/cryptsetup open %(VOLUME) %(MNTPT)</cryptmount>
-    #       <cryptumount>${pkgs.cryptsetup}/bin/cryptsetup close %(MNTPT)</cryptumount>
-    #     ''
-    #   ];
+    mount.enable = true;
+    mount.extraVolumes = [
+      ''
+        <volume path="/dev/VolGroup00/secure" mountpoint="/home/pearman/secure"/>
+      ''
+    ];
   };
 
   users.users.pearman = {
