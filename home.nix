@@ -105,6 +105,14 @@ with builtins;
       };
   };
 
+  services = {
+    picom = {
+      enable = true;
+      blur = true;
+      shadow = true;
+    };
+  };
+
   xdg.configFile = {
     "kitty/kitty.conf".source = "${configsFolder}/kitty.conf";
   };
