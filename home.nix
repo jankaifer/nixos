@@ -22,9 +22,11 @@ with builtins;
     gparted
     maim
     xclip
+    bitwarden-cli
 
     # Electron evil apps
     signal-desktop
+    bitwarden
     vscode
     gitkraken
     spotify
