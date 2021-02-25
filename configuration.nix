@@ -172,6 +172,7 @@ with builtins;
     nodePackages.yarn
     nodePackages.npm
     cryptsetup
+    binutils
   ];
 
   users.defaultUserShell = pkgs.zsh;

@@ -108,8 +108,6 @@ with builtins;
   services = {
     picom = {
       enable = true;
-      blur = true;
-      shadow = true;
     };
   };
 
@@ -119,7 +117,7 @@ with builtins;
 
   home.file = {
     ".vimrc".source = ./configs/.vimrc;
-    ".xinitrc".text = ''
+    ".xprofile".text = ''
       autorandr -c --force
     '';
   };
