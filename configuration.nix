@@ -102,12 +102,12 @@ with builtins;
   security.pam = {
     services.lightdm.enableGnomeKeyring = true;
 
-    mount.enable = true;
-    mount.extraVolumes = [
-      ''
-        <volume path="/dev/VolGroup00/secure" mountpoint="/home/pearman/secure"/>
-      ''
-    ];
+    # mount.enable = true;
+    # mount.extraVolumes = [
+    #   ''
+    #     <volume path="/dev/VolGroup00/secure" mountpoint="/home/pearman/secure"/>
+    #   ''
+    # ];
   };
 
   users.users.pearman = {
