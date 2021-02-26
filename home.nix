@@ -8,38 +8,70 @@ with builtins;
     allowUnfree = true;
   };
 
-  # xsession.enable = true;
-  # xsession.windowManager.command = "i3";
+  home = {
+    keyboard.layout = "fck";
 
-  home.packages = with pkgs; with ((import ./mypkgs) { pkgs = pkgs; }); [
-    firefox
-    google-chrome
-    zoom-us
-    vlc
-    kitty
-    real-vnc-viewer
-    gnome3.seahorse
-    gparted
-    maim
-    xclip
-    bitwarden-cli
+    packages = with pkgs; with ((import ./mypkgs) { pkgs = pkgs; }); [
+      firefox
+      google-chrome
+      zoom-us
+      vlc
+      kitty
+      real-vnc-viewer
+      gnome3.seahorse
+      gparted
+      maim
+      xclip
+      bitwarden-cli
+      dmenu
+      i3status
 
-    # Electron evil apps
-    signal-desktop
-    bitwarden
-    mattermost-desktop
-    vscode
-    gitkraken
-    spotify
-    discord
-    slack
-    etcher
-  ];
-
+      # Electron evil apps
+      atom
+      signal-desktop
+      bitwarden
+      mattermost-desktop
+      vscode
+      gitkraken
+      spotify
+      discord
+      slack
+      etcher
+    ];
+  };
 
   xresources.properties = {
     # "Xft.dpi" = 276;
     "Xcursor.size" = 64;
+  };
+
+  xsession = {
+    enable = true;
+    windowManager.i3 =
+      let
+        mod = "Mod4";
+      in
+      {
+        enable = true;
+        package = pkgs.i3-gaps;
+        config = {
+          bars = [ ];
+          colors = { };
+          floating = {
+            modifier = mod;
+          };
+          fonts = [
+            "Fira Code Retina 16"
+          ];
+          gaps = {
+            inner = 15;
+            smartGaps = true;
+          };
+          keybindings = { };
+          modes = { };
+        };
+        extraConfig = builtins.readFile ./configs/i3.conf;
+      };
   };
 
   programs.git = {

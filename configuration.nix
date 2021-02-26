@@ -3,7 +3,9 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, ... }:
-
+let
+  unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
+in
 with builtins;
 {
   imports =
@@ -63,17 +65,10 @@ with builtins;
   services = {
     xserver = {
       enable = true;
-
       displayManager.lightdm.enable = true;
-      desktopManager.xterm.enable = false;
-      windowManager.i3 = {
-        enable = true;
-        package = pkgs."i3-gaps";
-        configFile = ./configs/i3.conf;
-      };
+      desktopManager.xterm.enable = true;
       libinput = {
         enable = true;
-        # TODO: apply naturalscrolling only to touchpad
         naturalScrolling = true;
         additionalOptions = ''MatchIsTouchpad "on"'';
       };
@@ -173,6 +168,8 @@ with builtins;
     nodePackages.npm
     cryptsetup
     binutils
+
+    unstable.nix-output-monitor
   ];
 
   users.defaultUserShell = pkgs.zsh;
@@ -190,7 +187,7 @@ with builtins;
       '';
       enableBashCompletion = true;
       shellAliases = {
-        try = "nix run";
+        rebuild = "sudo nixos-rebuild switch |& nom";
       };
 
       ohMyZsh.enable = true;
