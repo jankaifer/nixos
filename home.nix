@@ -121,6 +121,8 @@ with builtins;
     ".vimrc".source = ./configs/.vimrc;
     ".xprofile".text = ''
       autorandr -c --force
+      eval $(/run/wrappers/bin/gnome-keyring-daemon --start --daemonize)
+      export SSH_AUTH_SOCK
     '';
   };
 }

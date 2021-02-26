@@ -200,8 +200,6 @@ with builtins;
         "wd"
       ];
     };
-
-    ssh.startAgent = true;
   };
 
   environment.variables = {
