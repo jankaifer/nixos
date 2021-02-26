@@ -27,6 +27,7 @@ with builtins;
     # Electron evil apps
     signal-desktop
     bitwarden
+    mattermost-desktop
     vscode
     gitkraken
     spotify
