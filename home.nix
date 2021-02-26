@@ -28,7 +28,6 @@ with builtins;
     signal-desktop
     bitwarden
     mattermost-desktop
-    mattermost
     vscode
     gitkraken
     spotify
