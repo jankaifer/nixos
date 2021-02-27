@@ -1,8 +1,12 @@
-{ pkgs, ... }:
-let
-  configsFolder = "/etc/nixos/configs";
-in
+{ pkgs, toRelativePath }:
+
 with builtins;
+let
+  moduleArgs = {
+    inherit pkgs toRelativePath;
+  };
+  mypkgs = import (toRelativePath "mypkgs") moduleArgs;
+in
 {
   nixpkgs.config = {
     allowUnfree = true;
@@ -11,13 +15,14 @@ with builtins;
   home = {
     keyboard.layout = "fck";
 
-    packages = with pkgs; with ((import ./mypkgs) { pkgs = pkgs; }); [
+    packages = with pkgs; [
+      mypkgs.real-vnc-viewer
+
       firefox
       google-chrome
       zoom-us
       vlc
       kitty
-      real-vnc-viewer
       gnome3.seahorse
       gparted
       maim
@@ -25,6 +30,11 @@ with builtins;
       bitwarden-cli
       dmenu
       i3status
+      xorg.xfd
+      xorg.xkill
+      pavucontrol
+      zscroll
+      playerctl
 
       # Electron evil apps
       atom
@@ -70,8 +80,12 @@ with builtins;
           keybindings = { };
           modes = { };
         };
-        extraConfig = builtins.readFile ./configs/i3.conf;
+        extraConfig = builtins.readFile (toRelativePath "configs/i3.conf");
       };
+  };
+
+  services = {
+    polybar = import ./polybar.nix moduleArgs;
   };
 
   programs.git = {
@@ -147,11 +161,11 @@ with builtins;
   };
 
   xdg.configFile = {
-    "kitty/kitty.conf".source = "${configsFolder}/kitty.conf";
+    "kitty/kitty.conf".source = toRelativePath "configs/kitty.conf";
   };
 
   home.file = {
-    ".vimrc".source = ./configs/.vimrc;
+    ".vimrc".source = toRelativePath "configs/.vimrc";
     ".xprofile".text = ''
       autorandr -c --force
       eval $(/run/wrappers/bin/gnome-keyring-daemon --start --daemonize)

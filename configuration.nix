@@ -3,10 +3,16 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, ... }:
+
+with builtins;
 let
   unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
+
+  toRelativePath = relativePath: toPath (./. + "/${relativePath}");
+  moduleArgs = {
+    inherit pkgs toRelativePath;
+  };
 in
-with builtins;
 {
   imports =
     let
@@ -168,6 +174,7 @@ with builtins;
     nodePackages.npm
     cryptsetup
     binutils
+    killall
 
     unstable.nix-output-monitor
   ];
@@ -186,9 +193,15 @@ with builtins;
         source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
       '';
       enableBashCompletion = true;
-      shellAliases = {
-        rebuild = "sudo nixos-rebuild switch |& nom";
-      };
+      shellAliases =
+        let
+          zsh = "${pkgs.zsh}/bin/zsh";
+        in
+        {
+          rebuild = "sudo nixos-rebuild switch |& nom";
+          logout = "sudo systemctl restart display-manager";
+          reload-polybar = "${zsh} ${./scripts/reload-polybar.sh}";
+        };
 
       ohMyZsh.enable = true;
       ohMyZsh.plugins = [
@@ -237,6 +250,7 @@ with builtins;
     fira-code
     fira-code-symbols
     nerdfonts
+    siji
   ];
 
   programs.light.enable = true;
@@ -248,5 +262,5 @@ with builtins;
     ];
   };
 
-  home-manager.users.pearman = ./home.nix;
+  home-manager.users.pearman = import ./home moduleArgs;
 }
