@@ -175,6 +175,7 @@ in
     cryptsetup
     binutils
     killall
+    libnotify
 
     unstable.nix-output-monitor
   ];
@@ -200,7 +201,9 @@ in
         {
           rebuild = "sudo nixos-rebuild switch |& nom";
           logout = "sudo systemctl restart display-manager";
-          reload-polybar = "${zsh} ${./scripts/reload-polybar.sh}";
+          lock = "betterlockscreen -l dimblur";
+          reload-polybar = "${zsh} ${toRelativePath "scripts/reload-polybar.sh"}";
+          reload-monitors = "${zsh} ${toRelativePath "scripts/reload-monitors.sh"}";
         };
 
       ohMyZsh.enable = true;

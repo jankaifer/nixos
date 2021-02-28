@@ -134,9 +134,9 @@ with builtins;
         interval = "3.0";
         ping-interval = "10";
 
-        format-connected = " <label-connected>";
-        label-connected = "%essid%";
-        label-disconnected = "   not connected";
+        format-connected = "直 <label-connected>";
+        label-connected = "%essid% %local_ip%";
+        label-disconnected = "睊 not connected";
         label-disconnected-foreground = "#66";
 
         animation-packetloss-0 = "_";
@@ -163,8 +163,8 @@ with builtins;
         interval = -5;
 
         format-volume = "墳 <label-volume>";
-        label-muted = "婢  0%";
-        label-muted-foreground = "#66";
+        format-muted = "婢  <label-muted>";
+        format-muted-foreground = "#66";
       };
 
       "module/backlight" = {
@@ -215,14 +215,21 @@ with builtins;
 
         label-focused = "%name%";
         label-focused-foreground = "#fff";
-        label-focused-background = "#773f3f3f";
+        label-focused-background = "#555";
         label-focused-underline = "#aaa";
         label-focused-padding = "1";
 
+        label-visible = "%name%";
+        label-visible-foreground = "#ddd";
+        label-visible-background = "#333";
+        label-visible-underline = "#999";
+        label-visible-padding = "1";
+
         label-unfocused = "%name%";
-        label-unfocused-foreground = "#ddd";
-        # label-unfocused-underline = "#00000000";
+        label-unfocused-foreground = "#999";
         label-unfocused-padding = "1";
+
+
 
         label-urgent = "%name%";
         label-urgent-foreground = "#000000";
@@ -247,6 +254,9 @@ with builtins;
         menu-0-1 = "Reboot";
         menu-0-1-padding = 2;
         menu-0-1-exec = "reboot";
+        menu-0-2 = "Suspend";
+        menu-0-2-padding = 2;
+        menu-0-2-exec = "sudo systemctl suspend";
       };
 
       # "module/spotify" = {
