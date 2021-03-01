@@ -30,6 +30,7 @@ in
 
   # fix errors in hardware-configuration.nix
   boot.kernelModules = [ "iwlwifi" "dm_crypt" ];
+  boot.kernelPackages = pkgs.linuxPackages_5_10;
   hardware.enableRedistributableFirmware = true;
   # fileSystems."/" = {
   #   device = "/dev/VolGroup00/lvolnixos";
