@@ -12,6 +12,8 @@ let
   moduleArgs = {
     inherit pkgs toRelativePath;
   };
+
+  makeScript = name: pkgs.writeScriptBin name (builtins.readFile (toRelativePath "scripts/${name}.sh"));
 in
 {
   imports =
@@ -42,6 +44,9 @@ in
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.grub.useOSProber = true;
+  # boot.extraModprobeConfig = ''
+  #   options snd-hda-intel enable_msi=1
+  # '';
 
   networking.hostName = "c9"; # Define your hostname.
   networking.networkmanager.enable = true;
@@ -98,7 +103,13 @@ in
 
   # Enable sound.
   sound.enable = true;
-  hardware.pulseaudio.enable = true;
+  hardware = {
+    pulseaudio = {
+      enable = true;
+      package = pkgs.pulseaudioFull;
+      support32Bit = true;
+    };
+  };
 
   security.pam = {
     services.lightdm.enableGnomeKeyring = true;
@@ -177,7 +188,13 @@ in
     killall
     libnotify
 
+    # Unstable
     unstable.nix-output-monitor
+
+    # My scripts
+    (makeScript "lock")
+    (makeScript "reload-polybar")
+    (makeScript "reload-monitors")
   ];
 
   users.defaultUserShell = pkgs.zsh;
@@ -201,9 +218,6 @@ in
         {
           rebuild = "sudo nixos-rebuild switch |& nom";
           logout = "sudo systemctl restart display-manager";
-          lock = "betterlockscreen -l dimblur";
-          reload-polybar = "${zsh} ${toRelativePath "scripts/reload-polybar.sh"}";
-          reload-monitors = "${zsh} ${toRelativePath "scripts/reload-monitors.sh"}";
         };
 
       ohMyZsh.enable = true;

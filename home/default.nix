@@ -173,7 +173,7 @@ in
       enable = true;
       settings = {
         global = {
-          geometry = "1000x5-14+50";
+          geometry = "0x5-14+50";
           shrink = "yes";
           padding = 15;
           horizontal_padding = 30;
