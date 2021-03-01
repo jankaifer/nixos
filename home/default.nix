@@ -215,7 +215,7 @@ in
   home.file = {
     ".vimrc".source = toRelativePath "configs/.vimrc";
     ".xprofile".text = ''
-      autorandr -c --force
+      reload-monitors
       eval $(/run/wrappers/bin/gnome-keyring-daemon --start --daemonize)
       export SSH_AUTH_SOCK
     '';

@@ -11,7 +11,7 @@ with builtins;
     mpdSupport = true;
     pulseSupport = true;
   };
-  script = readFile (toRelativePath "scripts/reload-polybar.sh");
+  # script = readFile (toRelativePath "scripts/reload-polybar.sh");
   config =
     let
       commonBarConfig = {
