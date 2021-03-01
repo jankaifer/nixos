@@ -31,7 +31,7 @@ in
   # fix errors in hardware-configuration.nix
   boot.kernelModules = [ "iwlwifi" "dm_crypt" ];
   boot.kernelPackages = pkgs.linuxPackages_5_10;
-  hardware.enableRedistributableFirmware = true;
+  boot.blacklistedKernelModules = [ "snd_hda_intel" "snd_soc_skl" ];
   # fileSystems."/" = {
   #   device = "/dev/VolGroup00/lvolnixos";
   #   fsType = "ext4";
@@ -92,6 +92,15 @@ in
       };
     };
 
+    actkbd = {
+      enable = true;
+      bindings = [
+        { keys = [ 224 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/light -T .8"; }
+        { keys = [ 225 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/light -T 1.25"; }
+      ];
+    };
+
+    blueman.enable = true;
     printing.enable = true;
     gnome3.gnome-keyring.enable = true;
     openssh.enable = true;
@@ -102,9 +111,14 @@ in
   # Enable sound.
   sound.enable = true;
   hardware = {
-    pulseaudio = {
-      enable = true;
-    };
+    enableRedistributableFirmware = true;
+
+    bluetooth.enable = true;
+    pulseaudio.enable = true;
+    pulseaudio.extraConfig = ''
+      load-module module-alsa-sink   device=hw:0,0 channels=4
+      load-module module-alsa-source device=hw:0,6 channels=4
+    '';
   };
 
   security.pam = {
@@ -267,13 +281,6 @@ in
   ];
 
   programs.light.enable = true;
-  services.actkbd = {
-    enable = true;
-    bindings = [
-      { keys = [ 224 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/light -T .8"; }
-      { keys = [ 225 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/light -T 1.25"; }
-    ];
-  };
 
   home-manager.users.pearman = import ./home moduleArgs;
 }

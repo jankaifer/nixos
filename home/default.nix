@@ -82,6 +82,12 @@ in
           };
           keybindings = { };
           modes = { };
+          startup = [
+            {
+              command = "reload-monitors";
+              always = true;
+            }
+          ];
         };
         extraConfig = builtins.readFile (toRelativePath "configs/i3.conf");
       };
@@ -215,7 +221,6 @@ in
   home.file = {
     ".vimrc".source = toRelativePath "configs/.vimrc";
     ".xprofile".text = ''
-      reload-monitors
       eval $(/run/wrappers/bin/gnome-keyring-daemon --start --daemonize)
       export SSH_AUTH_SOCK
     '';
