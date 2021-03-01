@@ -45,9 +45,6 @@ in
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.grub.useOSProber = true;
-  # boot.extraModprobeConfig = ''
-  #   options snd-hda-intel enable_msi=1
-  # '';
 
   networking.hostName = "c9"; # Define your hostname.
   networking.networkmanager.enable = true;
@@ -107,8 +104,6 @@ in
   hardware = {
     pulseaudio = {
       enable = true;
-      package = pkgs.pulseaudioFull;
-      support32Bit = true;
     };
   };
 
