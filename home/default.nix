@@ -39,6 +39,7 @@ in
       feh
       dunst
       kazam
+      nnn
 
       # Electron evil apps
       atom
@@ -115,7 +116,8 @@ in
       enable = true;
       settings = {
         global = {
-          geometry = "0x5-14+50";
+          markup = "full";
+          geometry = "1000x5-14+50";
           shrink = "yes";
           padding = 15;
           horizontal_padding = 30;

@@ -32,20 +32,25 @@ with builtins;
         font-1 = "Fira Code Symbols:size=30;8";
         font-2 = "agave Nerd Font Mono:size=30;8";
       };
-    in
-    {
-      "bar/top" = commonBarConfig // {
+
+      bar-top = commonBarConfig // {
         top = true;
-        enable-ipc = true;
         modules-left = "menu";
         modules-right = "volume backlight wireless-network battery date";
       };
-
-      "bar/bottom" = commonBarConfig // {
+      bar-bottom = commonBarConfig // {
         bottom = true;
         modules-left = "i3";
         modules-right = "cpu memory";
       };
+    in
+    {
+      "bar/top" = bar-top;
+      "bar/primary-top" = bar-top // {
+        tray-position = "left";
+      };
+      "bar/bottom" = bar-bottom;
+      "bar/primary-bottom" = bar-bottom;
 
       "module/cpu" = {
         type = "internal/cpu";
