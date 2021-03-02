@@ -29,8 +29,6 @@ in
       xclip
       bitwarden-cli
       dmenu
-      i3status
-      xorg.xfd
       xorg.xkill
       pavucontrol
       zscroll
@@ -62,37 +60,8 @@ in
 
   xsession = {
     enable = true;
-    windowManager.i3 =
-      let
-        mod = "Mod4";
-      in
-      {
-        enable = true;
-        package = pkgs.i3-gaps;
-        config = {
-          bars = [ ];
-          colors = { };
-          floating = {
-            modifier = mod;
-          };
-          fonts = [
-            "Fira Code Retina 16"
-          ];
-          gaps = {
-            inner = 15;
-            smartGaps = true;
-          };
-          keybindings = { };
-          modes = { };
-          startup = [
-            {
-              command = "reload-monitors";
-              always = true;
-            }
-          ];
-        };
-        extraConfig = builtins.readFile (toRelativePath "configs/i3.conf");
-      };
+    windowManager.i3 = import ./i3.nix moduleArgs;
+
   };
 
   programs = {
