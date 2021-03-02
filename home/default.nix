@@ -128,6 +128,8 @@ in
           ignore_newline = "no";
           stack_duplicates = true;
           font = "Fira Code 16";
+          format = "<b>%a</b>\\n%s\\n%b";
+          aligment = "right";
         };
 
         urgency_low = {
