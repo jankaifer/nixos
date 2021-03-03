@@ -42,9 +42,12 @@ in
 
 
   # Use the systemd-boot EFI boot loader.
+  boot.loader.grub.enable = true;
+  boot.loader.grub.version = 2;
+  boot.loader.grub.device = "/dev/nvme0n1p1";
+  boot.loader.grub.useOSProber = true;
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.grub.useOSProber = true;
 
   networking.hostName = "c9"; # Define your hostname.
   networking.networkmanager.enable = true;
