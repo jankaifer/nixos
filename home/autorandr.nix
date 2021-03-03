@@ -1,4 +1,4 @@
-{ pkgs, toRelativePath }:
+{ pkgs, toRelativePath, ... }:
 
 with builtins;
 let

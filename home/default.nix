@@ -1,10 +1,10 @@
-{ pkgs, toRelativePath }:
+{ pkgs, toRelativePath, unstable, ... }@rest:
 
 with builtins;
 let
   moduleArgs = {
     inherit pkgs toRelativePath;
-  };
+  } // rest;
   mypkgs = import (toRelativePath "mypkgs") moduleArgs;
 in
 {
@@ -38,18 +38,20 @@ in
       dunst
       kazam
       nnn
+      arduino
 
       # Electron evil apps
       atom
       signal-desktop
       bitwarden
       mattermost-desktop
-      vscode
       gitkraken
       spotify
       discord
       slack
       etcher
+
+
     ];
   };
 
@@ -72,6 +74,7 @@ in
     };
 
     autorandr = import ./autorandr.nix moduleArgs;
+    vscode = import ./vscode moduleArgs;
   };
 
   services = {

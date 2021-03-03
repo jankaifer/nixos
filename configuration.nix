@@ -10,7 +10,7 @@ let
 
   toRelativePath = relativePath: toPath (./. + "/${relativePath}");
   moduleArgs = {
-    inherit pkgs toRelativePath;
+    inherit pkgs toRelativePath unstable;
   };
 
   makeScript = name: pkgs.writeScriptBin name (builtins.readFile (toRelativePath "scripts/${name}.sh"));
