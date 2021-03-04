@@ -135,6 +135,9 @@ in
     ".xprofile".text = ''
       eval $(/run/wrappers/bin/gnome-keyring-daemon --start --daemonize)
       export SSH_AUTH_SOCK
+
+      xdg-mime default google-chrome.desktop 'x-scheme-handler/https'
+      xdg-mime default google-chrome.desktop 'x-scheme-handler/http'
     '';
   };
 }

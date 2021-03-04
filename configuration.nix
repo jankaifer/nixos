@@ -40,7 +40,7 @@ in
     device = "/dev/VolGroup00/nixos";
     preLVM = false;
   };
-  
+
   # Use the systemd-boot EFI boot loader.
   boot.loader.grub.useOSProber = false;
   boot.loader.systemd-boot.enable = true;
