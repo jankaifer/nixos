@@ -5,7 +5,7 @@ let
   mod = "Mod4";
 
   # These variables are WET in configs/i3.conf
-  ws = pkgs.lib.lists.imap1 (index: name: toString index) [
+  ws = pkgs.lib.lists.imap0 (index: name: toString index) [
     "private"
     "browser"
     "shell"
