@@ -32,14 +32,6 @@ in
   boot.kernelModules = [ "iwlwifi" "dm_crypt" ];
   boot.kernelPackages = pkgs.linuxPackages_5_10;
   boot.blacklistedKernelModules = [ "snd_hda_intel" "snd_soc_skl" ];
-  fileSystems."/" = {
-    device = "/dev/mapper/nixos";
-    fsType = "ext4";
-  };
-  boot.initrd.luks.devices."nixos" = {
-    device = "/dev/VolGroup00/nixos";
-    preLVM = false;
-  };
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.grub.useOSProber = false;
