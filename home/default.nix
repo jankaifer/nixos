@@ -73,6 +73,10 @@ in
       userEmail = "jan@kaifer.cz";
     };
 
+    zsh = {
+      enable = true;
+    };
+
     autorandr = import ./autorandr.nix moduleArgs;
     vscode = import ./vscode moduleArgs;
   };
