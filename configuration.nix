@@ -32,26 +32,19 @@ in
   boot.kernelModules = [ "iwlwifi" "dm_crypt" ];
   boot.kernelPackages = pkgs.linuxPackages_5_10;
   boot.blacklistedKernelModules = [ "snd_hda_intel" "snd_soc_skl" ];
-  # fileSystems."/" = {
-  #   device = "/dev/VolGroup00/lvolnixos";
-  #   fsType = "ext4";
-  # };
-  # swapDevices = [
-  #   { device = "/dev/VolGroup00/swap; }
-  # ];
-
+  fileSystems."/" = {
+    device = "/dev/mapper/nixos";
+    fsType = "ext4";
+  };
+  boot.initrd.luks.devices."nixos" = {
+    device = "/dev/VolGroup00/nixos";
+    preLVM = false;
+  };
+  
   # Use the systemd-boot EFI boot loader.
-  # boot.loader.grub.enable = true;
-  # boot.loader.grub.version = 2;
-  # boot.loader.grub.device = "/dev/nvme0n1p1";
   boot.loader.grub.useOSProber = false;
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = false;
-
-  # boot.initrd.luks.devices."/" = {
-  #   device = "/dev/VolGroup00/nixos";
-  #   preLVM = false;
-  # };
 
   networking.hostName = "c9"; # Define your hostname.
   networking.networkmanager.enable = true;

@@ -12,22 +12,7 @@
   boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
-  fileSystems."/" =
-    { device = "/dev/mapper/nixos";
-      fsType = "ext4";
-    };
-  # fileSystems."/" =
-  #   { device = "/dev/disk/by-uuid/76a183a9-1419-413a-ab30-fbc404ce089c";
-  #     fsType = "ext4";
-  #   };
-  boot.initrd.luks.devices."nixos" = {
-    device = "/dev/VolGroup00/nixos";
-    preLVM = false;
-  };  
-  # boot.initrd.luks.devices."nixos".device = "/dev/disk/by-uuid/5c66fdd1-41cb-4f87-ab18-da91548c454f";
-
-
-
+  
   swapDevices = [ ];
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
