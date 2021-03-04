@@ -24,7 +24,7 @@ in
       };
     in
     [
-      ./hardware-configuration.nix
+      ./hardware/c9.nix
       (import "${home-manager}/nixos")
     ];
 
