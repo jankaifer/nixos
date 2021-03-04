@@ -1,4 +1,4 @@
-{ pkgs, unstable, toRelativePath }:
+{ pkgs, unstable, toRelativePath, ... }:
 
 with builtins;
 {

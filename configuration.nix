@@ -13,6 +13,8 @@ let
     inherit pkgs toRelativePath unstable;
   };
 
+  secrets = import ./nixos-secrets moduleArgs;
+  moduleArgs.secrets = secrets;
   makeScript = name: pkgs.writeScriptBin name (builtins.readFile (toRelativePath "scripts/${name}.sh"));
 in
 {
@@ -64,6 +66,8 @@ in
   };
 
   services = {
+    openvpn.servers = secrets.openvpn;
+
     xserver = {
       enable = true;
       displayManager.lightdm.enable = true;
