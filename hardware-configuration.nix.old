@@ -12,23 +12,22 @@
   boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
+
   fileSystems."/" =
-    { device = "/dev/mapper/nixos";
+    { device = "/dev/disk/by-uuid/76a183a9-1419-413a-ab30-fbc404ce089c";
       fsType = "ext4";
     };
-  # fileSystems."/" =
-  #   { device = "/dev/disk/by-uuid/76a183a9-1419-413a-ab30-fbc404ce089c";
-  #     fsType = "ext4";
-  #   };
-  boot.initrd.luks.devices."nixos" = {
-    device = "/dev/VolGroup00/nixos";
-    preLVM = false;
-  };  
-  # boot.initrd.luks.devices."nixos".device = "/dev/disk/by-uuid/5c66fdd1-41cb-4f87-ab18-da91548c454f";
 
+  boot.initrd.luks.devices."nixos".device = "/dev/disk/by-uuid/5c66fdd1-41cb-4f87-ab18-da91548c454f";
 
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-uuid/EC7D-DA20";
+      fsType = "vfat";
+    };
 
-  swapDevices = [ ];
+  swapDevices =
+    [ { device = "/dev/disk/by-uuid/e25bb6d0-2628-4183-9dca-561c581fb2b9"; }
+    ];
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   # high-resolution display
