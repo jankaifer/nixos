@@ -67,6 +67,11 @@ in
 
   services = {
     openvpn.servers = secrets.openvpn;
+    thermald = {
+      enable = true;
+      adaptive = false;
+      configFile = toRelativePath "configs/thermal-conf.xml";
+    };
 
     xserver = {
       enable = true;
@@ -86,6 +91,14 @@ in
           url = "https://gitlab.com/JanKaifer/fck/-/raw/master/cz";
         };
       };
+
+      # # This should solve screen tearing on C9 - might not bee needed on new kernel
+      # # https://wiki.archlinux.org/index.php/Lenovo_Yoga_c940#Video
+      # deviceSection = ''
+      #   Identifier  "Intel Graphics"
+      #   Driver      "intel"
+      #   Option      "TearFree"    "true"
+      # '';
     };
 
     actkbd = {
@@ -233,6 +246,7 @@ in
         "wd"
       ];
     };
+    steam.enable = true;
   };
 
   environment.variables = {
