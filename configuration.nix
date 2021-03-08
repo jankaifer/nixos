@@ -67,11 +67,12 @@ in
 
   services = {
     openvpn.servers = secrets.openvpn;
-    thermald = {
-      enable = true;
-      adaptive = false;
-      configFile = toRelativePath "configs/thermal-conf.xml";
-    };
+    # Thermald causes thermal shutdowns
+    # thermald = {
+    #   enable = true;
+    #   adaptive = false;
+    #   configFile = toRelativePath "configs/thermal-conf.xml";
+    # };
 
     xserver = {
       enable = true;
