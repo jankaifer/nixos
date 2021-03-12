@@ -148,6 +148,7 @@ in
       "wheel"
       "networkmanager"
       "video"
+      "docker"
       "adbusers"
     ];
   };
@@ -181,32 +182,50 @@ in
     ]);
   in
   [
+    # Basic utils
     wget
     iw
     tree
     lshw
     git
-    pythonFull
     gnumake
     gcc
-    black
-    nixpkgs-fmt
-    home-manager
     vim
     htop
-    pythonPackages.ipython
-    acpi
-    parted
     zsh-powerlevel10k
     zsh-you-should-use
+    acpi
+    parted
     direnv
-    nodejs
-    nodePackages.yarn
-    nodePackages.npm
     cryptsetup
     binutils
     killall
     libnotify
+
+    # X server
+    xorg.xeyes
+    xorg.xhost
+
+    # Nix
+    nixpkgs-fmt
+    home-manager
+
+    # Python
+    pythonFull
+    black
+    pythonPackages.ipython
+
+    # Node
+    nodejs
+    nodePackages.yarn
+    nodePackages.npm
+
+    # Docker
+    docker
+
+    # Rust
+    rustc
+    cargo
 
     # Unstable
     unstable.nix-output-monitor
@@ -249,6 +268,12 @@ in
     };
     steam.enable = true;
   };
+
+  virtualisation.docker =
+    {
+      enable = true;
+      enableOnBoot = true;
+    };
 
   environment.variables = {
     XDG_CONFIG_HOME = "$HOME/.config";
