@@ -1,4 +1,7 @@
 aaronduino.nix-lsp
+brettm12345.nixfmt-vscode
+b4dm4n.nixpkgs-fmt
+rust-lang.rust
 alefragnani.project-manager
 antfu.i18n-ally
 ardenivanov.svelte-intellisense
