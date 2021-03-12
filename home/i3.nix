@@ -35,7 +35,9 @@ in
       inner = 15;
       smartGaps = true;
     };
-    keybindings = { };
+    keybindings = {
+      "${mod}+d" = "exec i3-dmenu-desktop --dmenu='rofi -dmenu -i'";
+    };
     modes = { };
     startup = [
       {

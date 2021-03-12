@@ -204,6 +204,7 @@ in
     binutils
     killall
     libnotify
+    gnome3.gnome-software
 
     # X server
     xorg.xeyes
