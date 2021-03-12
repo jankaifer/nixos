@@ -4,10 +4,11 @@ CIDFILE=/tmp/.docker.nsu
 
 xauth nlist :0 | sed -e 's/^..../ffff/' | xauth -f $XAUTH nmerge -
 
-./stop_nsu.sh
+./nsu-stop.sh
 
-echo Building container ...
-docker build -t nsu - < ./Dockerfile
+# We already have one builded
+# echo Building container ...
+# docker build -t nsu - < ./Dockerfile
 
 echo Starting container ...
 docker run -t \
@@ -16,4 +17,4 @@ docker run -t \
   -v /home:/home \
   -e "XAUTHORITY=$XAUTH" \
   --cidfile=$CIDFILE \
-  nsu &
+  nsu > /dev/null &

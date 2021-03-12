@@ -15,7 +15,8 @@ let
 
   secrets = import ./nixos-secrets moduleArgs;
   moduleArgs.secrets = secrets;
-  makeScript = name: pkgs.writeScriptBin name (builtins.readFile (toRelativePath "scripts/${name}.sh"));
+  makeExecutable = name: path: pkgs.writeScriptBin name (builtins.readFile (toRelativePath path));
+  makeScript = name: makeExecutable name "scripts/${name}.sh";
 in
 {
   imports =
@@ -66,6 +67,7 @@ in
   };
 
   services = {
+    flatpak.enable = true;
     openvpn.servers = secrets.openvpn;
     # Thermald causes thermal shutdowns
     # thermald = {
@@ -150,6 +152,7 @@ in
       "video"
       "docker"
       "adbusers"
+      "lxd"
     ];
   };
 
@@ -234,6 +237,8 @@ in
     (makeScript "lock")
     (makeScript "reload-polybar")
     (makeScript "reload-monitors")
+    (makeExecutable "nsu-start" "NSU/nsu-start.sh")
+    (makeExecutable "nsu-run" "NSU/nsu-run.sh")
   ];
 
   users.defaultUserShell = pkgs.zsh;
@@ -269,11 +274,16 @@ in
     steam.enable = true;
   };
 
-  virtualisation.docker =
-    {
+  virtualisation = {
+    docker = {
       enable = true;
       enableOnBoot = true;
     };
+    lxd.enable = true;
+    lxd.recommendedSysctlSettings = true;
+    lxd.package = unstable.lxd; # There seems to be issue with sharing Xserver in version 4.5
+    lxc.lxcfs.enable = true;
+  };
 
   environment.variables = {
     XDG_CONFIG_HOME = "$HOME/.config";
@@ -286,6 +296,7 @@ in
     BROWSER = "google-chrome-stable";
   };
 
+  xdg.portal.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
