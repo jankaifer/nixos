@@ -264,6 +264,7 @@ in
         {
           rebuild = "sudo nixos-rebuild switch |& nom";
           logout = "sudo systemctl restart display-manager";
+          nsu = "nsu-run bash";
         };
 
       ohMyZsh.enable = true;
