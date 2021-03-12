@@ -2,7 +2,7 @@
 
 with builtins;
 {
-  enable = true;
+  enable = false;
   extensions = (with unstable.vscode-extensions; [
     bbenoist.Nix
     coenraads.bracket-pair-colorizer-2
