@@ -14,10 +14,6 @@ docker run -t \
   -v "$XSOCK:$XSOCK" \
   -v "$XAUTH:$XAUTH" \
   -v /home:/home \
-  -v /etc/passwd:/etc/passwd:ro \
-  -v /etc/group:/etc/group:ro \
-  -v /etc/shadow:/etc/shadow:ro \
-  -v /etc/sudoers:/etc/sudoers:ro \
   -e "XAUTHORITY=$XAUTH" \
   --cidfile=$CIDFILE \
   nsu &
