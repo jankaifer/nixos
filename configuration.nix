@@ -240,6 +240,7 @@ in
     (makeScript "reload-monitors")
     (makeExecutable "nsu-start" "NSU/nsu-start.sh")
     (makeExecutable "nsu-run" "NSU/nsu-run.sh")
+    (makeExecutable "nsu-save" "NSU/nsu-save.sh")
   ];
 
   users.defaultUserShell = pkgs.zsh;
