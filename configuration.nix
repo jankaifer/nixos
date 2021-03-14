@@ -231,6 +231,9 @@ in
     rustc
     cargo
 
+    # Prolog
+    swiProlog
+
     # Unstable
     unstable.nix-output-monitor
 
