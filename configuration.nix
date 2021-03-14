@@ -302,6 +302,15 @@ in
     BROWSER = "google-chrome-stable";
   };
 
+  # Should fix screen tearing https://wiki.archlinux.org/index.php/Lenovo_Yoga_c940#Video
+  environment.etc."X11/xorg.conf.d/20-intel.conf".text = ''
+    Section "Device"
+      Identifier  "Intel Graphics"
+      Driver      "intel"
+      Option      "TearFree"    "true"
+    EndSection
+  '';
+
   xdg.portal.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
