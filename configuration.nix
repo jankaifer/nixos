@@ -308,6 +308,8 @@ in
       Identifier  "Intel Graphics"
       Driver      "intel"
       Option      "TearFree"    "true"
+      Option      "NoAccel"     "true"
+      Option      "DRI"         "false"
     EndSection
   '';
 
