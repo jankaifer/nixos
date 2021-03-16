@@ -70,11 +70,10 @@ in
     flatpak.enable = true;
     openvpn.servers = secrets.openvpn;
     # Thermald causes thermal shutdowns
-    # thermald = {
-    #   enable = true;
-    #   adaptive = false;
-    #   configFile = toRelativePath "configs/thermal-conf.xml";
-    # };
+    thermald = {
+      enable = true;
+      configFile = toRelativePath "configs/thermal-conf.xml";
+    };
 
     xserver = {
       enable = true;
@@ -206,6 +205,10 @@ in
     libnotify
     gnome3.gnome-software
 
+    # steam
+    steam-run-native
+    steam-run
+
     # X server
     xorg.xeyes
     xorg.xhost
@@ -242,8 +245,21 @@ in
     (makeScript "reload-polybar")
     (makeScript "reload-monitors")
     (makeExecutable "nsu-start" "NSU/nsu-start.sh")
+    (makeExecutable "nsu-stop" "NSU/nsu-stop.sh")
     (makeExecutable "nsu-run" "NSU/nsu-run.sh")
     (makeExecutable "nsu-save" "NSU/nsu-save.sh")
+  ];
+
+  nixpkgs.overlays = [
+    (self: super: {
+      steam = super.steam.override {
+        extraPkgs = pkgs: [ self.xlibs.libX11
+                            self.xorg_sys_opengl
+                            self.gcc-unwrapped.lib
+                            self.gap-minimal
+                            self.utillinux ];
+      };
+    })
   ];
 
   users.defaultUserShell = pkgs.zsh;
@@ -312,6 +328,9 @@ in
       Option      "DRI"         "false"
     EndSection
   '';
+
+  # Fix thermal shutdowns https://wiki.archlinux.org/index.php/Lenovo_Yoga_c940#Thermal_Config
+  # environment.etc."thermald/thermal-conf.xml".text = ''
 
   xdg.portal.enable = true;
 

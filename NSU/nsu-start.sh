@@ -4,7 +4,7 @@ CIDFILE=/tmp/.docker.nsu
 
 xauth nlist :0 | sed -e 's/^..../ffff/' | xauth -f $XAUTH nmerge -
 
-./nsu-stop.sh
+nsu-stop
 
 # We already have one builded
 # echo Building container ...
