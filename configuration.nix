@@ -323,9 +323,11 @@ in
     Section "Device"
       Identifier  "Intel Graphics"
       Driver      "intel"
-      Option      "TearFree"    "true"
-      Option      "NoAccel"     "true"
-      Option      "DRI"         "false"
+      Option      "TearFree"     "true"
+      Option      "TripleBuffer" "true"
+
+      Option      "NoAccel"      "true"
+      Option      "DRI"          "false"
     EndSection
   '';
 
