@@ -39,6 +39,8 @@ in
       kazam
       nnn
       arduino
+      arduino-cli
+      unzip
 
       # Electron evil apps
       atom
