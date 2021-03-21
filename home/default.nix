@@ -41,6 +41,7 @@ in
       arduino
       arduino-cli
       unzip
+      tor-browser-bundle-bin
 
       # Electron evil apps
       atom

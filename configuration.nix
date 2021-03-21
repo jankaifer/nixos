@@ -208,6 +208,7 @@ in
     # steam
     steam-run-native
     steam-run
+    unstable.steam
 
     # X server
     xorg.xeyes
@@ -244,6 +245,7 @@ in
     (makeScript "lock")
     (makeScript "reload-polybar")
     (makeScript "reload-monitors")
+    (makeScript "run-steam-game")
     (makeExecutable "nsu-start" "NSU/nsu-start.sh")
     (makeExecutable "nsu-stop" "NSU/nsu-stop.sh")
     (makeExecutable "nsu-run" "NSU/nsu-run.sh")
@@ -293,8 +295,18 @@ in
         "wd"
       ];
     };
-    steam.enable = true;
   };
+
+  # Fixes for steam from https://github.com/NixOS/nixpkgs/blob/nixos-20.09/nixos/modules/programs/steam.nix
+  hardware.opengl = { # this fixes the "glXChooseVisual failed" bug, context: https://github.com/NixOS/nixpkgs/issues/47932
+    enable = true;
+    driSupport32Bit = true;
+  };
+
+  # optionally enable 32bit pulseaudio support if pulseaudio is enabled
+  hardware.pulseaudio.support32Bit = config.hardware.pulseaudio.enable;
+
+  hardware.steam-hardware.enable = true;
 
   virtualisation = {
     docker = {
