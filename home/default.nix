@@ -16,7 +16,11 @@ in
     keyboard.layout = "fck";
 
     packages = with pkgs; [
-      mypkgs.real-vnc-viewer
+      (makeDesktopItem {
+        name = "realvnc-viewer";
+        desktopName = "Real VNC Viewer";
+        exec = "${mypkgs.real-vnc-viewer}/bin/realvnc-viewer";
+      })
 
       firefox
       google-chrome
