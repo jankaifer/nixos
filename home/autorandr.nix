@@ -95,13 +95,13 @@ in
       };
     };
   } //
-  (genProfiles "c9-thinkvision" {
-    fingerprint = {
-      eDP-1 = c9;
-      DP-1 = thinkVision;
-    };
-    config = monitorConfig4k;
-  }) //
+  # (genProfiles "c9-thinkvision" {
+  #   fingerprint = {
+  #     eDP-1 = c9;
+  #     DP-1 = thinkVision;
+  #   };
+  #   config = monitorConfig4k;
+  # }) //
   (genProfiles "c9-thinkvision-vert" {
     fingerprint = {
       eDP-1 = c9;
