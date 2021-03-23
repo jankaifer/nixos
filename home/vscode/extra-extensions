@@ -24,7 +24,7 @@ liximomo.sftp
 mike-co.import-sorter
 mrorz.language-gettext
 ms-toolsai.jupyter
-ms-vscode-remote.remote-containers
+# ms-vscode-remote.remote-containers
 ms-vscode-remote.remote-ssh-edit
 ms-vscode-remote.remote-wsl
 ms-vscode-remote.vscode-remote-extensionpack

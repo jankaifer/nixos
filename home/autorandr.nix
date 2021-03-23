@@ -31,6 +31,32 @@ let
     };
   };
 
+  monitorConfig4kVert = {
+    DP-1 = {
+      enable = true;
+      primary = true;
+      scale = {
+        x = 1;
+        y = 1;
+      };
+      rotate = "left";
+      position = "0x0";
+      mode = "3840x2160";
+      rate = "60.00";
+    };
+    eDP-1 = {
+      enable = true;
+      primary = false;
+      scale = {
+        x = .5;
+        y = .5;
+      };
+      position = "0x3840";
+      mode = "3840x2160";
+      rate = "60.00";
+    };
+  };
+
   genProfiles = name: config:
     listToAttrs (pkgs.lib.lists.imap1
       (index: secondaryDisplayName: {
@@ -75,6 +101,13 @@ in
       DP-1 = thinkVision;
     };
     config = monitorConfig4k;
+  }) //
+  (genProfiles "c9-thinkvision-vert" {
+    fingerprint = {
+      eDP-1 = c9;
+      DP-1 = thinkVision;
+    };
+    config = monitorConfig4kVert;
   }) //
   (genProfiles "c9-aoc" {
     fingerprint = {

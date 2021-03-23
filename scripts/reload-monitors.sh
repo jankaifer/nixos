@@ -1,3 +1,3 @@
 autorandr -c --force
-feh --bg-scale /etc/nixos/wallpapers/wallpaper
+feh --bg-fill /etc/nixos/wallpapers/wallpaper
 reload-polybar
