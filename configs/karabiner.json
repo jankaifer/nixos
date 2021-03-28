@@ -16,7 +16,7 @@
         },
         "rules": [
           {
-            "description": "Change right_command+hjkl to arrow keys",
+            "description": "Command+Enter to open terminal",
             "manipulators": [
               {
                 "from": {
