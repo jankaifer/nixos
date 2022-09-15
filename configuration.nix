@@ -18,7 +18,7 @@ let
     inherit pkgs toRelativePath unstable;
   };
 
-  # secrets = import ./nixos-secrets moduleArgs;
+  secrets = import ../nixos-secrets moduleArgs;
   # moduleArgs.secrets = secrets;
   # makeExecutable = name: path: pkgs.writeScriptBin name (builtins.readFile (toRelativePath path));
   # makeScript = name: makeExecutable name "scripts/${name}.sh";
