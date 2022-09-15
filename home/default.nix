@@ -62,10 +62,7 @@ in
     "Xcursor.size" = 64;
   };
 
-  # xsession = {
-  #   enable = true;
-  #   windowManager.i3 = import ./i3.nix moduleArgs;
-  # };
+  wayland.windowManager.sway = import ./sway.nix moduleArgs;
 
   programs = {
     git = {
