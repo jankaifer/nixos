@@ -48,12 +48,11 @@ in
       atom
       signal-desktop
       bitwarden
-      mattermost-desktop
       gitkraken
       spotify
       discord
       slack
-      etcher
+      # etcher
     ];
   };
 
