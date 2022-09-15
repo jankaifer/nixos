@@ -34,7 +34,6 @@ in
       bitwarden-cli
       dmenu
       xorg.xkill
-      pavucontrol
       zscroll
       playerctl
       betterlockscreen
@@ -42,10 +41,7 @@ in
       dunst
       kazam
       nnn
-      arduino
-      arduino-cli
       unzip
-      tor-browser-bundle-bin
       xournalpp
 
       # Electron evil apps
@@ -66,11 +62,10 @@ in
     "Xcursor.size" = 64;
   };
 
-  xsession = {
-    enable = true;
-    windowManager.i3 = import ./i3.nix moduleArgs;
-
-  };
+  # xsession = {
+  #   enable = true;
+  #   windowManager.i3 = import ./i3.nix moduleArgs;
+  # };
 
   programs = {
     git = {
@@ -96,62 +91,58 @@ in
       ];
     };
 
-    rofi = {
-      enable = true;
+    # rofi = {
+    #   enable = true;
+    # };
 
-    };
-
-    autorandr = import ./autorandr.nix moduleArgs;
-    vscode = import ./vscode moduleArgs;
+    # autorandr = import ./autorandr.nix moduleArgs;
   };
 
   services = {
-    polybar = import ./polybar.nix moduleArgs;
+    # polybar = import ./polybar.nix moduleArgs;
+    
+    # picom.enable = true;
 
-    picom = {
-      enable = true;
-    };
+    # dunst = {
+    #   enable = true;
+    #   settings = {
+    #     global = {
+    #       markup = "full";
+    #       geometry = "1000x5-14+50";
+    #       shrink = "yes";
+    #       padding = 15;
+    #       horizontal_padding = 30;
+    #       progress_bar = true;
+    #       transparency = 0;
+    #       frame_width = 5;
+    #       frame_color = "#666666";
+    #       ignore_newline = "no";
+    #       stack_duplicates = true;
+    #       font = "Fira Code 16";
+    #       format = "<b>%a</b>\\n%s\\n%b";
+    #       aligment = "right";
+    #     };
 
-    dunst = {
-      enable = true;
-      settings = {
-        global = {
-          markup = "full";
-          geometry = "1000x5-14+50";
-          shrink = "yes";
-          padding = 15;
-          horizontal_padding = 30;
-          progress_bar = true;
-          transparency = 0;
-          frame_width = 5;
-          frame_color = "#666666";
-          ignore_newline = "no";
-          stack_duplicates = true;
-          font = "Fira Code 16";
-          format = "<b>%a</b>\\n%s\\n%b";
-          aligment = "right";
-        };
+    #     urgency_low = {
+    #       background = "#222222";
+    #       foreground = "#ffffff";
+    #       timeout = 10;
+    #     };
 
-        urgency_low = {
-          background = "#222222";
-          foreground = "#ffffff";
-          timeout = 10;
-        };
+    #     urgency_normal = {
+    #       background = "#444444";
+    #       foreground = "#ffffff";
+    #       timeout = 10;
+    #     };
 
-        urgency_normal = {
-          background = "#444444";
-          foreground = "#ffffff";
-          timeout = 10;
-        };
-
-        urgency_critical = {
-          background = "#990000";
-          foreground = "#ffffff";
-          frame_color = "#ff0000";
-          timeout = 0;
-        };
-      };
-    };
+    #     urgency_critical = {
+    #       background = "#990000";
+    #       foreground = "#ffffff";
+    #       frame_color = "#ff0000";
+    #       timeout = 0;
+    #     };
+    #   };
+    # };
   };
 
   xdg.configFile = {
@@ -161,12 +152,12 @@ in
 
   home.file = {
     ".vimrc".source = toRelativePath "configs/.vimrc";
-    ".xprofile".text = ''
-      eval $(/run/wrappers/bin/gnome-keyring-daemon --start --daemonize)
-      export SSH_AUTH_SOCK
+    # ".xprofile".text = ''
+    #   eval $(/run/wrappers/bin/gnome-keyring-daemon --start --daemonize)
+    #   export SSH_AUTH_SOCK
 
-      xdg-mime default google-chrome.desktop 'x-scheme-handler/https'
-      xdg-mime default google-chrome.desktop 'x-scheme-handler/http'
-    '';
+    #   xdg-mime default google-chrome.desktop 'x-scheme-handler/https'
+    #   xdg-mime default google-chrome.desktop 'x-scheme-handler/http'
+    # '';
   };
 }

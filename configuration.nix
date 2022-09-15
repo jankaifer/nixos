@@ -8,10 +8,15 @@ with builtins;
 let
   unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
 
-  # toRelativePath = relativePath: toPath (./. + "/${relativePath}");
-  # moduleArgs = {
-  #   inherit pkgs toRelativePath unstable;
-  # };
+  home-manager = fetchGit {
+    url = "https://github.com/nix-community/home-manager.git";
+    ref = "release-22.05";
+  };
+
+  toRelativePath = relativePath: toPath (./. + "/${relativePath}");
+  moduleArgs = {
+    inherit pkgs toRelativePath unstable;
+  };
 
   # secrets = import ./nixos-secrets moduleArgs;
   # moduleArgs.secrets = secrets;
@@ -19,21 +24,10 @@ let
   # makeScript = name: makeExecutable name "scripts/${name}.sh";
 in
 {
-  # imports =
-  #   let
-  #     home-manager = fetchGit {
-  #       url = "https://github.com/nix-community/home-manager.git";
-  #       ref = "release-20.09";
-  #     };
-  #   in
-  #   [
-  #     ./hardware/c9.nix
-  #     (import "${home-manager}/nixos")
-  #   ];
-
   imports =
     [
       ./hardware/framework.nix
+      (import "${home-manager}/nixos")
     ];
 
   # Update kernel
@@ -128,6 +122,9 @@ in
     #media-session.enable = true;
   };
 
+  # Enable fingerprint
+  services.fprintd.enable = true;
+
   # services.flatpak.enable = true;
   # services.openvpn.servers = secrets.openvpn;
   # services.blueman.enable = true;
@@ -142,7 +139,7 @@ in
 
   #   bluetooth.enable = true;
   # };
-
+  # users.mutableUsers = false;
   users.users.pearman = {
     isNormalUser = true;
     description = "Jan Kaifer";
@@ -154,6 +151,7 @@ in
       "adbusers"
       "lxd"
     ];
+   #  hashedPassword = ;
   };
 
   # Allow unfree packages
@@ -312,31 +310,13 @@ in
   #   lxc.lxcfs.enable = true;
   # };
 
-  # environment.variables = {
-  #   XDG_CONFIG_HOME = "$HOME/.config";
-  #   XDG_DATA_HOME = "$HOME/.local/share";
-  #   XDG_CACHE_HOME = "$HOME/.cache";
+  environment.variables = {
+    XDG_CONFIG_HOME = "$HOME/.config";
+    XDG_DATA_HOME = "$HOME/.local/share";
+    XDG_CACHE_HOME = "$HOME/.cache";
+  };
 
-  #   ANDROID_HOME = "$HOME/Android/Sdk"; # Set the home of the android SDK
-
-  #   TERMINAL = "kitty";
-  #   BROWSER = "google-chrome-stable";
-  # };
-
-  # # Should fix screen tearing https://wiki.archlinux.org/index.php/Lenovo_Yoga_c940#Video
-  # environment.etc."X11/xorg.conf.d/20-intel.conf".text = ''
-  #   Section "Device"
-  #     Identifier  "Intel Graphics"
-  #     Driver      "intel"
-  #     Option      "TearFree"     "true"
-  #     Option      "TripleBuffer" "true"
-
-  #     Option      "NoAccel"      "true"
-  #     Option      "DRI"          "false"
-  #   EndSection
-  # '';
-
-  # xdg.portal.enable = true;
+  xdg.portal.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
@@ -353,7 +333,7 @@ in
     siji
   ];
 
-  # programs.light.enable = true;
+  programs.light.enable = true;
 
-  # home-manager.users.pearman = import ./home moduleArgs;
+  home-manager.users.pearman = import ./home moduleArgs;
 }
