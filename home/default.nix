@@ -24,6 +24,7 @@ in
 
       firefox
       google-chrome
+      brave
       zoom-us
       vlc
       kitty
