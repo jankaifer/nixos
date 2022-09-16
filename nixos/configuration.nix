@@ -1,7 +1,3 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, pkgs, ... }:
 
 with builtins;
@@ -14,24 +10,33 @@ let
   };
 
   toRelativePath = relativePath: toPath (./. + "/${relativePath}");
+
+  # My secrets are living in different repository that is not public:
+  # - https://gitlab.com/JanKaifer/nixos-secrets
+  secrets = import ../../nixos-secrets moduleArgs;
+
   moduleArgs = {
-    inherit pkgs toRelativePath unstable;
+    inherit pkgs toRelativePath unstable secrets;
   };
 
-  secrets = import ../nixos-secrets moduleArgs;
-  # moduleArgs.secrets = secrets;
-  # makeExecutable = name: path: pkgs.writeScriptBin name (builtins.readFile (toRelativePath path));
-  # makeScript = name: makeExecutable name "scripts/${name}.sh";
+  # Few utils for easier creation of my own scripts
+  makeExecutable = name: path: pkgs.writeScriptBin name (builtins.readFile (toRelativePath path));
+  makeScript = name: makeExecutable name "scripts/${name}.sh";
 in
 {
   imports =
     [
-      ./hardware/framework.nix
-      (import "${home-manager}/nixos")
-    ];
+      # Auto-generated hardware configuration
+      /etc/nixos/hardware-configuration.nix
+      
+      # My overrides for specific machine
+      ../hardware/framework.nix
 
-  # Update kernel
-  boot.kernelPackages = pkgs.linuxPackages_5_18;
+      # Initialize home-manager
+      (import "${home-manager}/nixos")
+
+      ./audio.nix
+    ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.grub.useOSProber = false;
@@ -44,12 +49,7 @@ in
     "/crypto_keyfile.bin" = null;
   };
 
-  # Enable swap on luks
-  boot.initrd.luks.devices."luks-03537895-0d55-4d42-83b0-28f2c82e6273".device = "/dev/disk/by-uuid/03537895-0d55-4d42-83b0-28f2c82e6273";
-  boot.initrd.luks.devices."luks-03537895-0d55-4d42-83b0-28f2c82e6273".keyFile = "/crypto_keyfile.bin";
-
   # Networking
-  networking.hostName = "pearframe";
   networking.networkmanager.enable = true;
 
   # Set your time zone.
@@ -104,23 +104,6 @@ in
       
   # Enable CUPS to print documents.
   services.printing.enable = true;
-
-  # Enable sound with pipewire.
-  sound.enable = true;
-  hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
-  };
 
   # Enable fingerprint
   services.fprintd.enable = true;
@@ -269,7 +252,7 @@ in
   #     enable = true;
   #     promptInit = ''
   #       eval "$(direnv hook zsh)"
-  #       source ${./configs/p10k.zsh}
+  #       source ${../configs/p10k.zsh}
   #       source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
   #     '';
   #     enableBashCompletion = true;
@@ -336,5 +319,5 @@ in
 
   programs.light.enable = true;
 
-  home-manager.users.pearman = import ./home moduleArgs;
+  home-manager.users.pearman = import ../home-manager moduleArgs;
 }
