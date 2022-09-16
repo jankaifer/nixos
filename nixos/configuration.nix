@@ -121,70 +121,48 @@ in
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  # Use ZSH
+  users.defaultUserShell = pkgs.zsh;
 
-  # nixpkgs.overlays = [
-  #   (self: super: {
-  #     steam = super.steam.override {
-  #       extraPkgs = pkgs: [ self.xlibs.libX11
-  #                           self.xorg_sys_opengl
-  #                           self.gcc-unwrapped.lib
-  #                           self.gap-minimal
-  #                           self.utillinux ];
-  #     };
-  #   })
-  # ];
+  programs = {
+    vim.defaultEditor = true;
 
-  # users.defaultUserShell = pkgs.zsh;
+    zsh = {
+      enable = true;
+      promptInit = ''
+        eval "$(direnv hook zsh)"
+        source ${../configs/p10k.zsh}
+        source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
+      '';
+      enableBashCompletion = true;
+      shellAliases =
+        let
+          zsh = "${pkgs.zsh}/bin/zsh";
+        in
+        {
+          rebuild = "sudo nixos-rebuild switch |& nom";
+        };
 
-  # programs = {
-  #   vim.defaultEditor = true;
-  #   adb.enable = true;
+      ohMyZsh.enable = true;
+      ohMyZsh.plugins = [
+        "vi-mode"
+        "extract"
+        "wd"
+      ];
+    };
+  };
 
-  #   zsh = {
-  #     enable = true;
-  #     promptInit = ''
-  #       eval "$(direnv hook zsh)"
-  #       source ${../configs/p10k.zsh}
-  #       source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
-  #     '';
-  #     enableBashCompletion = true;
-  #     shellAliases =
-  #       let
-  #         zsh = "${pkgs.zsh}/bin/zsh";
-  #       in
-  #       {
-  #         rebuild = "sudo nixos-rebuild switch |& nom";
-  #         logout = "sudo systemctl restart display-manager";
-  #         nsu = "nsu-run bash";
-  #       };
+  fonts.fonts = with pkgs; [
+    fira-code
+    fira-code-symbols
+    nerdfonts
+    siji
+  ];
 
-  #     ohMyZsh.enable = true;
-  #     ohMyZsh.plugins = [
-  #       "vi-mode"
-  #       "extract"
-  #       "wd"
-  #     ];
-  #   };
-  # };
-
-  # # Fixes for steam from https://github.com/NixOS/nixpkgs/blob/nixos-20.09/nixos/modules/programs/steam.nix
-  # hardware.opengl = { # this fixes the "glXChooseVisual failed" bug, context: https://github.com/NixOS/nixpkgs/issues/47932
-  #   enable = true;
-  #   driSupport32Bit = true;
-  # };
-
-  # hardware.steam-hardware.enable = true;
-
-  # virtualisation = {
-  #   docker = {
-  #     enable = true;
-  #     enableOnBoot = true;
-  #   };
-  #   lxd.enable = true;
-  #   lxd.recommendedSysctlSettings = true;
-  #   lxd.package = unstable.lxd; # There seems to be issue with sharing Xserver in version 4.5
-  #   lxc.lxcfs.enable = true;
-  # };
+  virtualisation.docker = {
+    enable = true;
+    enableOnBoot = true;
+  };
 
   environment.variables = {
     XDG_CONFIG_HOME = "$HOME/.config";
@@ -201,13 +179,4 @@ in
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "22.05"; # Did you read the comment?
-
-  fonts.fonts = with pkgs; [
-    fira-code
-    fira-code-symbols
-    nerdfonts
-    siji
-  ];
-
-  programs.light.enable = true;
 }
