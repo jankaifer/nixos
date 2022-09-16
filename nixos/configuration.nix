@@ -78,9 +78,17 @@ in
 
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
+  services.xserver.displayManager.gdm.wayland = true;
   services.xserver.desktopManager.gnome.enable = true;
-  # services.xserver.displayManager.lightdm.enable = true;
-  # services.xserver.desktopManager.xterm.enable = true;
+
+  # Modify GNOME default settings: https://discourse.nixos.org/t/gnome3-settings-via-configuration-nix/5121
+  # Source for these modifications: https://guides.frame.work/Guide/Fedora+36+Installation+on+the+Framework+Laptop/108#s655
+  services.xserver.desktopManager.gnome.extraGSettingsOverrides = ''
+    [org.gnome.mutter]
+    experimental-features=['scale-monitor-framebuffer']
+  '';
+
+  # Touchpad configs
   services.xserver.libinput = {
     enable = true;
     touchpad.naturalScrolling = true;
@@ -126,6 +134,9 @@ in
 
   programs = {
     vim.defaultEditor = true;
+
+    # To allow configuration of gnome
+    dconf.enable = true;
 
     zsh = {
       enable = true;
