@@ -105,7 +105,8 @@ in
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
-  # users.mutableUsers = false;
+  # Setup user
+  users.mutableUsers = false;
   users.users.pearman = {
     isNormalUser = true;
     description = "Jan Kaifer";
@@ -117,7 +118,7 @@ in
       "adbusers"
       "lxd"
     ];
-   #  hashedPassword = ;
+    hashedPassword = secrets.hashedPassword;
   };
 
   # Allow unfree packages
