@@ -8,153 +8,155 @@ let
   mypkgs = import (toRelativePath "mypkgs") moduleArgs;
 in
 {
-  nixpkgs.config = {
-    allowUnfree = true;
-  };
-
-  home = {
-    keyboard.layout = "fck";
-
-    packages = with pkgs; [
-      (makeDesktopItem {
-        name = "realvnc-viewer";
-        desktopName = "Real VNC Viewer";
-        exec = "${mypkgs.real-vnc-viewer}/bin/realvnc-viewer";
-      })
-
-      firefox
-      google-chrome
-      brave
-      zoom-us
-      vlc
-      kitty
-      gnome3.seahorse
-      gparted
-      maim
-      xclip
-      bitwarden-cli
-      dmenu
-      xorg.xkill
-      zscroll
-      playerctl
-      betterlockscreen
-      feh
-      dunst
-      kazam
-      nnn
-      unzip
-      xournalpp
-
-      # Electron evil apps
-      atom
-      signal-desktop
-      bitwarden
-      gitkraken
-      spotify
-      discord
-      slack
-      # etcher
-    ];
-  };
-
-  xresources.properties = {
-    # "Xft.dpi" = 276;
-    "Xcursor.size" = 64;
-  };
-
-  wayland.windowManager.sway = import ./sway.nix moduleArgs;
-
-  programs = {
-    git = {
-      enable = true;
-      userName = "Jan Kaifer";
-      userEmail = "jan@kaifer.cz";
+  home-manager.users.pearman = {
+    nixpkgs.config = {
+      allowUnfree = true;
     };
 
-    zsh = {
-      enable = true;
-      enableCompletion = true;
-      plugins = [
-        {
-          name = "zsh-nix-shell";
-          file = "nix-shell.plugin.zsh";
-          src = pkgs.fetchFromGitHub {
-            owner = "chisui";
-            repo = "zsh-nix-shell";
-            rev = "v0.1.0";
-            sha256 = "0snhch9hfy83d4amkyxx33izvkhbwmindy0zjjk28hih1a9l2jmx";
-          };
-        }
+    home = {
+      keyboard.layout = "fck";
+
+      packages = with pkgs; [
+        (makeDesktopItem {
+          name = "realvnc-viewer";
+          desktopName = "Real VNC Viewer";
+          exec = "${mypkgs.real-vnc-viewer}/bin/realvnc-viewer";
+        })
+
+        firefox
+        google-chrome
+        brave
+        zoom-us
+        vlc
+        kitty
+        gnome3.seahorse
+        gparted
+        maim
+        xclip
+        bitwarden-cli
+        dmenu
+        xorg.xkill
+        zscroll
+        playerctl
+        betterlockscreen
+        feh
+        dunst
+        kazam
+        nnn
+        unzip
+        xournalpp
+
+        # Electron evil apps
+        atom
+        signal-desktop
+        bitwarden
+        gitkraken
+        spotify
+        discord
+        slack
+        # etcher
       ];
     };
 
-    # rofi = {
-    #   enable = true;
-    # };
+    xresources.properties = {
+      # "Xft.dpi" = 276;
+      "Xcursor.size" = 64;
+    };
 
-    # autorandr = import ./autorandr.nix moduleArgs;
-  };
+    wayland.windowManager.sway = import ./sway.nix moduleArgs;
 
-  services = {
-    # polybar = import ./polybar.nix moduleArgs;
-    
-    # picom.enable = true;
+    programs = {
+      git = {
+        enable = true;
+        userName = "Jan Kaifer";
+        userEmail = "jan@kaifer.cz";
+      };
 
-    # dunst = {
-    #   enable = true;
-    #   settings = {
-    #     global = {
-    #       markup = "full";
-    #       geometry = "1000x5-14+50";
-    #       shrink = "yes";
-    #       padding = 15;
-    #       horizontal_padding = 30;
-    #       progress_bar = true;
-    #       transparency = 0;
-    #       frame_width = 5;
-    #       frame_color = "#666666";
-    #       ignore_newline = "no";
-    #       stack_duplicates = true;
-    #       font = "Fira Code 16";
-    #       format = "<b>%a</b>\\n%s\\n%b";
-    #       aligment = "right";
-    #     };
+      zsh = {
+        enable = true;
+        enableCompletion = true;
+        plugins = [
+          {
+            name = "zsh-nix-shell";
+            file = "nix-shell.plugin.zsh";
+            src = pkgs.fetchFromGitHub {
+              owner = "chisui";
+              repo = "zsh-nix-shell";
+              rev = "v0.1.0";
+              sha256 = "0snhch9hfy83d4amkyxx33izvkhbwmindy0zjjk28hih1a9l2jmx";
+            };
+          }
+        ];
+      };
 
-    #     urgency_low = {
-    #       background = "#222222";
-    #       foreground = "#ffffff";
-    #       timeout = 10;
-    #     };
+      # rofi = {
+      #   enable = true;
+      # };
 
-    #     urgency_normal = {
-    #       background = "#444444";
-    #       foreground = "#ffffff";
-    #       timeout = 10;
-    #     };
+      # autorandr = import ./autorandr.nix moduleArgs;
+    };
 
-    #     urgency_critical = {
-    #       background = "#990000";
-    #       foreground = "#ffffff";
-    #       frame_color = "#ff0000";
-    #       timeout = 0;
-    #     };
-    #   };
-    # };
-  };
+    services = {
+      # polybar = import ./polybar.nix moduleArgs;
+      
+      # picom.enable = true;
 
-  xdg.configFile = {
-    "kitty/kitty.conf".source = toRelativePath "configs/kitty.conf";
-    "nixpkgs/config.nix".source = toRelativePath "configs/nixpkgs.nix";
-  };
+      # dunst = {
+      #   enable = true;
+      #   settings = {
+      #     global = {
+      #       markup = "full";
+      #       geometry = "1000x5-14+50";
+      #       shrink = "yes";
+      #       padding = 15;
+      #       horizontal_padding = 30;
+      #       progress_bar = true;
+      #       transparency = 0;
+      #       frame_width = 5;
+      #       frame_color = "#666666";
+      #       ignore_newline = "no";
+      #       stack_duplicates = true;
+      #       font = "Fira Code 16";
+      #       format = "<b>%a</b>\\n%s\\n%b";
+      #       aligment = "right";
+      #     };
 
-  home.file = {
-    ".vimrc".source = toRelativePath "configs/.vimrc";
-    # ".xprofile".text = ''
-    #   eval $(/run/wrappers/bin/gnome-keyring-daemon --start --daemonize)
-    #   export SSH_AUTH_SOCK
+      #     urgency_low = {
+      #       background = "#222222";
+      #       foreground = "#ffffff";
+      #       timeout = 10;
+      #     };
 
-    #   xdg-mime default google-chrome.desktop 'x-scheme-handler/https'
-    #   xdg-mime default google-chrome.desktop 'x-scheme-handler/http'
-    # '';
+      #     urgency_normal = {
+      #       background = "#444444";
+      #       foreground = "#ffffff";
+      #       timeout = 10;
+      #     };
+
+      #     urgency_critical = {
+      #       background = "#990000";
+      #       foreground = "#ffffff";
+      #       frame_color = "#ff0000";
+      #       timeout = 0;
+      #     };
+      #   };
+      # };
+    };
+
+    xdg.configFile = {
+      "kitty/kitty.conf".source = toRelativePath "configs/kitty.conf";
+      "nixpkgs/config.nix".source = toRelativePath "configs/nixpkgs.nix";
+    };
+
+    home.file = {
+      ".vimrc".source = toRelativePath "configs/.vimrc";
+      # ".xprofile".text = ''
+      #   eval $(/run/wrappers/bin/gnome-keyring-daemon --start --daemonize)
+      #   export SSH_AUTH_SOCK
+
+      #   xdg-mime default google-chrome.desktop 'x-scheme-handler/https'
+      #   xdg-mime default google-chrome.desktop 'x-scheme-handler/http'
+      # '';
+    };
   };
 }

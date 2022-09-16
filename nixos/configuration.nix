@@ -18,22 +18,18 @@ let
   moduleArgs = {
     inherit pkgs toRelativePath unstable secrets;
   };
-
-  # Few utils for easier creation of my own scripts
-  makeExecutable = name: path: pkgs.writeScriptBin name (builtins.readFile (toRelativePath path));
-  makeScript = name: makeExecutable name "scripts/${name}.sh";
 in
 {
   imports =
     [
-      # Auto-generated hardware configuration
-      /etc/nixos/hardware-configuration.nix
-      
-      # My overrides for specific machine
-      ../hardware/framework.nix
-
       # Initialize home-manager
       (import "${home-manager}/nixos")
+
+
+      # Other configs
+      (import ../scripts moduleArgs)
+      (import ../home-manager moduleArgs)
+      ../hardware
 
       ./audio.nix
     ];
@@ -124,95 +120,6 @@ in
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; let
-    pythonVersion = "38";
-    pythonFull = pkgs."python${pythonVersion}Full";
-    pythonPackages = pkgs."python${pythonVersion}Packages";
-    pisek = pkgs."python${pythonVersion}Packages".buildPythonPackage rec {
-      name = "pisek";
-      version = "0.1";
-
-      src = pkgs.fetchFromGitHub {
-        owner = "kasiopea-org";
-        repo = "${name}";
-        rev = "${version}";
-      };
-    };
-    pythonWithMyPackages = pythonFull.withPackages (pythonPackages: with pythonPackages; [
-      pisek
-    ]);
-  in
-  [
-    # Basic utils
-    wget
-    iw
-    tree
-    lshw
-    git
-    gnumake
-    gcc
-    vim
-    htop
-    zsh-powerlevel10k
-    zsh-you-should-use
-    acpi
-    parted
-    direnv
-    cryptsetup
-    binutils
-    killall
-    libnotify
-    gnome3.gnome-software
-    gnome3.gnome-tweaks
-
-    # steam
-    # steam-run-native
-    # steam-run
-    # unstable.steam
-
-    # X server
-    xorg.xeyes
-    xorg.xhost
-
-    # Nix
-    nixpkgs-fmt
-    home-manager
-
-    # Python
-    pythonFull
-    black
-    pythonPackages.ipython
-
-    # Node
-    nodejs
-    nodePackages.yarn
-    nodePackages.npm
-
-    # Docker
-    docker
-
-    # Rust
-    rustc
-    cargo
-
-    # Prolog
-    swiProlog
-
-    # Unstable
-    unstable.nix-output-monitor
-
-    # My scripts
-    # (makeScript "lock")
-    # (makeScript "reload-polybar")
-    # (makeScript "reload-monitors")
-    # (makeScript "run-steam-game")
-    # (makeExecutable "nsu-start" "NSU/nsu-start.sh")
-    # (makeExecutable "nsu-stop" "NSU/nsu-stop.sh")
-    # (makeExecutable "nsu-run" "NSU/nsu-run.sh")
-    # (makeExecutable "nsu-save" "NSU/nsu-save.sh")
-  ];
 
   # nixpkgs.overlays = [
   #   (self: super: {
@@ -302,6 +209,4 @@ in
   ];
 
   programs.light.enable = true;
-
-  home-manager.users.pearman = import ../home-manager moduleArgs;
 }
