@@ -198,11 +198,12 @@ in
     killall
     libnotify
     gnome3.gnome-software
+    gnome3.gnome-tweaks
 
     # steam
-    steam-run-native
-    steam-run
-    unstable.steam
+    # steam-run-native
+    # steam-run
+    # unstable.steam
 
     # X server
     xorg.xeyes
