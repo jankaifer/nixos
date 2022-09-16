@@ -16,7 +16,7 @@ let
   secrets = import ../../nixos-secrets moduleArgs;
 
   moduleArgs = {
-    inherit pkgs toRelativePath unstable secrets;
+    inherit config pkgs toRelativePath unstable secrets;
   };
 in
 {
@@ -180,6 +180,10 @@ in
     XDG_DATA_HOME = "$HOME/.local/share";
     XDG_CACHE_HOME = "$HOME/.cache";
   };
+
+  ## Force Chromium based apps to render using wayland
+  ## It is sadly not ready yet - electron apps will start missing navbars and they are stioll blurry 
+  # environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   xdg.portal.enable = true;
 

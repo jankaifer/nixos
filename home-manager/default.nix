@@ -8,7 +8,7 @@ let
   mypkgs = import (toRelativePath "mypkgs") moduleArgs;
 in
 {
-  home-manager.users.pearman = {
+  home-manager.users.pearman = { config, ... }: {
     nixpkgs.config = {
       allowUnfree = true;
     };
@@ -21,7 +21,6 @@ in
     };
 
     xresources.properties = {
-      # "Xft.dpi" = 276;
       "Xcursor.size" = 64;
     };
 
@@ -58,6 +57,11 @@ in
     home = {
       # We will manage keyboard in global settings
       keyboard = null;
+
+      file = {
+        # Symlink my keyboard configs to a location used by GNOME
+        ".config/xkb".source = config.lib.file.mkOutOfStoreSymlink (pkgs.xkeyboard_config.outPath + "/share/X11/xkb/");
+      };
 
       packages = with pkgs; [
         (makeDesktopItem {
