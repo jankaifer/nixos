@@ -104,10 +104,7 @@ in
       
   # Enable CUPS to print documents.
   services.printing.enable = true;
-
-  # Enable fingerprint
-  services.fprintd.enable = true;
-
+  
   # services.flatpak.enable = true;
   # services.openvpn.servers = secrets.openvpn;
   # services.blueman.enable = true;

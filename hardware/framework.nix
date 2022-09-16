@@ -10,6 +10,9 @@
   ## Host name
   networking.hostName = "pearframe";
 
+  # Enable fingerprint
+  services.fprintd.enable = true;
+
   # Fixes from https://dov.dev/blog/nixos-on-the-framework-12th-gen
 
   ## Gnome needs newer kernel
