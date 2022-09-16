@@ -66,12 +66,12 @@ in
     LC_TIME = "cs_CZ.utf8";
   };
 
-  # console = {
-  #   font = "ter-i32b";
-  #   useXkbConfig = true;
-  #   earlySetup = true;
-  #   packages = with pkgs; [ terminus_font ];
-  # };
+  console = {
+    font = "ter-i32b";
+    useXkbConfig = true;
+    earlySetup = true;
+    packages = with pkgs; [ terminus_font ];
+  };
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
