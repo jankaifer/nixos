@@ -175,14 +175,8 @@ in
     enableOnBoot = true;
   };
 
-  environment.variables = {
-    XDG_CONFIG_HOME = "$HOME/.config";
-    XDG_DATA_HOME = "$HOME/.local/share";
-    XDG_CACHE_HOME = "$HOME/.cache";
-  };
-
   ## Force Chromium based apps to render using wayland
-  ## It is sadly not ready yet - electron apps will start missing navbars and they are stioll blurry 
+  ## It is sadly not ready yet - electron apps will start missing navbars and they are still blurry 
   # environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   xdg.portal.enable = true;
