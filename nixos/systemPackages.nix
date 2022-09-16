@@ -51,6 +51,7 @@ in
 
       # Nix
       nixpkgs-fmt
+      nix-output-monitor
 
       # Python
       pythonFull
