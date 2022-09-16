@@ -9,7 +9,7 @@ let
     ref = "release-22.05";
   };
 
-  toRelativePath = relativePath: toPath (./. + "/${relativePath}");
+  toRelativePath = relativePath: toPath (../. + "/${relativePath}");
 
   # My secrets are living in different repository that is not public:
   # - https://gitlab.com/JanKaifer/nixos-secrets
