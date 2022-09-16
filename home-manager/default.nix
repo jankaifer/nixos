@@ -20,6 +20,41 @@ in
       };
     };
 
+    xresources.properties = {
+      # "Xft.dpi" = 276;
+      "Xcursor.size" = 64;
+    };
+
+    programs = {
+      git = {
+        enable = true;
+        userName = "Jan Kaifer";
+        userEmail = "jan@kaifer.cz";
+      };
+
+      zsh = {
+        enable = true;
+        enableCompletion = true;
+        plugins = [
+          {
+            name = "zsh-nix-shell";
+            file = "nix-shell.plugin.zsh";
+            src = pkgs.fetchFromGitHub {
+              owner = "chisui";
+              repo = "zsh-nix-shell";
+              rev = "v0.1.0";
+              sha256 = "0snhch9hfy83d4amkyxx33izvkhbwmindy0zjjk28hih1a9l2jmx";
+            };
+          }
+        ];
+      };
+    };
+
+    xdg.configFile = {
+      "kitty/kitty.conf".source = toRelativePath "configs/kitty.conf";
+      "nixpkgs/config.nix".source = toRelativePath "configs/nixpkgs.nix";
+    };
+
     home = {
       # We will manage keyboard in global settings
       keyboard = null;
@@ -64,47 +99,6 @@ in
         slack
         # etcher
       ];
-    };
-
-    dconf.settings = {
-      "org/gnome/mutter" = {
-        experimental-features = [ "scale-monitor-framebuffer" ];
-      };
-    };
-
-    xresources.properties = {
-      # "Xft.dpi" = 276;
-      "Xcursor.size" = 64;
-    };
-
-    programs = {
-      git = {
-        enable = true;
-        userName = "Jan Kaifer";
-        userEmail = "jan@kaifer.cz";
-      };
-
-      zsh = {
-        enable = true;
-        enableCompletion = true;
-        plugins = [
-          {
-            name = "zsh-nix-shell";
-            file = "nix-shell.plugin.zsh";
-            src = pkgs.fetchFromGitHub {
-              owner = "chisui";
-              repo = "zsh-nix-shell";
-              rev = "v0.1.0";
-              sha256 = "0snhch9hfy83d4amkyxx33izvkhbwmindy0zjjk28hih1a9l2jmx";
-            };
-          }
-        ];
-      };
-    };
-
-    xdg.configFile = {
-      "kitty/kitty.conf".source = toRelativePath "configs/kitty.conf";
-      "nixpkgs/config.nix".source = toRelativePath "configs/nixpkgs.nix";
     };
   };
 }
