@@ -98,7 +98,7 @@ in
 
     services = {
       # polybar = import ./polybar.nix moduleArgs;
-      
+
       # picom.enable = true;
 
       # dunst = {

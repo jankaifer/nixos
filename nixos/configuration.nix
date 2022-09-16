@@ -32,6 +32,7 @@ in
       ../hardware
 
       ./audio.nix
+      ./systemPackages.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -97,7 +98,7 @@ in
       };
     };
   };
-      
+
   # Enable CUPS to print documents.
   services.printing.enable = true;
 

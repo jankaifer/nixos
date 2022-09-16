@@ -7,10 +7,10 @@ let
 in
 {
   environment.systemPackages =
-  [
-    (makeScript "demo-script")
-    # (makeScript "lock")
-    # (makeScript "reload-polybar")
-    # (makeScript "reload-monitors")
-  ];
+    [
+      (makeScript "demo-script")
+      # (makeScript "lock")
+      # (makeScript "reload-polybar")
+      # (makeScript "reload-monitors")
+    ];
 }
