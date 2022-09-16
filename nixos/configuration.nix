@@ -104,21 +104,7 @@ in
       
   # Enable CUPS to print documents.
   services.printing.enable = true;
-  
-  # services.flatpak.enable = true;
-  # services.openvpn.servers = secrets.openvpn;
-  # services.blueman.enable = true;
-  # services.printing.enable = true;
-  # services.gnome3.gnome-keyring.enable = true;
-  # services.openssh.enable = true;
-  # services.autorandr.enable = true;
-  # services.autorandr.defaultTarget = "c9";
 
-  # hardware = {
-  #   enableRedistributableFirmware = true;
-
-  #   bluetooth.enable = true;
-  # };
   # users.mutableUsers = false;
   users.users.pearman = {
     isNormalUser = true;
