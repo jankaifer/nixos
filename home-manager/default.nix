@@ -37,6 +37,11 @@ in
         extraConfig = builtins.readFile (toRelativePath "configs/.vimrc");
       };
 
+      vscode = {
+        enable = true;
+        package = pkgs.vscode.fhs;
+      };
+
       zsh = {
         enable = true;
         enableCompletion = true;
@@ -94,7 +99,6 @@ in
 
         # Electron evil apps
         atom
-        vscode-fhs
         signal-desktop
         bitwarden
         gitkraken
