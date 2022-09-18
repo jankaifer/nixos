@@ -62,11 +62,13 @@ in
       "nixpkgs/config.nix".source = toRelativePath "configs/nixpkgs.nix";
     };
 
+    home.file = {
+      ".vimrc".source = toRelativePath "configs/.vimrc";
+    };
+
     home = {
       # We will manage keyboard in global settings
       keyboard = null;
-
-      file = { };
 
       packages = with pkgs; [
         (makeDesktopItem {
