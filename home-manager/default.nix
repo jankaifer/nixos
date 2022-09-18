@@ -94,6 +94,7 @@ in
 
         # Electron evil apps
         atom
+        vscode-fhs
         signal-desktop
         bitwarden
         gitkraken
