@@ -110,6 +110,11 @@ in
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
+  # Make SUDO to remember fingerprint/password for 30 minutes
+  security.sudo.extraConfig = ''
+    Defaults        timestamp_timeout=30
+  '';
+
   # Setup user
   users.mutableUsers = false;
   users.users.pearman = {
