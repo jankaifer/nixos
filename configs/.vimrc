@@ -7,8 +7,7 @@ map <F7> :tabp<CR>
 " enable matchit
 runtime macros/matchit.vim
 
-
-" filetypes things
+" use 2-spaces in WEB-dev files
 autocmd Filetype scss setlocal ts=2 sw=2 expandtab
 autocmd Filetype css setlocal ts=2 sw=2 expandtab
 autocmd Filetype sass setlocal ts=2 sw=2 expandtab
@@ -59,7 +58,7 @@ set relativenumber
 set so=7
 
 " Turn on the Wild menu
-set wildmenu
+" set wildmenu
 
 " Ignore compiled files
 set wildignore=*.o,*~,*.pyc

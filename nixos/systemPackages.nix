@@ -31,7 +31,6 @@ in
       git
       gnumake
       gcc
-      vim
       htop
       zsh-powerlevel10k
       zsh-you-should-use

@@ -31,6 +31,11 @@ in
         userEmail = "jan@kaifer.cz";
       };
 
+      vim = {
+        enable = false;
+        extraConfig = builtins.readFile (toRelativePath "configs/.vimrc");
+      };
+
       zsh = {
         enable = true;
         enableCompletion = true;
