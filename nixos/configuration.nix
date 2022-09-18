@@ -138,6 +138,9 @@ in
     # To allow configuration of gnome
     dconf.enable = true;
 
+    # More info on wiki: https://nixos.wiki/wiki/Steam
+    steam.enable = true;
+
     zsh = {
       enable = true;
       promptInit = ''
