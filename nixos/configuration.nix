@@ -133,8 +133,6 @@ in
   users.defaultUserShell = pkgs.zsh;
 
   programs = {
-    vim.defaultEditor = true;
-
     # To allow configuration of gnome
     dconf.enable = true;
 

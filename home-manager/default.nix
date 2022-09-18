@@ -33,7 +33,7 @@ in
       };
 
       vim = {
-        enable = false;
+        enable = true;
         extraConfig = builtins.readFile (toRelativePath "configs/.vimrc");
       };
 
