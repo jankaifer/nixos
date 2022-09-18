@@ -58,7 +58,6 @@ in
     };
 
     xdg.configFile = {
-      "kitty/kitty.conf".source = toRelativePath "configs/kitty.conf";
       "nixpkgs/config.nix".source = toRelativePath "configs/nixpkgs.nix";
     };
 
