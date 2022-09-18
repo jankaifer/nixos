@@ -8,6 +8,7 @@ let
   mypkgs = import (toRelativePath "mypkgs") moduleArgs;
 in
 {
+  home-manager.useUserPackages = true;
   home-manager.users.pearman = { config, ... }: {
     nixpkgs.config = {
       allowUnfree = true;
