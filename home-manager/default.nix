@@ -66,10 +66,7 @@ in
       # We will manage keyboard in global settings
       keyboard = null;
 
-      file = {
-        # Symlink my keyboard configs to a location used by GNOME
-        ".config/xkb".source = config.lib.file.mkOutOfStoreSymlink (pkgs.xkeyboard_config.outPath + "/share/X11/xkb/");
-      };
+      file = { };
 
       packages = with pkgs; [
         (makeDesktopItem {
