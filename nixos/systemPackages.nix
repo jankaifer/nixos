@@ -71,15 +71,5 @@ in
 
       # Prolog
       swiProlog
-
-      # My scripts
-      # (makeScript "lock")
-      # (makeScript "reload-polybar")
-      # (makeScript "reload-monitors")
-      # (makeScript "run-steam-game")
-      # (makeExecutable "nsu-start" "NSU/nsu-start.sh")
-      # (makeExecutable "nsu-stop" "NSU/nsu-stop.sh")
-      # (makeExecutable "nsu-run" "NSU/nsu-run.sh")
-      # (makeExecutable "nsu-save" "NSU/nsu-save.sh")
     ];
 }

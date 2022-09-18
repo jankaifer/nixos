@@ -80,21 +80,14 @@ in
         brave
         zoom-us
         vlc
-        kitty
         gnome3.seahorse
         gparted
         maim
         xclip
         bitwarden-cli
-        dmenu
         xorg.xkill
         zscroll
         playerctl
-        betterlockscreen
-        feh
-        dunst
-        kazam
-        nnn
         unzip
         xournalpp
 
