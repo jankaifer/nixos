@@ -26,6 +26,8 @@ in
     };
 
     programs = {
+      vscode = import ./vscode.nix moduleArgs;
+
       git = {
         enable = true;
         userName = "Jan Kaifer";
@@ -35,22 +37,6 @@ in
       vim = {
         enable = true;
         extraConfig = builtins.readFile (toRelativePath "configs/.vimrc");
-      };
-
-      vscode = {
-        enable = true;
-        package = pkgs.vscode.fhsWithPackages (
-          ps: with ps; [
-            # Rust
-            rustup
-            zlib
-          ]
-        );
-        extensions = with pkgs.vscode-extensions; [
-          dracula-theme.theme-dracula
-          vscodevim.vim
-          yzhang.markdown-all-in-one
-        ];
       };
 
       zsh = {
