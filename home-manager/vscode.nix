@@ -14,5 +14,17 @@
     vscodevim.vim
     yzhang.markdown-all-in-one
   ];
-  userSettings = { };
+  userSettings = {
+    "editor.minimap.enabled" = false;
+    "git.enableSmartCommit" = true;
+    "git.autofetch" = true;
+    "git.confirmSync" = false;
+    "explorer.confirmDelete" = false;
+    "explorer.confirmDragAndDrop" = false;
+    "[nix]"."editor.defaultFormatter" = "B4dM4n.nixpkgs-fmt";
+    "editor.formatOnSave" = true;
+    "window.zoomLevel" = 1;
+    "keyboard.dispatch" = "keyCode";
+    "vim.vimrc.enable" = true;
+  };
 }
