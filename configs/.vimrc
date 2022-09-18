@@ -1,4 +1,5 @@
-" my own stuff
+" 1) my own stuff
+" =======================================
 
 " Mappings
 map <F8> :tabn<CR>
@@ -15,7 +16,8 @@ autocmd Filetype html setlocal ts=2 sw=2 expandtab
 autocmd Filetype javascript setlocal ts=2 sw=2 expandtab
 autocmd Filetype json setlocal ts=2 sw=2 expandtab
 
-" Stolen from Amir Salihefendic — @amix3k
+" 2) Stolen from Amir Salihefendic — @amix3k
+" ==========================================
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
@@ -116,13 +118,6 @@ set statusline+=%F
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Enable syntax highlighting
 syntax enable 
-
-try
-    colorscheme desert
-catch
-endtry
-
-set background=dark
 
 " Set extra options when running in GUI mode
 if has("gui_running")
