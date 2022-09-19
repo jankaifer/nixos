@@ -12,7 +12,7 @@ To apply configuration use:
 ```
 sudo nixos-rebuild switch
 ```
-To rebuild and upgrade use:
+To upgrade channels use:
 ```
-sudo nixos-rebuild --upgrade switch
+sudo nix-channel --update
 ```
