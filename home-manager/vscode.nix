@@ -26,5 +26,6 @@
     "window.zoomLevel" = 1;
     "keyboard.dispatch" = "keyCode";
     "vim.vimrc.enable" = true;
+    "vim.useSystemClipboard" = true;
   };
 }
