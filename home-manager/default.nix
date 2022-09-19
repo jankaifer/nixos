@@ -98,7 +98,7 @@ in
         bitwarden
         gitkraken
         spotify
-        discord
+        unstable.pkgs.discord
         slack
         # etcher
       ];
