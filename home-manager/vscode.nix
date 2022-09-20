@@ -23,7 +23,7 @@
     "explorer.confirmDragAndDrop" = false;
     "[nix]"."editor.defaultFormatter" = "B4dM4n.nixpkgs-fmt";
     "editor.formatOnSave" = true;
-    "window.zoomLevel" = 0.9;
+    "window.zoomLevel" = 0;
     "keyboard.dispatch" = "keyCode";
     "vim.vimrc.enable" = true;
     "vim.useSystemClipboard" = true;
