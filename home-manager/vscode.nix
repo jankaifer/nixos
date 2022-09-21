@@ -28,5 +28,6 @@
     "vim.vimrc.enable" = true;
     "vim.useSystemClipboard" = true;
     "workbench.startupEditor" = "none";
+    "update.mode" = "none";
   };
 }
