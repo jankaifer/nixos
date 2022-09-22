@@ -103,9 +103,9 @@ in
     layout = "fck";
     extraLayouts.fck = {
       description = "Fancy czech keyboard";
-      languages = [ "eng" "cs" ];
+      languages = [ "en" "cs" ];
       symbolsFile = builtins.fetchurl {
-        url = "https://gitlab.com/JanKaifer/fck/-/raw/master/cz";
+        url = "https://gitlab.com/JanKaifer/fck/-/raw/master/fck";
       };
     };
   };
