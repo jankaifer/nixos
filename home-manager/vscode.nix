@@ -29,5 +29,6 @@
     "vim.useSystemClipboard" = true;
     "workbench.startupEditor" = "none";
     "update.mode" = "none";
+    "editor.renderWhitespace" = "all";
   };
 }
