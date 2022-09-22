@@ -91,6 +91,7 @@ in
         playerctl
         unzip
         xournalpp
+        wally-cli
 
         # Electron evil apps
         atom

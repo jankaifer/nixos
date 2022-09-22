@@ -46,6 +46,9 @@ in
     "/crypto_keyfile.bin" = null;
   };
 
+  # Add support for moonlander
+  hardware.keyboard.zsa.enable = true;
+
   # Networking
   networking.networkmanager.enable = true;
 
