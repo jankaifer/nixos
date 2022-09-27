@@ -104,9 +104,13 @@ in
     extraLayouts.fck = {
       description = "Fancy czech keyboard";
       languages = [ "en" "cs" ];
-      symbolsFile = builtins.fetchurl {
-        url = "https://gitlab.com/JanKaifer/fck/-/raw/master/fck";
-      };
+      symbolsFile =
+        let
+          commit = "365095d7d5c9d912b1945ddd1039f787dc72d186";
+        in
+        builtins.fetchurl {
+          url = "https://gitlab.com/JanKaifer/fck/-/raw/${commit}/fck";
+        };
     };
   };
 
