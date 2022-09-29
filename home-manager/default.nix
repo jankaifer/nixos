@@ -92,6 +92,7 @@ in
         unzip
         xournalpp
         wally-cli
+        gnome.dconf-editor
 
         # Electron evil apps
         atom
