@@ -111,10 +111,10 @@ in
 
   # Modify GNOME default settings: https://discourse.nixos.org/t/gnome3-settings-via-configuration-nix/5121
   # Source for these modifications: https://guides.frame.work/Guide/Fedora+36+Installation+on+the+Framework+Laptop/108#s655
-  services.xserver.desktopManager.gnome.extraGSettingsOverrides = ''
-    [org.gnome.mutter]
-    experimental-features=['scale-monitor-framebuffer']
-  '';
+  # services.xserver.desktopManager.gnome.extraGSettingsOverrides = ''
+  #   [org.gnome.mutter]
+  #   experimental-features=['scale-monitor-framebuffer']
+  # '';
 
   # Touchpad configs
   services.xserver.libinput = {
