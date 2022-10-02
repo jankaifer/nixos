@@ -16,7 +16,7 @@
   # Fixes from https://dov.dev/blog/nixos-on-the-framework-12th-gen
 
   ## Gnome needs newer kernel
-  boot.kernelPackages = pkgs.linuxPackages_5_18;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   ## Fix brightness keys
   boot.kernelParams = [ "module_blacklist=hid_sensor_hub" ];

@@ -41,8 +41,8 @@ in
       binutils
       killall
       libnotify
-      gnome3.gnome-software
-      gnome3.gnome-tweaks
+      gnome.gnome-software
+      gnome.gnome-tweaks
 
       # X server
       xorg.xeyes

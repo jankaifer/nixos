@@ -81,7 +81,7 @@ in
         brave
         zoom-us
         vlc
-        gnome3.seahorse
+        gnome.seahorse
         gparted
         maim
         xclip
