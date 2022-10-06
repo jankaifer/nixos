@@ -4,18 +4,21 @@ let
   pythonVersion = "38";
   pythonFull = pkgs."python${pythonVersion}Full";
   pythonPackages = pkgs."python${pythonVersion}Packages";
-  pisek = pkgs."python${pythonVersion}Packages".buildPythonPackage rec {
+  pisek = pythonPackages.buildPythonPackage rec {
     name = "pisek";
-    version = "0.1";
+    version = "91147841066e5ff835e9b05653fe46bed989f449";
 
     src = pkgs.fetchFromGitHub {
       owner = "kasiopea-org";
       repo = "${name}";
       rev = "${version}";
+      hash = "sha256-92OzuQhJqKP/27/lbAE/QNAgyNqXONBVQFoJd8ScZBw=";
     };
   };
   pythonWithMyPackages = pythonFull.withPackages (pythonPackages: with pythonPackages; [
     pisek
+    ipython
+    pip
   ]);
 in
 {
@@ -53,9 +56,9 @@ in
       nix-output-monitor
 
       # Python
-      pythonFull
+      pythonWithMyPackages
+      pisek
       black
-      pythonPackages.ipython
 
       # Node
       nodejs

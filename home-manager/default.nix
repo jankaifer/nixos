@@ -75,7 +75,13 @@ in
           desktopName = "Real VNC Viewer";
           exec = "${mypkgs.real-vnc-viewer}/bin/realvnc-viewer";
         })
+        # CLI
+        unzip
+        bitwarden-cli
+        wally-cli
+        niv
 
+        # GUI
         firefox
         google-chrome
         brave
@@ -85,13 +91,10 @@ in
         gparted
         maim
         xclip
-        bitwarden-cli
         xorg.xkill
         zscroll
         playerctl
-        unzip
         xournalpp
-        wally-cli
         gnome.dconf-editor
 
         # Electron evil apps
