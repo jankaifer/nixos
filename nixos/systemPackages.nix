@@ -16,7 +16,7 @@ let
     };
   };
   pythonWithMyPackages = pythonFull.withPackages (pythonPackages: with pythonPackages; [
-    pisek
+    # pisek
     ipython
     pip
   ]);
@@ -57,7 +57,6 @@ in
 
       # Python
       pythonWithMyPackages
-      pisek
       black
 
       # Node
