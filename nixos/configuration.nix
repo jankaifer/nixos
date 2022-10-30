@@ -29,7 +29,6 @@ in
       # Other configs
       (import ../scripts moduleArgs)
       (import ../home-manager moduleArgs)
-      ../hardware
 
       ./audio.nix
       ./systemPackages.nix
