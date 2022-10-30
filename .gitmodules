@@ -1,0 +1,3 @@
+[submodule "secrets"]
+	path = secrets
+	url = git@gitlab.com:JanKaifer/nixos-secrets.git

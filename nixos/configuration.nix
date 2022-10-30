@@ -13,7 +13,7 @@ let
 
   # My secrets are living in different repository that is not public:
   # - https://gitlab.com/JanKaifer/nixos-secrets
-  secrets = import ../../nixos-secrets moduleArgs;
+  secrets = import ../secrets moduleArgs;
 
   moduleArgs = {
     inherit config pkgs toRelativePath unstable secrets;
