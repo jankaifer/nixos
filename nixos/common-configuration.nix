@@ -1,23 +1,15 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }@args_:
 
 with builtins;
 let
-  unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
+  args = args_ // (import ./shared.nix args_);
 
   home-manager = fetchGit {
     url = "https://github.com/nix-community/home-manager.git";
     ref = "release-22.05";
   };
 
-  toRelativePath = relativePath: toPath (../. + "/${relativePath}");
-
-  # My secrets are living in different repository that is not public:
-  # - https://gitlab.com/JanKaifer/nixos-secrets
-  secrets = import ../secrets moduleArgs;
-
-  moduleArgs = {
-    inherit config pkgs toRelativePath unstable secrets;
-  };
+  secrets = args.secrets;
 in
 {
   imports =
@@ -25,13 +17,11 @@ in
       # Initialize home-manager
       (import "${home-manager}/nixos")
 
-
       # Other configs
-      (import ../scripts moduleArgs)
-      (import ../home-manager moduleArgs)
-
-      ./audio.nix
-      ./systemPackages.nix
+      (import ../scripts args)
+      (import ../home-manager args)
+      (import ./audio.nix args)
+      (import ./systemPackages.nix args)
     ];
 
   # Use the systemd-boot EFI boot loader.

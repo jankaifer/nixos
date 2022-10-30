@@ -1,4 +1,4 @@
-{ pkgs, toRelativePath, unstable, ... }@rest:
+{ pkgs, ... }@args:
 
 {
   enable = true;

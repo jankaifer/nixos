@@ -1,12 +1,6 @@
-{ pkgs, toRelativePath, unstable, ... }@rest:
+{ pkgs, toRelativePath, unstable, ... }@args:
 
 with builtins;
-let
-  moduleArgs = {
-    inherit pkgs toRelativePath;
-  } // rest;
-  mypkgs = import (toRelativePath "mypkgs") moduleArgs;
-in
 {
   home-manager.useUserPackages = true;
   home-manager.users.pearman = { config, ... }: {
@@ -14,19 +8,19 @@ in
       allowUnfree = true;
     };
 
-    # Allow fractional scaling in wayland
-    dconf.settings = {
-      "org/gnome/mutter" = {
-        experimental-features = [ "scale-monitor-framebuffer" ];
-      };
-    };
+    # Allow fractional scaling in wayland - produces blurry image
+    # dconf.settings = {
+    #   "org/gnome/mutter" = {
+    #     experimental-features = [ "scale-monitor-framebuffer" ];
+    #   };
+    # };
 
     xresources.properties = {
       "Xcursor.size" = 64;
     };
 
     programs = {
-      vscode = import ./vscode.nix moduleArgs;
+      vscode = import ./vscode.nix args;
 
       git = {
         enable = true;
@@ -74,11 +68,6 @@ in
       keyboard = null;
 
       packages = with pkgs; [
-        (makeDesktopItem {
-          name = "realvnc-viewer";
-          desktopName = "Real VNC Viewer";
-          exec = "${mypkgs.real-vnc-viewer}/bin/realvnc-viewer";
-        })
         # CLI
         unzip
         bitwarden-cli
@@ -93,10 +82,6 @@ in
         vlc
         gnome.seahorse
         gparted
-        maim
-        xclip
-        xorg.xkill
-        zscroll
         playerctl
         xournalpp
         gnome.dconf-editor
@@ -109,7 +94,6 @@ in
         spotify
         unstable.pkgs.discord
         slack
-        # etcher
       ];
     };
   };
