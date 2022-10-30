@@ -179,11 +179,9 @@ in
     zsh = {
       enable = true;
       enableBashCompletion = true;
-      # promptInit = ''
-      #   eval "$(direnv hook zsh)"
-      #   source ${../configs/p10k.zsh}
-      #   source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
-      # '';
+      promptInit = ''
+        eval "$(direnv hook zsh)"
+      '';
       shellAliases =
         let
           zsh = "${pkgs.zsh}/bin/zsh";
