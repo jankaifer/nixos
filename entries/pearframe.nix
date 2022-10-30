@@ -5,6 +5,6 @@
 {
   imports = [
     ../hardware/pearframe.nix
-    ../nixos/configuration.nix
+    ../nixos/personal-configuration.nix
   ];
 }

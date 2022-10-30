@@ -5,6 +5,6 @@
 {
   imports = [
     ../hardware/pearbox.nix
-    ../nixos/configuration.nix
+    ../nixos/personal-configuration.nix
   ];
 }

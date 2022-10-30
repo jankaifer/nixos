@@ -5,6 +5,6 @@
 {
   imports = [
     ../hardware/vercelframe.nix
-    ../nixos/configuration.nix
+    ../nixos/work-configuration.nix
   ];
 }
