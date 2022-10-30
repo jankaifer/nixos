@@ -1,14 +1,30 @@
-" 1) my own stuff
-" =======================================
+" === Colemak Mod-DHM ===
+" Stolen from: https://www.reddit.com/r/Colemak/comments/j98ds1/an_example_of_vim_key_remapping/
 
-" Mappings
-map <F8> :tabn<CR>
-map <F7> :tabp<CR>
+"Colemak neio(hjkl) l(i) h(o) k(e)
+noremap n h|        "move Left
+noremap e gj|       "move Down
+noremap i gk|       "move Up
+noremap o l|        "move Right
 
-" enable matchit
-runtime macros/matchit.vim
+noremap t i|       "(t)ype           replaces (i)nsert
+noremap T I|       "(T)ype           replaces (I)nsert
+noremap E e|       "end of word      replaces (e)nd
+noremap h n|       "next match       replaces (n)ext
+noremap k N|       "previous match   replaces (N) prev
+ 
+" below: not remapping, just fixing sequences:
+" fix (i)nner and (t)ill, e.g. (c)hange (i)n (w)ord
+nnoremap ci ci|
+nnoremap di di|
+nnoremap vi vi|
+nnoremap yi yi|
+nnoremap ct ct|
+nnoremap dt dt|
+nnoremap vt vt|
+nnoremap yt yt|
 
-" use 2-spaces in WEB-dev files
+" === use 2-spaces in WEB-dev files ===
 autocmd Filetype scss setlocal ts=2 sw=2 expandtab
 autocmd Filetype css setlocal ts=2 sw=2 expandtab
 autocmd Filetype sass setlocal ts=2 sw=2 expandtab
@@ -16,7 +32,9 @@ autocmd Filetype html setlocal ts=2 sw=2 expandtab
 autocmd Filetype javascript setlocal ts=2 sw=2 expandtab
 autocmd Filetype json setlocal ts=2 sw=2 expandtab
 
-" 2) Stolen from Amir Salihefendic — @amix3k
+
+" === better defaults ===
+" Stolen from Amir Salihefendic — @amix3k
 " ==========================================
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
