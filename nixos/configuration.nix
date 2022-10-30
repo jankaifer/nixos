@@ -189,12 +189,6 @@ in
         {
           rebuild = "sudo nixos-rebuild switch |& nom";
         };
-      # ohMyZsh.enable = true;
-      # ohMyZsh.plugins = [
-      #   "vi-mode"
-      #   "extract"
-      #   "wd"
-      # ];
     };
   };
 
