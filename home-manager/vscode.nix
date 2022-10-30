@@ -26,6 +26,7 @@
     "window.zoomLevel" = 0;
     "keyboard.dispatch" = "keyCode";
     "vim.vimrc.enable" = true;
+    "vim.vimrc.path" = "/home/pearman/.vimrc";
     "vim.useSystemClipboard" = true;
     "workbench.startupEditor" = "none";
     "update.mode" = "none";

@@ -2,27 +2,40 @@
 " Stolen from: https://www.reddit.com/r/Colemak/comments/j98ds1/an_example_of_vim_key_remapping/
 
 "Colemak neio(hjkl) l(i) h(o) k(e)
-noremap n h|        "move Left
-noremap e gj|       "move Down
-noremap i gk|       "move Up
-noremap o l|        "move Right
+"move Left
+noremap n h
+"move Down
+noremap e gj
+"move Up
+noremap i gk
+"move Right
+noremap o l
 
-noremap t i|       "(t)ype           replaces (i)nsert
-noremap T I|       "(T)ype           replaces (I)nsert
-noremap E e|       "end of word      replaces (e)nd
-noremap h n|       "next match       replaces (n)ext
-noremap k N|       "previous match   replaces (N) prev
+"(t)ype           replaces (i)nsert
+noremap t i
+"(T)ype           replaces (I)nsert
+noremap T I
+"add line after   replaces (o)pen
+noremap l o
+"add line before  replaces (O)pen
+noremap L O
+"end of word      replaces (e)nd
+noremap E e
+"next match       replaces (n)ext
+noremap h n
+"previous match   replaces (N) prev
+noremap k N
  
 " below: not remapping, just fixing sequences:
 " fix (i)nner and (t)ill, e.g. (c)hange (i)n (w)ord
-nnoremap ci ci|
-nnoremap di di|
-nnoremap vi vi|
-nnoremap yi yi|
-nnoremap ct ct|
-nnoremap dt dt|
-nnoremap vt vt|
-nnoremap yt yt|
+nnoremap ci ci
+nnoremap di di
+nnoremap vi vi
+nnoremap yi yi
+nnoremap ct ct
+nnoremap dt dt
+nnoremap vt vt
+nnoremap yt yt
 
 " === use 2-spaces in WEB-dev files ===
 autocmd Filetype scss setlocal ts=2 sw=2 expandtab
