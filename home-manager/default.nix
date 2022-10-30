@@ -54,6 +54,10 @@ in
             };
           }
         ];
+        prezto = {
+          enable = true;
+          prompt.theme = "steeef";
+        };
       };
     };
 
