@@ -3,17 +3,34 @@
 with builtins;
 {
   home-manager.useUserPackages = true;
-  home-manager.users.pearman = { config, ... }: {
+  home-manager.users.pearman = { config, lib, ... }: {
     nixpkgs.config = {
       allowUnfree = true;
     };
 
-    # Allow fractional scaling in wayland - produces blurry image
-    # dconf.settings = {
-    #   "org/gnome/mutter" = {
-    #     experimental-features = [ "scale-monitor-framebuffer" ];
-    #   };
-    # };
+    dconf.settings = with  lib.hm.gvariant; {
+      # Allow fractional scaling in wayland - produces blurry image
+      # "org/gnome/mutter" = {
+      #   experimental-features = [ "scale-monitor-framebuffer" ];
+      # };
+
+      # Used keyboad layout
+      "/org/gnome/desktop/input-sources".sources = [
+        (mkTuple ["xkb" "fck"])
+      ];
+
+      # Dock
+      "/org/gnome/shell"."favorite-apps" = [
+        "brave-browser.desktop"
+        "code.desktop"
+        "org.gnome.Console.desktop"
+        "org.gnome.Settings.desktop"
+        "org.gnome.Nautilus.desktop"
+        "signal-desktop.desktop"
+        "slack.desktop"
+        "spotify.desktop"
+      ];
+    };
 
     xresources.properties = {
       "Xcursor.size" = 64;
