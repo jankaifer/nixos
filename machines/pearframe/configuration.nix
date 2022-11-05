@@ -1,11 +1,17 @@
 { ... }:
 {
-  imports = [
-    ../hardware/common.nix
-    ../hardware/framework.nix
+  nix.nixPath = [
+    "nixpkgs=/etc/nixos/machines/${config.networking.hostName}/nixpkgs"
+    "nixos-config=/etc/nixos/machines/${config.networking.hostName}/configuration.nix"
+  ];
 
-    ../nixos/common-configuration.nix
-    ../nixos/personal-configuration.nix
+  imports = [
+    ./hardware-configuration.nix
+    ../../hardware/common.nix
+    ../../hardware/framework.nix
+
+    ../../nixos/common-configuration.nix
+    ../../nixos/personal-configuration.nix
   ];
 
   ## Enable swap on luks

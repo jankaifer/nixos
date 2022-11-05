@@ -4,6 +4,7 @@
   imports = [
     ./common.nix
     ./framework.nix
+    /etc/nixos/hardware-configuration.nix
   ];
 
   ## Make sure that /var/log is moun ted early enough
