@@ -6,6 +6,7 @@ If you are looking trying to get some inspiration for your config, make sure to 
 - https://github.com/dmarcoux/dotfiles-nixos
 - https://github.com/DAlperin/dotfiles
 - https://github.com/gvolpe/nix-config
+- https://github.com/talyz/nixos-config
 
 ## Get started
 This will clone the whole repo with secrets (private submodule).
