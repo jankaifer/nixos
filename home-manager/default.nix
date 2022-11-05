@@ -94,6 +94,7 @@ with builtins;
         spotify
         unstable.pkgs.discord
         slack
+        etcher
       ];
     };
   };

@@ -154,6 +154,10 @@ in
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-12.2.3" # Needed for etcher: https://github.com/NixOS/nixpkgs/issues/153537
+  ];
+
 
   # Use ZSH
   users.defaultUserShell = pkgs.zsh;
