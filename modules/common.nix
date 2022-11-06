@@ -1,28 +1,10 @@
-{ pkgs, ... }@args:
+{ pkgs, config, ... }@args:
 
-let
-  secrets = import ../secrets { };
-  unstable = import ./nixpkgs-unstable { config = { allowUnfree = true; }; };
-in
 {
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.grub.useOSProber = false;
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  # Audio
-  sound.enable = true;
-  hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-  };
-
-  # Networking
-  networking.networkmanager.enable = true;
+  nix.nixPath = [
+    "nixpkgs=/etc/nixos/modules/nixpkgs"
+    "nixos-config=/etc/nixos/machines/${config.networking.hostName}/configuration.nix"
+  ];
 
   # Set your time zone.
   time.timeZone = "Europe/Prague";
@@ -49,28 +31,6 @@ in
     packages = with pkgs; [ terminus_font ];
   };
 
-  # Enable the windowing system (the name is wrong - it can be wayland).
-  services.xserver.enable = true;
-
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.displayManager.gdm.wayland = true;
-  services.xserver.desktopManager.gnome.enable = true;
-
-  # Modify GNOME default settings: https://discourse.nixos.org/t/gnome3-settings-via-configuration-nix/5121
-  # Source for these modifications: https://guides.frame.work/Guide/Fedora+36+Installation+on+the+Framework+Laptop/108#s655
-  # services.xserver.desktopManager.gnome.extraGSettingsOverrides = ''
-  #   [org.gnome.mutter]
-  #   experimental-features=[]
-  # '';
-
-  # Touchpad configs
-  services.xserver.libinput = {
-    enable = true;
-    touchpad.naturalScrolling = true;
-    touchpad.additionalOptions = ''MatchIsTouchpad "on"'';
-  };
-
   # Configure keymap
   services.xserver = {
     layout = "fck";
@@ -87,46 +47,32 @@ in
     };
   };
 
+  # Audio
+  sound.enable = true;
+  hardware.pulseaudio.enable = false;
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+  };
+
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
-  # Make SUDO to remember fingerprint/password for 30 minutes
+  # Make SUDO to remember fingerprint/password for 15 minutes
   security.sudo.extraConfig = ''
-    Defaults        timestamp_timeout=30
+    Defaults        timestamp_timeout=15
   '';
-
-  # Setup user
-  users.mutableUsers = false;
-  users.users.pearman = {
-    isNormalUser = true;
-    description = "Jan Kaifer";
-    extraGroups = [
-      "wheel"
-      "networkmanager"
-      "video"
-      "docker"
-      "adbusers"
-      "lxd"
-    ];
-    hashedPassword = secrets.hashedPassword;
-  };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.permittedInsecurePackages = [
-    "electron-12.2.3" # Needed for etcher: https://github.com/NixOS/nixpkgs/issues/153537
-  ];
 
   # Use ZSH
   users.defaultUserShell = pkgs.zsh;
 
   programs = {
-    # To allow configuration of gnome
-    dconf.enable = true;
-
-    # More info on wiki: https://nixos.wiki/wiki/Steam
-    steam.enable = true;
-
     zsh = {
       enable = true;
       enableBashCompletion = true;
@@ -138,7 +84,7 @@ in
           zsh = "${pkgs.zsh}/bin/zsh";
         in
         {
-          rebuild = "sudo nixos-rebuild switch |& nom";
+          rebuild = "sudo /etc/nixos/scripts/rebuild.sh switch |& nom";
         };
     };
   };
@@ -179,10 +125,6 @@ in
       wally-cli
       niv
 
-      # X server
-      xorg.xeyes
-      xorg.xhost
-
       # Nix
       nixpkgs-fmt
       nix-output-monitor
@@ -205,37 +147,7 @@ in
 
       # Prolog
       swiProlog
-
-      # GUI
-      firefox
-      google-chrome
-      brave
-      zoom-us
-      vlc
-      gparted
-      playerctl
-      xournalpp
-      gnome.seahorse
-      gnome.dconf-editor
-      gnome.gnome-software
-      gnome.gnome-tweaks
-
-      # Electron evil apps
-      atom
-      signal-desktop
-      bitwarden
-      gitkraken
-      spotify
-      unstable.pkgs.discord
-      slack
-      etcher
     ];
-
-  ## Force Chromium based apps to render using wayland
-  ## It is sadly not ready yet - electron apps will start missing navbars and they are still blurry 
-  # environment.sessionVariables.NIXOS_OZONE_WL = "1";
-
-  xdg.portal.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

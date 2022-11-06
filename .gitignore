@@ -1,1 +1,5 @@
+# Vscode configs
 .vscode/
+
+# Nix built artefacts
+result/

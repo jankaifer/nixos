@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   options.custom.framework =
@@ -12,13 +12,14 @@
       };
     };
 
-  config = {
-    # Enable fingerprint
-    services.fprintd.enable = true;
+  config = lib.mkIf config.custom.framework.enable
+    {
+      # Enable fingerprint
+      services.fprintd.enable = true;
 
-    # Fixes from https://dov.dev/blog/nixos-on-the-framework-12th-gen
+      # Fixes from https://dov.dev/blog/nixos-on-the-framework-12th-gen
 
-    ## Fix brightness keys
-    boot.kernelParams = [ "module_blacklist=hid_sensor_hub" ];
-  };
+      ## Fix brightness keys
+      boot.kernelParams = [ "module_blacklist=hid_sensor_hub" ];
+    };
 }

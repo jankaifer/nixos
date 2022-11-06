@@ -19,8 +19,9 @@ while [[ $# -gt 0 ]]; do
 done
 
 if [ -n "$HOSTNAME" ]; then
-    MACHINE_PATH="/etc/nixos/machines/$HOSTNAME"
-    I_ARGS+=("-I" "nixpkgs=$MACHINE_PATH/nixpkgs")
+    REPO_PATH="/etc/nixos"
+    MACHINE_PATH="$REPO_PATH/machines/$HOSTNAME"
+    I_ARGS+=("-I" "nixpkgs=$REPO_PATH/modules/nixpkgs")
     I_ARGS+=("-I" "nixos-config=$MACHINE_PATH/configuration.nix")
 fi
 

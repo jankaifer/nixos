@@ -1,10 +1,5 @@
 { pkgs, config, ... }:
 {
-  nix.nixPath = [
-    "nixpkgs=/etc/nixos/machines/${config.networking.hostName}/nixpkgs"
-    "nixos-config=/etc/nixos/machines/${config.networking.hostName}/configuration.nix"
-  ];
-
   imports = [
     ./hardware-configuration.nix
     ../../modules
@@ -25,6 +20,10 @@
   networking.hostName = "pearframe";
 
   # Options
-  custom.real-vnc-viewer.enable = true;
-  custom.framework.enable = true;
+  custom = {
+    framework.enable = true;
+    gui.enable = true;
+    real-vnc-viewer.enable = true;
+    zsa.enable = true;
+  };
 }
