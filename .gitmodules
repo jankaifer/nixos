@@ -10,3 +10,6 @@
 	path = modules/nixpkgs-unstable
 	url = git@github.com:NixOS/nixpkgs.git
 	
+[submodule "modules/home-manager"]
+	path = modules/home-manager
+	url = git@github.com:nix-community/home-manager.git

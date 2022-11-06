@@ -1,61 +1,25 @@
-{ pkgs, ... }@args_:
+{ pkgs, ... }@args:
 
-with builtins;
 let
-  args = args_ // (import ./shared.nix args_);
-
-  home-manager = fetchGit {
-    url = "https://github.com/nix-community/home-manager.git";
-    ref = "release-22.05";
-  };
-
-  secrets = args.secrets;
+  secrets = import ../secrets { };
+  unstable = import ./nixpkgs-unstable { config = { allowUnfree = true; }; };
 in
 {
-  imports =
-    [
-      # Initialize home-manager
-      (import "${home-manager}/nixos")
-
-      # Other configs
-      (import ../scripts args)
-      (import ../home-manager args)
-      (import ./audio.nix args)
-      (import ./systemPackages.nix args)
-    ];
-
   # Use the systemd-boot EFI boot loader.
   boot.loader.grub.useOSProber = false;
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # Add support for moonlander
-  # system option is outdated
-  # hardware.keyboard.zsa.enable = true;
-  services.udev.extraRules = ''
-    # Rules for Oryx web flashing and live training
-    KERNEL=="hidraw*", ATTRS{idVendor}=="16c0", MODE="0664", GROUP="plugdev"
-    KERNEL=="hidraw*", ATTRS{idVendor}=="3297", MODE="0666", GROUP="plugdev"
-
-    # Legacy rules for live training over webusb (Not needed for firmware v21+)
-    # Rule for all ZSA keyboards
-    SUBSYSTEM=="usb", ATTR{idVendor}=="3297", GROUP="plugdev"
-    # Rule for the Moonlander
-    SUBSYSTEM=="usb", ATTR{idVendor}=="3297", ATTR{idProduct}=="1969", GROUP="plugdev"
-    # Rule for the Ergodox EZ
-    SUBSYSTEM=="usb", ATTR{idVendor}=="feed", ATTR{idProduct}=="1307", GROUP="plugdev"
-    # Rule for the Planck EZ
-    SUBSYSTEM=="usb", ATTR{idVendor}=="feed", ATTR{idProduct}=="6060", GROUP="plugdev"
-
-    # Wally Flashing rules for the Ergodox EZ
-    ATTRS{idVendor}=="16c0", ATTRS{idProduct}=="04[789B]?", ENV{ID_MM_DEVICE_IGNORE}="1"
-    ATTRS{idVendor}=="16c0", ATTRS{idProduct}=="04[789A]?", ENV{MTP_NO_PROBE}="1"
-    SUBSYSTEMS=="usb", ATTRS{idVendor}=="16c0", ATTRS{idProduct}=="04[789ABCD]?", MODE:="0666"
-    KERNEL=="ttyACM*", ATTRS{idVendor}=="16c0", ATTRS{idProduct}=="04[789B]?", MODE:="0666"
-
-    # Wally Flashing rules for the Moonlander and Planck EZ
-    SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", MODE:="0666", SYMLINK+="stm32_dfu"
-  '';
+  # Audio
+  sound.enable = true;
+  hardware.pulseaudio.enable = false;
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+  };
 
   # Networking
   networking.networkmanager.enable = true;
@@ -77,6 +41,7 @@ in
     LC_TIME = "cs_CZ.utf8";
   };
 
+  # Setup TUI
   console = {
     font = "ter-i32b";
     useXkbConfig = true;
@@ -84,7 +49,7 @@ in
     packages = with pkgs; [ terminus_font ];
   };
 
-  # Enable the X11 windowing system.
+  # Enable the windowing system (the name is wrong - it can be wayland).
   services.xserver.enable = true;
 
   # Enable the GNOME Desktop Environment.
@@ -94,10 +59,10 @@ in
 
   # Modify GNOME default settings: https://discourse.nixos.org/t/gnome3-settings-via-configuration-nix/5121
   # Source for these modifications: https://guides.frame.work/Guide/Fedora+36+Installation+on+the+Framework+Laptop/108#s655
-  services.xserver.desktopManager.gnome.extraGSettingsOverrides = ''
-    [org.gnome.mutter]
-    experimental-features=[]
-  '';
+  # services.xserver.desktopManager.gnome.extraGSettingsOverrides = ''
+  #   [org.gnome.mutter]
+  #   experimental-features=[]
+  # '';
 
   # Touchpad configs
   services.xserver.libinput = {
@@ -106,7 +71,7 @@ in
     touchpad.additionalOptions = ''MatchIsTouchpad "on"'';
   };
 
-  # Configure keymap in X11
+  # Configure keymap
   services.xserver = {
     layout = "fck";
     extraLayouts.fck = {
@@ -152,7 +117,6 @@ in
     "electron-12.2.3" # Needed for etcher: https://github.com/NixOS/nixpkgs/issues/153537
   ];
 
-
   # Use ZSH
   users.defaultUserShell = pkgs.zsh;
 
@@ -190,6 +154,82 @@ in
     enable = true;
     enableOnBoot = true;
   };
+
+  environment.systemPackages = with pkgs;
+    [
+      # Basic utils
+      wget
+      iw
+      tree
+      lshw
+      git
+      gnumake
+      gcc
+      htop
+      zsh-you-should-use
+      acpi
+      parted
+      direnv
+      cryptsetup
+      binutils
+      killall
+      libnotify
+      unzip
+      bitwarden-cli
+      wally-cli
+      niv
+
+      # X server
+      xorg.xeyes
+      xorg.xhost
+
+      # Nix
+      nixpkgs-fmt
+      nix-output-monitor
+
+      # Python
+      python38Full
+      black
+
+      # Node
+      nodejs
+      nodePackages.yarn
+      nodePackages.npm
+
+      # Docker
+      docker
+
+      # Rust
+      rustc
+      cargo
+
+      # Prolog
+      swiProlog
+
+      # GUI
+      firefox
+      google-chrome
+      brave
+      zoom-us
+      vlc
+      gparted
+      playerctl
+      xournalpp
+      gnome.seahorse
+      gnome.dconf-editor
+      gnome.gnome-software
+      gnome.gnome-tweaks
+
+      # Electron evil apps
+      atom
+      signal-desktop
+      bitwarden
+      gitkraken
+      spotify
+      unstable.pkgs.discord
+      slack
+      etcher
+    ];
 
   ## Force Chromium based apps to render using wayland
   ## It is sadly not ready yet - electron apps will start missing navbars and they are still blurry 
