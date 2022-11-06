@@ -21,7 +21,7 @@
       options = [ "defaults" "size=2G" "mode=755" ];
     };
 
-  fileSystems."/home" =
+  fileSystems."/home-old" =
     { device = "/dev/disk/by-uuid/784a8f38-ee55-4b47-abe2-6d4847442e5f";
       fsType = "btrfs";
       options = [ "subvol=home" ];

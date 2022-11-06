@@ -37,9 +37,10 @@ in
         "git.confirmSync" = false;
         "explorer.confirmDelete" = false;
         "explorer.confirmDragAndDrop" = false;
-        "[nix]"."editor.defaultFormatter" = "B4dM4n.nixpkgs-fmt";
-        "nix.enableLanguageServer" = true;
-        "nix.serverPath" = "nil";
+        "[nix]"."editor.defaultFormatter" = "jnoortheen.nix-ide";
+        # Nil is broken in my setup :sad:
+        # "nix.enableLanguageServer" = true;
+        # "nix.serverPath" = "nil";
         "editor.formatOnSave" = true;
         "window.zoomLevel" = 0;
         "keyboard.dispatch" = "keyCode";
@@ -50,10 +51,10 @@ in
         "update.mode" = "none";
         "editor.renderWhitespace" = "all";
         "projectManager.showParentFolderInfoOnDuplicates" = true;
-        "projectManager.any.baseFolders" = [
+        "projectManager.git.baseFolders" = [
           "/home/pearman/Projects"
         ];
-        "projectManager.any.maxDepthRecursion" = 1;
+        "projectManager.git.maxDepthRecursion" = 1;
       };
     };
   };
