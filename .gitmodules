@@ -13,3 +13,7 @@
 [submodule "modules/home-manager"]
 	path = modules/home-manager
 	url = git@github.com:nix-community/home-manager.git
+	
+[submodule "modules/imtermanence"]
+	path = modules/impermanence
+	url = git@github.com:nix-community/impermanence.git
