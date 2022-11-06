@@ -15,21 +15,21 @@ with builtins;
       # };
 
       # Used keyboad layout
-      # "/org/gnome/desktop/input-sources".sources = [
-      #   (mkTuple [ "xkb" "fck" ])
-      # ];
+      "org/gnome/desktop/input-sources".sources = [
+        (mkTuple [ "xkb" "fck" ])
+      ];
 
       # Dock
-      # "/org/gnome/shell"."favorite-apps" = [
-      #   "brave-browser.desktop"
-      #   "code.desktop"
-      #   "org.gnome.Console.desktop"
-      #   "org.gnome.Settings.desktop"
-      #   "org.gnome.Nautilus.desktop"
-      #   "signal-desktop.desktop"
-      #   "slack.desktop"
-      #   "spotify.desktop"
-      # ];
+      "org/gnome/shell"."favorite-apps" = [
+        "brave-browser.desktop"
+        "code.desktop"
+        "org.gnome.Console.desktop"
+        "org.gnome.Settings.desktop"
+        "org.gnome.Nautilus.desktop"
+        "signal-desktop.desktop"
+        "slack.desktop"
+        "spotify.desktop"
+      ];
     };
 
     xresources.properties = {
