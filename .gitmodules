@@ -4,16 +4,16 @@
 
 [submodule "pearframe-nixpkgs"]
 	path = machines/pearframe/nixpkgs
-	url = httpr://github.com/NixOS/nixpkgs.git
+	url = https://github.com/NixOS/nixpkgs.git
 
 [submodule "nixpkgs-unstable"]
 	path = modules/nixpkgs-unstable
-	url = httpr://github.com/NixOS/nixpkgs.git
-	
+	url = https://github.com/NixOS/nixpkgs.git
+
 [submodule "modules/home-manager"]
 	path = modules/home-manager
 	url = https://github.com/nix-community/home-manager.git
-	
+
 [submodule "modules/imtermanence"]
 	path = modules/impermanence
 	url = https://github.com/nix-community/impermanence.git
