@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  otions.custom.real-vnc-viewer =
+  options.custom.real-vnc-viewer =
     {
       enable = lib.mkOption {
         default = false;
@@ -15,7 +15,7 @@
   config = lib.mkIf config.custom.real-vnc-viewer.enable
     {
       environment.systemPackages = [
-        (callPackage ./real-vnc-viewer.nix { })
+        (pkgs.callPackage ./real-vnc-viewer.nix { })
       ];
     };
 }

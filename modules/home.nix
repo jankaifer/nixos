@@ -1,5 +1,6 @@
-{ pkgs, ... }:
+{ pkgs, ... }@args:
 
+with builtins;
 {
   home-manager.useUserPackages = true;
   home-manager.users.pearman = { lib, ... }: {
@@ -14,21 +15,21 @@
       # };
 
       # Used keyboad layout
-      "/org/gnome/desktop/input-sources".sources = [
-        (mkTuple [ "xkb" "fck" ])
-      ];
+      # "/org/gnome/desktop/input-sources".sources = [
+      #   (mkTuple [ "xkb" "fck" ])
+      # ];
 
       # Dock
-      "/org/gnome/shell"."favorite-apps" = [
-        "brave-browser.desktop"
-        "code.desktop"
-        "org.gnome.Console.desktop"
-        "org.gnome.Settings.desktop"
-        "org.gnome.Nautilus.desktop"
-        "signal-desktop.desktop"
-        "slack.desktop"
-        "spotify.desktop"
-      ];
+      # "/org/gnome/shell"."favorite-apps" = [
+      #   "brave-browser.desktop"
+      #   "code.desktop"
+      #   "org.gnome.Console.desktop"
+      #   "org.gnome.Settings.desktop"
+      #   "org.gnome.Nautilus.desktop"
+      #   "signal-desktop.desktop"
+      #   "slack.desktop"
+      #   "spotify.desktop"
+      # ];
     };
 
     xresources.properties = {
@@ -36,18 +37,13 @@
     };
 
     programs = {
-      vscode = import ./vscode.nix args;
-
       git = {
         enable = true;
         userName = "Jan Kaifer";
         userEmail = "jan@kaifer.cz";
       };
 
-      vim = {
-        enable = true;
-        extraConfig = builtins.readFile (toRelativePath "configs/.vimrc");
-      };
+      vim.enable = true;
 
       zsh = {
         enable = true;
@@ -72,11 +68,11 @@
     };
 
     xdg.configFile = {
-      #   "nixpkgs/config.nix".source = ../dotfiles/nixpkgs.nix;
+      "nixpkgs/config.nix".source = ./dotfiles/nixpkgs.nix;
     };
 
     home.file = {
-      ".vimrc".source = ../dotfiles/.vimrc;
+      ".vimrc".source = ./dotfiles/.vimrc;
     };
 
     # We will manage keyboard in global settings

@@ -3,9 +3,12 @@
 {
   imports = [
     ./common.nix
-    # ./home.nix
-    # ./home-manager/nixos
-    # ./impermanence/nixos.nix
-    # ./zsa.nix
+    ./framework.nix
+    ./home-manager/nixos
+    ./home.nix
+    ./impermanence/nixos.nix
+    ./real-vnc-viewer
+    ./vscode.nix
+    ./zsa.nix
   ];
 }

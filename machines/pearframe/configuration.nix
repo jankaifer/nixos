@@ -7,13 +7,12 @@
 
   imports = [
     ./hardware-configuration.nix
-    ../../hardware/framework.nix
     ../../modules
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  ## Enable swap on luks
+  # Enable swap on luks
   boot.initrd.luks.devices."luks-03537895-0d55-4d42-83b0-28f2c82e6273".device = "/dev/disk/by-uuid/03537895-0d55-4d42-83b0-28f2c82e6273";
   boot.initrd.luks.devices."luks-03537895-0d55-4d42-83b0-28f2c82e6273".keyFile = "/crypto_keyfile.bin";
 
@@ -22,6 +21,10 @@
     "/crypto_keyfile.bin" = null;
   };
 
-  ## Host name
+  # Host name
   networking.hostName = "pearframe";
+
+  # Options
+  custom.real-vnc-viewer.enable = true;
+  custom.framework.enable = true;
 }
