@@ -21,6 +21,7 @@
 
   # Options
   custom = {
+    fck.enable = true;
     framework.enable = true;
     gui.enable = true;
     real-vnc-viewer.enable = true;

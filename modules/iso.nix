@@ -7,6 +7,7 @@
         default = false;
         example = true;
         description = ''
+          Is this system bootable ISO?
         '';
       };
     };

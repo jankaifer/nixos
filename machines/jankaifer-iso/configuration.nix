@@ -18,8 +18,10 @@
 
   # Options
   custom = {
-    zsa.enable = true;
-    iso.enable = true;
     fck.enable = true;
+    gui.enable = true;
+    iso.enable = true;
+    vscode.enable = true;
+    zsa.enable = true;
   };
 }
