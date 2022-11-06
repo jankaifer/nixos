@@ -17,16 +17,16 @@
       enable = true;
       package = pkgs.vscode.fhsWithPackages (
         ps: with ps; [
+          # Nix
+          nil
+          nixpkgs-fmt
+
           # Rust
           rustup
           zlib
         ]
       );
-      extensions = with pkgs.vscode-extensions; [
-        dracula-theme.theme-dracula
-        vscodevim.vim
-        yzhang.markdown-all-in-one
-      ];
+      extensions = pkgs.vscode-utils.extensionsFromVscodeMarketplace (import ./extensions.nix).extensions;
       userSettings = {
         "editor.minimap.enabled" = false;
         "git.enableSmartCommit" = true;
@@ -35,6 +35,7 @@
         "explorer.confirmDelete" = false;
         "explorer.confirmDragAndDrop" = false;
         "[nix]"."editor.defaultFormatter" = "B4dM4n.nixpkgs-fmt";
+        "nix.serverPath" = "nil";
         "editor.formatOnSave" = true;
         "window.zoomLevel" = 0;
         "keyboard.dispatch" = "keyCode";

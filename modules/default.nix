@@ -10,7 +10,7 @@
     ./iso.nix
     ./keyboard.nix
     ./real-vnc-viewer
-    ./vscode.nix
+    ./vscode
     ./erase-root.nix
     ./zsa.nix
   ];
