@@ -13,19 +13,23 @@ Other sources that I used:
 
 ## Install on a new machine
 
-This will clone the whole repo with all submodules (needed).
+To install this config on a nfw machine, you can use [custom iso](./machines/jankaifer-iso/README.md).
+
+The following guide will install this config on exising nixos machine.
+
+1. Clone this repo with all submodules.
 ```
 git clone --recurse-submodules git@gitlab.com:JanKaifer/nixos.git
 ```
 
-Link this repo to `/etc/nixos`:
+2. Link this repo to `/etc/nixos`:
 ```
 sudo mv /etc/nixos/ /etc/nixos-old
 sudo mkdir /etc/nixos
 sudo ln -s /home/pearman/Projects/nixos /etc/nixos
 ```
 
-Before first build you need to choose the correct configuration.nix file:
+3. Before first build you need to choose the correct configuration file by providing hostname of that machine (look at [machines](./machines) for list of all possible configurations):
 ```
 sudo /etc/nixos/scripts/rebuild.sh --hostname "pearframe" switch
 ```
