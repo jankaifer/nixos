@@ -18,6 +18,12 @@
     sha256 = "0bibb3r4cb7chnx6vpyl41ig12pc0cbg0sb8f2khs52c71nk4bn8";
   }
   {
+    name = "sort-lines";
+    publisher = "Tyriar";
+    version = "1.9.1";
+    sha256 = "0dds99j6awdxb0ipm15g543a5b6f0hr00q9rz961n0zkyawgdlcb";
+  }
+  {
     name = "vim";
     publisher = "vscodevim";
     version = "1.24.2";
