@@ -18,6 +18,9 @@ in
 
   config = lib.mkIf config.custom.gui.enable
     {
+      # Networking
+      networking.networkmanager.enable = true;
+
       # Enable the windowing system (the name is wrong - it can be wayland).
       services.xserver.enable = true;
 

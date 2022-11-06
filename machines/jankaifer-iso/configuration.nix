@@ -1,12 +1,8 @@
-{ pkgs, config, ... }:
+{ config, lib, pkgs, ... }:
 {
-  nix.nixPath = [
-    "nixpkgs=/etc/nixos/modules/nixpkgs"
-    "nixos-config=/etc/nixos/machines/${config.networking.hostName}/configuration.nix"
-  ];
-
   imports = [
-    ../../modules/nixpkgs/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix
+    ../../modules/nixpkgs/nixos/modules/installer/cd-dvd/installation-cd-graphical-gnome.nix
+    ../../modules
   ];
 
   # Host name
@@ -14,4 +10,16 @@
 
   # Make compression faster
   isoImage.squashfsCompression = "gzip -Xcompression-level 1";
+
+  services.xserver.displayManager.autoLogin = lib.mkForce {
+    enable = true;
+    user = "pearman";
+  };
+
+  # Options
+  custom = {
+    zsa.enable = true;
+    iso.enable = true;
+    fck.enable = true;
+  };
 }

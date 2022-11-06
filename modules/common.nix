@@ -1,10 +1,31 @@
-{ pkgs, config, ... }@args:
+{ config, lib, pkgs, ... }@args:
 
+let
+  secrets = import ../secrets { };
+in
 {
   nix.nixPath = [
     "nixpkgs=/etc/nixos/modules/nixpkgs"
     "nixos-config=/etc/nixos/machines/${config.networking.hostName}/configuration.nix"
   ];
+
+  # Setup user
+  users = {
+    mutableUsers = false;
+    users.pearman = {
+      isNormalUser = true;
+      description = "Jan Kaifer";
+      extraGroups = [
+        "wheel"
+        "networkmanager"
+        "video"
+        "docker"
+        "adbusers"
+        "lxd"
+      ];
+      hashedPassword = secrets.hashedPassword;
+    };
+  };
 
   # Set your time zone.
   time.timeZone = "Europe/Prague";
@@ -26,36 +47,7 @@
   # Setup TUI
   console = {
     font = "ter-i32b";
-    useXkbConfig = true;
-    earlySetup = true;
     packages = with pkgs; [ terminus_font ];
-  };
-
-  # Configure keymap
-  services.xserver = {
-    layout = "fck";
-    extraLayouts.fck = {
-      description = "Fancy czech keyboard";
-      languages = [ "en" "cs" ];
-      symbolsFile =
-        let
-          commit = "365095d7d5c9d912b1945ddd1039f787dc72d186";
-        in
-        builtins.fetchurl {
-          url = "https://gitlab.com/JanKaifer/fck/-/raw/${commit}/fck";
-        };
-    };
-  };
-
-  # Audio
-  sound.enable = true;
-  hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
   };
 
   # Enable CUPS to print documents.
@@ -149,6 +141,79 @@
       swiProlog
     ];
 
+  home-manager = {
+    useUserPackages = true;
+    users.pearman = { lib, ... }: {
+      nixpkgs.config.allowUnfree = true;
+
+      dconf.settings = with lib.hm.gvariant; {
+        # Allow fractional scaling in wayland - produces blurry image
+        # "org/gnome/mutter" = {
+        #   experimental-features = [ "scale-monitor-framebuffer" ];
+        # };
+
+        # Used keyboad layout
+        "org/gnome/desktop/input-sources".sources = [
+          (mkTuple [ "xkb" "fck" ])
+        ];
+
+        # Dock
+        "org/gnome/shell"."favorite-apps" = [
+          "brave-browser.desktop"
+          "code.desktop"
+          "org.gnome.Console.desktop"
+          "org.gnome.Settings.desktop"
+          "org.gnome.Nautilus.desktop"
+          "signal-desktop.desktop"
+          "slack.desktop"
+          "spotify.desktop"
+        ];
+      };
+
+      xresources.properties = {
+        "Xcursor.size" = 64;
+      };
+
+      programs = {
+        git = {
+          enable = true;
+          userName = "Jan Kaifer";
+          userEmail = "jan@kaifer.cz";
+        };
+
+        vim.enable = true;
+
+        zsh = {
+          enable = true;
+          enableCompletion = true;
+          plugins = [
+            {
+              name = "zsh-nix-shell";
+              file = "nix-shell.plugin.zsh";
+              src = pkgs.fetchFromGitHub {
+                owner = "chisui";
+                repo = "zsh-nix-shell";
+                rev = "v0.1.0";
+                sha256 = "0snhch9hfy83d4amkyxx33izvkhbwmindy0zjjk28hih1a9l2jmx";
+              };
+            }
+          ];
+          prezto = {
+            enable = true;
+            prompt.theme = "steeef";
+          };
+        };
+      };
+
+      xdg.configFile = {
+        "nixpkgs/config.nix".source = ./dotfiles/nixpkgs.nix;
+      };
+
+      home.file = {
+        ".vimrc".source = ./dotfiles/.vimrc;
+      };
+    };
+  };
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
