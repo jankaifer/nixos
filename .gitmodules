@@ -2,12 +2,8 @@
 	path = secrets
 	url = git@gitlab.com:JanKaifer/nixos-secrets.git
 
-[submodule "pearframe-nixpkgs"]
-	path = machines/pearframe/nixpkgs
-	url = https://github.com/NixOS/nixpkgs.git
-
-[submodule "vercelframe-nixpkgs"]
-	path = machines/vercelframe/nixpkgs
+[submodule "nixpkgs"]
+	path = modules/nixpkgs
 	url = https://github.com/NixOS/nixpkgs.git
 
 [submodule "nixpkgs-unstable"]
