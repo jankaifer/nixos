@@ -38,6 +38,7 @@ in
         "explorer.confirmDelete" = false;
         "explorer.confirmDragAndDrop" = false;
         "[nix]"."editor.defaultFormatter" = "B4dM4n.nixpkgs-fmt";
+        "nix.enableLanguageServer" = true;
         "nix.serverPath" = "nil";
         "editor.formatOnSave" = true;
         "window.zoomLevel" = 0;

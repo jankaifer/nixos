@@ -6,12 +6,6 @@
     sha256 = "023xglwiqs8dp521h34zgny1d3wma1xn5pdm0srqwl7adsz304xc";
   }
   {
-    name = "nixpkgs-fmt";
-    publisher = "B4dM4n";
-    version = "0.0.1";
-    sha256 = "1gvjqy54myss4w1x55lnyj2l887xcnxc141df85ikmw1gr9s8gdz";
-  }
-  {
     name = "theme-dracula";
     publisher = "dracula-theme";
     version = "2.24.2";
