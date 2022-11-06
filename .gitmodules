@@ -6,6 +6,10 @@
 	path = machines/pearframe/nixpkgs
 	url = https://github.com/NixOS/nixpkgs.git
 
+[submodule "vercelframe-nixpkgs"]
+	path = machines/vercelframe/nixpkgs
+	url = https://github.com/NixOS/nixpkgs.git
+
 [submodule "nixpkgs-unstable"]
 	path = modules/nixpkgs-unstable
 	url = https://github.com/NixOS/nixpkgs.git
