@@ -181,6 +181,13 @@ in
 
         # Increase font size (Works well with 100% QHD 13' laptop annd 4k 27' monitor)
         "org/gnome/desktop/interface"."text-scaling-factor" = 1.5;
+
+        # Wallpaper
+        "org/gnome/desktop/background" = {
+          color-shading-type = "solid";
+          picture-options = "zoom";
+          picture-uri = "file://" + ../wallpapers/nix-wallpaper-simple-dark-gray.png;
+        };
       };
 
       xresources.properties = {
