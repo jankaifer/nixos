@@ -13,13 +13,13 @@
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/784a8f38-ee55-4b47-abe2-6d4847442e5f";
-      fsType = "btrfs";
-      options = [ "subvol=root" ];
-    };
-
   boot.initrd.luks.devices."enc".device = "/dev/disk/by-uuid/6a24e7e8-8471-436f-952c-236e537be8b9";
+
+  fileSystems."/" =
+    { device = "none";
+      fsType = "tmpfs";
+      options = [ "defaults" "size=2G" "mode=755" ];
+    };
 
   fileSystems."/home" =
     { device = "/dev/disk/by-uuid/784a8f38-ee55-4b47-abe2-6d4847442e5f";

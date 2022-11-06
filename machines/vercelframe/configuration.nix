@@ -9,13 +9,14 @@
 
   # We need few volumes to be mounted before our system starts booting
   fileSystems."/var/log".neededForBoot = true;
-  fileSystems."/persistent".neededForBoot = true;
+  fileSystems."/persist".neededForBoot = true;
 
   # Host name
   networking.hostName = "vercelframe";
 
   # Options
   custom = {
+    erase-root.enable = true;
     fck.enable = true;
     framework.enable = true;
     gui.enable = true;

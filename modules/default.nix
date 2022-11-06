@@ -11,6 +11,7 @@
     ./keyboard.nix
     ./real-vnc-viewer
     ./vscode.nix
+    ./erase-root.nix
     ./zsa.nix
   ];
 }
