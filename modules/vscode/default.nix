@@ -1,5 +1,8 @@
 { config, lib, pkgs, ... }:
 
+let
+  unstable = import ../nixpkgs-unstable { };
+in
 {
   options.custom.vscode =
     {
@@ -18,7 +21,7 @@
       package = pkgs.vscode.fhsWithPackages (
         ps: with ps; [
           # Nix
-          nil
+          unstable.nil
           nixpkgs-fmt
 
           # Rust
@@ -45,6 +48,11 @@
         "workbench.startupEditor" = "none";
         "update.mode" = "none";
         "editor.renderWhitespace" = "all";
+        "projectManager.showParentFolderInfoOnDuplicates" = true;
+        "projectManager.any.baseFolders" = [
+          "/home/pearman/Projects"
+        ];
+        "projectManager.any.maxDepthRecursion" = 1;
       };
     };
   };

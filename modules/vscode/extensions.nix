@@ -1,5 +1,11 @@
 { extensions = [
   {
+    name = "project-manager";
+    publisher = "alefragnani";
+    version = "12.7.0";
+    sha256 = "023xglwiqs8dp521h34zgny1d3wma1xn5pdm0srqwl7adsz304xc";
+  }
+  {
     name = "nixpkgs-fmt";
     publisher = "B4dM4n";
     version = "0.0.1";
