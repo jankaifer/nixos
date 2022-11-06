@@ -40,3 +40,8 @@ To apply configuration use:
 ```
 sudo /etc/nixos/scripts/rebuild.sh switch
 ```
+
+Watch changes in dconf withO
+```
+dconf watch /
+```

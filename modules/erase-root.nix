@@ -20,6 +20,7 @@
           "/var/lib/bluetooth"
           "/var/lib/systemd/coredump"
           "/etc/NetworkManager/system-connections"
+          "/var/lib/fprint"
         ];
         files = [
           "/etc/machine-id"

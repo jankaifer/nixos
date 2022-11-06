@@ -58,6 +58,13 @@ in
     Defaults        timestamp_timeout=15
   '';
 
+  # Link /etc/nixos to this repo
+  environment.etc.nixos = {
+    enable = true;
+    source = "/home/pearman/Projects/nixos";
+    target = "nixos";
+  };
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -168,6 +175,12 @@ in
           "slack.desktop"
           "spotify.desktop"
         ];
+
+        # Over-amplification
+        "org/gnome/desktop/sound"."allow-volume-above-100-percent" = true;
+
+        # Increase font size (Works well with 100% QHD 13' laptop annd 4k 27' monitor)
+        "org/gnome/desktop/interface"."text-scaling-factor" = 1.5;
       };
 
       xresources.properties = {
