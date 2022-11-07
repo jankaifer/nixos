@@ -20,7 +20,9 @@
         "adbusers"
         "lxd"
       ];
-      passwordFile = "/etc/nixos/passwordFile";
+
+      # Password file doesn't work for some reason
+      hashedPassword = lib.strings.fileContents ../passwordFile;
     };
   };
 
