@@ -10,7 +10,7 @@ in
         default = false;
         example = true;
         description = ''
-          Use Fancy Czech Keyboard
+          Install vscode with my config.
         '';
       };
     };
