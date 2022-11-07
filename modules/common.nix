@@ -20,7 +20,7 @@
         "adbusers"
         "lxd"
       ];
-      passwordFile = ../passwordFile;
+      passwordFile = "/etc/nixos/passwordFile";
     };
   };
 
