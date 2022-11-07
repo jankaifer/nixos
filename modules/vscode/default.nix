@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 let
-  unstable = import ../nixpkgs-unstable { };
+  unstable = import ../nixpkgs-unstable { config = { unfree = true; }; };
 in
 {
   options.custom.vscode =
