@@ -1,8 +1,5 @@
 { config, lib, pkgs, ... }@args:
 
-let
-  secrets = import ../secrets { };
-in
 {
   nix.nixPath = [
     "nixpkgs=/etc/nixos/modules/nixpkgs"
@@ -23,7 +20,7 @@ in
         "adbusers"
         "lxd"
       ];
-      hashedPassword = secrets.hashedPassword;
+      passwordFile = ../passwordFile;
     };
   };
 

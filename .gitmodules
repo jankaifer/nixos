@@ -1,7 +1,3 @@
-[submodule "secrets"]
-	path = secrets
-	url = git@gitlab.com:JanKaifer/nixos-secrets.git
-
 [submodule "nixpkgs"]
 	path = modules/nixpkgs
 	url = https://github.com/NixOS/nixpkgs.git

@@ -29,7 +29,12 @@ sudo mkdir /etc/nixos
 sudo ln -s /home/pearman/Projects/nixos /etc/nixos
 ```
 
-3. Before first build you need to choose the correct configuration file by providing hostname of that machine (look at [machines](./machines) for list of all possible configurations):
+3. Create password file in root of this repo.
+```
+mkpasswd -m sha-512 > /etc/nixos/passwordFile
+```
+
+4. Before first build you need to choose the correct configuration file by providing hostname of that machine (look at [machines](./machines) for list of all possible configurations):
 ```
 sudo /etc/nixos/scripts/rebuild.sh --hostname "pearframe" switch
 ```

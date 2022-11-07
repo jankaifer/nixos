@@ -3,3 +3,6 @@
 
 # Nix built artefacts
 result
+
+# File with user password hash
+passwordFile
