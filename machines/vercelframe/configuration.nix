@@ -10,6 +10,8 @@
   # We need few volumes to be mounted before our system starts booting
   fileSystems."/var/log".neededForBoot = true;
   fileSystems."/persist".neededForBoot = true;
+  fileSystems."/".neededForBoot = true;
+  fileSystems."/home".neededForBoot = true;
 
   # Host name
   networking.hostName = "vercelframe";
