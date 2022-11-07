@@ -40,7 +40,6 @@
             ".cache"
             ".config/Bitwarden"
             ".config/BraveSoftware"
-            ".config/Code"
             ".config/Signal"
             ".config/Slack"
             ".config/spotify"
