@@ -46,6 +46,11 @@
             ".local/share/direnv"
             ".local/share/flatpak"
           ];
+
+          files = [
+            ".config/monitors.xml"
+            ".config/gnome-initial-setup-done"
+          ];
         };
       };
     };
