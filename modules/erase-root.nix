@@ -29,6 +29,8 @@
         ];
       };
 
+      programs.fuse.userAllowOther = true;
+
       # Home Manager config goes in here
       home-manager.users.pearman = {
         imports = [ ./impermanence/home-manager.nix ];
