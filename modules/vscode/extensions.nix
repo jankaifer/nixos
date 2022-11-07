@@ -12,10 +12,22 @@
     sha256 = "1bsq00h30x60rxhqfdmadps5p1vpbl2kkwgkk6yqs475ic89dnk0";
   }
   {
+    name = "gitlens";
+    publisher = "eamodio";
+    version = "2022.11.604";
+    sha256 = "0chms5j3bpa779q2ljin8hvn7smpriy5w3brk2xilv1ly78wv71i";
+  }
+  {
     name = "nix-ide";
     publisher = "jnoortheen";
     version = "0.2.1";
     sha256 = "0bibb3r4cb7chnx6vpyl41ig12pc0cbg0sb8f2khs52c71nk4bn8";
+  }
+  {
+    name = "git-graph";
+    publisher = "mhutchie";
+    version = "1.30.0";
+    sha256 = "000zhgzijf3h6abhv4p3cz99ykj6489wfn81j0s691prr8q9lxxh";
   }
   {
     name = "sort-lines";
@@ -26,8 +38,8 @@
   {
     name = "vim";
     publisher = "vscodevim";
-    version = "1.24.2";
-    sha256 = "1mj12wvqwj45bs48h3y4m3ashca8prqvy9wfykhj65axiw9bmp5w";
+    version = "1.24.3";
+    sha256 = "02alixryryak80lmn4mxxf43izci5fk3pf3pcwy52nbd3d2fiwz1";
   }
   {
     name = "markdown-all-in-one";
