@@ -65,6 +65,12 @@ in
     target = "nixos";
   };
 
+  environment.etc.vimrc = {
+    enable = true;
+    source = "/etc/nixos/modules/dotfiles/vim/.vimrc";
+    target = "vimrc";
+  };
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -206,7 +212,10 @@ in
           userEmail = "jan@kaifer.cz";
         };
 
-        vim.enable = true;
+        vim = {
+          enable = true;
+          extraConfig = builtins.readFile ./dotfiles/vim/.vimrc;
+        };
 
         zsh = {
           enable = true;
