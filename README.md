@@ -13,7 +13,7 @@ Other sources that I used:
 
 ## Install on a new machine
 
-To install this config on a nfw machine, you can use [custom iso](./machines/jankaifer-iso/README.md).
+To install this config on a new machine, you can use [custom iso](./machines/jankaifer-iso/README.md).
 
 The following guide will install this config on exising nixos machine.
 
@@ -41,7 +41,7 @@ To apply configuration use:
 sudo /etc/nixos/scripts/rebuild.sh switch
 ```
 
-Watch changes in dconf withO
+Watch changes in dconf with:
 ```
 dconf watch /
 ```
