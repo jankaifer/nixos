@@ -27,20 +27,41 @@
         files = [
           "/etc/machine-id"
         ];
-        users.pearman = {
+      };
+
+      # Home Manager config goes in here
+      home-manager.users.pearman = {
+        imports = [ ./impermanence/home-manager.nix ];
+
+        # Files that we want to trach in git
+        home.persistence."/etc/nixos/modules/dotfiles/" = {
+          removePrefixDirectory = true;
+          allowOther = true;
+          directories = [
+          ];
+
+          files = [
+            "vim/.vimrc"
+          ];
+        };
+
+        # Files that just need to be persisted
+        home.persistence."/persist/home/pearman/" = {
+          removePrefixDirectory = false;
+          allowOther = true;
           directories = [
             "Documents"
             "Downloads"
             "Pictures"
             "Projects"
 
-            { directory = ".ssh"; mode = "0700"; }
+            ".ssh"
 
             ".cache"
             ".config/Bitwarden"
-            ".config/Slack"
             ".config/BraveSoftware"
             ".config/Signal"
+            ".config/Slack"
             ".config/spotify"
             ".local/share/Steam"
             ".local/share/direnv"
@@ -48,6 +69,8 @@
           ];
 
           files = [
+            ".zsh_history"
+            ".bash_history"
             ".config/monitors.xml"
             ".config/gnome-initial-setup-done"
           ];
