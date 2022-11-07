@@ -188,6 +188,9 @@ in
           picture-options = "zoom";
           picture-uri = "file://" + ../wallpapers/nix-wallpaper-simple-dark-gray.png;
         };
+
+        # Do not show welcome tour on startup
+        "org/gnome/shell"."welcome-dialog-last-shown-version" = 4294967295;
       };
 
       xresources.properties = {

@@ -74,7 +74,6 @@
             ".zsh_history"
             ".bash_history"
             ".config/monitors.xml"
-            ".config/gnome-initial-setup-done"
           ];
         };
       };
