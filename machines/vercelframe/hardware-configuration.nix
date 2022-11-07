@@ -30,13 +30,6 @@
       options = [ "defaults" "size=8G" "mode=777" ];
     };
 
-  fileSystems."/home-old" =
-    {
-      device = "/dev/disk/by-uuid/784a8f38-ee55-4b47-abe2-6d4847442e5f";
-      fsType = "btrfs";
-      options = [ "subvol=home" ];
-    };
-
   fileSystems."/nix" =
     {
       device = "/dev/disk/by-uuid/784a8f38-ee55-4b47-abe2-6d4847442e5f";
