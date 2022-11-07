@@ -48,6 +48,7 @@
             ".local/share/Steam"
             ".local/share/direnv"
             ".local/share/flatpak"
+            ".steam"
           ];
 
           files = [
