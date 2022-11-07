@@ -71,7 +71,6 @@
 
           files = [
             "vim/.vimrc"
-            "vscode/.config/Code/User/settings.json"
           ];
         };
       };
