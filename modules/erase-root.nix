@@ -27,31 +27,8 @@
         files = [
           "/etc/machine-id"
         ];
-      };
 
-      programs.fuse.userAllowOther = true;
-
-      # Home Manager config goes in here
-      home-manager.users.pearman = {
-        imports = [ ./impermanence/home-manager.nix ];
-
-        # Files that we want to trach in git
-        home.persistence."/etc/nixos/modules/dotfiles/" = {
-          removePrefixDirectory = true;
-          allowOther = true;
-          directories = [
-            "vscode/.config/Code/User/settings.json"
-          ];
-
-          files = [
-            "vim/.vimrc"
-          ];
-        };
-
-        # Files that just need to be persisted
-        home.persistence."/persist/home/pearman/" = {
-          removePrefixDirectory = false;
-          allowOther = true;
+        users.pearman = {
           directories = [
             "Documents"
             "Downloads"
@@ -76,6 +53,25 @@
             ".zsh_history"
             ".bash_history"
             ".config/monitors.xml"
+          ];
+        };
+      };
+
+      programs.fuse.userAllowOther = true;
+
+      home-manager.users.pearman = {
+        imports = [ ./impermanence/home-manager.nix ];
+
+        # Files that we want to trach in git
+        home.persistence."/etc/nixos/modules/dotfiles/" = {
+          removePrefixDirectory = true;
+          allowOther = true;
+          directories = [
+            "vscode/.config/Code/User/settings.json"
+          ];
+
+          files = [
+            "vim/.vimrc"
           ];
         };
       };
