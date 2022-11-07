@@ -196,6 +196,10 @@
 
         # Do not show welcome tour on startup
         "org/gnome/shell"."welcome-dialog-last-shown-version" = "1000000";
+
+        # Workspaces
+        "/org/gnome/mutter"."dynamic-workspaces" = false;
+        "/org/gnome/desktop/wm/preferences"."num-workspaces" = 9;
       };
 
       xresources.properties = {
