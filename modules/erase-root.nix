@@ -43,6 +43,7 @@
             ".config/Code"
             ".config/Signal"
             ".config/Slack"
+            ".config/discord"
             ".config/spotify"
             ".local/share/Steam"
             ".local/share/direnv"
