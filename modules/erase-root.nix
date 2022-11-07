@@ -40,6 +40,7 @@
           removePrefixDirectory = true;
           allowOther = true;
           directories = [
+            "vscode/.config/Code/User/settings.json"
           ];
 
           files = [
@@ -62,6 +63,7 @@
             ".cache"
             ".config/Bitwarden"
             ".config/BraveSoftware"
+            ".config/Code"
             ".config/Signal"
             ".config/Slack"
             ".config/spotify"
