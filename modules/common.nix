@@ -190,7 +190,7 @@ in
         };
 
         # Do not show welcome tour on startup
-        "org/gnome/shell"."welcome-dialog-last-shown-version" = 4294967295;
+        "org/gnome/shell"."welcome-dialog-last-shown-version" = 1000000000;
       };
 
       xresources.properties = {

@@ -67,11 +67,11 @@
           removePrefixDirectory = true;
           allowOther = true;
           directories = [
-            "vscode/.config/Code/User/settings.json"
           ];
 
           files = [
             "vim/.vimrc"
+            "vscode/.config/Code/User/settings.json"
           ];
         };
       };
