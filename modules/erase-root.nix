@@ -69,9 +69,7 @@
           directories = [
           ];
 
-          files = [
-            "vim/.vimrc"
-          ];
+          files = [ ];
         };
       };
     };

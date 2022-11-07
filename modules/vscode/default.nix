@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 let
-  unstable = import ../nixpkgs-unstable { config = { unfree = true; }; };
+  unstable = import ../nixpkgs-unstable { config = config.nixpkgs.config; };
 in
 {
   options.custom.vscode =
@@ -20,6 +20,9 @@ in
       enable = true;
       package = unstable.vscode.fhsWithPackages (
         ps: with ps; [
+          # General
+          git
+
           # Nix
           unstable.nil
           nixpkgs-fmt
