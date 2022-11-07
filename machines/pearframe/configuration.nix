@@ -7,20 +7,18 @@
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  # Enable swap on luks
-  boot.initrd.luks.devices."luks-03537895-0d55-4d42-83b0-28f2c82e6273".device = "/dev/disk/by-uuid/03537895-0d55-4d42-83b0-28f2c82e6273";
-  boot.initrd.luks.devices."luks-03537895-0d55-4d42-83b0-28f2c82e6273".keyFile = "/crypto_keyfile.bin";
-
-  # Setup keyfile
-  boot.initrd.secrets = {
-    "/crypto_keyfile.bin" = null;
-  };
+  # We need few volumes to be mounted before our system starts booting
+  fileSystems."/var/log".neededForBoot = true;
+  fileSystems."/persist".neededForBoot = true;
+  fileSystems."/".neededForBoot = true;
+  fileSystems."/home".neededForBoot = true;
 
   # Host name
   networking.hostName = "pearframe";
 
   # Options
   custom = {
+    erase-root.enable = true;
     fck.enable = true;
     framework.enable = true;
     gui.enable = true;
