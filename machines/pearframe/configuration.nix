@@ -21,6 +21,7 @@
     erase-root.enable = true;
     fck.enable = true;
     framework.enable = true;
+    games.enable = true;
     gui.enable = true;
     real-vnc-viewer.enable = true;
     vscode.enable = true;

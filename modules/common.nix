@@ -155,56 +155,8 @@
 
   home-manager = {
     useUserPackages = true;
-    users.pearman = { lib, ... }: {
+    users.pearman = {
       nixpkgs.config.allowUnfree = true;
-
-      dconf.settings = with lib.hm.gvariant; {
-        # Allow fractional scaling in wayland - produces blurry image
-        # "org/gnome/mutter" = {
-        #   experimental-features = [ "scale-monitor-framebuffer" ];
-        # };
-
-        # Used keyboad layout
-        "org/gnome/desktop/input-sources".sources = [
-          (mkTuple [ "xkb" "fck" ])
-        ];
-
-        # Dock
-        "org/gnome/shell"."favorite-apps" = [
-          "brave-browser.desktop"
-          "code.desktop"
-          "org.gnome.Console.desktop"
-          "org.gnome.Settings.desktop"
-          "org.gnome.Nautilus.desktop"
-          "signal-desktop.desktop"
-          "slack.desktop"
-          "spotify.desktop"
-        ];
-
-        # Over-amplification
-        "org/gnome/desktop/sound"."allow-volume-above-100-percent" = true;
-
-        # Increase font size (Works well with 100% QHD 13' laptop annd 4k 27' monitor)
-        "org/gnome/desktop/interface"."text-scaling-factor" = 1.5;
-
-        # Wallpaper
-        "org/gnome/desktop/background" = {
-          color-shading-type = "solid";
-          picture-options = "zoom";
-          picture-uri = "file://" + ../wallpapers/nix-wallpaper-simple-dark-gray.png;
-        };
-
-        # Do not show welcome tour on startup
-        "org/gnome/shell"."welcome-dialog-last-shown-version" = "1000000";
-
-        # Workspaces
-        "org/gnome/mutter"."dynamic-workspaces" = false;
-        "org/gnome/desktop/wm/preferences"."num-workspaces" = 9;
-      };
-
-      xresources.properties = {
-        "Xcursor.size" = 64;
-      };
 
       programs = {
         # home-manager.enable = true;
