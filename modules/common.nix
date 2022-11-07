@@ -195,6 +195,8 @@ in
       };
 
       programs = {
+        # home-manager.enable = true;
+
         git = {
           enable = true;
           userName = "Jan Kaifer";
@@ -226,11 +228,7 @@ in
       };
 
       xdg.configFile = {
-        "nixpkgs/config.nix".source = ./dotfiles/nixpkgs.nix;
-      };
-
-      home.file = {
-        ".vimrc".source = ./dotfiles/.vimrc;
+        "nixpkgs/config.nix".source = ./dotfiles/nix/nixpkgs.nix;
       };
     };
   };
