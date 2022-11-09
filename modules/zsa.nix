@@ -13,7 +13,7 @@
     };
 
   config =
-    lib.mkIf (!config.custom.zsa.enable)
+    lib.mkIf config.custom.zsa.enable
       {
         # system option is outdated
         # hardware.keyboard.zsa.enable = true;
