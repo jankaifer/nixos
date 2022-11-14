@@ -27,6 +27,8 @@
     in
     lib.mkIf config.custom.falcon.enable
       {
+        environment.persistence."/persist".directories = [ "/opt/CrowdStrike/" ];
+
         systemd.services.falcon-sensor = {
           enable = true;
           description = "CrowdStrike Falcon Sensor";
