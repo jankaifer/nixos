@@ -1,29 +1,51 @@
-{ pkgs, lib }:
-
-pkgs.stdenv.mkDerivation {
-  name = "falcon-sensor";
-  version = "4.18.0-6402";
+{ stdenv
+, lib
+, pkgs
+, dpkg
+, openssl
+, libnl
+, zlib
+, fetchurl
+, autoPatchelfHook
+, buildFHSUserEnv
+, writeScript
+, ...
+}:
+let
+  pname = "falcon";
   arch = "amd64";
   src = ./falcon.deb;
+  falcon = stdenv.mkDerivation {
+    inherit arch src;
+    name = pname;
 
-  nativeBuildInputs = [ pkgs.dpkg pkgs.autoPatchelfHook pkgs.zlib pkgs.libnl pkgs.openssl ];
-  propagateBuildInputs = [ pkgs.libnl pkgs.openssl ];
+    buildInputs = [ dpkg zlib autoPatchelfHook ];
 
-  sourceRoot = ".";
+    sourceRoot = ".";
 
-  unpackCmd = ''
-    dpkg-deb -x "$src" .
-  '';
+    unpackPhase = ''                                                                                                                                                                                                                                                                                  
+      dpkg-deb -x $src .                                                                                                                                                                                                                                                                            
+    '';
 
-  installPhase = ''
-    cp -r ./ $out/
-    realpath $out
-  '';
+    installPhase = ''                                                                                                                                                                                                                                                                                 
+      cp -r . $out                                                                                                                                                                                                                                                                                  
+    '';
 
-  meta = {
-    description = "Crowdstrike Falcon Sensor";
-    homepage = "https://www.crowdstrike.com/";
-    license = lib.licenses.unfree;
-    platforms = lib.platforms.linux;
+    meta = with lib; {
+      description = "Crowdstrike Falcon Sensor";
+      homepage = "https://www.crowdstrike.com/";
+      license = licenses.unfree;
+      platforms = platforms.linux;
+    };
   };
+in
+buildFHSUserEnv {
+  name = "fs-bash";
+  targetPkgs = pkgs: [ libnl openssl zlib ];
+
+  extraInstallCommands = ''                                                                                                                                                                                                                                                                           
+    ln -s ${falcon}/* $out/                                                                                                                                                                                                                                                                    
+  '';
+
+  runScript = "bash";
 }

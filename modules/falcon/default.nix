@@ -16,39 +16,31 @@
 
   config =
     let
-      falcon = import ./falcon.nix { inherit pkgs lib; };
-      falcon-env = pkgs.buildFHSUserEnv {
-        name = "falcon-sensor";
-        targetPkgs = pkgs: [ pkgs.libnl pkgs.openssl ];
-        runScript = "bash";
-      };
+      falcon = pkgs.callPackage ./falcon.nix { };
+      startPreScript = pkgs.writeScript "init-falcon" ''                                                                                                                                                                                                                                                  
+    #! ${pkgs.bash}/bin/sh                                                                                                                                                                                                                                                                            
+    /run/current-system/sw/bin/mkdir -p /opt/CrowdStrike                                                                                                                                                                                                                                              
+    ln -sf ${falcon}/opt/CrowdStrike/* /opt/CrowdStrike                                                                                                                                                                                                                                               
+    ${falcon}/bin/fs-bash -c "${falcon}/opt/CrowdStrike/falconctl -g --cid"                                                                                                                                                                                                                           
+  '';
     in
     lib.mkIf config.custom.falcon.enable
       {
-        environment.systemPackages = [ falcon ];
         systemd.services.falcon-sensor = {
-          enable = false;
+          enable = true;
           description = "CrowdStrike Falcon Sensor";
+          unitConfig.DefaultDependencies = false;
           after = [ "local-fs.target" ];
           conflicts = [ "shutdown.target" ];
-          before = [ "shutdown.target" ];
+          before = [ "sysinit.target" "shutdown.target" ];
           serviceConfig = {
-            WorkingDirectory = "/opt/CrowdStrike";
-            ExecStartPre = [
-              (pkgs.writeScript "falcon-init" ''
-                #!${pkgs.bash}/bin/bash
-                set -euo
-                rm -rf /opt/CrowdStrike && mkdir -p /opt/CrowdStrike && cp -r ${falcon}/opt/CrowdStrike/* /opt/CrowdStrike/
-              '')
-              "/opt/CrowdStrike/falconctl -s -f --cid=XXXXXXXXXXXXXXXXXXXXXXXX"
-            ];
-            ExecStart = "${falcon-env}/bin/falcon-sensor -c /opt/CrowdStrike/falcond";
+            ExecStartPre = "${startPreScript}";
+            ExecStart = "${falcon}/bin/fs-bash -c \"${falcon}/opt/CrowdStrike/falcond\"";
             Type = "forking";
             PIDFile = "/run/falcond.pid";
             Restart = "no";
             TimeoutStopSec = "60s";
-            KillMode = "control-group";
-            KillSignal = "SIGTERM";
+            KillMode = "process";
           };
           wantedBy = [ "multi-user.target" ];
         };
