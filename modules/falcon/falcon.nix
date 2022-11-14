@@ -6,7 +6,7 @@ pkgs.stdenv.mkDerivation {
   arch = "amd64";
   src = ./falcon.deb;
 
-  nativeBuildInputs = [ pkgs.dpkg pkgs.autoPatchelfHook zlib pkgs.libnl pkgs.openssl ];
+  nativeBuildInputs = [ pkgs.dpkg pkgs.autoPatchelfHook pkgs.zlib pkgs.libnl pkgs.openssl ];
   propagateBuildInputs = [ pkgs.libnl pkgs.openssl ];
 
   sourceRoot = ".";
