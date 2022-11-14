@@ -165,6 +165,11 @@
           enable = true;
           userName = "Jan Kaifer";
           userEmail = "jan@kaifer.cz";
+          extraConfig = {
+            pull = {
+              rebase = true;
+            };
+          };
         };
 
         vim = {
