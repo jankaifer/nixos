@@ -4,6 +4,7 @@
   imports = [
     ./common.nix
     ./erase-root.nix
+    ./falcon.nix
     ./framework.nix
     ./games.nix
     ./gui.nix

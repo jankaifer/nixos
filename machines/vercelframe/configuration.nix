@@ -24,6 +24,7 @@
     gui.enable = true;
     real-vnc-viewer.enable = true;
     vscode.enable = true;
+    work.enable = true;
     zsa.enable = true;
   };
 }
