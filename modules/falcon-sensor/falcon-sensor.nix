@@ -12,10 +12,11 @@
 , ...
 }:
 let
-  pname = "falcon";
+  pname = "falcon-sensor";
   arch = "amd64";
-  src = ./falcon.deb;
-  falcon = stdenv.mkDerivation {
+  # You need to get the binary from #it guys
+  src = ./falcon-sensor.deb;
+  falcon-sensor = stdenv.mkDerivation {
     inherit arch src;
     name = pname;
 
@@ -44,7 +45,7 @@ buildFHSUserEnv {
   targetPkgs = pkgs: [ libnl openssl zlib ];
 
   extraInstallCommands = ''                                                                                                                                                                                                                                                                           
-    ln -s ${falcon}/* $out/                                                                                                                                                                                                                                                                    
+    ln -s ${falcon-sensor}/* $out/                                                                                                                                                                                                                                                                    
   '';
 
   runScript = "bash";
