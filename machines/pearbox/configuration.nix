@@ -14,7 +14,7 @@
   fileSystems."/home".neededForBoot = true;
 
   # Host name
-  networking.hostName = "pearframe";
+  networking.hostName = "pearbox";
 
   # Options
   custom = {
