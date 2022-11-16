@@ -5,6 +5,9 @@
     ../../modules
   ];
 
+  # Weird system freezes were hapenning on 6.0
+  # Gnome is broken on 5.15
+  # Anything below 5.12 doesn't support my wifi
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # We need few volumes to be mounted before our system starts booting
