@@ -56,8 +56,9 @@ in
         "projectManager.showParentFolderInfoOnDuplicates" = true;
         "projectManager.git.baseFolders" = [
           "/home/pearman/Projects"
+          "/home/pearman/dev"
         ];
-        "projectManager.git.maxDepthRecursion" = 1;
+        "projectManager.git.maxDepthRecursion" = 2;
       };
     };
   };
