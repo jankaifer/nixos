@@ -21,6 +21,13 @@
       options = [ "defaults" "size=8G" "mode=755" ];
     };
 
+  fileSystems."/tmp" =
+    {
+      device = "none";
+      fsType = "tmpfs";
+      options = [ "defaults" ];
+    };
+
   fileSystems."/boot" =
     {
       device = "/dev/disk/by-uuid/D23D-3874";

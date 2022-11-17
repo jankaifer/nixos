@@ -30,6 +30,13 @@
       options = [ "defaults" "size=8G" "mode=777" ];
     };
 
+  fileSystems."/tmp" =
+    {
+      device = "none";
+      fsType = "tmpfs";
+      options = [ "defaults" ];
+    };
+
   fileSystems."/nix" =
     {
       device = "/dev/disk/by-uuid/784a8f38-ee55-4b47-abe2-6d4847442e5f";
