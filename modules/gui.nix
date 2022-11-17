@@ -117,6 +117,9 @@ in
           gnome.gnome-software
           gnome.gnome-tweaks
 
+          # X11-only
+          # simplescreenrecorder
+
           # Electron evil apps
           atom
           signal-desktop
