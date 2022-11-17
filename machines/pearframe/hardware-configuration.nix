@@ -5,7 +5,8 @@
 
 {
   imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
+    [
+      (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" ];
@@ -14,18 +15,21 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "none";
+    {
+      device = "none";
       fsType = "tmpfs";
-      options = [ "defaults" "size=2G" "mode=755" ];
+      options = [ "defaults" "size=8G" "mode=755" ];
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/D23D-3874";
+    {
+      device = "/dev/disk/by-uuid/D23D-3874";
       fsType = "vfat";
     };
 
   fileSystems."/nix" =
-    { device = "/dev/disk/by-uuid/2ce825c9-7aa3-4768-8966-4ac6c8ce8a49";
+    {
+      device = "/dev/disk/by-uuid/2ce825c9-7aa3-4768-8966-4ac6c8ce8a49";
       fsType = "btrfs";
       options = [ "subvol=nix" ];
     };
@@ -33,26 +37,28 @@
   boot.initrd.luks.devices."enc".device = "/dev/disk/by-uuid/219d640e-c04a-43be-b884-26e82cc6afe1";
 
   fileSystems."/persist" =
-    { device = "/dev/disk/by-uuid/2ce825c9-7aa3-4768-8966-4ac6c8ce8a49";
+    {
+      device = "/dev/disk/by-uuid/2ce825c9-7aa3-4768-8966-4ac6c8ce8a49";
       fsType = "btrfs";
       options = [ "subvol=persist" ];
     };
 
   fileSystems."/var/log" =
-    { device = "/dev/disk/by-uuid/2ce825c9-7aa3-4768-8966-4ac6c8ce8a49";
+    {
+      device = "/dev/disk/by-uuid/2ce825c9-7aa3-4768-8966-4ac6c8ce8a49";
       fsType = "btrfs";
       options = [ "subvol=log" ];
     };
 
   fileSystems."/home" =
-    { device = "none";
+    {
+      device = "none";
       fsType = "tmpfs";
       options = [ "defaults" "size=8G" "mode=777" ];
     };
 
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/8ca1d57f-3435-4a42-b5df-fd76de5e52d5"; }
-    ];
+    [{ device = "/dev/disk/by-uuid/8ca1d57f-3435-4a42-b5df-fd76de5e52d5"; }];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
