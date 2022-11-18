@@ -1,5 +1,6 @@
 #! /usr/bin/env nix-shell
 #! nix-shell -i bash -p curl jq unzip
+#! nix-shell -I nixpkgs=https://github.com/nixos/nixpkgs/archive/release-22.05.tar.gz
 
 set -euo pipefail
 
