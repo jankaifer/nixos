@@ -18,7 +18,7 @@ in
   config = lib.mkIf config.custom.vscode.enable {
     home-manager.users.pearman.programs.vscode = {
       enable = true;
-      package = unstable.vscode.fhsWithPackages (
+      package = pkgs.vscode.fhsWithPackages (
         ps: with ps; [
           # General
           git
