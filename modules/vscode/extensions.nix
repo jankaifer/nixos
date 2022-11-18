@@ -40,7 +40,7 @@
       name = "remote-containers";
       publisher = "ms-vscode-remote";
       version = "0.245.2";
-      sha256 = "0bib5hqs2bwz71bz6vh61pl1p3khgkx6lcflpg6msg6cxshxxg5h";
+      sha256 = "1j819p2kl4yhrcwr20i4ax3gvwrs2ywqb17f1zri4bfpfs7s8vl0";
     }
     {
       name = "remote-ssh";
