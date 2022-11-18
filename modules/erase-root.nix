@@ -49,6 +49,7 @@
             ".local/share/Steam"
             ".local/share/direnv"
             ".local/share/flatpak"
+            ".zoom"
           ];
 
           files = [
