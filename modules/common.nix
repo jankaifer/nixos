@@ -128,6 +128,7 @@
       bitwarden-cli
       wally-cli
       niv
+      gh
 
       # Nix
       nixpkgs-fmt
