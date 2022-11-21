@@ -129,6 +129,7 @@
       wally-cli
       niv
       gh
+      steam-run
 
       # Nix
       nixpkgs-fmt
