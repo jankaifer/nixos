@@ -23,6 +23,13 @@
       options = [ "defaults" "size=8G" "mode=755" ];
     };
 
+  fileSystems."/tmp" =
+    {
+      device = "none";
+      fsType = "tmpfs";
+      options = [ "defaults" ];
+    };
+
   fileSystems."/home" =
     {
       device = "none";
@@ -30,11 +37,10 @@
       options = [ "defaults" "size=8G" "mode=777" ];
     };
 
-  fileSystems."/tmp" =
+  fileSystems."/boot" =
     {
-      device = "none";
-      fsType = "tmpfs";
-      options = [ "defaults" ];
+      device = "/dev/disk/by-uuid/7941-42AE";
+      fsType = "vfat";
     };
 
   fileSystems."/nix" =
@@ -56,12 +62,6 @@
       device = "/dev/disk/by-uuid/784a8f38-ee55-4b47-abe2-6d4847442e5f";
       fsType = "btrfs";
       options = [ "subvol=log" ];
-    };
-
-  fileSystems."/boot" =
-    {
-      device = "/dev/disk/by-uuid/7941-42AE";
-      fsType = "vfat";
     };
 
   swapDevices =

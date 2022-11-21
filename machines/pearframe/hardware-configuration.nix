@@ -14,6 +14,8 @@
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
+  boot.initrd.luks.devices."enc".device = "/dev/disk/by-uuid/219d640e-c04a-43be-b884-26e82cc6afe1";
+
   fileSystems."/" =
     {
       device = "none";
@@ -26,6 +28,13 @@
       device = "none";
       fsType = "tmpfs";
       options = [ "defaults" ];
+    };
+
+  fileSystems."/home" =
+    {
+      device = "none";
+      fsType = "tmpfs";
+      options = [ "defaults" "size=8G" "mode=777" ];
     };
 
   fileSystems."/boot" =
@@ -41,8 +50,6 @@
       options = [ "subvol=nix" ];
     };
 
-  boot.initrd.luks.devices."enc".device = "/dev/disk/by-uuid/219d640e-c04a-43be-b884-26e82cc6afe1";
-
   fileSystems."/persist" =
     {
       device = "/dev/disk/by-uuid/2ce825c9-7aa3-4768-8966-4ac6c8ce8a49";
@@ -57,13 +64,6 @@
       options = [ "subvol=log" ];
     };
 
-  fileSystems."/home" =
-    {
-      device = "none";
-      fsType = "tmpfs";
-      options = [ "defaults" "size=8G" "mode=777" ];
-    };
-
   swapDevices =
     [{ device = "/dev/disk/by-uuid/8ca1d57f-3435-4a42-b5df-fd76de5e52d5"; }];
 
@@ -72,7 +72,6 @@
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.docker0.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp166s0.useDHCP = lib.mkDefault true;
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
