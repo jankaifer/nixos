@@ -143,6 +143,7 @@
       nodejs
       nodePackages.yarn
       nodePackages.npm
+      nodePackages.pnpm
 
       # Docker
       docker
