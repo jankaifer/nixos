@@ -60,7 +60,7 @@
   # Link /etc/nixos to this repo
   environment.etc.nixos = {
     enable = true;
-    source = "/home/pearman/Projects/nixos";
+    source = "/home/pearman/dev/jankaifer/nixos";
     target = "nixos";
   };
 
