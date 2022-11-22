@@ -75,6 +75,19 @@ in
     target = "vimrc";
   };
 
+  environment.sessionVariables = rec {
+    XDG_CACHE_HOME = "\${HOME}/.cache";
+    XDG_CONFIG_HOME = "\${HOME}/.config";
+    XDG_BIN_HOME = "\${HOME}/.local/bin";
+    XDG_DATA_HOME = "\${HOME}/.local/share";
+
+    EDITOR = "vim";
+
+    PATH = [
+      "\${XDG_BIN_HOME}"
+    ];
+  };
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -84,6 +97,7 @@ in
   programs = {
     zsh = {
       enable = true;
+      enableCompletion = true;
       enableBashCompletion = true;
       promptInit = ''
         eval "$(direnv hook zsh)"
