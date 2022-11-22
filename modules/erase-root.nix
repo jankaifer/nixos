@@ -49,6 +49,7 @@
             ".local/share/Steam"
             ".local/share/direnv"
             ".local/share/flatpak"
+            ".local/share/fnm"
             ".zoom"
           ];
 

@@ -2,6 +2,7 @@
 
 let
   nixosRepoPath = "/persist/home/pearman/dev/jankaifer/nixos";
+  unstable = import ./nixpkgs-unstable { config = { allowUnfree = true; }; };
 in
 {
   nix.nixPath =
@@ -86,14 +87,18 @@ in
       enableBashCompletion = true;
       promptInit = ''
         eval "$(direnv hook zsh)"
+        eval "$(fnm env --use-on-cd --version-file-strategy=recursive)"
       '';
-      shellAliases =
-        let
-          zsh = "${pkgs.zsh}/bin/zsh";
-        in
-        {
-          rebuild = "sudo ${nixosRepoPath}/scripts/rebuild.sh switch |& nom";
-        };
+      shellAliases = {
+        rebuild = "sudo ${nixosRepoPath}/scripts/rebuild.sh switch |& nom";
+        # node tools are pain to manage without steam-run
+        sr = "steam-run";
+        pnpm = "sr pnpm";
+        yarn = "sr npm";
+        npm = "sr npm";
+        corepack = "sr corepack";
+        node = "sr node";
+      };
     };
   };
 
@@ -134,7 +139,7 @@ in
       niv
       gh
       steam-run
-      fnm
+      unstable.fnm
 
       # Nix
       nixpkgs-fmt
@@ -208,6 +213,7 @@ in
       # For some reason vscode can't read the config when provided by impermanence
       home.file = {
         ".vimrc".source = ./dotfiles/vim/.vimrc;
+        ".node-version" = "v18.3.0";
       };
     };
   };
