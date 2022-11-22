@@ -1,10 +1,14 @@
 { config, lib, pkgs, ... }@args:
 
+let
+  nixosRepoPath = "/persist/home/pearman/dev/jankaifer/nixos";
+in
 {
-  nix.nixPath = [
-    "nixpkgs=/etc/nixos/modules/nixpkgs"
-    "nixos-config=/etc/nixos/machines/${config.networking.hostName}/configuration.nix"
-  ];
+  nix.nixPath =
+    [
+      "nixpkgs=${nixosRepoPath}/modules/nixpkgs"
+      "nixos-config=${nixosRepoPath}/machines/${config.networking.hostName}/configuration.nix"
+    ];
 
   # Setup user
   users = {
@@ -60,13 +64,13 @@
   # Link /etc/nixos to this repo
   environment.etc.nixos = {
     enable = true;
-    source = "/home/pearman/dev/jankaifer/nixos";
+    source = nixosRepoPath;
     target = "nixos";
   };
 
   environment.etc.vimrc = {
     enable = true;
-    source = "/etc/nixos/modules/dotfiles/vim/.vimrc";
+    source = "${nixosRepoPath}/modules/dotfiles/vim/.vimrc";
     target = "vimrc";
   };
 
@@ -88,7 +92,7 @@
           zsh = "${pkgs.zsh}/bin/zsh";
         in
         {
-          rebuild = "sudo /etc/nixos/scripts/rebuild.sh switch |& nom";
+          rebuild = "sudo ${nixosRepoPath}/scripts/rebuild.sh switch |& nom";
         };
     };
   };
