@@ -176,6 +176,10 @@ in
             pull = {
               rebase = true;
             };
+            gpg.format = "ssh";
+            # ser.signingKey = builtins.readFile ./
+            commit.gpgsign = true;
+            tag.gpgsign = true;
           };
         };
 
