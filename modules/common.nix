@@ -134,6 +134,7 @@ in
       niv
       gh
       steam-run
+      fnm
 
       # Nix
       nixpkgs-fmt
@@ -142,12 +143,6 @@ in
       # Python
       python38Full
       black
-
-      # Node
-      nodejs
-      nodePackages.yarn
-      nodePackages.npm
-      nodePackages.pnpm
 
       # Docker
       docker
