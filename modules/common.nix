@@ -100,6 +100,8 @@ in
         node = "sr node";
       };
     };
+
+    vim.defaultEditor = true;
   };
 
   fonts.fonts = with pkgs; [
@@ -177,7 +179,7 @@ in
               rebase = true;
             };
             gpg.format = "ssh";
-            # ser.signingKey = builtins.readFile ./
+            gpg.ssh.defaultKeyCommand = "ssh-add -L";
             commit.gpgsign = true;
             tag.gpgsign = true;
           };
