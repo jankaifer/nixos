@@ -236,7 +236,7 @@ in
       # For some reason vscode can't read the config when provided by impermanence
       home.file = {
         ".vimrc".source = ./dotfiles/vim/.vimrc;
-        ".node-version".text = "v18.3.0";
+        ".node-version".text = "v18.12.1";
       };
     };
   };
