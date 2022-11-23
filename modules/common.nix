@@ -57,6 +57,9 @@ in
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
+  # Inceare temporary storage size
+  services.logind.extraConfig = "RuntimeDirectorySize=6G";
+
   # Make SUDO to remember fingerprint/password for 15 minutes
   security.sudo.extraConfig = ''
     Defaults        timestamp_timeout=15
