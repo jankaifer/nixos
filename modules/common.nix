@@ -108,7 +108,7 @@ in
         # node tools are pain to manage without steam-run
         sr = "steam-run";
         pnpm = "sr pnpm";
-        yarn = "sr npm";
+        yarn = "sr yarn";
         npm = "sr npm";
         corepack = "sr corepack";
         node = "sr node";
