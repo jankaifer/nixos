@@ -116,6 +116,7 @@ in
           gnome.dconf-editor
           gnome.gnome-software
           gnome.gnome-tweaks
+          libsForQt5.filelight
 
           # X11-only
           # simplescreenrecorder

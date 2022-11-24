@@ -19,7 +19,7 @@ in
       description = "Jan Kaifer";
       extraGroups = [
         "wheel"
-        "networkmanager"
+        "networkmanage"
         "video"
         "docker"
         "adbusers"
@@ -30,6 +30,8 @@ in
       hashedPassword = lib.strings.fileContents ../passwordFile;
     };
   };
+
+  boot.supportedFilesystems = [ "ntfs" ];
 
   # Set your time zone.
   time.timeZone = "Europe/Prague";
