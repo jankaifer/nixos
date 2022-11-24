@@ -26,7 +26,7 @@ git clone --recurse-submodules git@gitlab.com:JanKaifer/nixos.git
 ```
 sudo mv /etc/nixos/ /etc/nixos-old
 sudo mkdir /etc/nixos
-sudo ln -s /home/pearman/Projects/nixos /etc/nixos
+sudo ln -s /persist/home/pearman/dev/jankaifer/nixos /etc/nixos
 ```
 
 3. Create password file in root of this repo.
