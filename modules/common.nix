@@ -115,6 +115,7 @@ in
         pnpm = "sr pnpm";
         yarn = "sr yarn";
         npm = "sr npm";
+        npx = "sr npx";
         corepack = "sr corepack";
         node = "sr node";
       };
