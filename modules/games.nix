@@ -25,7 +25,7 @@
         });
       '';
 
-      home-manager.users.pearman.xdg.desktopEntries.steam = lib.mkIf config.programs.steam.enable {
+      home-manager.users.pearman.xdg.desktopEntries.steam = {
         name = "Steam";
         exec = "GDK_SCALE=2 steam";
       };
