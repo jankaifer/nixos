@@ -136,9 +136,6 @@ in
       ## It is sadly not ready yet - electron apps will start missing navbars and they are still blurry 
       # environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
-      # Make steam text larger
-      environment.sessionVariables.GDK_SCALE = "2";
-
       xdg.portal.enable = true;
 
       xdg.mime.defaultApplications =
