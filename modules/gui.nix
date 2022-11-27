@@ -95,6 +95,11 @@ in
         xresources.properties = {
           "Xcursor.size" = 64;
         };
+
+        xdg.desktopEntries.steam = lib.mkIf config.programs.steam.enable {
+          name = "Steam";
+          exec = "GDK_SCALE=2 steam";
+        };
       };
 
       programs = {
