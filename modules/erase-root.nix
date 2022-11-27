@@ -47,6 +47,7 @@
             ".config/discord"
             ".config/spotify"
             ".local/share/Steam"
+            ".local/share/Teraria"
             ".local/share/direnv"
             ".local/share/flatpak"
             ".local/share/fnm"
