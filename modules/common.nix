@@ -110,6 +110,7 @@ in
       '';
       shellAliases = {
         rebuild = "sudo ${nixosRepoPath}/scripts/rebuild.sh switch |& nom";
+        new-next-repro = "${nixosRepoPath}/scripts/new-next-repro.sh";
         # node tools are pain to manage without steam-run
         sr = "steam-run";
         pnpm = "sr pnpm";
@@ -202,6 +203,7 @@ in
             gpg.ssh.defaultKeyCommand = "ssh-add -L";
             commit.gpgsign = true;
             tag.gpgsign = true;
+            init.defaultBranch = "main";
           };
         };
 
