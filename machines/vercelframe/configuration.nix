@@ -16,6 +16,9 @@
   # Host name
   networking.hostName = "vercelframe";
 
+  # Wallpaper
+  home-manager.users.pearman.dconf.settings."org/gnome/desktop/background".picture-uri = "file://" + ../wallpapers/vercel-pyramid-4k.png;
+
   # Options
   custom = {
     erase-root.enable = true;

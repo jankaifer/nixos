@@ -81,7 +81,6 @@ in
           "org/gnome/desktop/background" = {
             color-shading-type = "solid";
             picture-options = "zoom";
-            picture-uri = "file://" + ../wallpapers/nix-wallpaper-simple-dark-gray.png;
           };
 
           # Do not show welcome tour on startup
