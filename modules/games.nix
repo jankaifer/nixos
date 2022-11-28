@@ -25,16 +25,18 @@
         });
       '';
 
-      home-manager.users.pearman.xdg.desktopEntries.steam = {
-        name = "Steam";
-        exec = "GDK_SCALE=2 steam %U";
+      home-manager.users.pearman.xdg.desktopEntries.custom-steam = {
+        categories = [ "Network" "FileTransfer" "Game" ];
         comment = "Application for managing and playing games on Steam";
+        exec = "GDK_SCALE=2 steam %U";
+        genericName = "Steam Client";
         icon = "steam";
+        mimeType = [ "x-scheme-handler/steam" "x-scheme-handler/steamlink" ];
+        name = "Steam";
+        noDisplay = false;
+        prefersNonDefaultGPU = true;
         terminal = false;
         type = "Application";
-        categories = [ "Network" "FileTransfer" "Game" ];
-        mimeType = [ "x-scheme-handler/steam" "x-scheme-handler/steamlink" ];
-        prefersNonDefaultGPU = true;
       };
     };
 }
