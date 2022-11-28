@@ -27,7 +27,14 @@
 
       home-manager.users.pearman.xdg.desktopEntries.steam = {
         name = "Steam";
-        exec = "GDK_SCALE=2 steam";
+        exec = "GDK_SCALE=2 steam %U";
+        comment = "Application for managing and playing games on Steam";
+        icon = "steam";
+        terminal = false;
+        type = "Application";
+        categories = [ "Network" "FileTransfer" "Game" ];
+        mimeType = [ "x-scheme-handler/steam" "x-scheme-handler/steamlink" ];
+        prefersNonDefaultGPU = true;
       };
     };
 }
