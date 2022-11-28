@@ -17,7 +17,7 @@
   networking.hostName = "pearbox";
 
   # Wallpaper
-  home-manager.users.pearman.dconf.settings."org/gnome/desktop/background".picture-uri = "file://" + ../../wallpapers/prism-rabbit.png;
+  home-manager.users.pearman.dconf.settings."org/gnome/desktop/background".picture-uri = "file://" + ../../wallpapers/prism-rabbit.jpg;
 
   # Options
   custom = {
