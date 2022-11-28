@@ -19,6 +19,9 @@
   # Host name
   networking.hostName = "pearframe";
 
+  # Wallpaper
+  home-manager.users.pearman.dconf.settings."org/gnome/desktop/background".picture-uri = "file://" + ../../wallpapers/nix-wallpaper-simple-dark-gray.png;
+
   # Options
   custom = {
     erase-root.enable = true;

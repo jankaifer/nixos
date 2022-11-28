@@ -16,6 +16,9 @@
   # Host name
   networking.hostName = "pearbox";
 
+  # Wallpaper
+  home-manager.users.pearman.dconf.settings."org/gnome/desktop/background".picture-uri = "file://" + ../../wallpapers/prism-rabbit.png;
+
   # Options
   custom = {
     erase-root.enable = true;
