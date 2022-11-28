@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, config, lib, ... }:
 {
   imports = [
     ./hardware-configuration.nix
@@ -18,6 +18,23 @@
 
   # Wallpaper
   home-manager.users.pearman.dconf.settings."org/gnome/desktop/background".picture-uri = "file://" + ../../wallpapers/space.jpg;
+
+  # Install nvidia drivers
+  services.xserver.videoDrivers = [ "nvidia" ];
+  hardware.opengl.enable = true;
+  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
+
+  # Use unstable for new nvidia drivers
+  nix.nixPath = lib.mkForce
+    (
+      let
+        nixosRepoPath = "/persist/home/pearman/dev/jankaifer/nixos";
+      in
+      [
+        "nixpkgs=${nixosRepoPath}/modules/nixpkgs-unstable"
+        "nixos-config=${nixosRepoPath}/machines/${config.networking.hostName}/configuration.nix"
+      ]
+    );
 
   # Options
   custom = {
