@@ -103,32 +103,33 @@ in
 
       environment.systemPackages = with pkgs;
         [
-          firefox
-          google-chrome
           brave
-          zoom-us
-          vlc
-          gparted
-          playerctl
-          xournalpp
-          gnome.seahorse
+          firefox
           gnome.dconf-editor
           gnome.gnome-software
           gnome.gnome-tweaks
+          gnome.seahorse
+          google-chrome
+          gparted
+          krita
           libsForQt5.filelight
+          playerctl
+          vlc
+          xournalpp
+          zoom-us
 
           # X11-only
           # simplescreenrecorder
 
           # Electron evil apps
           atom
-          signal-desktop
           bitwarden
+          etcher
           gitkraken
+          signal-desktop
+          slack
           spotify
           unstable.pkgs.discord
-          slack
-          etcher
         ];
 
       ## Force Chromium based apps to render using wayland
