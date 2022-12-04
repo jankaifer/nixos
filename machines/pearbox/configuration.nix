@@ -25,18 +25,6 @@
   hardware.opengl.enable = true;
   hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
 
-  # Use unstable for new nvidia drivers
-  nix.nixPath = lib.mkForce
-    (
-      let
-        nixosRepoPath = "/persist/home/pearman/dev/jankaifer/nixos";
-      in
-      [
-        "nixpkgs=${nixosRepoPath}/modules/nixpkgs-unstable"
-        "nixos-config=${nixosRepoPath}/machines/${config.networking.hostName}/configuration.nix"
-      ]
-    );
-
   # Options
   custom = {
     erase-root.enable = true;

@@ -2,7 +2,6 @@
 
 let
   nixosRepoPath = "/persist/home/pearman/dev/jankaifer/nixos";
-  unstable = import ./nixpkgs-unstable { config = { allowUnfree = true; }; };
 in
 {
   nix.nixPath =
@@ -162,7 +161,7 @@ in
       niv
       gh
       steam-run
-      unstable.fnm
+      fnm
 
       # Nix
       nixpkgs-fmt

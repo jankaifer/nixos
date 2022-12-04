@@ -1,8 +1,5 @@
 { config, lib, pkgs, ... }:
 
-let
-  unstable = import ../nixpkgs-unstable { config = config.nixpkgs.config; };
-in
 {
   options.custom.vscode =
     {
@@ -24,7 +21,7 @@ in
           git
 
           # Nix
-          unstable.nil
+          nil
           nixpkgs-fmt
 
           # Rust

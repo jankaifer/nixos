@@ -1,8 +1,5 @@
 { config, lib, pkgs, ... }:
 
-let
-  unstable = import ./nixpkgs-unstable { config = { allowUnfree = true; }; };
-in
 {
   options.custom.gui =
     {
@@ -129,7 +126,7 @@ in
           signal-desktop
           slack
           spotify
-          unstable.pkgs.discord
+          discord
         ];
 
       ## Force Chromium based apps to render using wayland
