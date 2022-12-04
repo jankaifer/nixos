@@ -162,6 +162,7 @@ in
       gh
       steam-run
       fnm
+      nodePackages.degit
 
       # Nix
       nixpkgs-fmt
