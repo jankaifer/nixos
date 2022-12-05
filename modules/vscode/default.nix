@@ -21,7 +21,6 @@
           git
 
           # Nix
-          nil
           nixpkgs-fmt
 
           # Rust
@@ -29,37 +28,36 @@
           zlib
 
           # JS
-          nodejs-16_x
-          nodePackages.pnpm
-          nodePackages.yarn
+          fnm
         ]
       );
       extensions = pkgs.vscode-utils.extensionsFromVscodeMarketplace (import ./extensions.nix).extensions;
-      userSettings = {
-        "[nix]"."editor.defaultFormatter" = "jnoortheen.nix-ide";
-        "editor.formatOnSave" = true;
-        "editor.minimap.enabled" = false;
-        "editor.renderWhitespace" = "all";
-        "explorer.confirmDelete" = false;
-        "explorer.confirmDragAndDrop" = false;
-        "git.autofetch" = true;
-        "git.confirmSync" = false;
-        "git.enableSmartCommit" = true;
-        "jest.autoRun" = "off";
-        "keyboard.dispatch" = "keyCode";
-        "projectManager.git.baseFolders" = [
-          "/home/pearman/Projects"
-          "/home/pearman/dev"
-        ];
-        "projectManager.git.maxDepthRecursion" = 2;
-        "projectManager.showParentFolderInfoOnDuplicates" = true;
-        "update.mode" = "none";
-        "vim.useSystemClipboard" = true;
-        "vim.vimrc.enable" = true;
-        "vim.vimrc.path" = "/home/pearman/.vimrc";
-        "window.zoomLevel" = 0;
-        "workbench.startupEditor" = "none";
-      };
+      userSettings =
+        {
+          "[nix]"."editor.defaultFormatter" = "jnoortheen.nix-ide";
+          "editor.formatOnSave" = true;
+          "editor.minimap.enabled" = false;
+          "editor.renderWhitespace" = "all";
+          "explorer.confirmDelete" = false;
+          "explorer.confirmDragAndDrop" = false;
+          "git.autofetch" = true;
+          "git.confirmSync" = false;
+          "git.enableSmartCommit" = true;
+          "jest.autoRun" = "off";
+          "keyboard.dispatch" = "keyCode";
+          "projectManager.git.baseFolders" = [
+            "/home/pearman/Projects"
+            "/home/pearman/dev"
+          ];
+          "projectManager.git.maxDepthRecursion" = 2;
+          "projectManager.showParentFolderInfoOnDuplicates" = true;
+          "update.mode" = "none";
+          "vim.useSystemClipboard" = true;
+          "vim.vimrc.enable" = true;
+          "vim.vimrc.path" = "/home/pearman/.vimrc";
+          "window.zoomLevel" = 0;
+          "workbench.startupEditor" = "none";
+        };
     };
   };
 }
