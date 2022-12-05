@@ -35,31 +35,29 @@
       );
       extensions = pkgs.vscode-utils.extensionsFromVscodeMarketplace (import ./extensions.nix).extensions;
       userSettings = {
+        "[nix]"."editor.defaultFormatter" = "jnoortheen.nix-ide";
+        "editor.formatOnSave" = true;
         "editor.minimap.enabled" = false;
-        "git.enableSmartCommit" = true;
-        "git.autofetch" = true;
-        "git.confirmSync" = false;
+        "editor.renderWhitespace" = "all";
         "explorer.confirmDelete" = false;
         "explorer.confirmDragAndDrop" = false;
-        "[nix]"."editor.defaultFormatter" = "jnoortheen.nix-ide";
-        # Nil is broken in my setup :sad:
-        # "nix.enableLanguageServer" = true;
-        # "nix.serverPath" = "nil";
-        "editor.formatOnSave" = true;
-        "window.zoomLevel" = 0;
+        "git.autofetch" = true;
+        "git.confirmSync" = false;
+        "git.enableSmartCommit" = true;
+        "jest.autoRun" = "off";
         "keyboard.dispatch" = "keyCode";
-        "vim.vimrc.enable" = true;
-        "vim.vimrc.path" = "/home/pearman/.vimrc";
-        "vim.useSystemClipboard" = true;
-        "workbench.startupEditor" = "none";
-        "update.mode" = "none";
-        "editor.renderWhitespace" = "all";
-        "projectManager.showParentFolderInfoOnDuplicates" = true;
         "projectManager.git.baseFolders" = [
           "/home/pearman/Projects"
           "/home/pearman/dev"
         ];
         "projectManager.git.maxDepthRecursion" = 2;
+        "projectManager.showParentFolderInfoOnDuplicates" = true;
+        "update.mode" = "none";
+        "vim.useSystemClipboard" = true;
+        "vim.vimrc.enable" = true;
+        "vim.vimrc.path" = "/home/pearman/.vimrc";
+        "window.zoomLevel" = 0;
+        "workbench.startupEditor" = "none";
       };
     };
   };
