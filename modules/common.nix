@@ -110,6 +110,7 @@ in
       shellAliases = {
         rebuild = "sudo ${nixosRepoPath}/scripts/rebuild.sh switch |& nom";
         new-next-repro = "${nixosRepoPath}/scripts/new-next-repro.sh";
+        freeze-vscode-extensions = "${nixosRepoPath}/scripts/freeze-vscode-extensions.sh";
         # node tools are pain to manage without steam-run
         sr = "steam-run";
         pnpm = "sr pnpm";
