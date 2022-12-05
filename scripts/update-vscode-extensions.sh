@@ -2,6 +2,6 @@
 
 set -euo pipefail
 
-MODULES_PATH="/etc/nixos/modules"
+NIXOS_PATH="/persist/home/pearman/dev/jankaifer/nixos"
 
-exec "$MODULES_PATH/nixpkgs/pkgs/applications/editors/vscode/extensions/update_installed_exts.sh" > "$MODULES_PATH/vscode/extensions.nix"
+exec "$NIXOS_PATH/modules/nixpkgs/pkgs/applications/editors/vscode/extensions/update_installed_exts.sh" > "$NIXOS_PATH/modules/vscode/extensions.nix"
