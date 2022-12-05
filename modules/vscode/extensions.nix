@@ -6,6 +6,12 @@
     sha256 = "023xglwiqs8dp521h34zgny1d3wma1xn5pdm0srqwl7adsz304xc";
   }
   {
+    name = "vscode-eslint";
+    publisher = "dbaeumer";
+    version = "2.2.6";
+    sha256 = "0m16wi8slyj09r1y5qin9xsw4pyhfk3mj6rs5ghydfnppb45w9np";
+  }
+  {
     name = "theme-dracula";
     publisher = "dracula-theme";
     version = "2.24.2";
@@ -16,6 +22,12 @@
     publisher = "eamodio";
     version = "12.2.2";
     sha256 = "16ffpqj7yf1fsldvgmjw7ag3gfihjllsa7i0ljgsj2zjf6r217ky";
+  }
+  {
+    name = "vscode-pull-request-github";
+    publisher = "GitHub";
+    version = "0.54.1";
+    sha256 = "0i45pci9lkv9552z6hifzjzhx06dh0ah4am7yjb13ji16970l6q2";
   }
   {
     name = "nix-ide";
