@@ -31,6 +31,7 @@
           # JS
           nodejs-16_x
           nodePackages.pnpm
+          nodePackages.yarn
         ]
       );
       extensions = pkgs.vscode-utils.extensionsFromVscodeMarketplace (import ./extensions.nix).extensions;
