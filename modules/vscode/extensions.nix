@@ -24,6 +24,12 @@
     sha256 = "16ffpqj7yf1fsldvgmjw7ag3gfihjllsa7i0ljgsj2zjf6r217ky";
   }
   {
+    name = "prettier-vscode";
+    publisher = "esbenp";
+    version = "9.10.3";
+    sha256 = "0hvxwcaihkls4azkcj0674sgnn32iiw0pm0brmdinqag95696fq5";
+  }
+  {
     name = "vscode-pull-request-github";
     publisher = "GitHub";
     version = "0.54.1";
