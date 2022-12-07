@@ -113,6 +113,8 @@ in
         freeze-vscode-extensions = "${nixosRepoPath}/scripts/freeze-vscode-extensions.sh";
         # node tools are pain to manage without steam-run
         sr = "steam-run";
+        p = "sr pnpm";
+        y = "sr yarn";
       };
     };
 
