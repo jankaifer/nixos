@@ -79,6 +79,17 @@ in
     target = "vimrc";
   };
 
+  environment.shellAliases = lib.mkForce
+    {
+      rebuild = "sudo ${nixosRepoPath}/scripts/rebuild.sh switch |& nom";
+      new-next-repro = "${nixosRepoPath}/scripts/new-next-repro.sh";
+      freeze-vscode-extensions = "${nixosRepoPath}/scripts/freeze-vscode-extensions.sh";
+      # node tools are pain to manage without steam-run
+      sr = "steam-run";
+      n = "sr pnpm";
+      y = "sr yarn";
+    };
+
   environment.sessionVariables = rec {
     XDG_CACHE_HOME = "\${HOME}/.cache";
     XDG_CONFIG_HOME = "\${HOME}/.config";
@@ -107,15 +118,6 @@ in
         eval "$(direnv hook zsh)"
         eval "$(fnm env --use-on-cd --version-file-strategy=recursive)"
       '';
-      shellAliases = {
-        rebuild = "sudo ${nixosRepoPath}/scripts/rebuild.sh switch |& nom";
-        new-next-repro = "${nixosRepoPath}/scripts/new-next-repro.sh";
-        freeze-vscode-extensions = "${nixosRepoPath}/scripts/freeze-vscode-extensions.sh";
-        # node tools are pain to manage without steam-run
-        sr = "steam-run";
-        p = "sr pnpm";
-        y = "sr yarn";
-      };
     };
 
     vim.defaultEditor = true;
