@@ -41,6 +41,9 @@
         {
           "[nix]"."editor.defaultFormatter" = "jnoortheen.nix-ide";
           "[typescript]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
+          "[typescriptreact]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
+          "[javascript]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
+          "[javascriptreact]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
           "editor.formatOnSave" = true;
           "editor.minimap.enabled" = false;
           "editor.renderWhitespace" = "all";
