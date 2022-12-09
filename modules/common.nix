@@ -88,6 +88,7 @@ in
       sr = "steam-run";
       n = "sr pnpm";
       y = "sr yarn";
+      gpf = "git push --force-with-lease";
     };
 
   environment.sessionVariables = rec {
