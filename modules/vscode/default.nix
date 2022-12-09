@@ -52,6 +52,7 @@
           "git.autofetch" = true;
           "git.confirmSync" = false;
           "git.enableSmartCommit" = true;
+          "javascript.updateImportsOnFileMove.enabled" = "always";
           "jest.autoRun" = "off";
           "keyboard.dispatch" = "keyCode";
           "projectManager.git.baseFolders" = [
