@@ -45,6 +45,7 @@
             ".config/Signal"
             ".config/Slack"
             ".config/discord"
+            ".config/gh"
             ".config/spotify"
             ".local/share/Steam"
             ".local/share/Teraria"
