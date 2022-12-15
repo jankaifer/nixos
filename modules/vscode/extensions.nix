@@ -36,6 +36,12 @@
     sha256 = "0i45pci9lkv9552z6hifzjzhx06dh0ah4am7yjb13ji16970l6q2";
   }
   {
+    name = "todo-tree";
+    publisher = "Gruntfuggly";
+    version = "0.0.220";
+    sha256 = "06kzb4msfdv11lij4dwbn1vxdxhvnpfcjqw0gvydgkqjy7dridjk";
+  }
+  {
     name = "nix-ide";
     publisher = "jnoortheen";
     version = "0.2.1";
@@ -84,16 +90,40 @@
     sha256 = "08npj36kc4v9nxr3q83r6wbb2ilj4madbq0q0w1miwl51qvggmrf";
   }
   {
+    name = "vscode-js-profile-flame";
+    publisher = "ms-vscode";
+    version = "1.0.5";
+    sha256 = "0r4cdf9pmqz0w5p4k6pjdgvnanjdc5jy4aqm9x0pg4g3pz2hnn3q";
+  }
+  {
+    name = "vsliveshare";
+    publisher = "ms-vsliveshare";
+    version = "1.0.5788";
+    sha256 = "1yg1dx8gi3xxayscnij4ckx1jjc170zb7v17280pq7hkp6k2d384";
+  }
+  {
     name = "vscode-jest";
     publisher = "Orta";
     version = "4.6.0";
     sha256 = "1dmssylvfzyadyrc061kyycm1zah4z1k02f1v4kb82hpv3kaag91";
   }
   {
+    name = "rust-analyzer";
+    publisher = "rust-lang";
+    version = "0.3.1317";
+    sha256 = "06i5jy3vgxkkk967x687nr29nsn8zgx88904l6vwnib6lkvxl2g0";
+  }
+  {
     name = "sort-lines";
     publisher = "Tyriar";
     version = "1.9.1";
     sha256 = "0dds99j6awdxb0ipm15g543a5b6f0hr00q9rz961n0zkyawgdlcb";
+  }
+  {
+    name = "errorlens";
+    publisher = "usernamehw";
+    version = "3.6.0";
+    sha256 = "1sv8vlzmynbz20vmv901nrg12wcmsg5i9pm6mqq32rlgb7rw3p50";
   }
   {
     name = "vim";
