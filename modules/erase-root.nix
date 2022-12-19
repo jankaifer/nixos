@@ -68,11 +68,12 @@
       home-manager.users.pearman = {
         imports = [ ./impermanence/home-manager.nix ];
 
-        # Files that we want to trach in git
+        # Files that we want to track in git
         home.persistence."/etc/nixos/modules/dotfiles/" = {
           removePrefixDirectory = true;
           allowOther = true;
           directories = [
+            "hyper/.config/hyper/.hyper.js"
           ];
 
           files = [ ];
