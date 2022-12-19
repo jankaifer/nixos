@@ -72,11 +72,10 @@
         home.persistence."/etc/nixos/modules/dotfiles/" = {
           removePrefixDirectory = true;
           allowOther = true;
-          directories = [
+          directories = [ ];
+          files = [
             "hyper/.config/hyper/.hyper.js"
           ];
-
-          files = [ ];
         };
       };
     };
