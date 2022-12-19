@@ -114,9 +114,7 @@
           vlc
           xournalpp
           zoom-us
-
-          # X11-only
-          # simplescreenrecorder
+          hyper
 
           # Electron evil apps
           atom
