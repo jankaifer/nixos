@@ -38,7 +38,7 @@ module.exports = {
     // border color (window, tabs)
     borderColor: "#333",
     // custom CSS to embed in the main window
-    css: ".header_windowHeader {top: -6px;} .header_hamburgerMenuLeft {top: -6px; shape-rendering: initial; left: -9px;} .terms_terms {margin-top: 22px;}",
+    css: ".header_windowHeader {top: -6px;} .header_hamburgerMenuLeft {top: -6px; shape-rendering: initial; left: initial; right: -9px;} .terms_terms {margin-top: 22px;}",
     // custom CSS to embed in the terminal window
     termCSS: "",
     // set custom startup directory (must be an absolute path)
