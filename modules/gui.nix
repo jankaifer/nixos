@@ -60,7 +60,7 @@
           "org/gnome/shell"."favorite-apps" = [
             "brave-browser.desktop"
             "code.desktop"
-            "org.gnome.Console.desktop"
+            "hyper.desktop"
             "org.gnome.Settings.desktop"
             "org.gnome.Nautilus.desktop"
             "signal-desktop.desktop"
