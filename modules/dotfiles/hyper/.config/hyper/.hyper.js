@@ -38,7 +38,7 @@ module.exports = {
     // border color (window, tabs)
     borderColor: "#333",
     // custom CSS to embed in the main window
-    css: "",
+    css: ".header_windowHeader {top: -6px;} .header_hamburgerMenuLeft {top: -6px; shape-rendering: initial; left: -9px;} .terms_terms {margin-top: 22px;}",
     // custom CSS to embed in the terminal window
     termCSS: "",
     // set custom startup directory (must be an absolute path)
@@ -51,7 +51,7 @@ module.exports = {
     // default: `true` (without backticks and without quotes) on Windows and Linux, ignored on macOS
     showWindowControls: false,
     // custom padding (CSS format, i.e.: `top right bottom left`)
-    padding: "4px 8px",
+    padding: "0px 8px 4px 8px",
     // the full list. if you're going to provide the full color palette,
     // including the 6 x 6 color cubes and the grayscale map, just provide
     // an array here instead of a color map object
