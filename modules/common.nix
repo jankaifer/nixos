@@ -89,6 +89,9 @@ in
       n = "sr pnpm";
       y = "sr yarn";
       gpf = "git push --force-with-lease";
+      gfa = "git fetch --all";
+      gr = "git rebase";
+      gm = "git m";
     };
 
   environment.sessionVariables = rec {
