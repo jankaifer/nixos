@@ -91,7 +91,9 @@ in
       gpf = "git push --force-with-lease";
       gfa = "git fetch --all";
       gr = "git rebase";
-      gm = "git m";
+      gm = "git merge";
+      gps = "git push";
+      gpl = "git pull";
     };
 
   environment.sessionVariables = rec {
