@@ -169,6 +169,7 @@ in
       steam-run
       fnm
       nodePackages.degit
+      nodePackages.vercel
 
       # Nix
       nixpkgs-fmt
