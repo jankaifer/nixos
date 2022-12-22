@@ -61,6 +61,7 @@
           ];
           "projectManager.git.maxDepthRecursion" = 2;
           "projectManager.showParentFolderInfoOnDuplicates" = true;
+          "typescript.updateImportsOnFileMove.enabled" = "always";
           "update.mode" = "none";
           "vim.useSystemClipboard" = true;
           "vim.vimrc.enable" = true;
