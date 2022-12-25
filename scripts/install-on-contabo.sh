@@ -106,8 +106,7 @@ git clone --depth=1 --recurse-submodules --shallow-submodules https://github.com
 echo
 
 echo "Create hardware-configuration.nix"
-mkdir -p /mnt/etc/nixos
-nixos-generate-config --root /mnt --show-hardware-config > /mnt/etc/nixos/hardware-configuration.nix
+nixos-generate-config --root /mnt --show-hardware-config > /mnt/persist/home/pearman/dev/jankaifer/nixos/machines/pearcloud/hardware-configuration.nix
 echo
 
 echo "Create configuration.nix"
