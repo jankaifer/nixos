@@ -13,6 +13,7 @@ set -euo pipefail
 DISK="/dev/sda"
 echo "Setting up installation on disk $DISK"
 parted "$DISK" print list
+echo
 
 echo "Removing old partitions"
 for i in {1..5}
@@ -27,10 +28,12 @@ echo "Creating boot partition"
 parted "$DISK" mkpart primary ext4 1049kB 1000MB
 parted "$DISK" set 1 boot on
 mkfs.ext4 "${DISK}1" -F
+echo
 
 echo "Creating data partition"
 parted "$DISK" mkpart primary ext4 1000MB "100%"
 mkfs.btrfs "${DISK}2" -f
+echo
 
 echo "Creating btrfs volumes"
 mount "$DISK"2 /mnt
@@ -94,9 +97,11 @@ nix-env -iE "_: with import <nixpkgs/nixos> { configuration = {}; }; with config
 echo "Clone my configuration"
 mkdir -p /mnt/persist/home/pearman/dev/jankaifer/
 git clone --recurse-submodules --shallow-submodules https://github.com/JanKaifer/nixos.git /mnt/persist/home/pearman/dev/jankaifer/nixos
+echo
 
 echo "Create hardware-configuration.nix"
 nixos-generate-config --root /mnt --show-hardware-config > /mnt/etc/nixos/hardware-configuration.nix
+echo
 
 echo "Create configuration.nix"
 cat > /mnt/etc/nixos/configuration.nix <<- "EOF"
@@ -107,5 +112,8 @@ cat > /mnt/etc/nixos/configuration.nix <<- "EOF"
   ];
 }
 EOF
+echo
 
+echo "Installing NIXOS"
 nixos-install
+echo
