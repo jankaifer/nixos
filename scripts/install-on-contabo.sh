@@ -23,7 +23,7 @@ parted "$DISK" rm 1 || true # can fail
 echo "Creating boot partition"
 parted "$DISK" mkpart primary ext4 1049kB 1000MB
 parted "$DISK" set 1 boot on
-mkfs.ext4 "${DISK}1"
+mkfs.ext4 "${DISK}1" -F
 
 echo "Creating data partition"
 parted "$DISK" mkpart primary ext4 1000MB "100%"
