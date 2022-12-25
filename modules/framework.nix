@@ -17,9 +17,11 @@
       # Enable fingerprint
       services.fprintd.enable = true;
 
-      # Fixes from https://dov.dev/blog/nixos-on-the-framework-12th-gen
-
-      ## Fix brightness keys
-      boot.kernelParams = [ "module_blacklist=hid_sensor_hub" ];
+      boot.kernelParams = [
+        # Fix brightness keys (https://dov.dev/blog/nixos-on-the-framework-12th-gen)
+        "module_blacklist=hid_sensor_hub"
+        # In case your laptop hangs randomly (https://nixos.wiki/wiki/Bootloader)
+        "intel_idle.max_cstate=1"
+      ];
     };
 }
