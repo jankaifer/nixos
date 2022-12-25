@@ -72,6 +72,8 @@ mount -o subvol=log,compress=zstd,noatime "$DISK"2 /mnt/var/log
 
 mkdir -p /mnt/boot/efi
 mount /dev/sda1 /mnt/boot/efi
+
+mkdir -p /boot/efi
 mount /dev/sda1 /boot/efi
 
 # Create symlinks for persisted files
