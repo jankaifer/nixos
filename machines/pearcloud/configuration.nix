@@ -19,9 +19,9 @@
     version = 2;
     efiSupport = true;
     device = "nodev";
+    efiInstallAsRemovable = true; # in case canTouchEfiVariables doesn't work for your system
   };
   boot.loader.efi = {
-    canTouchEfiVariables = true;
     efiSysMountPoint = "/boot/efi";
   };
 
