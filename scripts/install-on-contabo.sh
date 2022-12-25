@@ -4,7 +4,7 @@ set -euo pipefail
 
 # Run this script inside a contabo recovery system and it will bootstrap new NixOS server on you VPS
 # Run this script with:
-# curl https://raw.githubusercontent.com/JanKaifer/nixos/main/scripts/install-on-contabo.sh -H "Cache-Control: no-cache, no-store, must-revalidate" -H "Pragma: no-cache"| $SHELL
+# curl https://raw.githubusercontent.com/JanKaifer/nixos/main/scripts/install-on-contabo.sh | $SHELL
 
 ###############################
 # Setup disk for installation #
