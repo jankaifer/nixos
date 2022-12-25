@@ -16,13 +16,7 @@
   # Use the GRUB 2 boot loader.
   boot.loader.grub = {
     enable = true;
-    version = 2;
-    efiSupport = true;
-    device = "nodev";
-    efiInstallAsRemovable = true; # in case canTouchEfiVariables doesn't work for your system
-  };
-  boot.loader.efi = {
-    efiSysMountPoint = "/boot/efi";
+    device = "/dev/sda";
   };
 
   networking.hostName = "pearcloud";
