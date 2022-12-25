@@ -28,7 +28,7 @@ echo "Creating boot partition"
 parted "$DISK" mkpart primary ext4 1049kB 1000MB
 parted "$DISK" set 1 boot on
 sleep 1
-mkfs.ext4 "${DISK}1" -F
+mkfs.fat "${DISK}1"
 echo
 
 echo "Creating data partition"
