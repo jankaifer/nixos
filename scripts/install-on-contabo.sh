@@ -4,7 +4,7 @@ set -euo pipefail
 
 # Run this script inside a contabo recovery system and it will bootstrap new NixOS server on you VPS
 # Run this script with:
-# curl https://raw.githubusercontent.com/JanKaifer/nixos/main/scripts/install-on-contabo.sh | sh
+# curl https://raw.githubusercontent.com/JanKaifer/nixos/main/scripts/install-on-contabo.sh | $SHELL
 
 ###############################
 # Setup disk for installation #
@@ -15,17 +15,17 @@ echo "Setting up installation on disk $DISK"
 parted "$DISK" print list
 
 echo "Removing old partitions"
-parted "$DISK" rm 2
-parted "$DISK" rm 1
+parted "$DISK" rm 2 || true # can fail
+parted "$DISK" rm 1 || true # can fail
 
 echo "Creating boot partition"
 parted "$DISK" mkpart primary ext4 1049kB 1000MB
 parted "$DISK" set 1 boot on
-mkfs.ext4 "${DISK}1" -f
+mkfs.ext4 "${DISK}1"
 
 echo "Creating data partition"
 parted "$DISK" mkpart primary ext4 1000MB "100%"
-mkfs.brtfs "${DISK}2" -f
+mkfs.brtfs "${DISK}2"
 
 echo "Creating btrfs volumes"
 mount "$DISK"2 /mnt
