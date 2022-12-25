@@ -15,6 +15,8 @@ echo "Setting up installation on disk $DISK"
 parted "$DISK" print list
 
 echo "Removing old partitions"
+parted "$DISK" rm 4 || true # can fail
+parted "$DISK" rm 3 || true # can fail
 parted "$DISK" rm 2 || true # can fail
 parted "$DISK" rm 1 || true # can fail
 
