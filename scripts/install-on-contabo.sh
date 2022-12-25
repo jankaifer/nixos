@@ -70,8 +70,8 @@ mount -o subvol=persist,compress=zstd,noatime "$DISK"2 /mnt/persist
 mkdir -p /mnt/var/log
 mount -o subvol=log,compress=zstd,noatime "$DISK"2 /mnt/var/log
 
-mkdir -p /mnt/boot
-mount /dev/sda1 /mnt/boot
+mkdir -p /mnt/boot/efi
+mount /dev/sda1 /mnt/boot/efi
 
 # Create symlinks for persisted files
 mkdir -p /mnt/etc/
