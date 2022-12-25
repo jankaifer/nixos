@@ -74,7 +74,8 @@ mkdir -p /mnt/boot
 mount /dev/sda1 /mnt/boot
 
 # Create symlinks for persisted files
-mkdir -p /mnt/etc
+mkdir -p /mnt/etc/
+mkdir -p /mnt/persist/etc/nixos
 ln -s /mnt/persist/etc/nixos /mnt/etc/nixos
 
 ###############
