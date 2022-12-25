@@ -27,7 +27,7 @@ done
 
 echo "Creating boot partition"
 parted "$DISK" mkpart primary ext4 1049kB 1000MB
-parted "$DISK" set 1 boot on
+parted "$DISK" set 1 bios_grub on
 sleep 1
 mkfs.fat "${DISK}1"
 echo
