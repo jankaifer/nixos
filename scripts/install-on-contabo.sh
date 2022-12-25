@@ -17,8 +17,10 @@ parted "$DISK" print list
 echo "Removing old partitions"
 for i in {1..5}
 do
-    umount "${DISK}${i}"
+    echo "Trying to remove ${DISK}${i}"
+    umount "${DISK}${i}" || true # can fail
     parted "$DISK" rm "$i" || true # can fail
+    echo
 done
 
 echo "Creating boot partition"
@@ -45,7 +47,7 @@ umount /mnt
 ###############
 
 # Mount /nix to recovery OS
-mkdir /nix
+mkdir -p /nix
 mount -o subvol=nix,compress=zstd,noatime /dev/mapper/enc /nix
 
 # Mount file for ne NixOS system
