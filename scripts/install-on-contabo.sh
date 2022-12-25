@@ -15,10 +15,11 @@ echo "Setting up installation on disk $DISK"
 parted "$DISK" print list
 
 echo "Removing old partitions"
-parted "$DISK" rm 4 || true # can fail
-parted "$DISK" rm 3 || true # can fail
-parted "$DISK" rm 2 || true # can fail
-parted "$DISK" rm 1 || true # can fail
+for i in {1..5}
+do
+    umount "${DISK}${i}"
+    parted "$DISK" rm "$i" || true # can fail
+done
 
 echo "Creating boot partition"
 parted "$DISK" mkpart primary ext4 1049kB 1000MB
@@ -27,7 +28,7 @@ mkfs.ext4 "${DISK}1" -F
 
 echo "Creating data partition"
 parted "$DISK" mkpart primary ext4 1000MB "100%"
-mkfs.brtfs "${DISK}2" -f
+mkfs.btrfs "${DISK}2" -f
 
 echo "Creating btrfs volumes"
 mount "$DISK"2 /mnt
