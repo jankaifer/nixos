@@ -102,7 +102,7 @@ nix-env -iE "_: with import <nixpkgs/nixos> { configuration = {}; }; with config
 
 echo "Clone my configuration"
 mkdir -p /mnt/persist/home/pearman/dev/jankaifer/
-git clone --recurse-submodules --shallow-submodules https://github.com/JanKaifer/nixos.git /mnt/persist/home/pearman/dev/jankaifer/nixos
+git clone --depth=1 --recurse-submodules --shallow-submodules https://github.com/JanKaifer/nixos.git /mnt/persist/home/pearman/dev/jankaifer/nixos
 echo
 
 echo "Create hardware-configuration.nix"
