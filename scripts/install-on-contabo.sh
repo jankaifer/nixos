@@ -27,7 +27,7 @@ mkfs.ext4 "${DISK}1"
 
 echo "Creating data partition"
 parted "$DISK" mkpart primary ext4 1000MB "100%"
-mkfs.brtfs "${DISK}2"
+mkfs.brtfs "${DISK}2" -f
 
 echo "Creating btrfs volumes"
 mount "$DISK"2 /mnt
