@@ -18,10 +18,10 @@ echo
 echo "Removing old partitions"
 for i in {1..5}
 do
-    echo "Trying to remove ${DISK}${i}"
-    umount "${DISK}${i}" || true # can fail
-    parted "$DISK" rm "$i" || true # can fail
-    echo
+  echo "Trying to remove ${DISK}${i}"
+  umount "${DISK}${i}" || true # can fail
+  parted "$DISK" rm "$i" || true # can fail
+  echo
 done
 
 echo "Creating boot partition"
