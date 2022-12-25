@@ -20,7 +20,6 @@ for i in {1..5}
 do
     echo "Trying to remove ${DISK}${i}"
     umount "${DISK}${i}" || true # can fail
-    sleep 1
     parted "$DISK" rm "$i" || true # can fail
     echo
 done
@@ -84,7 +83,10 @@ ln -s /mnt/persist/etc/nixos /mnt/etc/nixos
 
 # create users used by nix
 groupadd nixbld -f
-for n in $(seq 1 10); do useradd -c "Nix build user $n" -d /var/empty -g nixbld -G nixbld -M -N -r -s "$(command -v nologin)" "nixbld$n"; done
+for n in $(seq 1 10)
+do
+  useradd -c "Nix build user $n" -d /var/empty -g nixbld -G nixbld -M -N -r -s "$(command -v nologin)" "nixbld$n" || true # can fail
+done
 
 # install nix itself
 bash <(curl -L https://nixos.org/nix/install)
