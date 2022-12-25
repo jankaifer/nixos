@@ -103,6 +103,7 @@ git clone --recurse-submodules --shallow-submodules https://github.com/JanKaifer
 echo
 
 echo "Create hardware-configuration.nix"
+mkdir -p /mnt/etc/nixos
 nixos-generate-config --root /mnt --show-hardware-config > /mnt/etc/nixos/hardware-configuration.nix
 echo
 
