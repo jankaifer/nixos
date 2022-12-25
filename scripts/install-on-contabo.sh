@@ -27,11 +27,13 @@ done
 echo "Creating boot partition"
 parted "$DISK" mkpart primary ext4 1049kB 1000MB
 parted "$DISK" set 1 boot on
+sleep 1
 mkfs.ext4 "${DISK}1" -F
 echo
 
 echo "Creating data partition"
 parted "$DISK" mkpart primary ext4 1000MB "100%"
+sleep 1
 mkfs.btrfs "${DISK}2" -f
 echo
 
@@ -51,21 +53,21 @@ umount /mnt
 
 # Mount /nix to recovery OS
 mkdir -p /nix
-mount -o subvol=nix,compress=zstd,noatime /dev/mapper/enc /nix
+mount -o subvol=nix,compress=zstd,noatime "$DISK"2 /nix
 
 # Mount file for ne NixOS system
 mkdir -p /mnt
 # mount -t tmpfs none /mnt # for using tmpfs
-mount -o subvol=root,compress=zstd,noatime /dev/sda2 /mnt # for persistent root
+mount -o subvol=root,compress=zstd,noatime "$DISK"2 /mnt # for persistent root
 
 mkdir -p /mnt/nix
-mount -o subvol=nix,compress=zstd,noatime /dev/sda2 /mnt/nix
+mount -o subvol=nix,compress=zstd,noatime "$DISK"2 /mnt/nix
 
 mkdir -p /mnt/persist
-mount -o subvol=persist,compress=zstd,noatime /dev/sda2 /mnt/persist
+mount -o subvol=persist,compress=zstd,noatime "$DISK"2 /mnt/persist
 
 mkdir -p /mnt/var/log
-mount -o subvol=log,compress=zstd,noatime /dev/sda2 /mnt/var/log
+mount -o subvol=log,compress=zstd,noatime "$DISK"2 /mnt/var/log
 
 mkdir -p /mnt/boot
 mount /dev/sda1 /mnt/boot
