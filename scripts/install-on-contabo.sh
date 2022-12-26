@@ -22,7 +22,7 @@ parted "$DISK" rm 3 || true # can fail
 echo
 
 echo "Creating data partition"
-parted "$DISK" mkpart primary btrfs 1000MB "100%"
+parted "$DISK" mkpart primary btrfs 2147MB "100%"
 sleep 1
 mkfs.btrfs "${DISK}3" -f
 echo
