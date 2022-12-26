@@ -16,30 +16,19 @@ echo "Setting up installation on disk $DISK"
 parted "$DISK" print list
 echo
 
-echo "Removing old partitions"
-for i in {1..5}
-do
-  echo "Trying to remove ${DISK}${i}"
-  umount "${DISK}${i}" || true # can fail
-  parted "$DISK" rm "$i" || true # can fail
-  echo
-done
-
-echo "Creating boot partition"
-parted "$DISK" mkpart primary ext4 1049kB 1000MB
-parted "$DISK" set 1 bios_grub on
-sleep 1
-mkfs.fat "${DISK}1"
+echo "Remove data partition on ${DISK}3"
+umount "${DISK}3" || true # can fail
+parted "$DISK" rm 3 || true # can fail
 echo
 
 echo "Creating data partition"
-parted "$DISK" mkpart primary ext4 1000MB "100%"
+parted "$DISK" mkpart primary btrfs 1000MB "100%"
 sleep 1
-mkfs.btrfs "${DISK}2" -f
+mkfs.btrfs "${DISK}3" -f
 echo
 
 echo "Creating btrfs volumes"
-mount "$DISK"2 /mnt
+mount "$DISK"3 /mnt
 
 btrfs subvolume create /mnt/root
 btrfs subvolume create /mnt/nix
@@ -54,27 +43,24 @@ umount /mnt
 
 # Mount /nix to recovery OS
 mkdir -p /nix
-mount -o subvol=nix,compress=zstd,noatime "$DISK"2 /nix
+mount -o subvol=nix,compress=zstd,noatime "$DISK"3 /nix
 
 # Mount file for ne NixOS system
 mkdir -p /mnt
 # mount -t tmpfs none /mnt # for using tmpfs
-mount -o subvol=root,compress=zstd,noatime "$DISK"2 /mnt # for persistent root
+mount -o subvol=root,compress=zstd,noatime "$DISK"3 /mnt # for persistent root
 
 mkdir -p /mnt/nix
-mount -o subvol=nix,compress=zstd,noatime "$DISK"2 /mnt/nix
+mount -o subvol=nix,compress=zstd,noatime "$DISK"3 /mnt/nix
 
 mkdir -p /mnt/persist
-mount -o subvol=persist,compress=zstd,noatime "$DISK"2 /mnt/persist
+mount -o subvol=persist,compress=zstd,noatime "$DISK"3 /mnt/persist
 
 mkdir -p /mnt/var/log
-mount -o subvol=log,compress=zstd,noatime "$DISK"2 /mnt/var/log
+mount -o subvol=log,compress=zstd,noatime "$DISK"3 /mnt/var/log
 
-mkdir -p /mnt/boot/efi
-mount /dev/sda1 /mnt/boot/efi
-
-mkdir -p /boot/efi
-mount /dev/sda1 /boot/efi
+mkdir -p /mnt/boot
+mount "${DISK}2" /mnt/boot
 
 # Create symlinks for persisted files
 mkdir -p /mnt/etc/
