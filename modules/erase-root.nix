@@ -30,14 +30,6 @@
 
         users.pearman = {
           directories = [
-            "Documents"
-            "Downloads"
-            "Pictures"
-            "Projects"
-            "dev"
-
-            ".ssh"
-
             ".cache"
             ".config/Bitwarden"
             ".config/BraveSoftware"
@@ -47,11 +39,16 @@
             ".config/discord"
             ".config/gh"
             ".config/spotify"
+            ".factorio"
             ".local/share/Steam"
             ".local/share/Teraria"
             ".local/share/direnv"
             ".local/share/flatpak"
             ".local/share/fnm"
+            ".ssh"
+            "Documents"
+            "Pictures"
+            "dev"
             ".zoom"
           ];
 
