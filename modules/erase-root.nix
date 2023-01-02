@@ -22,6 +22,7 @@
           "/var/lib/docker"
           "/var/lib/flatpak"
           "/var/lib/fprint"
+          "/var/lib/libvirt"
           "/var/lib/systemd/coredump"
         ];
         files = [
