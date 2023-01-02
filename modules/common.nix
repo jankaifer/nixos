@@ -81,8 +81,8 @@ in
 
   environment.shellAliases = lib.mkForce
     {
-      non-sudo-rebuild = "${nixosRepoPath}/scripts/rebuild.sh switch |& nom";
-      rebuild = "sudo non-sudo-rebuild";
+      pls = "sudo";
+      rebuild = "${nixosRepoPath}/scripts/rebuild.sh switch |& nom";
       new-next-repro = "${nixosRepoPath}/scripts/new-next-repro.sh";
       freeze-vscode-extensions = "${nixosRepoPath}/scripts/freeze-vscode-extensions.sh";
       # node tools are pain to manage without steam-run
