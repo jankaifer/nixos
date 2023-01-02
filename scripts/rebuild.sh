@@ -28,4 +28,9 @@ if [ -n "$HOSTNAME" ]; then
 fi
 
 echo nixos-rebuild "${I_ARGS[@]}" "${OTHER_ARGS[@]}"
-exec nixos-rebuild "${I_ARGS[@]}" "${OTHER_ARGS[@]}"
+if [ "${OTHER_ARGS[0]}" == "switch" ];then
+  exec nixos-rebuild "${I_ARGS[@]}" "${OTHER_ARGS[@]}" |& nom
+else
+  exec nixos-rebuild "${I_ARGS[@]}" "${OTHER_ARGS[@]}"
+fi
+
