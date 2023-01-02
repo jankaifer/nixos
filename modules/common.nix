@@ -173,6 +173,7 @@ in
       fnm
       nodePackages.degit
       nodePackages.vercel
+      virt-manager
 
       # Nix
       nixpkgs-fmt
@@ -259,7 +260,6 @@ in
   # Virt manager
   virtualisation.libvirtd.enable = true;
   programs.dconf.enable = true;
-  environment.systemPackages = [ pkgs.virt-manager ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
