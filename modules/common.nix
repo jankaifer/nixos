@@ -127,6 +127,8 @@ in
     };
 
     vim.defaultEditor = true;
+
+    adb.enable = true;
   };
 
   fonts.fonts = with pkgs; [
