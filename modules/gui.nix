@@ -105,6 +105,7 @@
           gnome.dconf-editor
           gnome.gnome-software
           gnome.gnome-tweaks
+          gnome.gnome-boxes
           gnome.seahorse
           google-chrome
           gparted
