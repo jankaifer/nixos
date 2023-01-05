@@ -115,6 +115,7 @@
           gnome.gnome-tweaks
           gnome.gnome-boxes
           gnome.seahorse
+          gnomeExtensions.pop-shell
           google-chrome
           gparted
           krita
