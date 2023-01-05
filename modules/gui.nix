@@ -88,7 +88,7 @@
           "org/gnome/desktop/wm/preferences"."num-workspaces" = 8;
 
           # Shortcuts
-          "/org/gnome/desktop/wm/keybindings" = {
+          "org/gnome/desktop/wm/keybindings" = {
             "switch-to-workspace-left" = [ "<Control>Left" ];
             "switch-to-workspace-right" = [ "<Control>Right" ];
             "move-to-workspace-left" = [ "<Shift><Control>Left" ];
@@ -98,6 +98,9 @@
             "toggle-tiled-left" = [ "<Super>n" ];
             "toggle-tiled-right" = [ "<Super>o" ];
           };
+
+          # Extensions
+          "org/gnome/shell/enabled-extensions" = [ "pop-shell@system76.com" ];
         };
 
         xresources.properties = {
