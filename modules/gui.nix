@@ -85,7 +85,15 @@
 
           # Workspaces
           "org/gnome/mutter"."dynamic-workspaces" = false;
-          "org/gnome/desktop/wm/preferences"."num-workspaces" = 9;
+          "org/gnome/desktop/wm/preferences"."num-workspaces" = 8;
+
+          # Shortcuts
+          "/org/gnome/desktop/wm/keybindings" = {
+            "switch-to-workspace-left" = [ "<Control>Left" ];
+            "switch-to-workspace-right" = [ "<Control>Right" ];
+            "move-to-workspace-left" = [ "<Shift><Control>Left" ];
+            "move-to-workspace-right" = [ "<Shift><Control>Right" ];
+          };
         };
 
         xresources.properties = {
