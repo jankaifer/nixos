@@ -93,6 +93,10 @@
             "switch-to-workspace-right" = [ "<Control>Right" ];
             "move-to-workspace-left" = [ "<Shift><Control>Left" ];
             "move-to-workspace-right" = [ "<Shift><Control>Right" ];
+            "maximize" = [ "<Super>i" ];
+            "unmaximize" = [ "<Super>e" ];
+            "toggle-tiled-left" = [ "<Super>n" ];
+            "toggle-tiled-right" = [ "<Super>o" ];
           };
         };
 
