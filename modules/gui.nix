@@ -100,7 +100,7 @@
           };
 
           # Extensions
-          # "org/gnome/shell/enabled-extensions" = [ "pop-shell@system76.com" ];
+          "org/gnome/shell"."enabled-extensions" = [ "pop-shell@system76.com" ];
         };
 
         xresources.properties = {
