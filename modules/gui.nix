@@ -95,6 +95,8 @@
             "move-to-workspace-right" = [ "<Shift><Control>Right" ];
             "maximize" = [ "<Super>i" ];
             "unmaximize" = [ "<Super>e" ];
+          };
+          "org/gnome/mutter/keybindings" = {
             "toggle-tiled-left" = [ "<Super>n" ];
             "toggle-tiled-right" = [ "<Super>o" ];
           };
