@@ -89,16 +89,16 @@
 
           # Shortcuts
           "org/gnome/desktop/wm/keybindings" = {
-            "switch-to-workspace-left" = [ "<Control>Left" ];
-            "switch-to-workspace-right" = [ "<Control>Right" ];
-            "move-to-workspace-left" = [ "<Shift><Control>Left" ];
-            "move-to-workspace-right" = [ "<Shift><Control>Right" ];
-            "maximize" = [ "<Super>i" ];
-            "unmaximize" = [ "<Super>e" ];
+            "switch-to-workspace-left" = [ "<Control><Super>n" "<Control><Super>Left" ];
+            "switch-to-workspace-right" = [ "<Control><Super>o" "<Control><Super>Right" ];
+            "move-to-workspace-left" = [ "<Shift><Control><Super>n" "<Shift><Control><Super>Left" ];
+            "move-to-workspace-right" = [ "<Shift><Control><Super>o" "<Shift><Control><Super>Right" ];
+            "maximize" = [ "<Shift><Super>i" "<Shift><Super>Up" ];
+            "unmaximize" = [ "<Shift><Super>e" "<Shift><Super>Down" ];
           };
           "org/gnome/mutter/keybindings" = {
-            "toggle-tiled-left" = [ "<Super>n" ];
-            "toggle-tiled-right" = [ "<Super>o" ];
+            "toggle-tiled-left" = [ "<Shift><Super>n" "<Shift><Super>Left" ];
+            "toggle-tiled-right" = [ "<Shift><Super>o" "<Shift><Super>Right" ];
           };
 
           # Extensions
