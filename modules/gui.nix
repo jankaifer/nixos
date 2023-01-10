@@ -80,8 +80,13 @@
             picture-options = "zoom";
           };
 
-          # Do not show welcome tour on startup
-          "org/gnome/shell"."welcome-dialog-last-shown-version" = "1000000";
+          "org/gnome/shell" =
+            {
+              # There is weird issue that other profiles make my laptop to overheat
+              "last-selected-power-profile" = "power-saver";
+              # Do not show welcome tour on startup
+              "welcome-dialog-last-shown-version" = "1000000";
+            };
 
           # Workspaces
           "org/gnome/mutter"."dynamic-workspaces" = false;
