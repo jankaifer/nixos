@@ -40,6 +40,7 @@
             ".config/discord"
             ".config/gh"
             ".config/spotify"
+            ".config/turborepo"
             ".factorio"
             ".local/share/Steam"
             ".local/share/Teraria"
