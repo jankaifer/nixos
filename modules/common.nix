@@ -174,6 +174,7 @@ in
       nodePackages.degit
       nodePackages.vercel
       virt-manager
+      atool
 
       # Nix
       nixpkgs-fmt
