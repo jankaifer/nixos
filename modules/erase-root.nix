@@ -47,6 +47,7 @@
             ".local/share/direnv"
             ".local/share/flatpak"
             ".local/share/fnm"
+            ".local/share/keyrings"
             ".ssh"
             "Documents"
             "Pictures"
