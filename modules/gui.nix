@@ -107,6 +107,7 @@
           };
 
           # Extensions
+          # schema for that extension: https://github.com/pop-os/shell/blob/30bf682bf85a59f19e41621530df0a914e89f1f2/schemas/org.gnome.shell.extensions.pop-shell.gschema.xml
           "org/gnome/shell"."enabled-extensions" = [ "pop-shell@system76.com" ];
         };
 
