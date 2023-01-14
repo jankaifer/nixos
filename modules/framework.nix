@@ -24,10 +24,11 @@
         "intel_idle.max_cstate=1"
       ];
 
-      # Thermal stuff from: https://www.reddit.com/r/NixOS/comments/10adqyb/what_do_people_use_to_manage_their_cpu_frequency/
-      # powerManagement.cpuFreqGovernor = "powersave";
-      # services.auto-cpufreq.enable = true;
+      # My framework started overheating - it has  needlessly high frequency
+      # auto-cpufreq mitigates that a bit - it makes fan noise bearable
+      services.auto-cpufreq.enable = true;
       services.thermald.enable = true;
+      # Powerprofiles seem useless
       services.power-profiles-daemon.enable = false;
     };
 }
