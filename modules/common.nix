@@ -79,6 +79,12 @@ in
     target = "vimrc";
   };
 
+  environment.etc."auto-cpufreq.conf" = {
+    enable = true;
+    source = "${nixosRepoPath}/modules/dotfiles/auto-cpufreq/auto-cpufreq.conf";
+    target = "vimrc";
+  };
+
   environment.shellAliases = lib.mkForce
     {
       pls = "sudo";
