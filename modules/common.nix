@@ -82,7 +82,7 @@ in
   environment.etc."auto-cpufreq.conf" = {
     enable = true;
     source = "${nixosRepoPath}/modules/dotfiles/auto-cpufreq/auto-cpufreq.conf";
-    target = "vimrc";
+    target = "auto-cpufreq.conf";
   };
 
   environment.shellAliases = lib.mkForce
