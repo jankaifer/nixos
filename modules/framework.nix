@@ -26,7 +26,8 @@
 
       # Thermal stuff from: https://www.reddit.com/r/NixOS/comments/10adqyb/what_do_people_use_to_manage_their_cpu_frequency/
       # powerManagement.cpuFreqGovernor = "powersave";
-      services.auto-cpufreq.enable = true;
+      # services.auto-cpufreq.enable = true;
       services.thermald.enable = true;
+      services.power-profiles-daemon.enable = false;
     };
 }
