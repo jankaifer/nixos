@@ -138,7 +138,8 @@
           playerctl
           vlc
           xournalpp
-          zoom-us
+          # Zoom is broken on Linux, the browser version works better
+          # zoom-us
           hyper
 
           # Electron evil apps
