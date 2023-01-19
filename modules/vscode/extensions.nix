@@ -114,6 +114,12 @@
     sha256 = "06i5jy3vgxkkk967x687nr29nsn8zgx88904l6vwnib6lkvxl2g0";
   }
   {
+    name = "shellcheck";
+    publisher = "timonwong";
+    version = "0.29.3";
+    sha256 = "1jd9znab7scp82gspiwy165nfk9f5rd27pi93q99frvm3rbr1s98";
+  }
+  {
     name = "sort-lines";
     publisher = "Tyriar";
     version = "1.9.1";
