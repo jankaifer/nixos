@@ -69,6 +69,16 @@
           "vim.vimrc.path" = "/home/pearman/.vimrc";
           "window.zoomLevel" = 0;
           "workbench.startupEditor" = "none";
+          "editor.tokenColorCustomizations" = {
+            "textMateRules" = [
+              {
+                "scope" = "keyword.other.dotenv";
+                "settings" = {
+                  "foreground" = "#FF000000";
+                };
+              }
+            ];
+          };
         };
     };
   };

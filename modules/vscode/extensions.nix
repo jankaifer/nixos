@@ -6,10 +6,22 @@
     sha256 = "023xglwiqs8dp521h34zgny1d3wma1xn5pdm0srqwl7adsz304xc";
   }
   {
+    name = "postcss";
+    publisher = "csstools";
+    version = "1.0.9";
+    sha256 = "0rbkzfa5czc7ah3ijl7hrrqiwzyyicqr2mkyzzsy9smqcwm874g6";
+  }
+  {
     name = "vscode-eslint";
     publisher = "dbaeumer";
     version = "2.2.6";
     sha256 = "0m16wi8slyj09r1y5qin9xsw4pyhfk3mj6rs5ghydfnppb45w9np";
+  }
+  {
+    name = "dotenv-vscode";
+    publisher = "dotenv";
+    version = "0.21.0";
+    sha256 = "1m5c9f7rmjlrix1mc02050l89gzh77c0qyjls18s8v1719vglkzd";
   }
   {
     name = "theme-dracula";
@@ -22,6 +34,12 @@
     publisher = "eamodio";
     version = "12.2.2";
     sha256 = "16ffpqj7yf1fsldvgmjw7ag3gfihjllsa7i0ljgsj2zjf6r217ky";
+  }
+  {
+    name = "EditorConfig";
+    publisher = "EditorConfig";
+    version = "0.16.4";
+    sha256 = "0fa4h9hk1xq6j3zfxvf483sbb4bd17fjl5cdm3rll7z9kaigdqwg";
   }
   {
     name = "prettier-vscode";
@@ -58,6 +76,12 @@
     publisher = "ms-azuretools";
     version = "1.22.2";
     sha256 = "13scns5iazzsjx8rli311ym2z8i8f4nvbcd5w8hqj5z0rzsds6xi";
+  }
+  {
+    name = "playwright";
+    publisher = "ms-playwright";
+    version = "1.0.3";
+    sha256 = "12q53b7316nnjlajk7c3zv6zsq77cgv415nglzp7yf5vjl4hqkvb";
   }
   {
     name = "remote-containers";
