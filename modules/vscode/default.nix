@@ -19,6 +19,7 @@
         ps: with ps; [
           # General
           git
+          git-lfs
 
           # Nix
           nixpkgs-fmt
