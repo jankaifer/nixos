@@ -159,7 +159,6 @@ in
       tree
       lshw
       git
-      git-lfs
       gnumake
       gcc
       htop
