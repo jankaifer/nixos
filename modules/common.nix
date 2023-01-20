@@ -214,6 +214,7 @@ in
           enable = true;
           userName = "Jan Kaifer";
           userEmail = "jan@kaifer.cz";
+          lfs.enable = true;
           extraConfig = {
             pull = {
               rebase = true;
