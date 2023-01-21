@@ -91,10 +91,9 @@ in
       rebuild = "pls ${nixosRepoPath}/scripts/rebuild.sh switch";
       new-next-repro = "${nixosRepoPath}/scripts/new-next-repro.sh";
       freeze-vscode-extensions = "${nixosRepoPath}/scripts/freeze-vscode-extensions.sh";
-      # node tools are pain to manage without steam-run
-      sr = "steam-run";
-      n = "sr pnpm";
-      y = "sr yarn";
+      n = "pnpm";
+      y = "yarn";
+      nanc = "n add next@canary react@latest react-dom@latest";
       gpf = "git push --force-with-lease";
       gfa = "git fetch --all";
       gr = "git rebase";
