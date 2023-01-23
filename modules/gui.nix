@@ -80,13 +80,16 @@
             picture-options = "zoom";
           };
 
-          "org/gnome/shell" =
-            {
-              # There is weird issue that other profiles make my laptop to overheat
-              "last-selected-power-profile" = "power-saver";
-              # Do not show welcome tour on startup
-              "welcome-dialog-last-shown-version" = "1000000";
-            };
+          # Do not show welcome tour on startup
+          "org/gnome/shell"."welcome-dialog-last-shown-version" = "1000000";
+
+          # Power preferences
+          "org/gnome/shell"."last-selected-power-profile" = "power-saver";
+          "org/gnome/settings-daemon/plugins/power"."sleep-inactive-battery-timeout" = 3600;
+          "org/gnome/settings-daemon/plugins/power" = {
+            "sleep-inactive-ac-type" = "nothing";
+            "show-battery-percentage" = true;
+          };
 
           # Workspaces
           "org/gnome/mutter"."dynamic-workspaces" = false;
