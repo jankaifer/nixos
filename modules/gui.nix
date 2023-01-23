@@ -91,6 +91,9 @@
             "show-battery-percentage" = true;
           };
 
+          # Analytics
+          "org/gnome/desktop/privacy"."report-technical-problems" = true;
+
           # Workspaces
           "org/gnome/mutter"."dynamic-workspaces" = false;
           "org/gnome/desktop/wm/preferences"."num-workspaces" = 8;
