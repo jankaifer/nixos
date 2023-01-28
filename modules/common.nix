@@ -10,6 +10,8 @@ in
       "nixos-config=${nixosRepoPath}/machines/${config.networking.hostName}/configuration.nix"
     ];
 
+  nix.settings.experimental-features = [ "nix-command" ];
+
   # Setup user
   users = {
     mutableUsers = false;
