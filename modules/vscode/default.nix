@@ -40,15 +40,24 @@
       extensions = pkgs.vscode-utils.extensionsFromVscodeMarketplace (import ./extensions.nix).extensions;
       userSettings =
         {
-          "[nix]"."editor.defaultFormatter" = "jnoortheen.nix-ide";
-          "[typescript]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
-          "[typescriptreact]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
           "[javascript]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
           "[javascriptreact]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
           "[markdown]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
+          "[nix]"."editor.defaultFormatter" = "jnoortheen.nix-ide";
+          "[typescript]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
+          "[typescriptreact]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
           "editor.formatOnSave" = true;
+          "editor.inlineSuggest.enabled" = true;
           "editor.minimap.enabled" = false;
           "editor.renderWhitespace" = "all";
+          "editor.tokenColorCustomizations"."textMateRules" = [
+            {
+              "scope" = "keyword.other.dotenv";
+              "settings" = {
+                "foreground" = "#FF000000";
+              };
+            }
+          ];
           "explorer.confirmDelete" = false;
           "explorer.confirmDragAndDrop" = false;
           "git.autofetch" = true;
@@ -70,16 +79,6 @@
           "vim.vimrc.path" = "/home/pearman/.vimrc";
           "window.zoomLevel" = 0;
           "workbench.startupEditor" = "none";
-          "editor.tokenColorCustomizations" = {
-            "textMateRules" = [
-              {
-                "scope" = "keyword.other.dotenv";
-                "settings" = {
-                  "foreground" = "#FF000000";
-                };
-              }
-            ];
-          };
         };
     };
   };
