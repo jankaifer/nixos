@@ -45,6 +45,7 @@
           "[typescriptreact]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
           "[javascript]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
           "[javascriptreact]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
+          "[markdown]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
           "editor.formatOnSave" = true;
           "editor.minimap.enabled" = false;
           "editor.renderWhitespace" = "all";
