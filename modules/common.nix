@@ -142,9 +142,6 @@ in
     nix-ld = {
       enable = true;
       libraries = with pkgs; [
-        stdenv.cc.cc
-        zlib
-        fuse3
         alsa-lib
         at-spi2-atk
         at-spi2-core
@@ -156,25 +153,26 @@ in
         expat
         fontconfig
         freetype
+        fuse3
         gdk-pixbuf
         glib
         gtk3
+        icu
         libGL
         libappindicator-gtk3
         libdrm
         libnotify
         libpulseaudio
         libuuid
-        xorg.libxcb
         libxkbcommon
         mesa
         nspr
         nss
+        openssl
         pango
         pipewire
+        stdenv.cc.cc
         systemd
-        icu
-        openssl
         xorg.libX11
         xorg.libXScrnSaver
         xorg.libXcomposite
@@ -186,8 +184,10 @@ in
         xorg.libXrandr
         xorg.libXrender
         xorg.libXtst
+        xorg.libxcb
         xorg.libxkbfile
         xorg.libxshmfence
+        zlib
         zlib
       ];
     };
