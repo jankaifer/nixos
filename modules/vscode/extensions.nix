@@ -48,6 +48,12 @@
     sha256 = "0hvxwcaihkls4azkcj0674sgnn32iiw0pm0brmdinqag95696fq5";
   }
   {
+    name = "copilot";
+    publisher = "GitHub";
+    version = "1.70.8099";
+    sha256 = "0sqbj2cz40zzah9ggx2zyirnxylfp2w8lqmv0r2kdm02slrlnfgs";
+  }
+  {
     name = "vscode-pull-request-github";
     publisher = "GitHub";
     version = "0.54.1";
