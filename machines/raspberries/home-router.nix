@@ -13,6 +13,9 @@
   users.groups.nixos = { };
   users.users.nixos.isNormalUser = true;
 
+  # We don't need the xserver on the Pi.
+  services.xserver.enable = false;
+
   # bzip2 compression takes loads of time with emulation, skip it. Enable this if you're low
   # on space.
   sdImage.compressImage = false;
