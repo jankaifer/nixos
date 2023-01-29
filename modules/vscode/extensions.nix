@@ -138,6 +138,12 @@
     sha256 = "1dmssylvfzyadyrc061kyycm1zah4z1k02f1v4kb82hpv3kaag91";
   }
   {
+    name = "prisma";
+    publisher = "Prisma";
+    version = "4.9.0";
+    sha256 = "1p97p57gw7sgm0z0c7j8nf66180i183iah916kx65268jz852k4v";
+  }
+  {
     name = "rust-analyzer";
     publisher = "rust-lang";
     version = "0.3.1317";
