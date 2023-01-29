@@ -1,6 +1,6 @@
 { lib, ... }: {
   imports = [
-    <nixpkgs/nixos/modules/installer/sd-card/sd-image-raspberrypi.nix>
+    <nixpkgs/nixos/modules/installer/sd-card/sd-image-aarch64.nix>
   ];
 
   users.extraUsers.nixos.openssh.authorizedKeys.keys = [
@@ -8,6 +8,10 @@
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEdzynkHX/sNuZW52iVAtzpAr+FbzRYq6oWDzV9KY3Vf"
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDzPJ15GG8/uHf86p7jg0Tud7lZ5rjySwAjlD4ZxEtZn"
   ];
+  users.users.nixos.group = "nixos";
+  users.users.nixos.extraGroups = [ "wheel" ];
+  users.groups.nixos = { };
+  users.users.nixos.isNormalUser = true;
 
   # bzip2 compression takes loads of time with emulation, skip it. Enable this if you're low
   # on space.
