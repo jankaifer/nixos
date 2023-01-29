@@ -34,6 +34,10 @@ in
 
   boot.supportedFilesystems = [ "ntfs" ];
 
+  # Enable compiling on AArch64
+  # https://rbf.dev/blog/2020/05/custom-nixos-build-for-raspberry-pis/#nixos-on-a-raspberry-pi
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+
   # Set your time zone.
   time.timeZone = "Europe/Prague";
 
