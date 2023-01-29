@@ -37,4 +37,6 @@
 
   # NTP time sync.
   services.timesyncd.enable = true;
+
+  system.stateVersion = "23.05";
 }
