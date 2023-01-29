@@ -9,3 +9,6 @@
 [submodule "modules/imtermanence"]
 	path = modules/impermanence
 	url = https://github.com/nix-community/impermanence.git
+[submodule "modules/nixos-generators"]
+	path = modules/nixos-generators
+	url = https://github.com/nix-community/nixos-generators
