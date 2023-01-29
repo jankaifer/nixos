@@ -1,6 +1,6 @@
 { lib, ... }: {
   imports = [
-    <nixpkgs/nixos/modules/installer/sd-card/sd-image-aarch64-installer.nix>
+    <nixpkgs/nixos/modules/installer/sd-card/sd-image-raspberrypi.nix>
   ];
 
   users.extraUsers.nixos.openssh.authorizedKeys.keys = [
