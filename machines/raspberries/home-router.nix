@@ -9,12 +9,15 @@
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDzPJ15GG8/uHf86p7jg0Tud7lZ5rjySwAjlD4ZxEtZn"
   ];
   users.users.nixos.group = "nixos";
+  users.users.nixos.initialPassword = "nixos";
   users.users.nixos.extraGroups = [ "wheel" ];
   users.groups.nixos = { };
   users.users.nixos.isNormalUser = true;
 
   # We don't need the xserver on the Pi.
   services.xserver.enable = false;
+  services.xserver.displayManager.gdm.enable = false;
+  services.xserver.desktopManager.gnome.enable = false;
 
   # bzip2 compression takes loads of time with emulation, skip it. Enable this if you're low
   # on space.
