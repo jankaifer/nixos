@@ -33,6 +33,13 @@
       #   experimental-features=[]
       # '';
 
+      services.logind.extraConfig = ''
+        HandlePowerKey=lock                    # just lock on power button
+        HandleLidSwitch=suspend                # suspend when on battery
+        HandleLidSwitchExternalPower=lock      # lock on AC 
+        HandleLidSwitchDocked=lock             # lock on external monitor
+      '';
+
       # Touchpad configs
       services.xserver.libinput = {
         enable = true;
@@ -90,6 +97,8 @@
             "sleep-inactive-ac-type" = "nothing";
             "show-battery-percentage" = true;
           };
+          "org/gnome/desktop/interface/show-battery-percentage" = true;
+          "org/gnome/settings-daemon/plugins/power/power-button-action" = "nothing";
 
           # Analytics
           "org/gnome/desktop/privacy"."report-technical-problems" = true;
