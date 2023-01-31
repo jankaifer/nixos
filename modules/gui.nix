@@ -95,10 +95,10 @@
           "org/gnome/settings-daemon/plugins/power"."sleep-inactive-battery-timeout" = 3600;
           "org/gnome/settings-daemon/plugins/power" = {
             "sleep-inactive-ac-type" = "nothing";
+            "power-button-action" = "nothing";
             "show-battery-percentage" = true;
           };
-          "org/gnome/desktop/interface/show-battery-percentage" = true;
-          "org/gnome/settings-daemon/plugins/power/power-button-action" = "nothing";
+          "org/gnome/desktop/interface"."show-battery-percentage" = true;
 
           # Analytics
           "org/gnome/desktop/privacy"."report-technical-problems" = true;
