@@ -16,5 +16,9 @@
     lib.mkIf config.custom.work.enable
       {
         custom.falcon.enable = true;
+        environment.shellAliases = {
+          "front" = "cd ~/dev/vercel/front";
+          "next.js" = "cd ~/dev/vercel/next.js";
+        };
       };
 }
