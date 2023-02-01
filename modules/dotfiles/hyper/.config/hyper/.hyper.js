@@ -130,8 +130,8 @@ module.exports = {
     screenReaderMode: false,
     // set to true to preserve working directory when creating splits or tabs
     preserveCWD: true,
-    // Increase scrollback from 1000
-    scrollback: 10000,
+    // I have plenty or RAM and scrollback is handy especially for next bloated test output :facepalm:
+    scrollback: 100000,
     // for advanced config flags please refer to https://hyper.is/#cfg
   },
   // a list of plugins to fetch and install from npm
