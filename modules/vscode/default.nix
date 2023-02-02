@@ -42,6 +42,7 @@
         {
           "[javascript]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
           "[javascriptreact]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
+          "[jsonc]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
           "[markdown]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
           "[nix]"."editor.defaultFormatter" = "jnoortheen.nix-ide";
           "[typescript]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
