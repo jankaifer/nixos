@@ -48,7 +48,6 @@
           "[typescript]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
           "[typescriptreact]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
           "editor.formatOnSave" = true;
-          "editor.inlayHints.enabled" = true;
           "editor.inlineSuggest.enabled" = true;
           "editor.minimap.enabled" = false;
           "editor.renderWhitespace" = "all";
@@ -65,6 +64,10 @@
           "git.autofetch" = true;
           "git.confirmSync" = false;
           "git.enableSmartCommit" = true;
+          "javascript.inlayHints.parameterNames.enabled" = "all";
+          "javascript.inlayHints.parameterTypes.enabled" = true;
+          "javascript.inlayHints.propertyDeclarationTypes.enabled" = true;
+          "javascript.inlayHints.variableTypes.enabled" = true;
           "javascript.updateImportsOnFileMove.enabled" = "always";
           "jest.autoRun" = "off";
           "keyboard.dispatch" = "keyCode";
@@ -74,6 +77,13 @@
           ];
           "projectManager.git.maxDepthRecursion" = 2;
           "projectManager.showParentFolderInfoOnDuplicates" = true;
+          "typescript.inlayHints.enumMemberValues.enabled" = true;
+          "typescript.inlayHints.functionLikeReturnTypes.enabled" = true;
+          "typescript.inlayHints.parameterNames.enabled" = "all";
+          "typescript.inlayHints.parameterNames.suppressWhenArgumentMatchesName" = false;
+          "typescript.inlayHints.parameterTypes.enabled" = true;
+          "typescript.inlayHints.propertyDeclarationTypes.enabled" = true;
+          "typescript.inlayHints.variableTypes.enabled" = true;
           "typescript.updateImportsOnFileMove.enabled" = "always";
           "update.mode" = "none";
           "vim.useSystemClipboard" = true;
