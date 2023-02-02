@@ -48,6 +48,7 @@
           "[typescript]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
           "[typescriptreact]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
           "editor.formatOnSave" = true;
+          "editor.inlayHints.enabled" = true;
           "editor.inlineSuggest.enabled" = true;
           "editor.minimap.enabled" = false;
           "editor.renderWhitespace" = "all";
