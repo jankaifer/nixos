@@ -40,6 +40,7 @@
       extensions = pkgs.vscode-utils.extensionsFromVscodeMarketplace (import ./extensions.nix).extensions;
       userSettings =
         {
+          "[html]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
           "[javascript]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
           "[javascriptreact]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
           "[jsonc]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
