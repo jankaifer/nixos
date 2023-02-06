@@ -48,39 +48,38 @@
           "[nix]"."editor.defaultFormatter" = "jnoortheen.nix-ide";
           "[typescript]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
           "[typescriptreact]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
-          "editor.formatOnSave" = true;
-          "editor.inlayHints.enumMemberValues.enabled" = false;
-          "editor.inlayHints.functionLikeReturnTypes.enabled" = false;
-          "editor.inlayHints.parameterNames.enabled" = "all";
-          "editor.inlayHints.parameterNames.suppressWhenArgumentMatchesName" = true;
-          "editor.inlayHints.parameterTypes.enabled" = false;
-          "editor.inlayHints.propertyDeclarationTypes.enabled" = false;
-          "editor.inlayHints.variableTypes.enabled" = true;
-          "editor.inlineSuggest.enabled" = true;
           "editor.minimap.enabled" = false;
           "editor.renderWhitespace" = "all";
-          "editor.tokenColorCustomizations"."textMateRules" = [
-            {
-              "scope" = "keyword.other.dotenv";
-              "settings" = {
-                "foreground" = "#FF000000";
-              };
-            }
-          ];
-          "editor.updateImportsOnFileMove.enabled" = "always";
+          "editor.tokenColorCustomizations"."textMateRules" = [{ "scope" = "keyword.other.dotenv"; "settings" = { "foreground" = "#FF000000"; }; }];
           "explorer.confirmDelete" = false;
           "explorer.confirmDragAndDrop" = false;
           "git.autofetch" = true;
           "git.confirmSync" = false;
           "git.enableSmartCommit" = true;
+          "javascript.formatOnSave" = true;
+          "javascript.inlayHints.enumMemberValues.enabled" = false;
+          "javascript.inlayHints.functionLikeReturnTypes.enabled" = false;
+          "javascript.inlayHints.parameterNames.enabled" = "all";
+          "javascript.inlayHints.parameterNames.suppressWhenArgumentMatchesName" = true;
+          "javascript.inlayHints.parameterTypes.enabled" = false;
+          "javascript.inlayHints.propertyDeclarationTypes.enabled" = false;
+          "javascript.inlayHints.variableTypes.enabled" = true;
+          "javascript.updateImportsOnFileMove.enabled" = "always";
           "jest.autoRun" = "off";
           "keyboard.dispatch" = "keyCode";
-          "projectManager.git.baseFolders" = [
-            "/home/pearman/Projects"
-            "/home/pearman/dev"
-          ];
+          "projectManager.git.baseFolders" = [ "/home/pearman/Projects" "/home/pearman/dev" ];
           "projectManager.git.maxDepthRecursion" = 2;
           "projectManager.showParentFolderInfoOnDuplicates" = true;
+          "typescript.formatOnSave" = true;
+          "typescript.inlayHints.enumMemberValues.enabled" = false;
+          "typescript.inlayHints.functionLikeReturnTypes.enabled" = false;
+          "typescript.inlayHints.parameterNames.enabled" = "all";
+          "typescript.inlayHints.parameterNames.suppressWhenArgumentMatchesName" = true;
+          "typescript.inlayHints.parameterTypes.enabled" = false;
+          "typescript.inlayHints.propertyDeclarationTypes.enabled" = false;
+          "typescript.inlayHints.variableTypes.enabled" = true;
+          "typescript.inlineSuggest.enabled" = true;
+          "typescript.updateImportsOnFileMove.enabled" = "always";
           "update.mode" = "none";
           "vim.useSystemClipboard" = true;
           "vim.vimrc.enable" = true;
