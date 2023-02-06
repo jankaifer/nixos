@@ -16,6 +16,8 @@
   # Host name
   networking.hostName = "vercelframe";
 
+  networking.firewall.enable = false;
+
   # Wallpaper
   home-manager.users.pearman.dconf.settings."org/gnome/desktop/background".picture-uri = "file://" + ../../wallpapers/vercel-pyramid-4k.png;
 
