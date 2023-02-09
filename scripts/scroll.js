@@ -1,6 +1,3 @@
-stop();
-
-let direction = 1;
 let step = 1;
 let maxTop = 380;
 let maxBottom = 470;
