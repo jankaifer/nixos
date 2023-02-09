@@ -65,7 +65,7 @@ module.exports = {
       .terms_terms {
         position: relative;
         flex-grow: 1;
-        margin-top: -6px;
+        margin-top: 6px;
       }
     `,
     // custom CSS to embed in the terminal window
