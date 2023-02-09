@@ -2,8 +2,8 @@ stop();
 
 let direction = 1;
 let step = 1;
-let maxTop = 450;
-let maxBottom = 550;
+let maxTop = 380;
+let maxBottom = 470;
 
 let pid = setInterval( () => {
     const body = document.documentElement
