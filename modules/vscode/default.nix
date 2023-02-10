@@ -56,6 +56,7 @@
           "git.autofetch" = true;
           "git.confirmSync" = false;
           "git.enableSmartCommit" = true;
+          "githubPullRequests.createOnPublishBranch" = "never";
           "javascript.formatOnSave" = true;
           "javascript.inlayHints.enumMemberValues.enabled" = false;
           "javascript.inlayHints.functionLikeReturnTypes.enabled" = false;
