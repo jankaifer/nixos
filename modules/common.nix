@@ -243,6 +243,7 @@ in
       nodePackages.vercel
       virt-manager
       atool
+      lorri
 
       # Nix
       nixpkgs-fmt
