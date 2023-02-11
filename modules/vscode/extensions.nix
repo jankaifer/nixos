@@ -120,6 +120,12 @@
     sha256 = "08npj36kc4v9nxr3q83r6wbb2ilj4madbq0q0w1miwl51qvggmrf";
   }
   {
+    name = "makefile-tools";
+    publisher = "ms-vscode";
+    version = "0.6.0";
+    sha256 = "07zagq5ib9hd3w67yk2g728vypr4qazw0g9dyd5bax21shnmppa9";
+  }
+  {
     name = "vscode-js-profile-flame";
     publisher = "ms-vscode";
     version = "1.0.5";
