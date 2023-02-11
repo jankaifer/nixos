@@ -48,6 +48,8 @@
           "[nix]"."editor.defaultFormatter" = "jnoortheen.nix-ide";
           "[typescript]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
           "[typescriptreact]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
+          "editor.formatOnSave" = true;
+          "editor.inlineSuggest.enabled" = true;
           "editor.minimap.enabled" = false;
           "editor.renderWhitespace" = "all";
           "editor.tokenColorCustomizations"."textMateRules" = [{ "scope" = "keyword.other.dotenv"; "settings" = { "foreground" = "#FF000000"; }; }];
@@ -57,7 +59,6 @@
           "git.confirmSync" = false;
           "git.enableSmartCommit" = true;
           "githubPullRequests.createOnPublishBranch" = "never";
-          "javascript.formatOnSave" = true;
           "javascript.inlayHints.enumMemberValues.enabled" = false;
           "javascript.inlayHints.functionLikeReturnTypes.enabled" = false;
           "javascript.inlayHints.parameterNames.enabled" = "all";
@@ -79,7 +80,6 @@
           "typescript.inlayHints.parameterTypes.enabled" = false;
           "typescript.inlayHints.propertyDeclarationTypes.enabled" = false;
           "typescript.inlayHints.variableTypes.enabled" = true;
-          "typescript.inlineSuggest.enabled" = true;
           "typescript.updateImportsOnFileMove.enabled" = "always";
           "update.mode" = "none";
           "vim.useSystemClipboard" = true;
