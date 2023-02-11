@@ -70,6 +70,8 @@ in
   # Inceare temporary storage size
   services.logind.extraConfig = "RuntimeDirectorySize=6G";
 
+  services.lorri.enable = true;
+
   # Make SUDO to remember fingerprint/password for 15 minutes
   security.sudo.extraConfig = ''
     Defaults        timestamp_timeout=15
@@ -243,7 +245,6 @@ in
       nodePackages.vercel
       virt-manager
       atool
-      lorri
 
       # Nix
       nixpkgs-fmt
