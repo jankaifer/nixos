@@ -245,6 +245,7 @@ in
       nodePackages.vercel
       virt-manager
       atool
+      stripe-cli
 
       # Nix
       nixpkgs-fmt
