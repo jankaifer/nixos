@@ -72,7 +72,6 @@
           "projectManager.git.baseFolders" = [ "/home/pearman/Projects" "/home/pearman/dev" ];
           "projectManager.git.maxDepthRecursion" = 2;
           "projectManager.showParentFolderInfoOnDuplicates" = true;
-          "typescript.formatOnSave" = true;
           "typescript.inlayHints.enumMemberValues.enabled" = false;
           "typescript.inlayHints.functionLikeReturnTypes.enabled" = false;
           "typescript.inlayHints.parameterNames.enabled" = "all";
