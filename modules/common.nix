@@ -67,8 +67,8 @@ in
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
-  # Inceare temporary storage size
-  services.logind.extraConfig = "RuntimeDirectorySize=6G";
+  # Inrease temporary storage size
+  services.logind.extraConfig = "RuntimeDirectorySize=12G";
 
   services.lorri.enable = true;
 
