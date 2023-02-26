@@ -283,9 +283,9 @@ in
           userEmail = "jan@kaifer.cz";
           lfs.enable = true;
           extraConfig = {
-            pull = {
-              rebase = true;
-            };
+            # pull = {
+            #   rebase = true;
+            # };
             gpg.format = "ssh";
             gpg.ssh.defaultKeyCommand = "ssh-add -L";
             commit.gpgsign = true;
