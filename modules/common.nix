@@ -259,7 +259,8 @@ in
       docker
 
       # Rust
-      rustup
+      rustc
+      cargo
 
       # Prolog
       swiProlog
