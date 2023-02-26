@@ -25,7 +25,10 @@
           nixpkgs-fmt
 
           # Rust
-          rustup
+          cargo
+          rustc
+          rustfmt
+
           zlib
 
           # JS

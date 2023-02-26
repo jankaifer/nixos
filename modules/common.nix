@@ -261,6 +261,7 @@ in
       # Rust
       rustc
       cargo
+      rustfmt
 
       # Prolog
       swiProlog
