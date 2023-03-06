@@ -50,8 +50,8 @@
   {
     name = "copilot";
     publisher = "GitHub";
-    version = "1.75.8985";
-    sha256 = "1lf37d4vqq0sidv10cyanlnd1dyr7finyarkw56wlip338jdrba5";
+    version = "1.77.9225";
+    sha256 = "1awqw7bpyvw72hnj9l1hx21djgjpjl15h5pq5la408ll4rd2645m";
   }
   {
     name = "vscode-pull-request-github";
@@ -92,14 +92,14 @@
   {
     name = "remote-containers";
     publisher = "ms-vscode-remote";
-    version = "0.275.1";
-    sha256 = "0qdjd3xa7xbdbvqxnrk95y37ga937126dd98cmxbalny2wszki83";
+    version = "0.282.0";
+    sha256 = "0pryza59lffmyyci30dsimzidx5jz3ndalgaxw58hc5cwvzg1k6s";
   }
   {
     name = "remote-ssh";
     publisher = "ms-vscode-remote";
-    version = "0.97.2023022415";
-    sha256 = "0vrf83vj83wra4zaznx34icgni33bs083cqfr8kq6pw5snrz72sy";
+    version = "0.99.2023030315";
+    sha256 = "08i9zymgxl1ddqkq4gbz7qvbmnaaqf367n8qzc7srix512py669r";
   }
   {
     name = "remote-ssh-edit";
@@ -158,14 +158,26 @@
   {
     name = "prisma";
     publisher = "Prisma";
-    version = "4.10.1";
-    sha256 = "13zzlk72b78hls0f9yvskj77lhcpdmc52vzv3hdd5rq2lgvf4c0m";
+    version = "4.11.0";
+    sha256 = "1z8hzgym7q9nbm2abw7krsbk48px8mryx63whrpwcfrzs6zz0yvw";
   }
   {
     name = "rust-analyzer";
     publisher = "rust-lang";
-    version = "0.3.1410";
-    sha256 = "0ns2mz7arfpx6i2c2fv8k6xkis32xiym169zrfwi57n6578pqy9n";
+    version = "0.3.1426";
+    sha256 = "0iwsmsfv70r6siqlhyxnxap7j4pvbpafjgl9l5scn7x49zjg2c00";
+  }
+  {
+    name = "code-spell-checker";
+    publisher = "streetsidesoftware";
+    version = "2.19.0";
+    sha256 = "0q0j526is9hzv214f102dd917lk83y7rbbmbl59whav4xgxnxpkk";
+  }
+  {
+    name = "code-spell-checker-czech";
+    publisher = "streetsidesoftware";
+    version = "1.0.3";
+    sha256 = "1jid318lq72x953wnaz0bv26qgwlfw7mmhixqcswjdgzmmzg7kj4";
   }
   {
     name = "shellcheck";
@@ -194,8 +206,8 @@
   {
     name = "vim";
     publisher = "vscodevim";
-    version = "1.24.3";
-    sha256 = "02alixryryak80lmn4mxxf43izci5fk3pf3pcwy52nbd3d2fiwz1";
+    version = "1.25.2";
+    sha256 = "0j0li3ddrknh34k2w2f13j4x8s0lb9gsmq7pxaldhwqimarqlbc7";
   }
   {
     name = "markdown-all-in-one";
