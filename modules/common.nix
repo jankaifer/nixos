@@ -213,6 +213,7 @@ in
     enable = true;
     enableOnBoot = true;
     storageDriver = "btrfs";
+
   };
 
   environment.systemPackages = with pkgs;
@@ -257,6 +258,7 @@ in
 
       # Docker
       docker
+      docker-compose
 
       # Rust
       rustc
