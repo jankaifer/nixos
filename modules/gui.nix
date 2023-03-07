@@ -51,6 +51,21 @@
         "electron-12.2.3" # Needed for etcher: https://github.com/NixOS/nixpkgs/issues/153537
       ];
 
+      # Use custom user profile pic
+      boot.postBootCommands =
+        let
+          gdm_user_conf = ''
+            [User]
+            Session=
+            XSession=
+            Icon=${../profile-pics/profile-pic.png}
+            SystemAccount=false
+          '';
+        in
+        ''
+          echo '${gdm_user_conf}' > /var/lib/AccountsService/users/perman
+        '';
+
       home-manager.users.pearman = { lib, ... }: {
         dconf.settings = with lib.hm.gvariant; {
           # Allow fractional scaling in wayland - produces blurry image
