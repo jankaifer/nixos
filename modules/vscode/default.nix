@@ -90,6 +90,7 @@
           "vim.vimrc.path" = "/home/pearman/.vimrc";
           "window.zoomLevel" = 0;
           "workbench.startupEditor" = "none";
+          "cSpell.language" = "en,cs";
         };
     };
   };
