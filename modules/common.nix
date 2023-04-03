@@ -109,7 +109,7 @@ in
       gfa = "git fetch --all";
       gr = "git rebase";
       gm = "git merge";
-      gps = "git push";
+      gps = "git push --tags";
       gpl = "git pull";
     };
 
