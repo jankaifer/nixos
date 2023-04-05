@@ -249,6 +249,7 @@ in
       virt-manager
       atool
       stripe-cli
+      mullvad
 
       # Nix
       nixpkgs-fmt
