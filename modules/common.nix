@@ -72,6 +72,8 @@ in
 
   services.lorri.enable = true;
 
+  services.mullvad-vpn.enable = true;
+
   # Make SUDO to remember fingerprint/password for 15 minutes
   security.sudo.extraConfig = ''
     Defaults        timestamp_timeout=15
