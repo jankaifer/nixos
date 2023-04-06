@@ -33,7 +33,6 @@
     fck.enable = true;
     games.enable = true;
     gui.enable = true;
-    real-vnc-viewer.enable = true;
     vscode.enable = true;
     zsa.enable = true;
   };
