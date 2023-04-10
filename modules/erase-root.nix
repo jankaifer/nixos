@@ -43,6 +43,7 @@
             ".config/paradox-launcher-v2"
             ".config/spotify"
             ".config/turborepo"
+            ".config/unity3d" # Used by unity games like Overcoocked2
             ".factorio"
             ".local/share/Steam"
             ".local/share/Teraria"
