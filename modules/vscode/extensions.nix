@@ -218,8 +218,8 @@
   {
     name = "grammarly";
     publisher = "znck";
-    version = "0.22.1";
-    sha256 = "15bis3xqzbf5w6jssc16cwcl4y3lw1zyd2mrwf2kskyxq1vyg9q3";
+    version = "0.23.13";
+    sha256 = "04cgp0ad1c05srjcdg74bidifd0kqlff7dm5y2g37lasf8zr6hb6";
   }
 ];
 }
