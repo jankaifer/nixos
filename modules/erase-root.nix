@@ -18,6 +18,7 @@
         hideMounts = true;
         directories = [
           "/etc/NetworkManager/system-connections"
+          "/etc/mullvad-vpn"
           "/var/lib/bluetooth"
           "/var/lib/docker"
           "/var/lib/flatpak"
