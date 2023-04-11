@@ -52,6 +52,7 @@
           "[nix]"."editor.defaultFormatter" = "jnoortheen.nix-ide";
           "[typescript]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
           "[typescriptreact]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
+          "cSpell.language" = "en,cs";
           "editor.formatOnSave" = true;
           "editor.inlineSuggest.enabled" = true;
           "editor.minimap.enabled" = false;
@@ -63,6 +64,7 @@
           "git.confirmSync" = false;
           "git.enableSmartCommit" = true;
           "githubPullRequests.createOnPublishBranch" = "never";
+          "grammarly.files.include" = [ "**/*.md" "**/*.txt" ];
           "javascript.inlayHints.enumMemberValues.enabled" = false;
           "javascript.inlayHints.functionLikeReturnTypes.enabled" = false;
           "javascript.inlayHints.parameterNames.enabled" = "all";
@@ -90,7 +92,6 @@
           "vim.vimrc.path" = "/home/pearman/.vimrc";
           "window.zoomLevel" = 0;
           "workbench.startupEditor" = "none";
-          "cSpell.language" = "en,cs";
         };
     };
   };
