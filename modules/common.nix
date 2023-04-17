@@ -111,7 +111,7 @@ in
       gfa = "git fetch --all";
       gr = "git rebase";
       gm = "git merge";
-      gps = "git push --tags";
+      gps = "git push";
       gpl = "git pull";
     };
 
