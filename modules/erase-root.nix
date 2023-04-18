@@ -41,6 +41,7 @@
             ".config/StradewValley"
             ".config/discord"
             ".config/gh"
+            ".config/google-chrome"
             ".config/paradox-launcher-v2"
             ".config/spotify"
             ".config/turborepo"
