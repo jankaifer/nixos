@@ -335,6 +335,8 @@ in
         ".vimrc".source = ./dotfiles/vim/.vimrc;
         ".node-version".text = "v18";
       };
+
+      home.stateVersion = "22.05";
     };
   };
 
