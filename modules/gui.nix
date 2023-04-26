@@ -1,5 +1,13 @@
 { config, lib, pkgs, ... }:
 
+let
+  hyperPkgs = import
+    (fetchTarball {
+      url = https://github.com/NixOS/nixpkgs/archive/60c0f762658916a4a5b5a36b3e06486f8301daf4.tar.gz;
+      sha256 = "0z6jy05yawj2pkinpyjlpym5niij2scxn6cd2w1p9wrfxw0hw8ra";
+    })
+    { };
+in
 {
   options.custom.gui =
     {
@@ -168,9 +176,13 @@
           playerctl
           vlc
           xournalpp
+
           # Zoom is broken on Linux, the browser version works better
           # zoom-us
-          hyper
+
+          # Hyper is broken on latest unstable: https://github.com/NixOS/nixpkgs/issues/105961
+          # hyper
+          hyperPkgs.hyper
 
           # Electron evil apps
           atom
