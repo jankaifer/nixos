@@ -193,6 +193,8 @@ in
           slack
           spotify
           discord
+
+          lutris
         ];
 
       ## Force Chromium based apps to render using wayland
