@@ -55,10 +55,11 @@
             ".local/share/gnome-boxes"
             ".local/share/keyrings"
             ".ssh"
+            ".zoom"
             "Documents"
             "Pictures"
+            "VirtualBox VMs"
             "dev"
-            ".zoom"
           ];
 
           files = [
