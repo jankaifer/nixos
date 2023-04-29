@@ -198,11 +198,7 @@ in
           discord
 
           lutris
-          playonlinux
         ];
-
-      # This is needed by some Wine apps
-      services.samba.enableWinbindd = true;
 
       ## Force Chromium based apps to render using wayland
       ## It is sadly not ready yet - electron apps will start missing navbars and they are still blurry 
