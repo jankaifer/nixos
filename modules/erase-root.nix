@@ -52,6 +52,7 @@
             ".local/share/direnv"
             ".local/share/flatpak"
             ".local/share/fnm"
+            ".local/share/gnome-boxes"
             ".local/share/keyrings"
             ".ssh"
             "Documents"
