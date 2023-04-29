@@ -59,6 +59,9 @@ in
         "electron-12.2.3" # Needed for etcher: https://github.com/NixOS/nixpkgs/issues/153537
       ];
 
+      virtualisation.virtualbox.host.enable = true;
+      users.extraGroups.vboxusers.members = [ "pearman" ];
+
       # Use custom user profile pic
       boot.postBootCommands =
         let
