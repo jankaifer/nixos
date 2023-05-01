@@ -121,8 +121,8 @@ in
 
           # Power preferences
           "org/gnome/shell"."last-selected-power-profile" = "power-saver";
-          "org/gnome/settings-daemon/plugins/power"."sleep-inactive-battery-timeout" = 3600;
           "org/gnome/settings-daemon/plugins/power" = {
+            "sleep-inactive-battery-timeout" = 3600;
             "sleep-inactive-ac-type" = "nothing";
             "power-button-action" = "nothing";
             "show-battery-percentage" = true;
@@ -133,8 +133,11 @@ in
           "org/gnome/desktop/privacy"."report-technical-problems" = true;
 
           # Workspaces
-          "org/gnome/mutter"."dynamic-workspaces" = false;
-          "org/gnome/mutter"."workspaces-only-on-primary" = true;
+          "org/gnome/mutter" = {
+            "dynamic-workspaces" = false;
+            "workspaces-only-on-primary" = true;
+            "edge-tiling" = true;
+          };
           "org/gnome/desktop/wm/preferences"."num-workspaces" = 8;
 
           # Shortcuts
