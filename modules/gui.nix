@@ -134,6 +134,7 @@ in
 
           # Workspaces
           "org/gnome/mutter"."dynamic-workspaces" = false;
+          "org/gnome/mutter"."workspaces-only-on-primary" = true;
           "org/gnome/desktop/wm/preferences"."num-workspaces" = 8;
 
           # Shortcuts
