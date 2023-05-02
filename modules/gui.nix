@@ -203,6 +203,7 @@ in
           slack
           spotify
           discord
+          insomnia
 
           lutris
         ];
