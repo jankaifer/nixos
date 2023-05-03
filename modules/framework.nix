@@ -22,6 +22,9 @@
         "module_blacklist=hid_sensor_hub"
       ];
 
+      # https://github.com/NixOS/nixpkgs/issues/229727#issuecomment-1533555154
+      services.pipewire.package = pkgs.pipewire.override { libcameraSupport = false; };
+
       services.thermald.enable = true;
     };
 }
