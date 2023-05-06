@@ -4,7 +4,6 @@
   imports = [
     ./common.nix
     ./erase-root.nix
-    ./falcon-sensor
     ./framework.nix
     ./games.nix
     ./gui.nix
@@ -14,7 +13,6 @@
     ./keyboard.nix
     ./real-vnc-viewer
     ./vscode
-    ./work.nix
     ./zsa.nix
   ];
 }
