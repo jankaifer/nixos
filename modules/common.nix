@@ -113,6 +113,7 @@ in
       gm = "git merge";
       gps = "git push";
       gpl = "git pull";
+      exercism = "${pkgs.exercism}/bin/exercism";
     };
 
   environment.sessionVariables = rec {
