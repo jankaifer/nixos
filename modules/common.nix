@@ -161,6 +161,7 @@ in
         cups
         curl
         dbus
+        exercism
         expat
         fontconfig
         freetype
