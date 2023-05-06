@@ -33,11 +33,6 @@
 
           # JS
           fnm
-
-          # These two need to be installed through nix for some reason - they are needed for next.js development
-          nodejs-16_x
-          nodePackages.yarn
-          nodePackages.pnpm
         ]
       );
       extensions = pkgs.vscode-utils.extensionsFromVscodeMarketplace (import ./extensions.nix).extensions;
