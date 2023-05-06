@@ -129,6 +129,9 @@ in
           };
           "org/gnome/desktop/interface"."show-battery-percentage" = true;
 
+          # Night light
+          "org/gnome/settings-daemon/plugins/color"."night-light-temperature = 2300;
+
           # Analytics
           "org/gnome/desktop/privacy"."report-technical-problems" = true;
 
@@ -224,3 +227,17 @@ in
         };
     };
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
