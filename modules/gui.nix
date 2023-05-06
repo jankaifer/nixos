@@ -81,7 +81,7 @@ in
         '';
 
       home-manager.users.pearman = { lib, ... }: {
-        dconf.settings = with lib.hm.gvariant; {
+        dconf.settings = let gvariant = lib.hm.gvariant; in {
           # Allow fractional scaling in wayland - produces blurry image
           # "org/gnome/mutter" = {
           #   experimental-features = [ "scale-monitor-framebuffer" ];
@@ -89,7 +89,7 @@ in
 
           # Used keyboad layout
           "org/gnome/desktop/input-sources".sources = [
-            (mkTuple [ "xkb" "fck" ])
+            (gvariant.mkTuple [ "xkb" "fck" ])
           ];
 
           # Dock
@@ -130,7 +130,10 @@ in
           "org/gnome/desktop/interface"."show-battery-percentage" = true;
 
           # Night light
-          "org/gnome/settings-daemon/plugins/color"."night-light-temperature" = 2000;
+          "org/gnome/settings-daemon/plugins/color" = {
+            "night-light-enabled" = true;
+            "night-light-temperature" = gvariant.mkUint32 2300;
+          };
 
           # Analytics
           "org/gnome/desktop/privacy"."report-technical-problems" = true;
