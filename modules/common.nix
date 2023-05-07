@@ -111,7 +111,6 @@ in
       gm = "git merge";
       gps = "git push";
       gpl = "git pull";
-      exercism = "${pkgs.exercism}/bin/exercism";
     };
 
   environment.sessionVariables = rec {
@@ -160,7 +159,6 @@ in
         cups
         curl
         dbus
-        exercism
         expat
         fontconfig
         freetype
@@ -177,6 +175,7 @@ in
         libuuid
         libxkbcommon
         mesa
+        musl
         nspr
         nss
         openssl
@@ -250,6 +249,7 @@ in
       atool
       stripe-cli
       mullvad
+      exercism
 
       # Nix
       nixpkgs-fmt
