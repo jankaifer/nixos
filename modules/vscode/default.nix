@@ -25,9 +25,7 @@
           nixpkgs-fmt
 
           # Rust
-          cargo
-          rustc
-          rustfmt
+          rustup
           rust-analyzer
 
           zlib
