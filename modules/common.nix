@@ -264,9 +264,7 @@ in
       docker-compose
 
       # Rust
-      rustc
-      cargo
-      rustfmt
+      rustup
 
       # Prolog
       swiProlog
