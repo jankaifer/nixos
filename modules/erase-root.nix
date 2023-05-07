@@ -40,6 +40,7 @@
             ".config/Slack"
             ".config/StradewValley"
             ".config/discord"
+            ".config/exercism"
             ".config/gh"
             ".config/google-chrome"
             ".config/paradox-launcher-v2"
