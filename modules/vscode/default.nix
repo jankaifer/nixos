@@ -28,6 +28,7 @@
           cargo
           rustc
           rustfmt
+          rust-analyzer
 
           zlib
 
