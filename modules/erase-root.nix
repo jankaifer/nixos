@@ -61,6 +61,7 @@
             "Pictures"
             "VirtualBox VMs"
             "dev"
+            "exercism"
           ];
 
           files = [
