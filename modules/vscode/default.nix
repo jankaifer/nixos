@@ -26,7 +26,6 @@
 
           # Rust
           rustup
-          rust-analyzer
 
           zlib
 
