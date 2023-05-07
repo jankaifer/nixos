@@ -33,6 +33,7 @@
         users.pearman = {
           directories = [
             ".cache"
+            ".cargo"
             ".config/Bitwarden"
             ".config/BraveSoftware"
             ".config/Code"
