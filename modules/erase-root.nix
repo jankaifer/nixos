@@ -34,6 +34,7 @@
           directories = [
             ".cache"
             ".cargo"
+            ".rustup"
             ".config/Bitwarden"
             ".config/BraveSoftware"
             ".config/Code"
