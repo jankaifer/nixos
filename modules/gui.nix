@@ -192,6 +192,7 @@ in
           playerctl
           vlc
           xournalpp
+          audacity
 
           # Zoom is broken on Linux, the browser version works better
           # zoom-us
