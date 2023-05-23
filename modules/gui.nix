@@ -59,6 +59,7 @@ in
 
       nixpkgs.config.permittedInsecurePackages = [
         "electron-12.2.3" # Needed for etcher: https://github.com/NixOS/nixpkgs/issues/153537
+        "openssl-1.1.1t" # Needed for the newest gnome
       ];
 
       # Virtualbox
