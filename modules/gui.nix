@@ -144,7 +144,7 @@ in
             "workspaces-only-on-primary" = true;
             "edge-tiling" = true;
           };
-          "org/gnome/desktop/wm/preferences"."num-workspaces" = 8;
+          # "org/gnome/desktop/wm/preferences"."num-workspaces" = 8;
 
           # Shortcuts
           "org/gnome/desktop/wm/keybindings" = {
