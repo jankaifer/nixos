@@ -268,8 +268,6 @@ in
 
       # Prolog
       swiProlog
-
-      (import ./nixos-generators)
     ];
 
   home-manager = {
