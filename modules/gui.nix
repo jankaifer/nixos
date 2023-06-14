@@ -19,6 +19,14 @@ in
           This option should not be used on servers and live isos.
         '';
       };
+
+      idleDelay = lib.mkOption {
+        default = 300;
+        example = 60;
+        description = ''
+          How many seconds of inactivity will power-off screen. 0 is infinity
+        '';
+      };
     };
 
   config = lib.mkIf config.custom.gui.enable
@@ -130,6 +138,7 @@ in
             "show-battery-percentage" = true;
           };
           "org/gnome/desktop/interface"."show-battery-percentage" = true;
+          "org/gnome/desktop/session"."idle-delay" = gvariant.mkUint32 config.custom.gui.idleDelay;
 
           # Night light
           "org/gnome/settings-daemon/plugins/color" = {

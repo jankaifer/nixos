@@ -1,4 +1,5 @@
 { pkgs, config, lib, ... }:
+let gvariant = lib.hm.gvariant; in
 {
   imports = [
     ./hardware-configuration.nix
@@ -33,6 +34,7 @@
     fck.enable = true;
     games.enable = true;
     gui.enable = true;
+    gui.idleDelay = 0;
     vscode.enable = true;
     zsa.enable = true;
   };
