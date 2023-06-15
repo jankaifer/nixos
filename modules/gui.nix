@@ -143,7 +143,7 @@ in
           # Night light
           "org/gnome/settings-daemon/plugins/color" = {
             "night-light-enabled" = true;
-            "night-light-temperature" = gvariant.mkUint32 2300;
+            "night-light-temperature" = gvariant.mkUint32 2700;
           };
 
           # Analytics
