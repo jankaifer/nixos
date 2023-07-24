@@ -86,6 +86,7 @@
           directories = [ ];
           files = [
             "hyper/.config/hyper/.hyper.js"
+            "vscode/.config/Code/User/settings.json"
           ];
         };
       };
