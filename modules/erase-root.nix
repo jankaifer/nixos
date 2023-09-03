@@ -52,6 +52,7 @@
             ".factorio"
             ".local/share/Steam"
             ".local/share/Teraria"
+            ".local/share/Surviving Mars"
             ".local/share/direnv"
             ".local/share/flatpak"
             ".local/share/fnm"
