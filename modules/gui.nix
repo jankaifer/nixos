@@ -170,7 +170,7 @@ in
             "toggle-tiled-left" = [ "<Shift><Super>n" "<Shift><Super>Left" ];
             "toggle-tiled-right" = [ "<Shift><Super>o" "<Shift><Super>Right" ];
           };
-          "org/gnome/settings-daemon/plugins/media-keys"."screensaver" = [ "<Super>l" ];
+          "org/gnome/settings-daemon/plugins/media-keys"."screensaver" = [ "<Super>u" ];
 
           # Extensions
           # schema for that extension: https://github.com/pop-os/shell/blob/30bf682bf85a59f19e41621530df0a914e89f1f2/schemas/org.gnome.shell.extensions.pop-shell.gschema.xml
