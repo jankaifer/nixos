@@ -65,9 +65,13 @@ in
       services.flatpak.enable = true;
 
       nixpkgs.config.permittedInsecurePackages = [
-        "electron-12.2.3" # Needed for etcher: https://github.com/NixOS/nixpkgs/issues/153537
-        "openssl-1.1.1t" # Needed for the newest gnome
-        "openssl-1.1.1u" # Don't know why
+        # Needed for etcher: https://github.com/NixOS/nixpkgs/issues/153537
+        "electron-12.2.3"
+
+        # Don't know why
+        "openssl-1.1.1t"
+        "openssl-1.1.1u"
+        "openssl-1.1.1v"
       ];
 
       # Virtualbox
