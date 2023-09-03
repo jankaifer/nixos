@@ -50,7 +50,6 @@ in
       # '';
 
       services.logind.extraConfig = ''
-        HandlePowerKey=lock                    # just lock on power button
         HandleLidSwitch=suspend                # suspend when on battery
         HandleLidSwitchExternalPower=lock      # lock on AC 
         HandleLidSwitchDocked=lock             # lock on external monitor
