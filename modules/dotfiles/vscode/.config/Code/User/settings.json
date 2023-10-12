@@ -80,5 +80,6 @@
   "workbench.startupEditor": "none",
   "files.associations": {
     ".env*": "dotenv"
-  }
+  },
+  "terminal.integrated.enableMultiLinePasteWarning": false
 }
