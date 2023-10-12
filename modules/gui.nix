@@ -67,11 +67,6 @@ in
       nixpkgs.config.permittedInsecurePackages = [
         # Needed for etcher: https://github.com/NixOS/nixpkgs/issues/153537
         "electron-12.2.3"
-
-        # Don't know why
-        "openssl-1.1.1t"
-        "openssl-1.1.1u"
-        "openssl-1.1.1v"
       ];
 
       # Virtualbox

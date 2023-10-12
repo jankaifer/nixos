@@ -243,11 +243,7 @@ in
       gh
       steam-run
       fnm
-      nodePackages.degit
-      nodePackages.vercel
       virt-manager
-      atool
-      stripe-cli
       mullvad
       exercism
 
@@ -265,9 +261,6 @@ in
 
       # Rust
       rustup
-
-      # Prolog
-      swiProlog
     ];
 
   home-manager = {
