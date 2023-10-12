@@ -3,11 +3,8 @@
     <nixpkgs/nixos/modules/installer/sd-card/sd-image-aarch64.nix>
   ];
 
-  users.extraUsers.nixos.openssh.authorizedKeys.keys = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKHVIfXNuROWZRJhqcEGW9eohIH5Fg3PblefvMu+JaNw"
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEdzynkHX/sNuZW52iVAtzpAr+FbzRYq6oWDzV9KY3Vf"
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDzPJ15GG8/uHf86p7jg0Tud7lZ5rjySwAjlD4ZxEtZn"
-  ];
+  users.extraUsers.nixos.openssh.authorizedKeys.keys = import ../../modules/publicSshKeys.nix;
+
   users.users.nixos.group = "nixos";
   users.users.nixos.initialPassword = "nixos";
   users.users.nixos.extraGroups = [ "wheel" ];
@@ -31,7 +28,6 @@
   # Enable OpenSSH out of the box.
   services.sshd.enable = true;
 
-  # Wireless networking (1). You might want to enable this if your Pi is not attached via Ethernet.
   networking.wireless = {
     enable = true;
     interfaces = [ "wlan0" ];
