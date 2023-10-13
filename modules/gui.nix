@@ -209,8 +209,6 @@ in
 
           # Hyper is broken on latest unstable: https://github.com/NixOS/nixpkgs/issues/105961
           stablePkgs.hyper
-          # Hyper is broken on latest unstable: https://github.com/NixOS/nixpkgs/issues/105961
-          stablePkgs.insomnia
 
           # Electron evil apps
           atom
