@@ -12,3 +12,6 @@
 [submodule "modules/agenix"]
 	path = modules/agenix
 	url = https://github.com/ryantm/agenix
+[submodule "modules/nixpkgs-unstable"]
+	path = modules/nixpkgs-unstable
+	url = https://github.com/NixOS/nixpkgs

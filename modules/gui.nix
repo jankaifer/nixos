@@ -7,6 +7,12 @@ let
       sha256 = "0z6jy05yawj2pkinpyjlpym5niij2scxn6cd2w1p9wrfxw0hw8ra";
     })
     { };
+  unstablePkgs = import ./nixpkgs-unstable {
+    config.permittedInsecurePackages = [
+      # Needed for etcher: https://github.com/NixOS/nixpkgs/issues/153537
+      "electron-19.1.9"
+    ];
+  };
 in
 {
   options.custom.gui =
@@ -64,10 +70,6 @@ in
 
       services.flatpak.enable = true;
 
-      nixpkgs.config.permittedInsecurePackages = [
-        # Needed for etcher: https://github.com/NixOS/nixpkgs/issues/153537
-        "electron-12.2.3"
-      ];
 
       # Virtualbox
       # virtualisation.virtualbox.host.enable = true;
@@ -213,7 +215,7 @@ in
           # Electron evil apps
           atom
           bitwarden
-          etcher
+          unstablePkgs.etcher
           gitkraken
           signal-desktop
           slack
