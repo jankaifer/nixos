@@ -81,6 +81,7 @@
           files = [
             "hyper/.config/hyper/.hyper.js"
             "vscode/.config/Code/User/settings.json"
+            "vscode/.config/Code/User/keybindings.json"
           ];
         };
       };
