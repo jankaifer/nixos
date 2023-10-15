@@ -246,6 +246,7 @@ in
       virt-manager
       mullvad
       exercism
+      (pkgs.callPackage ./agenix/pkgs/agenix.nix { })
 
       # Nix
       nixpkgs-fmt

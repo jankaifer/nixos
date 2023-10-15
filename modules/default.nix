@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./agenix/modules/age.nix
     ./common.nix
     ./erase-root.nix
     ./framework.nix
