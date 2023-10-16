@@ -15,6 +15,7 @@
     ./real-vnc-viewer
     ./secrets.nix
     ./vscode
+    ./wifi-setup.nix
     ./zsa.nix
   ];
 }

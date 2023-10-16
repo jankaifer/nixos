@@ -22,6 +22,7 @@
     gui.enable = true;
     iso.enable = true;
     vscode.enable = true;
+    wifi-setup.enable = true;
     zsa.enable = true;
   };
 }

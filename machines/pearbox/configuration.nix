@@ -36,6 +36,7 @@ let gvariant = lib.hm.gvariant; in
     gui.enable = true;
     gui.idleDelay = 0;
     vscode.enable = true;
+    wifi-setup.enable = true;
     zsa.enable = true;
   };
 }

@@ -32,6 +32,7 @@
     games.enable = true;
     gui.enable = true;
     vscode.enable = true;
+    wifi-setup.enable = true;
     zsa.enable = true;
   };
 }
