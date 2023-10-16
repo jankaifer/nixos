@@ -27,8 +27,7 @@ in
         "lxd"
       ];
 
-      # Password file doesn't work for some reason
-      hashedPassword = lib.strings.fileContents ../passwordFile;
+      passwordFile = config.age.secrets.login-password.path;
     };
   };
 

@@ -2,7 +2,7 @@
 
 This repo tracks my adventures in the reproducible world of nix.
 
-If you are looking trying to get some inspiration for your config, make sure to checkout these:
+If you are looking for some inspiration for your config, make sure to check these:
 
 - https://github.com/dmarcoux/dotfiles-nixos
 - https://github.com/DAlperin/dotfiles
@@ -17,7 +17,7 @@ Other sources that I used:
 
 To install this config on a new machine, you can use [custom iso](./machines/jankaifer-iso/README.md).
 
-The following guide will install this config on exising nixos machine.
+The following guide will install this config on an existing nixos machine.
 
 1. Clone this repo with all submodules.
 
@@ -33,13 +33,13 @@ sudo mkdir /etc/nixos
 sudo ln -s /persist/home/pearman/dev/jankaifer/nixos /etc/nixos
 ```
 
-3. Create password file in root of this repo.
+3. Create a password file in the root of this repo.
 
 ```
 mkpasswd -m sha-512 > /etc/nixos/passwordFile
 ```
 
-4. Before first build you need to choose the correct configuration file by providing hostname of that machine (look at [machines](./machines) for list of all possible configurations):
+4. Before the first build you need to choose the correct configuration file by providing a hostname of that machine (look at [machines](./machines) for a list of all possible configurations):
 
 ```
 sudo /etc/nixos/scripts/rebuild.sh --hostname "pearframe" switch
@@ -63,7 +63,7 @@ dconf watch /
 
 I'm using agenix to save my secrets into this public config.
 
-To set update login password, you just need to run the following:
+To set an updated login password, you just need to run the following:
 
 ```
 cd secrets

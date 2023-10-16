@@ -81,5 +81,6 @@
   "files.associations": {
     ".env*": "dotenv"
   },
-  "terminal.integrated.enableMultiLinePasteWarning": false
+  "terminal.integrated.enableMultiLinePasteWarning": false,
+  "cSpell.userWords": ["agenix"]
 }

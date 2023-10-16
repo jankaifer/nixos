@@ -13,6 +13,7 @@
     ./iso.nix
     ./keyboard.nix
     ./real-vnc-viewer
+    ./secrets.nix
     ./vscode
     ./zsa.nix
   ];
