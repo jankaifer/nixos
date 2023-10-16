@@ -47,6 +47,24 @@
 
         boot.supportedFilesystems = [ "ntfs" ];
 
+        # Use the systemd-boot EFI boot loader.
+        boot.loader = {
+          grub.useOSProber = false;
+          systemd-boot.enable = true;
+          efi.canTouchEfiVariables = true;
+        };
+
+        # Audio
+        sound.enable = true;
+        hardware.pulseaudio.enable = false;
+        security.rtkit.enable = true;
+        services.pipewire = {
+          enable = true;
+          alsa.enable = true;
+          alsa.support32Bit = true;
+          pulse.enable = true;
+        };
+
         # Enable compiling on AArch64
         # https://rbf.dev/blog/2020/05/custom-nixos-build-for-raspberry-pis/#nixos-on-a-raspberry-pi
         boot.binfmt.emulatedSystems = [
