@@ -1,6 +1,6 @@
 { lib, ... }: {
   imports = [
-    <nixpkgs/nixos/modules/installer/cd-dvd/sd-image-aarch64.nix>
+    <nixpkgs/nixos/modules/installer/sd-card/sd-image-aarch64-installer.nix>
     ../../modules
   ];
 
@@ -10,5 +10,5 @@
   sdImage.compressImage = false;
 
   # Enable OpenSSH out of the box.
-  services.openssh.enabled = true;
+  services.openssh.enable = true;
 }
