@@ -260,6 +260,7 @@
             mullvad
             exercism
             (pkgs.callPackage ./agenix/pkgs/agenix.nix { })
+            nixos-generators
 
             # Nix
             nixpkgs-fmt
