@@ -30,6 +30,7 @@ let gvariant = lib.hm.gvariant; in
 
   # Options
   custom = {
+    common.enable = true;
     erase-root.enable = true;
     fck.enable = true;
     games.enable = true;

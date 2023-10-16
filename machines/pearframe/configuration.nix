@@ -26,6 +26,7 @@
 
   # Options
   custom = {
+    common.enable = true;
     erase-root.enable = true;
     fck.enable = true;
     framework.enable = true;
