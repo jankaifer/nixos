@@ -189,6 +189,11 @@ in
         gnome-terminal.enable = true;
       };
 
+      # Gnome stuff I don't want
+      environment.gnome.excludePackages = [
+        pkgs.gnome-console
+      ];
+
       environment.systemPackages = with pkgs;
         [
           brave
