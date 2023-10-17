@@ -185,6 +185,7 @@ in
       programs = {
         # To allow configuration of gnome
         dconf.enable = true;
+        gnome-terminal.enable = true;
       };
 
       environment.systemPackages = with pkgs;
