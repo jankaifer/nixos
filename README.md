@@ -69,3 +69,15 @@ To set an updated login password, you just need to run the following:
 cd secrets
 mkpasswd -m sha-512 | agenix -e password-file.age
 ```
+
+## Create raspberry pi minimal iso
+
+It's easy to create new image files for raspberry with my custom minimal config. They contain my wifi passwords with running openssh daemon out of the box.
+
+To create the image, just run:
+
+```
+nixos-generate -f sd-aarch64-installer --system aarch64-linux -c machines/minimal-raspberry-config/configuration.nix -I nixpkgs=$(pwd)/modules/nixpkgs
+```
+
+It prints some nix store path where you can find the final image file. You can flash that using `etcher` on an sd card.
