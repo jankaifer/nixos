@@ -1,12 +1,6 @@
 { config, lib, pkgs, ... }:
 
 let
-  stablePkgs = import
-    (fetchTarball {
-      url = https://github.com/NixOS/nixpkgs/archive/60c0f762658916a4a5b5a36b3e06486f8301daf4.tar.gz;
-      sha256 = "0z6jy05yawj2pkinpyjlpym5niij2scxn6cd2w1p9wrfxw0hw8ra";
-    })
-    { };
   unstablePkgs = import ./nixpkgs-unstable {
     config.permittedInsecurePackages = [
       # Needed for etcher: https://github.com/NixOS/nixpkgs/issues/153537
@@ -106,7 +100,7 @@ in
           "org/gnome/shell"."favorite-apps" = [
             "brave-browser.desktop"
             "code.desktop"
-            "hyper.desktop"
+            "org.gnome.Terminal.desktop"
             "org.gnome.Settings.desktop"
             "org.gnome.Nautilus.desktop"
             "signal-desktop.desktop"
@@ -216,9 +210,6 @@ in
 
           # Zoom is broken on Linux, the browser version works better
           # zoom-us
-
-          # Hyper is broken on latest unstable: https://github.com/NixOS/nixpkgs/issues/105961
-          stablePkgs.hyper
 
           # Electron evil apps
           atom
