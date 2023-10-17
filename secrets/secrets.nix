@@ -1,5 +1,5 @@
 let
-  ghKeys = import ../modules/publicSshKeys.nix;
+  ghKeys = import ../modules/public-ssh-keys.nix;
 in
 {
   "wifi-passwords.age".publicKeys = ghKeys;

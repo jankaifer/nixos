@@ -5,14 +5,15 @@
     ./agenix/modules/age.nix
     ./common.nix
     ./erase-root.nix
+    ./fck.nix
     ./framework.nix
     ./games.nix
     ./gui.nix
     ./home-manager/nixos
     ./impermanence/nixos.nix
-    ./keyboard.nix
     ./real-vnc-viewer
     ./secrets.nix
+    ./ssh-server.nix
     ./vscode
     ./wifi-setup.nix
     ./zsa.nix
