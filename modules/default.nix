@@ -3,6 +3,7 @@
 {
   imports = [
     ./agenix/modules/age.nix
+    ./basic-cli.nix
     ./common.nix
     ./erase-root.nix
     ./fck.nix
