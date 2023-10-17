@@ -248,53 +248,15 @@
 
         };
 
-        environment.systemPackages = with pkgs;
+        environment.systemPackages = pkgs.lib.mkMerge (
           [
-            # Basic utils
-            wget
-            iw
-            tree
-            lshw
-            git
-            gnumake
-            gcc
-            htop
-            zsh-you-should-use
-            acpi
-            parted
-            direnv
-            cryptsetup
-            binutils
-            killall
-            libnotify
-            unzip
-            bitwarden-cli
-            wally-cli
-            niv
-            gh
-            steam-run
-            fnm
-            virt-manager
-            mullvad
-            exercism
-            (pkgs.callPackage ./agenix/pkgs/agenix.nix { })
-            nixos-generators
-
-            # Nix
-            nixpkgs-fmt
-            nix-output-monitor
-
-            # Python
-            python38Full
-            black
-
             # Docker
-            docker
-            docker-compose
+            pkgs.docker
+            pkgs.docker-compose
 
             # Rust
-            rustup
-          ];
+            pkgs.rustup
+          ]);
 
         home-manager = {
           useUserPackages = true;

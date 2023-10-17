@@ -212,6 +212,7 @@ in
           vlc
           xournalpp
           audacity
+          virt-manager
 
           # Zoom is broken on Linux, the browser version works better
           # zoom-us
