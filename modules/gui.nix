@@ -114,6 +114,13 @@ in
             "spotify.desktop"
           ];
 
+          # Gnome Terminal
+          "org/gnome/terminal/legacy" = {
+            "theme-variant" = "dark";
+            "keybindings/copy" = "<Primary>c";
+            "keybindings/paste" = "<Primary>v";
+          };
+
           # Over-amplification
           "org/gnome/desktop/sound"."allow-volume-above-100-percent" = true;
 
