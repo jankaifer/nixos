@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  options.custom.erase-root =
+  options.custom.impermanence =
     {
       enable = lib.mkOption {
         default = false;
@@ -12,7 +12,7 @@
       };
     };
 
-  config = lib.mkIf config.custom.erase-root.enable
+  config = lib.mkIf config.custom.impermanence.enable
     {
       environment.persistence."/persist" = {
         hideMounts = true;

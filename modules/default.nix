@@ -5,7 +5,7 @@
     ./agenix/modules/age.nix
     ./basic-cli.nix
     ./common.nix
-    ./erase-root.nix
+    ./impermanence.nix
     ./fck.nix
     ./framework.nix
     ./games.nix

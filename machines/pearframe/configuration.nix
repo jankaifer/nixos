@@ -28,7 +28,7 @@
   custom = {
     basic-cli.enable = true;
     common.enable = true;
-    erase-root.enable = true;
+    impermanence.enable = true;
     fck.enable = true;
     framework.enable = true;
     games.enable = true;
