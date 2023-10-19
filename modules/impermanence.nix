@@ -61,8 +61,6 @@
           ];
 
           files = [
-            ".zsh_history"
-            ".bash_history"
             ".config/monitors.xml"
           ];
         };
