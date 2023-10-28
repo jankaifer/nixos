@@ -25,6 +25,21 @@
           "nixos-config=${nixosRepoPath}/machines/${config.networking.hostName}/configuration.nix"
         ];
 
+      environment.shellAliases = lib.mkForce
+        {
+          pls = "sudo";
+          rebuild = "pls ${nixosRepoPath}/scripts/rebuild.sh switch";
+          freeze-vscode-extensions = "${nixosRepoPath}/scripts/freeze-vscode-extensions.sh";
+          n = "pnpm";
+          y = "yarn";
+          gpf = "git push --force-with-lease";
+          gfa = "git fetch --all";
+          gr = "git rebase";
+          gm = "git merge";
+          gps = "git push";
+          gpl = "git pull";
+        };
+
       # Link /etc/nixos to this repo
       environment.etc.nixos = {
         enable = true;

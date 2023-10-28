@@ -44,8 +44,6 @@
       environment.shellAliases = lib.mkForce
         {
           pls = "sudo";
-          rebuild = "pls ${nixosRepoPath}/scripts/rebuild.sh switch";
-          freeze-vscode-extensions = "${nixosRepoPath}/scripts/freeze-vscode-extensions.sh";
           n = "pnpm";
           y = "yarn";
           gpf = "git push --force-with-lease";
