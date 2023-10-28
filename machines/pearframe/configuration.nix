@@ -28,6 +28,7 @@
   custom = {
     basic-cli.enable = true;
     common.enable = true;
+    common-workstation.enable = true;
     impermanence.enable = true;
     fck.enable = true;
     framework.enable = true;

@@ -9,6 +9,7 @@
 
   custom = {
     basic-cli.enable = true;
+    common.enable = true;
     fck.enable = true;
     ssh-server.enable = true;
   };
