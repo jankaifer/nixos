@@ -5,8 +5,6 @@ let
     config.permittedInsecurePackages = [
       # Needed for etcher: https://github.com/NixOS/nixpkgs/issues/153537
       "electron-19.1.9"
-      # Needed by bitwarden
-      "electron-24.8.6"
     ];
   };
 in
@@ -218,7 +216,7 @@ in
 
           # Electron evil apps
           atom
-          bitwarden
+          unstablePkgs.bitwarden
           unstablePkgs.etcher
           gitkraken
           signal-desktop
