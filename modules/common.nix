@@ -13,16 +13,7 @@
     };
 
   config = lib.mkIf config.custom.common.enable (
-    let
-      nixosRepoPath = "/persist/home/pearman/dev/jankaifer/nixos";
-    in
     {
-      nix.nixPath =
-        [
-          "nixpkgs=${nixosRepoPath}/modules/nixpkgs"
-          "nixos-config=${nixosRepoPath}/machines/${config.networking.hostName}/configuration.nix"
-        ];
-
       nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
       # Select internationalisation properties.
@@ -49,19 +40,6 @@
       security.sudo.extraConfig = ''
         Defaults        timestamp_timeout=15
       '';
-
-      # Link /etc/nixos to this repo
-      environment.etc.nixos = {
-        enable = true;
-        source = nixosRepoPath;
-        target = "nixos";
-      };
-
-      environment.etc.vimrc = {
-        enable = true;
-        source = "${nixosRepoPath}/modules/dotfiles/vim/.vimrc";
-        target = "vimrc";
-      };
 
       environment.shellAliases = lib.mkForce
         {
@@ -102,10 +80,6 @@
           enable = true;
           enableCompletion = true;
           enableBashCompletion = true;
-          promptInit = ''
-            eval "$(direnv hook zsh)"
-            eval "$(fnm env --use-on-cd --version-file-strategy=recursive)"
-          '';
         };
 
         vim.defaultEditor = true;
