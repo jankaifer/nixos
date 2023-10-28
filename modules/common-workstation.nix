@@ -124,6 +124,60 @@
           eval "$(fnm env --use-on-cd --version-file-strategy=recursive)"
         '';
 
+        nix-ld = {
+          enable = true;
+          libraries = with pkgs; [
+            alsa-lib
+            at-spi2-atk
+            at-spi2-core
+            atk
+            cairo
+            cups
+            curl
+            dbus
+            expat
+            fontconfig
+            freetype
+            fuse3
+            gdk-pixbuf
+            glib
+            gtk3
+            icu
+            libGL
+            libappindicator-gtk3
+            libdrm
+            libnotify
+            libpulseaudio
+            libuuid
+            libxkbcommon
+            mesa
+            musl
+            nspr
+            nss
+            openssl
+            pango
+            pipewire
+            stdenv.cc.cc
+            systemd
+            xorg.libX11
+            xorg.libXScrnSaver
+            xorg.libXcomposite
+            xorg.libXcursor
+            xorg.libXdamage
+            xorg.libXext
+            xorg.libXfixes
+            xorg.libXi
+            xorg.libXrandr
+            xorg.libXrender
+            xorg.libXtst
+            xorg.libxcb
+            xorg.libxkbfile
+            xorg.libxshmfence
+            zlib
+            zlib
+          ];
+        };
+
         adb.enable = true;
         dconf.enable = true;
       };
@@ -197,6 +251,29 @@
 
       # Virt manager
       virtualisation.libvirtd.enable = true;
+
+      fonts.fonts = with pkgs; [
+        fira-code
+        fira-code-symbols
+        nerdfonts
+        siji
+      ];
+
+      virtualisation.docker = {
+        enable = true;
+        enableOnBoot = true;
+        storageDriver = "btrfs";
+
+      };
+
+      environment.systemPackages = [
+        # Docker
+        pkgs.docker
+        pkgs.docker-compose
+
+        # Rust
+        pkgs.rustup
+      ];
     }
   );
 }
