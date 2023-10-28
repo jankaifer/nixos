@@ -1,41 +1,27 @@
 { config, lib, pkgs, ... }:
 
 {
-  options.custom.basic-cli =
+  options.custom.cli-server =
     {
       enable = lib.mkOption {
         default = false;
         example = true;
         description = ''
-          Enables my default shell as login shell and installs basic CLI utils.
+          Set's up shell and install basic CLI tools I need on server.
         '';
       };
     };
 
-  config = lib.mkIf config.custom.basic-cli.enable {
+  config = lib.mkIf config.custom.cli-server.enable {
     environment.systemPackages = [
       (pkgs.callPackage ./agenix/pkgs/agenix.nix { })
       pkgs.acpi
       pkgs.binutils
-      pkgs.bitwarden-cli
-      pkgs.cryptsetup
-      pkgs.direnv
-      pkgs.exercism
-      pkgs.fnm
-      pkgs.gcc
-      pkgs.gh
       pkgs.git
-      pkgs.gnumake
       pkgs.htop
-      pkgs.iw
       pkgs.killall
-      pkgs.libnotify
       pkgs.lshw
-      pkgs.mullvad
-      pkgs.niv
-      pkgs.nixos-generators
       pkgs.parted
-      pkgs.steam-run
       pkgs.tree
       pkgs.unzip
       pkgs.wget

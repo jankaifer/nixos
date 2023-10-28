@@ -26,8 +26,7 @@
 
   # Options
   custom = {
-    basic-cli.enable = true;
-    common.enable = true;
+    cli-workstation.enable = true;
     common-workstation.enable = true;
     impermanence.enable = true;
     fck.enable = true;

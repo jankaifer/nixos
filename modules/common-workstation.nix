@@ -17,6 +17,8 @@
       nixosRepoPath = "/persist/home/pearman/dev/jankaifer/nixos";
     in
     {
+      custom.common.enable = true;
+
       # Setup user
       users = {
         mutableUsers = false;

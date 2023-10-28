@@ -8,7 +8,7 @@
   sdImage.compressImage = false;
 
   custom = {
-    basic-cli.enable = true;
+    cli-server.enable = true;
     common.enable = true;
     fck.enable = true;
     ssh-server.enable = true;

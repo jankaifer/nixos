@@ -3,8 +3,10 @@
 {
   imports = [
     ./agenix/modules/age.nix
-    ./basic-cli.nix
+    ./cli-server.nix
+    ./cli-workstation.nix
     ./common.nix
+    ./common-workstation.nix
     ./impermanence.nix
     ./fck.nix
     ./framework.nix
