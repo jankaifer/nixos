@@ -118,11 +118,29 @@
         target = "auto-cpufreq.conf";
       };
 
+      environment.sessionVariables = rec {
+        XDG_CACHE_HOME = "\${HOME}/.cache";
+        XDG_CONFIG_HOME = "\${HOME}/.config";
+        XDG_BIN_HOME = "\${HOME}/.local/bin";
+        XDG_DATA_HOME = "\${HOME}/.local/share";
+
+        EDITOR = "vim";
+
+        PATH = [
+          "\${XDG_BIN_HOME}"
+        ];
+      };
+
       programs = {
-        zsh.promptInit = ''
-          eval "$(direnv hook zsh)"
-          eval "$(fnm env --use-on-cd --version-file-strategy=recursive)"
-        '';
+        zsh = {
+          enable = true;
+          enableCompletion = true;
+          enableBashCompletion = true;
+          promptInit = ''
+            eval "$(direnv hook zsh)"
+            eval "$(fnm env --use-on-cd --version-file-strategy=recursive)"
+          '';
+        };
 
         nix-ld = {
           enable = true;
@@ -181,6 +199,9 @@
         adb.enable = true;
         dconf.enable = true;
       };
+
+      # Use ZSH
+      users.defaultUserShell = pkgs.zsh;
 
       home-manager = {
         useUserPackages = true;

@@ -30,6 +30,10 @@
       pkgs.niv
       pkgs.nixos-generators
       pkgs.steam-run
+
+      # Python
+      pkgs.black
+      pkgs.python3Full
     ];
   };
 }

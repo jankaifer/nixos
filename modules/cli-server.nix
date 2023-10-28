@@ -30,10 +30,6 @@
       # Nix
       pkgs.nix-output-monitor
       pkgs.nixpkgs-fmt
-
-      # Python
-      pkgs.black
-      pkgs.python3Full
     ];
   };
 }
