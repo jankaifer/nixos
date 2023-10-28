@@ -19,6 +19,25 @@
     {
       custom.common.enable = true;
 
+      nix.nixPath =
+        [
+          "nixpkgs=${nixosRepoPath}/modules/nixpkgs"
+          "nixos-config=${nixosRepoPath}/machines/${config.networking.hostName}/configuration.nix"
+        ];
+
+      # Link /etc/nixos to this repo
+      environment.etc.nixos = {
+        enable = true;
+        source = nixosRepoPath;
+        target = "nixos";
+      };
+
+      environment.etc.vimrc = {
+        enable = true;
+        source = "${nixosRepoPath}/modules/dotfiles/vim/.vimrc";
+        target = "vimrc";
+      };
+
       # Setup user
       users = {
         mutableUsers = false;
@@ -85,6 +104,11 @@
       };
 
       programs = {
+        zsh.promptInit = ''
+          eval "$(direnv hook zsh)"
+          eval "$(fnm env --use-on-cd --version-file-strategy=recursive)"
+        '';
+
         adb.enable = true;
         dconf.enable = true;
       };
