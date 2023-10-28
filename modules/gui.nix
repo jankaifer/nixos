@@ -5,6 +5,8 @@ let
     config.permittedInsecurePackages = [
       # Needed for etcher: https://github.com/NixOS/nixpkgs/issues/153537
       "electron-19.1.9"
+      # Needed by bitwarden
+      "electron-24.8.6"
     ];
   };
 in
@@ -213,9 +215,6 @@ in
           xournalpp
           audacity
           virt-manager
-
-          # Zoom is broken on Linux, the browser version works better
-          # zoom-us
 
           # Electron evil apps
           atom
