@@ -13,6 +13,7 @@
     cli-server.enable = true;
     common.enable = true;
     fck.enable = true;
+    ssh-keys-autogenerate.enable = true;
     ssh-server.enable = true;
   };
 }

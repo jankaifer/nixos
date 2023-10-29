@@ -16,6 +16,7 @@
     ./impermanence/nixos.nix
     ./real-vnc-viewer
     ./secrets.nix
+    ./ssh-keys-autogenerate.nix
     ./ssh-server.nix
     ./vscode
     ./wifi-setup.nix
