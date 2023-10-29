@@ -7,6 +7,8 @@
   # bzip2 compression takes loads of time with emulation, skip it.
   sdImage.compressImage = false;
 
+  networking.hostName = "raspberry-minimal-install";
+
   custom = {
     cli-server.enable = true;
     common.enable = true;
