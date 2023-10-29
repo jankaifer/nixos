@@ -30,7 +30,7 @@
           "/etc/machine-id"
         ];
 
-        users.pearman = {
+        users."${config.custom.options.username}" = {
           directories = [
             ".cache"
             ".cargo"
@@ -68,7 +68,7 @@
 
       programs.fuse.userAllowOther = true;
 
-      home-manager.users.pearman = {
+      home-manager.users."${config.custom.options.username}" = {
         imports = [ ./impermanence/home-manager.nix ];
 
         # Files that we want to track in git

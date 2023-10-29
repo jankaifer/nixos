@@ -67,7 +67,7 @@ in
 
       # Virtualbox
       # virtualisation.virtualbox.host.enable = true;
-      # users.extraGroups.vboxusers.members = [ "pearman" ];
+      # users.extraGroups.vboxusers.members = [ config.custom.options.username ];
 
       # Use custom user profile pic
       boot.postBootCommands =
@@ -84,12 +84,15 @@ in
           echo '${gdm_user_conf}' > /var/lib/AccountsService/users/perman
         '';
 
-      home-manager.users.pearman = { lib, ... }: {
+      home-manager.users."${config.custom.options.username}" = { lib, ... }: {
         dconf.settings = let gvariant = lib.hm.gvariant; in {
           # Allow fractional scaling in wayland - produces blurry image
           # "org/gnome/mutter" = {
           #   experimental-features = [ "scale-monitor-framebuffer" ];
           # };
+
+          # Wallpaper
+          "org/gnome/desktop/background".picture-uri = config.custom.options.wallpaper-uri;
 
           # Used keyboad layout
           "org/gnome/desktop/input-sources".sources = [

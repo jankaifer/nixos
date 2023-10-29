@@ -1,22 +1,21 @@
 { config, lib, pkgs, ... }@args:
 
 {
-  options.custom.common =
-    {
-      enable = lib.mkOption {
-        default = false;
-        example = true;
-        description = ''
-          Common config
-        '';
-      };
+  options.custom.common = {
+    enable = lib.mkOption {
+      default = false;
+      example = true;
+      description = ''
+        Common config
+      '';
     };
+  };
 
   config = lib.mkIf config.custom.common.enable
     (
       {
         nix.settings.experimental-features = [ "nix-command" "flakes" ];
-        nix.settings.trusted-users = [ "nixos" "pearman" ];
+        nix.settings.trusted-users = [ config.custom.options.username ];
 
         # Select internationalisation properties.
         i18n.defaultLocale = "en_US.UTF-8";

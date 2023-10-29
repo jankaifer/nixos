@@ -21,9 +21,6 @@
 
   networking.firewall.enable = false;
 
-  # Wallpaper
-  home-manager.users.pearman.dconf.settings."org/gnome/desktop/background".picture-uri = "file://" + ../../wallpapers/nix-wallpaper-simple-dark-gray.png;
-
   # Options
   custom = {
     cli-workstation.enable = true;
@@ -36,5 +33,10 @@
     vscode.enable = true;
     wifi-setup.enable = true;
     zsa.enable = true;
+
+    options = {
+      username = "pearman";
+      wallpaper-uri = "file://" + ../../wallpapers/nix-wallpaper-simple-dark-gray.png;
+    };
   };
 }

@@ -19,9 +19,6 @@ let gvariant = lib.hm.gvariant; in
 
   networking.firewall.enable = false;
 
-  # Wallpaper
-  home-manager.users.pearman.dconf.settings."org/gnome/desktop/background".picture-uri = "file://" + ../../wallpapers/space.jpg;
-
   # Install nvidia drivers
   services.xserver.videoDrivers = [ "nvidia" ];
   # services.xserver.videoDrivers = [ "nouveau" ];
@@ -40,5 +37,10 @@ let gvariant = lib.hm.gvariant; in
     vscode.enable = true;
     wifi-setup.enable = true;
     zsa.enable = true;
-  };
-}
+
+    options = {
+      username = "pearman";
+      wallpaper-uri = "file://" + ../../wallpapers/space.jpg;
+    }
+      };
+  }

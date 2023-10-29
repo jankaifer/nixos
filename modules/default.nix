@@ -5,15 +5,16 @@
     ./agenix/modules/age.nix
     ./cli-server.nix
     ./cli-workstation.nix
-    ./common.nix
     ./common-workstation.nix
-    ./impermanence.nix
+    ./common.nix
     ./fck.nix
     ./framework.nix
     ./games.nix
     ./gui.nix
     ./home-manager/nixos
+    ./impermanence.nix
     ./impermanence/nixos.nix
+    ./options.nix
     ./real-vnc-viewer
     ./secrets.nix
     ./ssh-keys-autogenerate.nix

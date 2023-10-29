@@ -14,7 +14,7 @@
 
   config = lib.mkIf config.custom.common-workstation.enable (
     let
-      nixosRepoPath = "/persist/home/pearman/dev/jankaifer/nixos";
+      nixosRepoPath = "/persist/home/${config.custom.options.username}/dev/jankaifer/nixos";
     in
     {
       custom.common.enable = true;
@@ -56,7 +56,7 @@
       # Setup user
       users = {
         mutableUsers = false;
-        users.pearman = {
+        users."${config.custom.options.username}" = {
           isNormalUser = true;
           description = "Jan Kaifer";
           extraGroups = [
@@ -205,7 +205,7 @@
 
       home-manager = {
         useUserPackages = true;
-        users.pearman = {
+        users."${config.custom.options.username}" = {
           nixpkgs.config.allowUnfree = true;
 
           programs = {

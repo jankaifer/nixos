@@ -25,7 +25,7 @@
         });
       '';
 
-      home-manager.users.pearman.xdg.desktopEntries.custom-steam = {
+      home-manager.users."${config.custom.options.username}".xdg.desktopEntries.custom-steam = {
         categories = [ "Network" "FileTransfer" "Game" ];
         comment = "Application for managing and playing games on Steam";
         exec = "GDK_SCALE=2 steam %U";

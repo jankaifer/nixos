@@ -39,7 +39,7 @@
   services.openssh.enable = true;
   users = {
     mutableUsers = false;
-    users.pearman = {
+    users."${config.custom.options.username}" = {
       isNormalUser = true;
       description = "Jan Kaifer";
       extraGroups = [

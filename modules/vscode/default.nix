@@ -13,7 +13,7 @@
     };
 
   config = lib.mkIf config.custom.vscode.enable {
-    home-manager.users.pearman.programs.vscode = {
+    home-manager.users."${config.custom.options.username}".programs.vscode = {
       enable = true;
       package = pkgs.vscode.fhsWithPackages (
         ps: with ps; [

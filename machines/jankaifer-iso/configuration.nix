@@ -13,7 +13,7 @@
 
   services.xserver.displayManager.autoLogin = lib.mkForce {
     enable = true;
-    user = "pearman";
+    user = config.custom.options.username;
   };
 
   # Options
@@ -24,5 +24,9 @@
     vscode.enable = true;
     wifi-setup.enable = true;
     zsa.enable = true;
+
+    options = {
+      username = "jankaifer";
+    };
   };
 }
