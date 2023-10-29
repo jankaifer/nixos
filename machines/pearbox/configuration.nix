@@ -34,6 +34,7 @@ let gvariant = lib.hm.gvariant; in
     games.enable = true;
     gui.enable = true;
     gui.idleDelay = 0;
+    ssh-server.enable = true;
     vscode.enable = true;
     wifi-setup.enable = true;
     zsa.enable = true;
