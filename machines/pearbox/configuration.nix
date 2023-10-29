@@ -41,6 +41,6 @@ let gvariant = lib.hm.gvariant; in
     options = {
       username = "pearman";
       wallpaper-uri = "file://" + ../../wallpapers/space.jpg;
-    }
-      };
-  }
+    };
+  };
+}
