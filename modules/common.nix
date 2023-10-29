@@ -16,11 +16,7 @@
     (
       {
         nix.settings.experimental-features = [ "nix-command" "flakes" ];
-        nix.settings.trusted-public-keys = [
-          # This is the default key used by public nix cache
-          # https://github.com/NixOS/nixpkgs/blob/1a3c95e3b23b3cdb26750621c08cc2f1560cb883/nixos/modules/config/nix.nix#L367C31-L367C95
-          "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-        ] ++ (import ./public-ssh-keys.nix);
+        nix.settings.trusted-users = [ "nixos" "pearman" ];
 
         # Select internationalisation properties.
         i18n.defaultLocale = "en_US.UTF-8";
