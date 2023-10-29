@@ -81,3 +81,11 @@ nixos-generate -f sd-aarch64-installer --system aarch64-linux -c machines/minima
 ```
 
 It prints some nix store path where you can find the final image file. You can flash that using `etcher` on an sd card.
+
+## Deploy to remote machine
+
+It's easy to deploy configuration to remote machine, just use the following command (and tweak target machine and configuration deployed):
+
+```
+NIXOS_CONFIG=/etc/nixos/machines/minimal-raspberry-config/configuration.nix nixos-rebuild build --target-host nixos@192.168.88.30 --use-remote-sudo
+```
