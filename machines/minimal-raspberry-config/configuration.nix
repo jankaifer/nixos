@@ -10,8 +10,14 @@
   networking.hostName = "raspberry-minimal-install";
 
   # When building on x86 machine, use emulation
-  nixpkgs.buildPlatform.system = "aarch64-linux";
-  nixpkgs.hostPlatform.system = "aarch64-linux";
+  nixpkgs.buildPlatform = {
+    config = "aarch64-unknown-linux-gnu";
+    system = "aarch64-linux";
+  };
+  nixpkgs.hostPlatform = {
+    config = "aarch64-unknown-linux-gnu";
+    system = "aarch64-linux";
+  };
 
   custom = {
     cli-server.enable = true;
