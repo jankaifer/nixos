@@ -77,7 +77,7 @@ It's easy to create new image files for raspberry with my custom minimal config.
 To create the image, just run:
 
 ```
-nixos-generate -f sd-aarch64-installer --system aarch64-linux -c machines/minimal-raspberry-config/configuration.nix -I nixpkgs=$(pwd)/modules/nixpkgs
+nixos-generate -f sd-aarch64-installer --system aarch64-linux -c /etc/nixos/machines/minimal-raspberry-config/configuration.nix -I nixpkgs=/etc/nixos/modules/nixpkgs
 ```
 
 It prints some nix store path where you can find the final image file. You can flash that using `etcher` on an sd card.
