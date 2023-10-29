@@ -45,7 +45,7 @@ mkpasswd -m sha-512 > /etc/nixos/passwordFile
 sudo /etc/nixos/scripts/rebuild.sh --hostname "pearframe" switch
 ```
 
-## Usefull tips
+## Usefultips
 
 To apply configuration use:
 
