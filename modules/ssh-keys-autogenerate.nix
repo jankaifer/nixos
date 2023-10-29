@@ -19,7 +19,6 @@
           path = "/home/nixos/.ssh/id_ed25519";
           type = "ed25519";
         }
-        i
       ];
     };
 }
