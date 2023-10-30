@@ -14,6 +14,9 @@ let gvariant = lib.hm.gvariant; in
   fileSystems."/".neededForBoot = true;
   fileSystems."/home".neededForBoot = true;
 
+  # Root needs to have correct permissions otherwise openssh will complain and won't work
+  fileSystems."/".options = [ "mode=755" ];
+
   # Host name
   networking.hostName = "pearbox";
 
