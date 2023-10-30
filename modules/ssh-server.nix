@@ -15,6 +15,7 @@
   config = lib.mkIf config.custom.ssh-server.enable
     {
       services.openssh.enable = true;
+      services.openssh.settings.PasswordAuthentication = false;
       users.users."${config.custom.options.username}".openssh.authorizedKeys.keys = import ./public-ssh-keys.nix;
     };
 }
