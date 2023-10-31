@@ -19,6 +19,9 @@
         directories = [
           "/etc/NetworkManager/system-connections"
           "/etc/mullvad-vpn"
+          # I need to persist ssh keys, this persists a bit more,
+          # but I have no idea how to persist just the keys without having to create them manually
+          "/etc/ssh"
           "/var/lib/bluetooth"
           "/var/lib/docker"
           "/var/lib/flatpak"
