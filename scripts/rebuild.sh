@@ -20,6 +20,11 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
+# Default OTHER_ARGS to "switch" if it's empty
+if [ ${#OTHER_ARGS[@]} -eq 0 ]; then
+  OTHER_ARGS=("switch")
+fi
+
 if [ -n "$HOSTNAME" ]; then
     REPO_PATH="/etc/nixos"
     MACHINE_PATH="$REPO_PATH/machines/$HOSTNAME"
@@ -28,9 +33,5 @@ if [ -n "$HOSTNAME" ]; then
 fi
 
 echo nixos-rebuild "${I_ARGS[@]}" "${OTHER_ARGS[@]}"
-if [ "${OTHER_ARGS[0]}" == "switch" ];then
-  exec nixos-rebuild "${I_ARGS[@]}" "${OTHER_ARGS[@]}" |& nom
-else
-  exec nixos-rebuild "${I_ARGS[@]}" "${OTHER_ARGS[@]}"
-fi
+exec nixos-rebuild "${I_ARGS[@]}" "${OTHER_ARGS[@]}" |& nom
 
