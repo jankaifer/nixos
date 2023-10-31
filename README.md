@@ -88,7 +88,7 @@ It's easy to deploy configuration to remote machine, just use the following comm
 
 ```bash
 # Build and deploy new config
-NIXOS_CONFIG=/etc/nixos/machines/minimal-raspberry-config/configuration.nix nixos-rebuild --target-host nixos@192.168.88.30 --use-remote-sudo boot |& nom
+NIXOS_CONFIG=/etc/nixos/machines/raspberry-1/configuration.nix nixos-rebuild --target-host raspberry-1.local --use-remote-sudo boot |& nom
 # Reboot remote machine to use new config
-ssh nixos@192.168.88.30 'sudo reboot'
+ssh raspberry-1.local 'sudo reboot'
 ```

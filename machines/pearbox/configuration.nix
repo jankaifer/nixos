@@ -17,9 +17,6 @@ let gvariant = lib.hm.gvariant; in
   # Root needs to have correct permissions otherwise openssh will complain and won't work
   fileSystems."/".options = [ "mode=755" ];
 
-  # Host name
-  networking.hostName = "pearbox";
-
   networking.firewall.enable = false;
 
   # Install nvidia drivers
@@ -43,7 +40,7 @@ let gvariant = lib.hm.gvariant; in
     zsa.enable = true;
 
     options = {
-      username = "pearman";
+      hostName = "pearbox";
       wallpaper-uri = "file://" + ../../wallpapers/space.jpg;
     };
   };

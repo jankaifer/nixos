@@ -16,9 +16,6 @@
   fileSystems."/".neededForBoot = true;
   fileSystems."/home".neededForBoot = true;
 
-  # Host name
-  networking.hostName = "pearframe";
-
   networking.firewall.enable = false;
 
   # Options
@@ -35,7 +32,7 @@
     zsa.enable = true;
 
     options = {
-      username = "pearman";
+      hostName = "pearframe";
       wallpaper-uri = "file://" + ../../wallpapers/nix-wallpaper-simple-dark-gray.png;
     };
   };
