@@ -9,4 +9,5 @@
     ];
   age.secrets.login-password.file = ../secrets/login-password.age;
   age.secrets.wifi-passwords.file = ../secrets/wifi-passwords.age;
+  age.secrets.snapserver-env-file.file = ../secrets/snapserver/env-file.age;
 }

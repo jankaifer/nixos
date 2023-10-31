@@ -5,6 +5,8 @@
   ];
 
   custom = {
+    snapcast.enable = true;
+
     options = {
       hostName = "raspberry-1";
     };

@@ -17,6 +17,7 @@
     ./options.nix
     ./real-vnc-viewer
     ./secrets.nix
+    ./snapcast.nix
     ./ssh-keys-autogenerate.nix
     ./ssh-server.nix
     ./vscode
