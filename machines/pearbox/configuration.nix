@@ -6,7 +6,9 @@ let gvariant = lib.hm.gvariant; in
     ../../modules
   ];
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  # need to free linuz to 6.5 becaues nvidia doesn't work with 6.6 yet
+  # https://www.reddit.com/r/NixOS/comments/17lcp1j/nixos_update_on_unstable_stopping_on_nvidia_driver/
+  boot.kernelPackages = pkgs.linuxPackages_6_5;
 
   # We need few volumes to be mounted before our system starts booting
   fileSystems."/var/log".neededForBoot = true;
