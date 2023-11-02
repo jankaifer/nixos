@@ -11,6 +11,13 @@
   # When building on x86 machine, use emulation
   nixpkgs.hostPlatform.system = "aarch64-linux";
 
+  sound.enable = true;
+  hardware.pulseaudio.enable = true;
+
+  boot.loader.raspberryPi.firmwareConfig = ''
+    dtparam=audio=on
+  '';
+
   custom = {
     cli-server.enable = true;
     common.enable = true;
