@@ -5,7 +5,7 @@
   ];
 
   custom = {
-    # snapcast.enable = true;
+    snapcast.enable = true;
 
     options = {
       hostName = "raspberry-1";
