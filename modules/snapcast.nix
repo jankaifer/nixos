@@ -1,3 +1,4 @@
+# Stolen from: https://github.com/sweenu/nixfiles
 { config, lib, pkgs, ... }:
 let
   option-name = "snapcast";
