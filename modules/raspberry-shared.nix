@@ -9,7 +9,7 @@
   sdImage.compressImage = false;
 
   # When building on x86 machine, use emulation
-  nixpkgs.localSystem.system = "aarch64-linux";
+  nixpkgs.hostPlatform.system = "aarch64-linux";
 
   custom = {
     cli-server.enable = true;
