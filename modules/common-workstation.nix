@@ -28,7 +28,8 @@
       environment.shellAliases = lib.mkForce
         {
           pls = "sudo";
-          rebuild = "pls ${nixosRepoPath}/scripts/rebuild.sh switch";
+          rebuild = "pls ${nixosRepoPath}/scripts/rebuild.sh";
+          rebuild-remote = "pls ${nixosRepoPath}/scripts/rebuild-remote.sh";
           freeze-vscode-extensions = "${nixosRepoPath}/scripts/freeze-vscode-extensions.sh";
           n = "pnpm";
           y = "yarn";
@@ -96,7 +97,7 @@
       # https://rbf.dev/blog/2020/05/custom-nixos-build-for-raspberry-pis/#nixos-on-a-raspberry-pi
       boot.binfmt.emulatedSystems = [
         "aarch64-linux"
-        "armv7l-linux"
+        # "armv7l-linux"
       ];
 
       # Set your time zone.

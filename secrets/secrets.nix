@@ -4,4 +4,5 @@ in
 {
   "wifi-passwords.age".publicKeys = ghKeys;
   "login-password.age".publicKeys = ghKeys;
+  "snapserver/env-file.age".publicKeys = ghKeys;
 }

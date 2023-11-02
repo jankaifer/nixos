@@ -87,8 +87,5 @@ It prints some nix store path where you can find the final image file. You can f
 It's easy to deploy configuration to remote machine, just use the following command (and tweak target machine and configuration deployed):
 
 ```bash
-# Build and deploy new config
-NIXOS_CONFIG=/etc/nixos/machines/minimal-raspberry-config/configuration.nix nixos-rebuild --target-host nixos@192.168.88.30 --use-remote-sudo boot |& nom
-# Reboot remote machine to use new config
-ssh nixos@192.168.88.30 'sudo reboot'
+rebuild-remote -h raspberry-1
 ```
