@@ -27,7 +27,7 @@ in
           type = "librespot";
           location = "${pkgs.librespot}/bin/librespot";
           query = {
-            devicename = "Snapcast";
+            devicename = config.custom.options.hostName;
             normalize = "true";
             autoplay = "false";
             cache = "/home/${config.custom.options.username}/.cache/librespot";
