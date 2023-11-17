@@ -7,6 +7,7 @@ let
       "electron-19.1.9"
     ];
   };
+  customPackages = import ./custom-packages { pkgs = pkgs; };
 in
 {
   options.custom.gui =
@@ -228,6 +229,8 @@ in
           discord
 
           lutris
+
+          customPackages.keymapp
         ];
 
       ## Force Chromium based apps to render using wayland
