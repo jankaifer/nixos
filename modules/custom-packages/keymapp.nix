@@ -7,14 +7,16 @@
 , pulseaudio
 , autoPatchelfHook
 , libusb1
+, webkitgtk
+, gtk3
 }:
 
 stdenv.mkDerivation rec {
   pname = "keymapp";
-  version = "21.07.0";
+  version = "1.0.5";
 
   src = fetchurl {
-    url = "https://oryx.nyc3.cdn.digitaloceanspaces.com/keymapp/keymapp-latest.tar.gz";
+    url = "https://oryx.nyc3.cdn.digitaloceanspaces.com/keymapp/keymapp-${version}.tar.gz";
     hash = "sha256-e9Ty3gMb+nkXGK8sND4ljyrIxP+1fLasiV6DoTiWmsU=";
   };
 
@@ -24,13 +26,14 @@ stdenv.mkDerivation rec {
 
   buildInputs = [
     libusb1
+    webkitgtk
+    gtk3
   ];
 
   sourceRoot = ".";
 
   installPhase = ''
     runHook preInstall
-    ls
     install -m755 -D keymapp $out/bin/keymapp
     runHook postInstall
   '';
