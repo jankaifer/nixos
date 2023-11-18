@@ -1,5 +1,5 @@
 { pkgs }:
 
 {
-  keymapp = pkgs.callPackage ./keymapp.nix { };
+  keymapp = pkgs.callPackage ./keymapp { };
 }

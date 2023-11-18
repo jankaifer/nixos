@@ -1,0 +1,9 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Type=Application
+Name=Keymapp
+Exec=@out@/bin/keymapp
+Icon=LicenseManager
+Categories=Utility;HardwareSettings;
+StartupWMClass=keymapp
+Comment=Application for ZSA keyboards.
