@@ -1,4 +1,5 @@
 {
+  "window.titleBarStyle": "custom",
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
@@ -76,11 +77,11 @@
   "vim.useSystemClipboard": true,
   "vim.vimrc.enable": true,
   "vim.vimrc.path": "/home/pearman/.vimrc",
-  "window.zoomLevel": 0,
   "workbench.startupEditor": "none",
   "files.associations": {
     ".env*": "dotenv"
   },
   "terminal.integrated.enableMultiLinePasteWarning": false,
-  "cSpell.userWords": ["agenix"]
+  "cSpell.userWords": ["agenix"],
+  "window.zoomLevel": 4
 }

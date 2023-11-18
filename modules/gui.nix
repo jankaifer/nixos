@@ -235,7 +235,7 @@ in
 
       ## Force Chromium based apps to render using wayland
       ## It is sadly not ready yet - electron apps will start missing navbars and they are still blurry 
-      # environment.sessionVariables.NIXOS_OZONE_WL = "1";
+      environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
       xdg.portal.enable = true;
 
