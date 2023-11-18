@@ -230,7 +230,7 @@ in
 
           lutris
 
-          customPackages.keymapp
+          unstablePkgs.keymapp
         ];
 
       ## Force Chromium based apps to render using wayland
