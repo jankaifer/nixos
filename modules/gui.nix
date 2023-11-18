@@ -88,9 +88,9 @@ in
       home-manager.users."${config.custom.options.username}" = { lib, ... }: {
         dconf.settings = let gvariant = lib.hm.gvariant; in {
           # Allow fractional scaling in wayland - produces blurry image
-          # "org/gnome/mutter" = {
-          #   experimental-features = [ "scale-monitor-framebuffer" ];
-          # };
+          "org/gnome/mutter" = {
+            experimental-features = [ "scale-monitor-framebuffer" ];
+          };
 
           # Wallpaper
           "org/gnome/desktop/background".picture-uri = config.custom.options.wallpaper-uri;
