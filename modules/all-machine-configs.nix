@@ -1,5 +1,9 @@
 {
   # key is the hostname
+  router = {
+    static-ip = "192.168.88.1";
+    username = "admin";
+  };
   pearbox = {
     static-ip = "192.168.88.10";
     username = "pearman";
