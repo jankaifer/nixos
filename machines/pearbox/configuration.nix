@@ -26,6 +26,8 @@ let gvariant = lib.hm.gvariant; in
   # services.xserver.videoDrivers = [ "nouveau" ];
   hardware.opengl.enable = true;
   hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
+  hardware.nvidia.modesetting.enable = true;
+
 
   # Options
   custom = {
