@@ -127,7 +127,8 @@ in
 
           # Increase font size (Works well with 100% QHD 13' laptop annd 4k 27' monitor)
           # Alternative is using fractional scaling 150%
-          "org/gnome/desktop/interface"."text-scaling-factor" = 1.5;
+          # Problem with font scaling is that chrome doesn't pick it up properly (sometimes)
+          # "org/gnome/desktop/interface"."text-scaling-factor" = 1.5;
 
           # Wallpaper
           "org/gnome/desktop/background" = {
