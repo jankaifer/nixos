@@ -6,6 +6,8 @@ let
       permittedInsecurePackages = [
         # Needed for etcher: https://github.com/NixOS/nixpkgs/issues/153537
         "electron-19.1.9"
+        # Idk which package needs this
+        "electron-25.9.0"
       ];
       allowUnfree = true;
     };
