@@ -69,7 +69,7 @@
             "lxd"
           ];
 
-          passwordFile = config.age.secrets.login-password.path;
+          hashedPasswordFile = config.age.secrets.login-password.path;
         };
       };
 
