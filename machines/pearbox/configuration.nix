@@ -33,8 +33,8 @@ let gvariant = lib.hm.gvariant; in
       sync.enable = true;
 
       # Make sure to use the correct Bus ID values for your system!
-      nvidiaBusId = "PCI:01:00.0";
-      intelBusId = "PCI:00:01.0";
+      nvidiaBusId = "PCI:01:00:0";
+      intelBusId = "PCI:00:01:0";
     };
   };
 
