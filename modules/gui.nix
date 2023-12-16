@@ -226,7 +226,6 @@ in
           virt-manager
 
           # Electron evil apps
-          atom
           unstablePkgs.bitwarden
           unstablePkgs.etcher
           gitkraken
