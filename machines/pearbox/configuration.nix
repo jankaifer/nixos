@@ -25,8 +25,18 @@ let gvariant = lib.hm.gvariant; in
   services.xserver.videoDrivers = [ "nvidia" ];
   # services.xserver.videoDrivers = [ "nouveau" ];
   hardware.opengl.enable = true;
-  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
-  hardware.nvidia.modesetting.enable = true;
+  hardware.nvidia = {
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    modesetting.enable = true;
+
+    prime = {
+      sync.enable = true;
+
+      # Make sure to use the correct Bus ID values for your system!
+      nvidiaBusId = "PCI:01:00.0";
+      intelBusId = "PCI:00:01.0";
+    };
+  };
 
 
   # Options
