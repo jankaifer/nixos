@@ -20,11 +20,11 @@ let gvariant = lib.hm.gvariant; in
   networking.firewall.enable = false;
 
   # Install nvidia drivers
-  services.xserver.videoDrivers = [ "nvidia" ];
-  # services.xserver.videoDrivers = [ "nouveau" ];
+  # services.xserver.videoDrivers = [ "nvidia" ];
+  services.xserver.videoDrivers = [ "nouveau" ];
   hardware.opengl.enable = true;
   hardware.nvidia = {
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    # package = config.boot.kernelPackages.nvidiaPackages.stable;
     modesetting.enable = true;
 
     # prime = {
@@ -35,7 +35,7 @@ let gvariant = lib.hm.gvariant; in
     #   intelBusId = "PCI:00:01:0";
     # };
 
-    forceFullCompositionPipeline = true;
+    # forceFullCompositionPipeline = true;
   };
 
 
