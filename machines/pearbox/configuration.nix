@@ -29,13 +29,16 @@ let gvariant = lib.hm.gvariant; in
     package = config.boot.kernelPackages.nvidiaPackages.stable;
     modesetting.enable = true;
 
-    prime = {
-      sync.enable = true;
+    # This caused my screen to flicker and show black sometimes
+    # prime = {
+    #   sync.enable = true;
 
-      # Make sure to use the correct Bus ID values for your system!
-      nvidiaBusId = "PCI:01:00:0";
-      intelBusId = "PCI:00:01:0";
-    };
+    #   # Make sure to use the correct Bus ID values for your system!
+    #   nvidiaBusId = "PCI:01:00:0";
+    #   intelBusId = "PCI:00:01:0";
+    # };
+
+    # hardware.nvidia.forceFullCompositionPipeline = true;
   };
 
 
