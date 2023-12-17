@@ -35,7 +35,7 @@ let gvariant = lib.hm.gvariant; in
     #   intelBusId = "PCI:00:01:0";
     # };
 
-    hardware.nvidia.forceFullCompositionPipeline = true;
+    forceFullCompositionPipeline = true;
   };
 
 
