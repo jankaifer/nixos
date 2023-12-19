@@ -6,7 +6,7 @@ let gvariant = lib.hm.gvariant; in
     ../../modules
   ];
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_6_5;
 
   # We need few volumes to be mounted before our system starts booting
   fileSystems."/var/log".neededForBoot = true;
@@ -20,11 +20,10 @@ let gvariant = lib.hm.gvariant; in
   networking.firewall.enable = false;
 
   # Install nvidia drivers
-  # services.xserver.videoDrivers = [ "nvidia" ];
-  services.xserver.videoDrivers = [ "nouveau" ];
+  services.xserver.videoDrivers = [ "nvidia" ];
   hardware.opengl.enable = true;
   hardware.nvidia = {
-    # package = config.boot.kernelPackages.nvidiaPackages.stable;
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
     modesetting.enable = true;
 
     # prime = {
