@@ -21,7 +21,14 @@ let gvariant = lib.hm.gvariant; in
 
   # Install nvidia drivers
   services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.opengl.enable = true;
+  hardware.opengl = {
+    enable = true;
+    extraPackages = with pkgs; [
+      # Stolen from https://github.com/NixOS/nixos-hardware/blob/7763c6fd1f299cb9361ff2abf755ed9619ef01d6/common/gpu/nvidia/default.nix
+      vaapiVdpau
+    ];
+  };
+
   hardware.nvidia = {
     package = config.boot.kernelPackages.nvidiaPackages.stable;
     modesetting.enable = true;
