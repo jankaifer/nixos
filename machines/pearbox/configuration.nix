@@ -6,7 +6,7 @@ let gvariant = lib.hm.gvariant; in
     ../../modules
   ];
 
-  boot.kernelPackages = pkgs.linuxPackages_6_5;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # We need few volumes to be mounted before our system starts booting
   fileSystems."/var/log".neededForBoot = true;
@@ -23,10 +23,6 @@ let gvariant = lib.hm.gvariant; in
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.opengl = {
     enable = true;
-    extraPackages = with pkgs; [
-      # Stolen from https://github.com/NixOS/nixos-hardware/blob/7763c6fd1f299cb9361ff2abf755ed9619ef01d6/common/gpu/nvidia/default.nix
-      vaapiVdpau
-    ];
   };
 
   hardware.nvidia = {
