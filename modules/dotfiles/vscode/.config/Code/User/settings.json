@@ -33,6 +33,26 @@
   "editor.minimap.enabled": false,
   "editor.renderWhitespace": "all",
   "editor.tokenColorCustomizations": {
+    "[*Light*]": {
+      "textMateRules": [
+        {
+          "scope": "ref.matchtext",
+          "settings": {
+            "foreground": "#000"
+          }
+        }
+      ]
+    },
+    "[*Dark*]": {
+      "textMateRules": [
+        {
+          "scope": "ref.matchtext",
+          "settings": {
+            "foreground": "#fff"
+          }
+        }
+      ]
+    },
     "textMateRules": [
       {
         "scope": "keyword.other.dotenv",
