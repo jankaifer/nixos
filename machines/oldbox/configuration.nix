@@ -6,8 +6,8 @@
 
 {
   imports = [
-     ./hardware-configuration.nix
-     ../../modules
+    ./hardware-configuration.nix
+    ../../modules
   ];
 
   # We need few volumes to be mounted before our system starts booting
@@ -26,7 +26,7 @@
   # Options
   custom = {
     cli-server.enable = true;
-    common.enable = true;
+    common-workstation.enable = true;
     impermanence.enable = true;
     fck.enable = true;
     ssh-server.enable = true;
