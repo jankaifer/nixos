@@ -11,15 +11,99 @@ If you are looking for some inspiration for your config, make sure to check thes
 
 Other sources that I used:
 
-- https://mt-caret.github.io/blog/posts/2020-06-29-optin-state.html#fn3
+- https://mt-caret.github.io/blog/posts/2020-06-29-optin-state.html
 
 ## Install on a new machine
 
 To install this config on a new machine, you can use [custom iso](./machines/jankaifer-iso/README.md).
 
+Most of these steps are from [official wiki](https://nixos.org/manual/nixos/stable/index.html#sec-installation-manual).
+
+### Make partitions
+
+> TODO: describe how to setup encrypted partitions
+
+ISO has `gparted` available, use that to create one `btrfs` partition for system/data and one boot partition. Create these in the following order:
+
+1. ESP partition
+   - size: 2048MiB (at the beginning)
+   - flags: esp, boot
+   - name: boot
+   - label: boot
+2. Swap partition
+   - size: 32768MiB (depending on device RAM, at the very end of disk)
+   - flags: linux-swap
+   - name: swap
+   - label: swap
+   - use option `swapon`
+3. Main partition
+   - size: fill all free space
+   - flags: linux-home
+   - name: nixos
+   - label: nixos
+
+Let's setup btrfs volumes:
+
+```bash
+mount -t btrfs /dev/disk/by-label/nixos /mnt
+
+btrfs subvolume create /mnt/persist
+btrfs subvolume create /mnt/nix
+btrfs subvolume create /mnt/log
+
+umount /mnt
+```
+
+Now we can mount all partitions as they should be on the new system.
+Set tmpfs max size to half of your system memory.
+
+```bash
+mount -t tmpfs -o size=8192 swap /mnt
+
+mkdir /mnt/nix
+mount -o subvol=nix,compress=zstd:1,noatime /dev/disk/by-label/nixos /mnt/nix
+
+mkdir /mnt/persist
+mount -o subvol=persist,compress=zstd:1,noatime /dev/disk/by-label/nixos /mnt/persist
+
+
+mkdir -p /mnt/var/log
+mount -o subvol=log,compress=zstd:3,noatime /dev/disk/by-label/nixos /mnt/var/log
+
+mkdir /mnt/boot
+mount /dev/disk/by-label/BOOT /mnt/boot
+```
+
+Now let nixos generate hardware config:
+
+```bash
+nixos-generate-config --root /mnt
+```
+
+Move generated config and use custom config instead:
+
+```bash
+mv /mnt/etc/nixos/ /mnt/etc/nixos-old
+mkdir -p /mnt/persist/home/jankaifer/dev/jankaifer
+cd /mnt/persist/home/jankaifer/dev/jankaifer
+git clone --recurse-submodules https://github.com/jankaifer/nixos
+cd -
+ln -s /mnt/persist/home/jankaifer/dev/jankaifer/nixos /mnt/etc/nixos
+```
+
+Create new machine config files in this repo:
+
+```bash
+cp /mnt/etc/nixos-old/ /mnt/etc/nixos/machines/machine-name -r
+```
+
+You can tweak the configuration now. Make sure that hardware configuration contains all options that we want like compression and `noatime`. Also make sure that logs have `neededForBoot = true;` otherwise boot logs won't be persisted.
+
+---
+
 The following guide will install this config on an existing nixos machine.
 
-1. Clone this repo with all submodules.
+4. Clone this repo with all submodules.
 
 ```
 git clone --recurse-submodules git@gitlab.com:JanKaifer/nixos.git

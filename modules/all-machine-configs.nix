@@ -16,6 +16,10 @@
     static-ip = "192.168.88.30";
     username = "nixos";
   };
+  oldbox = {
+    static-ip = "192.168.88.10";
+    username = "jankaifer";
+  };
   raspeberry-minimal = {
     static-ip = null;
     username = "nixos";
