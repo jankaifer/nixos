@@ -20,4 +20,8 @@
     static-ip = null;
     username = "nixos";
   };
+  jankaifer-iso = {
+    static-ip = null;
+    username = "nixos";
+  };
 }

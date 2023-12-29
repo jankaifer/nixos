@@ -18,15 +18,14 @@
 
   # Options
   custom = {
+    cli-server.enable = true;
+    common.enable = true;
     fck.enable = true;
-    gui.enable = true;
-    iso.enable = true;
-    vscode.enable = true;
-    wifi-setup.enable = true;
-    zsa.enable = true;
+    ssh-keys-autogenerate.enable = true;
+    ssh-server.enable = true;
 
     options = {
-      username = "jankaifer";
+      hostName = "jankaifer-iso";
     };
   };
 }
