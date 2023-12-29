@@ -99,6 +99,13 @@ cp /mnt/etc/nixos-old/ /mnt/etc/nixos/machines/machine-name -r
 
 You can tweak the configuration now. Make sure that hardware configuration contains all options that we want like compression and `noatime`. Also make sure that logs have `neededForBoot = true;` otherwise boot logs won't be persisted.
 
+We can't easily provide a different config to `nixos-install` so we will need to create file at original location to import our config. And we manually provide correct nixpkgs to use with `-I` option.
+
+```bash
+echo '{ config, lib, pkgs, ... }:{imports = [./machines/oldbox/configuration.nix];' > /mnt/etc/nixos/configuration.nix
+nixos-install -I nixpkgs=/mnt/etc/nixos/modules/nixpkgs
+```
+
 ---
 
 The following guide will install this config on an existing nixos machine.
