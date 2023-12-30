@@ -14,7 +14,7 @@
   fileSystems."/var/log".neededForBoot = true;
   fileSystems."/persist".neededForBoot = true;
   fileSystems."/".neededForBoot = true;
-  fileSystems."/home".neededForBoot = true;
+  fileSystems."/nix".neededForBoot = true;
 
   # Root needs to have correct permissions otherwise openssh will complain and won't work
   fileSystems."/".options = [ "mode=755" ];
