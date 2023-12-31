@@ -106,7 +106,7 @@ We can't easily provide a different config to `nixos-install` so we will need to
 
 ```bash
 echo '{ config, lib, pkgs, ... }:{imports = [./machines/oldbox/configuration.nix];' > /mnt/etc/nixos/configuration.nix
-nixos-install -I nixpkgs=/mnt/etc/nixos/modules/nixpkgs
+nixos-install --no-root-passwd -I nixpkgs=/mnt/etc/nixos/modules/nixpkgs
 ```
 
 ---
