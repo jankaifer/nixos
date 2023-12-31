@@ -29,8 +29,8 @@
     # common-workstation.enable = true;
     # impermanence.enable = true;
     # fck.enable = true;
-    # ssh-server.enable = true;
-    # ssh-keys-autogenerate.enable = true;
+    ssh-server.enable = true;
+    ssh-keys-autogenerate.enable = true;
 
     options = {
       hostName = "oldbox";
