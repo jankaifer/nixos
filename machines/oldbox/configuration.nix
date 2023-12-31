@@ -19,7 +19,7 @@
   # Root needs to have correct permissions otherwise openssh will complain and won't work
   # fileSystems."/".options = [ "mode=755" ];
 
-  # home-manager.users.jankaifer.home.stateVersion = "22.05";
+  home-manager.users.jankaifer.home.stateVersion = "22.05";
 
   # networking.firewall.enable = false;
 
