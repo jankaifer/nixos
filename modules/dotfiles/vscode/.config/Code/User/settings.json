@@ -102,6 +102,22 @@
     ".env*": "dotenv"
   },
   "terminal.integrated.enableMultiLinePasteWarning": false,
-  "cSpell.userWords": ["agenix"],
+  "cSpell.userWords": [
+    "aarch",
+    "agenix",
+    "btrfs",
+    "dconf",
+    "gparted",
+    "nixos",
+    "nixpkgs",
+    "noatime",
+    "oldbox",
+    "pearman",
+    "pkgs",
+    "subvol",
+    "subvolume",
+    "swapon",
+    "zstd"
+  ],
   "window.zoomLevel": 1
 }
