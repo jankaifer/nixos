@@ -20,9 +20,6 @@
 
   networking.firewall.enable = false;
 
-  # no root
-  users.users.root.hashedPassword = "!";
-
   # Options
   custom = {
     cli-server.enable = true;
