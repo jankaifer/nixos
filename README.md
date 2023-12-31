@@ -45,33 +45,36 @@ ISO has `gparted` available, use that to create one `btrfs` partition for system
 Let's setup btrfs volumes:
 
 ```bash
-mount -t btrfs /dev/disk/by-label/nixos /mnt
+sudo mount -t btrfs /dev/disk/by-label/nixos /mnt
 
-btrfs subvolume create /mnt/persist
-btrfs subvolume create /mnt/nix
-btrfs subvolume create /mnt/log
+sudo btrfs subvolume create /mnt/persist
+sudo btrfs subvolume create /mnt/root
+sudo btrfs subvolume create /mnt/nix
+sudo btrfs subvolume create /mnt/log
 
-umount /mnt
+# We then take an empty *readonly* snapshot of the root subvolume,
+# which we'll eventually rollback to on every boot.
+sudo btrfs subvolume snapshot -r /mnt/root /mnt/root-blank
+
+sudo umount /mnt
 ```
 
 Now we can mount all partitions as they should be on the new system.
-Set tmpfs max size to half of your system memory.
 
 ```bash
-mount -t tmpfs -o size=8192 swap /mnt
+sudo mount -o subvol=root,noatime /dev/disk/by-label/nixos /mnt
 
-mkdir /mnt/nix
-mount -o subvol=nix,compress=zstd:1,noatime /dev/disk/by-label/nixos /mnt/nix
+sudo mkdir /mnt/nix
+sudo mount -o subvol=nix,compress=zstd:1,noatime /dev/disk/by-label/nixos /mnt/nix
 
-mkdir /mnt/persist
-mount -o subvol=persist,compress=zstd:1,noatime /dev/disk/by-label/nixos /mnt/persist
+sudo mkdir /mnt/persist
+sudo mount -o subvol=persist,compress=zstd:1,noatime /dev/disk/by-label/nixos /mnt/persist
 
+sudo mkdir -p /mnt/var/log
+sudo mount -o subvol=log,compress=zstd:3,noatime /dev/disk/by-label/nixos /mnt/var/log
 
-mkdir -p /mnt/var/log
-mount -o subvol=log,compress=zstd:3,noatime /dev/disk/by-label/nixos /mnt/var/log
-
-mkdir /mnt/boot
-mount /dev/disk/by-label/BOOT /mnt/boot
+sudo mkdir /mnt/boot
+sudo mount /dev/disk/by-label/BOOT /mnt/boot
 ```
 
 Now let nixos generate hardware config:
