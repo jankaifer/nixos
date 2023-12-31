@@ -39,15 +39,15 @@
 
   # DEBUG
 
-  # nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  # nix.settings.trusted-users = [ config.custom.options.username ];
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.trusted-users = [ config.custom.options.username ];
 
   networking.hostName = config.custom.options.hostName;
 
-  # console = {
-  #   font = "ter-i32b";
-  #   packages = with pkgs; [ terminus_font ];
-  # };
+  console = {
+    font = "ter-i32b";
+    packages = with pkgs; [ terminus_font ];
+  };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
