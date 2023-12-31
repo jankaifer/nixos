@@ -25,9 +25,9 @@
 
   # Options
   custom = {
-    cli-server.enable = true;
-    common-workstation.enable = true;
-    impermanence.enable = true;
+    # cli-server.enable = true;
+    # common-workstation.enable = true;
+    # impermanence.enable = true;
     fck.enable = true;
     ssh-server.enable = true;
     ssh-keys-autogenerate.enable = true;
@@ -35,5 +35,45 @@
     options = {
       hostName = "oldbox";
     };
+  };
+
+  # DEBUG
+
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.trusted-users = [ config.custom.options.username ];
+
+  networking.hostName = config.custom.options.hostName;
+
+  console = {
+    font = "ter-i32b";
+    packages = with pkgs; [ terminus_font ];
+  };
+
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
+
+  users = {
+    mutableUsers = false;
+    users."${config.custom.options.username}" = {
+      isNormalUser = true;
+      description = "Jan Kaifer";
+      extraGroups = [
+        "wheel"
+        "networkmanage"
+        "video"
+        "docker"
+        "adbusers"
+        "lxd"
+      ];
+
+      password = "pass";
+    };
+  };
+
+  # Use the systemd-boot EFI boot loader.
+  boot.loader = {
+    grub.useOSProber = false;
+    systemd-boot.enable = true;
+    efi.canTouchEfiVariables = true;
   };
 }
