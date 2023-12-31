@@ -27,7 +27,7 @@
   custom = {
     # cli-server.enable = true;
     # common-workstation.enable = true;
-    # impermanence.enable = true;
+    impermanence.enable = true;
     fck.enable = true;
     ssh-server.enable = true;
     ssh-keys-autogenerate.enable = true;
