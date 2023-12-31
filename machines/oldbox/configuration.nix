@@ -17,20 +17,20 @@
   fileSystems."/nix".neededForBoot = true;
 
   # Root needs to have correct permissions otherwise openssh will complain and won't work
-  fileSystems."/".options = [ "mode=755" ];
+  # fileSystems."/".options = [ "mode=755" ];
 
-  home-manager.users.jankaifer.home.stateVersion = "22.05";
+  # home-manager.users.jankaifer.home.stateVersion = "22.05";
 
-  networking.firewall.enable = false;
+  # networking.firewall.enable = false;
 
   # Options
   custom = {
     # cli-server.enable = true;
     # common-workstation.enable = true;
     # impermanence.enable = true;
-    fck.enable = true;
-    ssh-server.enable = true;
-    ssh-keys-autogenerate.enable = true;
+    # fck.enable = true;
+    # ssh-server.enable = true;
+    # ssh-keys-autogenerate.enable = true;
 
     options = {
       hostName = "oldbox";
@@ -39,15 +39,15 @@
 
   # DEBUG
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  nix.settings.trusted-users = [ config.custom.options.username ];
+  # nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  # nix.settings.trusted-users = [ config.custom.options.username ];
 
   networking.hostName = config.custom.options.hostName;
 
-  console = {
-    font = "ter-i32b";
-    packages = with pkgs; [ terminus_font ];
-  };
+  # console = {
+  #   font = "ter-i32b";
+  #   packages = with pkgs; [ terminus_font ];
+  # };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
