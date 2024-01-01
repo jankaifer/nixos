@@ -29,7 +29,7 @@
         {
           pls = "sudo";
           rebuild = "pls ${nixosRepoPath}/scripts/rebuild.sh";
-          rebuild-remote = "pls ${nixosRepoPath}/scripts/rebuild-remote.sh";
+          rebuild-remote = "${nixosRepoPath}/scripts/rebuild-remote.sh";
           freeze-vscode-extensions = "${nixosRepoPath}/scripts/freeze-vscode-extensions.sh";
           n = "pnpm";
           y = "yarn";

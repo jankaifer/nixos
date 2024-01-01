@@ -186,6 +186,8 @@ rebuild-remote -h raspberry-1
 
 ## TODO
 
+- [ ] - setup local dns
+- [ ] - setup tailscale remote access
 - [ ] - setup Home assistant
 - [ ] - setup NAS
   - probably with ZFS on oldbox

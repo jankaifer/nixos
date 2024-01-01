@@ -20,6 +20,47 @@
 
   networking.firewall.enable = false;
 
+  virtualisation.docker.enable = true;
+  virtualisation.docker.storageDriver = "btrfs";
+
+  virtualisation.oci-containers = {
+    backend = "docker";
+    containers = {
+      pihole = {
+        image = "pihole/pihole:2023.11.0";
+        ports = [ "53:53/tcp" "53:53/udp" "67:67/udp" "80:80/tcp" ];
+        environment = {
+          TZ = "Europe/Prague";
+          WEBPASSWORD = "pihole";
+        };
+        volumes = [
+          "/persist/containers/pihole/etc-pihole:/etc/pihole"
+          "/persist/containers/pihole/etc-dnsmasq.d:/etc/dnsmasq.d"
+        ];
+      };
+      # hedgedoc = {
+      #   image = "quay.io/hedgedoc/hedgedoc:1.9.6";
+      #   volumes = [ "/var/lib/hedgedoc/uploads:/hedgedoc/public/uploads" ];
+      #   environmentFiles = [ "/run/secrets/CMD_DB_URL.env" ];
+      #   environment = {
+      #     CMD_DOMAIN = cfg.hostName;
+      #     CMD_URL_ADDPORT = "false";
+      #     CMD_PROTOCOL_USESSL = "true";
+      #     CMD_PORT = "3001";
+      #   };
+      #   dependsOn = [ "hedgedoc-postgres" ];
+      #   extraOptions = [ "--network=host" ];
+      # };
+      # hedgedoc-postgres = {
+      #   # TODO: upgrade to PG 15
+      #   image = "postgres:13.9-alpine";
+      #   ports = [ "15432:5432" ];
+      #   volumes = [ "/var/lib/hedgedoc/postgres:/var/lib/postgresql/data" ];
+      #   environmentFiles = [ "/run/secrets/CMD_DB_URL.env" ];
+      # };
+    };
+  };
+
   # Options
   custom = {
     cli-server.enable = true;
