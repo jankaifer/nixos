@@ -75,7 +75,7 @@
         imports = [ ./impermanence/home-manager.nix ];
 
         # Files that we want to track in git
-        home.persistence."/etc/nixos/modules/dotfiles/" = {
+        home.persistence."/etc/nixos/dotfiles/" = {
           removePrefixDirectory = true;
           allowOther = true;
           directories = [ ];

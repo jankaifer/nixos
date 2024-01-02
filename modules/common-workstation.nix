@@ -50,7 +50,7 @@
 
       environment.etc.vimrc = {
         enable = true;
-        source = "${nixosRepoPath}/modules/dotfiles/vim/.vimrc";
+        source = "${nixosRepoPath}/dotfiles/vim/.vimrc";
         target = "vimrc";
       };
 
@@ -115,7 +115,7 @@
 
       environment.etc."auto-cpufreq.conf" = {
         enable = true;
-        source = "${nixosRepoPath}/modules/dotfiles/auto-cpufreq/auto-cpufreq.conf";
+        source = "${nixosRepoPath}/dotfiles/auto-cpufreq/auto-cpufreq.conf";
         target = "auto-cpufreq.conf";
       };
 
@@ -232,7 +232,7 @@
 
             vim = {
               enable = true;
-              extraConfig = builtins.readFile ./dotfiles/vim/.vimrc;
+              extraConfig = builtins.readFile ../dotfiles/vim/.vimrc;
             };
 
             zsh = {
@@ -258,12 +258,12 @@
           };
 
           xdg.configFile = {
-            "nixpkgs/config.nix".source = ./dotfiles/nix/nixpkgs.nix;
+            "nixpkgs/config.nix".source = ../dotfiles/nix/nixpkgs.nix;
           };
 
           # For some reason vscode can't read the config when provided by impermanence
           home.file = {
-            ".vimrc".source = ./dotfiles/vim/.vimrc;
+            ".vimrc".source = ../dotfiles/vim/.vimrc;
             ".node-version".text = "v18";
           };
 
