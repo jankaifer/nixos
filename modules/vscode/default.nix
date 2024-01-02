@@ -23,6 +23,7 @@
 
           # Nix
           nixpkgs-fmt
+          nil
 
           # Rust
           rustup
