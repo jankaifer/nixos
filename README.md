@@ -186,7 +186,7 @@ rebuild-remote -h raspberry-1
 
 ## TODO
 
-- [ ] - setup local dns
+- [x] - setup local dns
 - [ ] - setup tailscale remote access
 - [ ] - setup Home assistant
 - [ ] - setup NAS
