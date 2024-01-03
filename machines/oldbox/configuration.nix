@@ -2,8 +2,11 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, ... }:
+{ ... }:
 
+let
+  domain = "oldbox.onehorsefile.cz";
+in
 {
   imports = [
     ./hardware-configuration.nix
@@ -72,6 +75,47 @@
 
     options = {
       hostName = "oldbox";
+    };
+  };
+
+  # Traefik
+  # stolen from https://github.com/LongerHV/nixos-configuration/blob/87ac6a7370811698385d4c52fc28fab94addaea2/modules/nixos/homelab/traefik.nix
+
+  networking.firewall.allowedTCPPorts = [ 80 ];
+  networking.hosts."127.0.0.1" = [ "traefik.${domain}" ];
+
+  services.traefik = {
+    enable = true;
+    group = "docker";
+    staticConfigOptions = {
+      log.level = "info";
+      providers = { docker = { }; };
+      entryPoints.web.address = ":80";
+      api.dashboard = true;
+      global = {
+        checknewversion = false;
+        sendanonymoususage = false;
+      };
+    };
+    dynamicConfigOptions = {
+      http = {
+        routers = {
+          traefik = {
+            rule = "Host(`traefik.${domain}`)";
+            service = "api@internal";
+            entrypoints = [ "web" ];
+          };
+        };
+        services = {
+          pihole = {
+            host = "127.0.0.1";
+            port = 80;
+            ipWhitelist = "";
+            middlewares = [ ];
+          };
+        };
+      };
+      middlewares = { };
     };
   };
 }
