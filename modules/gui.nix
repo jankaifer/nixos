@@ -204,6 +204,11 @@ in
         pkgs.gnome-console
       ];
 
+      nixpkgs.config.permittedInsecurePackages = [
+        # Needed for etcher: https://github.com/NixOS/nixpkgs/issues/153537
+        "electron-19.1.9"
+      ];
+
       environment.systemPackages = with pkgs;
         [
           brave
