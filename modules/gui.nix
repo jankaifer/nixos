@@ -12,7 +12,6 @@ let
       allowUnfree = true;
     };
   };
-  customPackages = import ./custom-packages { pkgs = pkgs; };
 in
 {
   options.custom.gui =
