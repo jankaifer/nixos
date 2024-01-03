@@ -225,8 +225,8 @@ in
           virt-manager
 
           # Electron evil apps
-          unstablePkgs.bitwarden
-          unstablePkgs.etcher
+          bitwarden
+          etcher
           gitkraken
           signal-desktop
           slack
