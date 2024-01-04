@@ -35,7 +35,7 @@ in
           "53:53/tcp"
           "53:53/udp"
           "67:67/udp"
-          # "80:80/tcp"
+          "80:80/tcp"
         ];
         environment = {
           TZ = "Europe/Prague";
@@ -66,7 +66,7 @@ in
   # Traefik
   # stolen from https://github.com/LongerHV/nixos-configuration/blob/87ac6a7370811698385d4c52fc28fab94addaea2/modules/nixos/homelab/traefik.nix
 
-  networking.firewall.allowedTCPPorts = [ 80 8080 ];
+  networking.firewall.allowedTCPPorts = [ 80 ];
   networking.hosts."127.0.0.1" = [ "traefik.${domain}" ];
 
   services.traefik = {
@@ -91,15 +91,10 @@ in
             service = "api@internal";
             entrypoints = [ "web" ];
           };
+          pihole = {
+            rule = "Host(`pihole.${domain}`)";
+          };
         };
-        # services = {
-        #   pihole = {
-        #     host = "127.0.0.1";
-        #     port = 80;
-        #     ipWhitelist = "";
-        #     middlewares = [ ];
-        #   };
-        # };
       };
       middlewares = { };
     };
