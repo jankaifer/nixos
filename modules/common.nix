@@ -91,12 +91,6 @@ in
       users."${config.custom.options.username}" = {
         nixpkgs.config.allowUnfree = true;
 
-        # When this file is generated with programs.ssh it has wrong permissions and vscode complains
-        home.file.".ssh/config" = {
-          text = extra-ssh-config;
-          onChange = ''chmod 400 ~/.ssh/config'';
-        };
-
         programs = {
           git = {
             enable = true;
@@ -151,6 +145,11 @@ in
         home.file = {
           ".vimrc".source = ../dotfiles/vim/.vimrc;
           ".node-version".text = "v18";
+          # When this file is generated with programs.ssh it has wrong permissions and vscode complains
+          ".ssh/config_link" = {
+            text = extra-ssh-config;
+            onChange = ''cp ~/.ssh/config_link ~/.ssh/config; chmod 400 ~/.ssh/config'';
+          };
         };
 
         home.stateVersion = "22.05";
