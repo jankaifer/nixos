@@ -5,7 +5,7 @@
 { ... }:
 
 let
-  domain = "oldbox.onehorsefile.cz";
+  domain = "oldbox.kaifer.cz";
 in
 {
   imports = [
@@ -66,7 +66,7 @@ in
   # Traefik
   # stolen from https://github.com/LongerHV/nixos-configuration/blob/87ac6a7370811698385d4c52fc28fab94addaea2/modules/nixos/homelab/traefik.nix
 
-  networking.firewall.allowedTCPPorts = [ 80 ];
+  networking.firewall.allowedTCPPorts = [ 80 8080 ];
   networking.hosts."127.0.0.1" = [ "traefik.${domain}" ];
 
   services.traefik = {
@@ -74,9 +74,10 @@ in
     group = "docker";
     staticConfigOptions = {
       log.level = "info";
-      providers = { docker = { }; };
+      providers.docker = { };
       entryPoints.web.address = ":80";
       api.dashboard = true;
+      api.insecure = true;
       global = {
         checknewversion = false;
         sendanonymoususage = false;
@@ -91,14 +92,14 @@ in
             entrypoints = [ "web" ];
           };
         };
-        services = {
-          pihole = {
-            host = "127.0.0.1";
-            port = 80;
-            ipWhitelist = "";
-            middlewares = [ ];
-          };
-        };
+        # services = {
+        #   pihole = {
+        #     host = "127.0.0.1";
+        #     port = 80;
+        #     ipWhitelist = "";
+        #     middlewares = [ ];
+        #   };
+        # };
       };
       middlewares = { };
     };
