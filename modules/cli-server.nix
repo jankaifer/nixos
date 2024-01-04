@@ -30,6 +30,7 @@
       # Nix
       pkgs.nix-output-monitor
       pkgs.nixpkgs-fmt
+      pkgs.nil
     ];
   };
 }
