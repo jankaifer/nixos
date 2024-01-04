@@ -10,6 +10,7 @@ let
       Host ${host}.local
         HostName ${attrs.static-ip}
         User ${attrs.username}
+        ForwardAgent yes
     '';
   ssh-configs = map
     (machine-name: generate-ssh-config machine-name all-machine-configs."${machine-name}")
