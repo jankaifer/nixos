@@ -6,6 +6,9 @@
 
 let
   domain = "oldbox.kaifer.cz";
+  pihole = {
+    port = 8001;
+  };
 in
 {
   imports = [
@@ -35,7 +38,7 @@ in
           "53:53/tcp"
           "53:53/udp"
           "67:67/udp"
-          "80:80/tcp"
+          "80:${pihole.port}/tcp"
         ];
         environment = {
           TZ = "Europe/Prague";
@@ -77,7 +80,6 @@ in
       providers.docker = { };
       entryPoints.web.address = ":80";
       api.dashboard = true;
-      api.insecure = true;
       global = {
         checknewversion = false;
         sendanonymoususage = false;
@@ -93,6 +95,7 @@ in
           };
           pihole = {
             rule = "Host(`pihole.${domain}`)";
+            port = pihole.port;
           };
         };
       };
