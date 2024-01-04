@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }@args:
+{ config, lib, pkgs, ... }:
 
 let
   all-machine-configs = import ./all-machine-configs.nix;
@@ -90,12 +90,14 @@ in
       useUserPackages = true;
       users."${config.custom.options.username}" = {
         nixpkgs.config.allowUnfree = true;
-        programs = {
-          ssh = {
-            enable = true;
-            extraConfig = extra-ssh-config;
-          };
 
+        # When this file is generated with programs.ssh it has wrong permissions and vscode complains
+        home.file.".ssh/config" = {
+          text = extra-ssh-config;
+          onChange = ''chmod 400 ~/.ssh/config'';
+        };
+
+        programs = {
           git = {
             enable = true;
             userName = "Jan Kaifer";
