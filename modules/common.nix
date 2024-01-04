@@ -149,7 +149,7 @@ in
           # When this file is generated with programs.ssh it has wrong permissions and vscode complains
           ".ssh/config_link" = {
             text = extra-ssh-config;
-            onChange = ''cp ~/.ssh/config_link ~/.ssh/config; chmod 400 ~/.ssh/config'';
+            onChange = ''rm ~/.ssh/config; cp ~/.ssh/config_link ~/.ssh/config; chmod 400 ~/.ssh/config'';
           };
         };
 
