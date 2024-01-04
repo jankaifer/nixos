@@ -31,6 +31,3 @@ I_ARGS+=("-I" "nixpkgs=$REPO_PATH/modules/nixpkgs")
 
 echo 'NIX_SSHOPTS="-tt"' NIXOS_CONFIG="$MACHINE_PATH/configuration.nix" nixos-rebuild --target-host "$HOSTNAME.local" --use-remote-sudo "${I_ARGS[@]}" "${OTHER_ARGS[@]}"
 NIX_SSHOPTS="-tt" NIXOS_CONFIG="$MACHINE_PATH/configuration.nix" nixos-rebuild --target-host "$HOSTNAME.local" --use-remote-sudo "${I_ARGS[@]}" "${OTHER_ARGS[@]}"
-
-echo ssh -tt "$HOSTNAME.local" 'sudo reboot'
-ssh -tt "$HOSTNAME.local" 'sudo reboot'
