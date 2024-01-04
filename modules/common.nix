@@ -86,6 +86,73 @@ in
         })
         machine-names-with-ip
       );
-    programs.ssh.extraConfig = extra-ssh-config;
+    home-manager = {
+      useUserPackages = true;
+      users."${config.custom.options.username}" = {
+        nixpkgs.config.allowUnfree = true;
+        programs = {
+          ssh = {
+            enable = true;
+            extraConfig = extra-ssh-config;
+          };
+
+          git = {
+            enable = true;
+            userName = "Jan Kaifer";
+            userEmail = "jan@kaifer.cz";
+            lfs.enable = true;
+            extraConfig = {
+              # pull = {
+              #   rebase = true;
+              # };
+              gpg.format = "ssh";
+              gpg.ssh.defaultKeyCommand = "ssh-add -L";
+              commit.gpgsign = true;
+              tag.gpgsign = true;
+              init.defaultBranch = "main";
+              push.autoSetupRemote = true;
+            };
+          };
+
+          vim = {
+            enable = true;
+            extraConfig = builtins.readFile ../dotfiles/vim/.vimrc;
+          };
+
+          zsh = {
+            enable = true;
+            enableCompletion = true;
+            plugins = [
+              {
+                name = "zsh-nix-shell";
+                file = "nix-shell.plugin.zsh";
+                src = pkgs.fetchFromGitHub {
+                  owner = "chisui";
+                  repo = "zsh-nix-shell";
+                  rev = "v0.1.0";
+                  sha256 = "0snhch9hfy83d4amkyxx33izvkhbwmindy0zjjk28hih1a9l2jmx";
+                };
+              }
+            ];
+            prezto = {
+              enable = true;
+              prompt.theme = "steeef";
+            };
+          };
+        };
+
+        xdg.configFile = {
+          "nixpkgs/config.nix".source = ../dotfiles/nix/nixpkgs.nix;
+        };
+
+        # For some reason vscode can't read the config when provided by impermanence
+        home.file = {
+          ".vimrc".source = ../dotfiles/vim/.vimrc;
+          ".node-version".text = "v18";
+        };
+
+        home.stateVersion = "22.05";
+      };
+    };
   });
 }
