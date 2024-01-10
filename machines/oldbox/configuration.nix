@@ -46,7 +46,7 @@ in
         ];
         labels = {
           "traefik.http.routers.pihole.rule" = "Host(`pihole.${domain}`)";
-          "traefik.http.routers.pihole.entrypoints" = "web";
+          "traefik.http.routers.pihole.entrypoints" = "websecure";
           "traefik.http.services.pihole.loadbalancer.server.port" = "80";
         };
       };
@@ -97,7 +97,6 @@ in
     staticConfigOptions = {
       log.level = "info";
       providers.docker = { };
-      entryPoints.web.address = ":80";
       api.dashboard = true;
       api.insecure = true;
       global = {
@@ -105,6 +104,34 @@ in
         sendanonymoususage = false;
       };
       accessLog.filePath = "/var/log/traefik/access.log";
+      entryPoints = {
+        web = {
+          address = ":80";
+          http.redirections.entryPoint = {
+            to = "websecure";
+            scheme = "https";
+          };
+        };
+        websecure = {
+          address = ":443";
+          http.tls = {
+            certResolver = "cloudflare";
+            domains = [{ main = "${domain}"; sans = [ "*.${domain}" ]; }];
+          };
+        };
+      };
+      certificatesResolvers = {
+        cloudflare = {
+          acme = {
+            email = "jan@kaifer.cz";
+            storage = "${config.services.traefik.dataDir}/acme.json";
+            dnsChallenge = {
+              provider = "cloudflare";
+              resolvers = [ "1.1.1.1:53" "1.0.0.1:53" ];
+            };
+          };
+        };
+      };
     };
     dynamicConfigOptions = {
       http = {
@@ -112,7 +139,7 @@ in
           traefik = {
             rule = "Host(`traefik.${domain}`)";
             service = "api@internal";
-            entrypoints = [ "web" ];
+            entrypoints = [ "web" "websecure" ];
           };
         };
       };
