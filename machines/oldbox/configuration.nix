@@ -86,10 +86,7 @@ in
     '';
   };
 
-  systemd.services.traefik.environment = {
-    CF_API_EMAIL_FILE = config.age.secrets.cloudflare-api-email.path;
-    CF_DNS_API_TOKEN_FILE = config.age.secrets.cloudflare-api-dns-token.path;
-  };
+  systemd.services.traefik.serviceConfig.EnvironmentFile = [ config.age.secrets.traefik-env.path ];
 
   services.traefik = {
     enable = true;
@@ -98,7 +95,6 @@ in
       log.level = "info";
       providers.docker = { };
       api.dashboard = true;
-      api.insecure = true;
       global = {
         checknewversion = false;
         sendanonymoususage = false;

@@ -5,6 +5,5 @@ in
   "wifi-passwords.age".publicKeys = ghKeys;
   "login-password.age".publicKeys = ghKeys;
   "snapserver/env-file.age".publicKeys = ghKeys;
-  "cloudflare/api-email.age".publicKeys = ghKeys;
-  "cloudflare/api-dns-token.age".publicKeys = ghKeys;
+  "traefik-env.age".publicKeys = ghKeys;
 }

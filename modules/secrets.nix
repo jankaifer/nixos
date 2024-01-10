@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, ... }:
 
 {
   age.identityPaths = [
@@ -13,6 +13,5 @@
   age.secrets.login-password.file = ../secrets/login-password.age;
   age.secrets.wifi-passwords.file = ../secrets/wifi-passwords.age;
   age.secrets.snapserver-env-file.file = ../secrets/snapserver/env-file.age;
-  age.secrets.cloudflare-api-email.file = ../secrets/cloudflare/api-email.age;
-  age.secrets.cloudflare-api-dns-token.file = ../secrets/cloudflare/api-dns-token.age;
+  age.secrets.traefik-env.file = ../secrets/traefik-env.age;
 }
