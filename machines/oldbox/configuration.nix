@@ -9,6 +9,9 @@ let
   grafana = {
     port = 8002;
   };
+  victoriametrics = {
+    port = 8003;
+  };
 in
 {
   imports = [
@@ -145,10 +148,18 @@ in
             service = "grafana@file";
             entrypoints = [ "websecure" ];
           };
+          victoriametrics = {
+            rule = "Host(`victoriametrics.${domain}`)";
+            service = "victoriametrics@file";
+            entrypoints = [ "websecure" ];
+          };
         };
         services = {
           grafana.loadBalancer.servers = [
             { url = "http://localhost:${toString grafana.port}"; }
+          ];
+          victoriametrics.loadBalancer.servers = [
+            { url = "http://localhost:${toString victoriametrics.port}"; }
           ];
         };
       };
@@ -176,20 +187,25 @@ in
       panels.disable_sanitize_html = true;
     };
     provision = {
-      # datasources.settings.datasources = [{
-      #   name = "Prometheus";
-      #   type = "prometheus";
-      #   uid = "PBFA97CFB590B2093";
-      #   access = "proxy";
-      #   url = "http://localhost:${builtins.toString prometheus.port}";
-      #   isDefault = true;
-      #   version = 1;
-      #   editable = false;
-      # }];
+      datasources.settings.datasources = [{
+        name = "VictoriaMetrics";
+        type = "prometheus";
+        uid = "vm";
+        access = "proxy";
+        url = "http://localhost:${toString victoriametrics.port}";
+        isDefault = true;
+        version = 1;
+        editable = false;
+      }];
       # dashboards.settings.providers = [{
       #   name = "system";
       #   options.path = ./dashboards/node.json;
       # }];
     };
+  };
+
+  services.victoriametrics = {
+    enable = true;
+    listenAddress = ":${toString victoriametrics.port}";
   };
 }
