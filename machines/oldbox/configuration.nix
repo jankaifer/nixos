@@ -6,6 +6,9 @@
 
 let
   domain = "oldbox.kaifer.cz";
+  grafana = {
+    port = 8002;
+  };
 in
 {
   imports = [
@@ -135,11 +138,54 @@ in
           traefik = {
             rule = "Host(`traefik.${domain}`)";
             service = "api@internal";
-            entrypoints = [ "web" "websecure" ];
+            entrypoints = [ "websecure" ];
           };
+          grafana = {
+            rule = "Host(`grafana.${domain}`)";
+            service = "grafana@file";
+            entrypoints = [ "websecure" ];
+          };
+        };
+        services = {
+          grafana.loadBalancer.servers = [
+            { url = "http://localhost:${toString grafana.port}"; }
+          ];
         };
       };
       middlewares = { };
+    };
+  };
+  services.grafana = {
+    enable = true;
+    declarativePlugins = with pkgs.grafanaPlugins; [ grafana-piechart-panel ];
+    settings = {
+      server = {
+        domain = "grafana.${domain}";
+        http_port = grafana.port;
+      };
+      analytics = {
+        reporting_enabled = false;
+        check_for_updates = false;
+        check_for_plugin_updates = false;
+      };
+      security.disable_gravatar = true;
+      panels.disable_sanitize_html = true;
+    };
+    provision = {
+      # datasources.settings.datasources = [{
+      #   name = "Prometheus";
+      #   type = "prometheus";
+      #   uid = "PBFA97CFB590B2093";
+      #   access = "proxy";
+      #   url = "http://localhost:${builtins.toString prometheus.port}";
+      #   isDefault = true;
+      #   version = 1;
+      #   editable = false;
+      # }];
+      # dashboards.settings.providers = [{
+      #   name = "system";
+      #   options.path = ./dashboards/node.json;
+      # }];
     };
   };
 }
