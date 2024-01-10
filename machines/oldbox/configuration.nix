@@ -171,7 +171,7 @@ in
       security = {
         admin_user = "admin";
         admin_email = "jan@kaifer.cz";
-        admin_password = "$__file{${config.age.secrets.traefik-env.path}}";
+        admin_password = "$__file{${config.age.secrets.grafana-password.path}}";
       };
       panels.disable_sanitize_html = true;
     };
