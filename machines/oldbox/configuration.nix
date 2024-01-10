@@ -2,13 +2,10 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ ... }:
+{ pkgs, ... }:
 
 let
   domain = "oldbox.kaifer.cz";
-  pihole = {
-    port = 8001;
-  };
 in
 {
   imports = [
@@ -38,7 +35,6 @@ in
           "53:53/tcp"
           "53:53/udp"
           "67:67/udp"
-          "80:${pihole.port}/tcp"
         ];
         environment = {
           TZ = "Europe/Prague";
@@ -48,6 +44,11 @@ in
           "/persist/containers/pihole/etc-pihole:/etc/pihole"
           "/persist/containers/pihole/etc-dnsmasq.d:/etc/dnsmasq.d"
         ];
+        labels = {
+          "traefik.http.routers.pihole.rule" = "Host(`pihole.${domain}`)";
+          "traefik.http.routers.pihole.entrypoints" = "web";
+          "traefik.http.services.pihole.loadbalancer.server.port" = "80";
+        };
       };
     };
   };
@@ -72,6 +73,19 @@ in
   networking.firewall.allowedTCPPorts = [ 80 ];
   networking.hosts."127.0.0.1" = [ "traefik.${domain}" ];
 
+  systemd.services.traefik-log-folder = {
+    description = "Ensure folder exists for traefik";
+    wantedBy = [ "multi-user.target" ];
+    script = ''
+      #! ${pkgs.bash}/bin/bash
+      FOLDER_PATH="/var/log/traefik"
+      if [ ! -d "$FOLDER_PATH" ]; then
+        mkdir -p "$FOLDER_PATH"
+        chown -R traefik:traefik "$FOLDER_PATH"
+      fi
+    '';
+  };
+
   services.traefik = {
     enable = true;
     group = "docker";
@@ -80,10 +94,12 @@ in
       providers.docker = { };
       entryPoints.web.address = ":80";
       api.dashboard = true;
+      api.insecure = true;
       global = {
         checknewversion = false;
         sendanonymoususage = false;
       };
+      accessLog.filePath = "/var/log/traefik/access.log";
     };
     dynamicConfigOptions = {
       http = {
@@ -92,10 +108,6 @@ in
             rule = "Host(`traefik.${domain}`)";
             service = "api@internal";
             entrypoints = [ "web" ];
-          };
-          pihole = {
-            rule = "Host(`pihole.${domain}`)";
-            port = pihole.port;
           };
         };
       };
