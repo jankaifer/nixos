@@ -88,7 +88,7 @@ in
 
   systemd.services.traefik.environment = {
     CF_API_EMAIL_FILE = config.age.secrets.cloudflare-api-email.path;
-    CF_DNS_API_TOKEN_FILE = config.age.secrets.cloudflare-api-token.path;
+    CF_DNS_API_TOKEN_FILE = config.age.secrets.cloudflare-api-dns-token.path;
   };
 
   services.traefik = {
