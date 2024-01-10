@@ -168,7 +168,11 @@ in
         check_for_updates = false;
         check_for_plugin_updates = false;
       };
-      security.disable_gravatar = true;
+      security = {
+        admin_user = "admin";
+        admin_email = "jan@kaifer.cz";
+        admin_password = "$__file{${config.age.secrets.traefik-env.path}}";
+      };
       panels.disable_sanitize_html = true;
     };
     provision = {

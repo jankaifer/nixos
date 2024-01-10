@@ -6,4 +6,5 @@ in
   "login-password.age".publicKeys = ghKeys;
   "snapserver/env-file.age".publicKeys = ghKeys;
   "traefik-env.age".publicKeys = ghKeys;
+  "grafana-password.age".publicKeys = ghKeys;
 }

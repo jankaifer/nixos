@@ -14,4 +14,5 @@
   age.secrets.wifi-passwords.file = ../secrets/wifi-passwords.age;
   age.secrets.snapserver-env-file.file = ../secrets/snapserver/env-file.age;
   age.secrets.traefik-env.file = ../secrets/traefik-env.age;
+  age.secrets.grafana-password.file = ../secrets/grafana-password.age;
 }
