@@ -2,7 +2,7 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 let
   domain = "oldbox.kaifer.cz";
@@ -70,7 +70,7 @@ in
   # Traefik
   # stolen from https://github.com/LongerHV/nixos-configuration/blob/87ac6a7370811698385d4c52fc28fab94addaea2/modules/nixos/homelab/traefik.nix
 
-  networking.firewall.allowedTCPPorts = [ 80 ];
+  networking.firewall.allowedTCPPorts = [ 80 443 ];
   networking.hosts."127.0.0.1" = [ "traefik.${domain}" ];
 
   systemd.services.traefik-log-folder = {
@@ -84,6 +84,11 @@ in
         chown -R traefik:traefik "$FOLDER_PATH"
       fi
     '';
+  };
+
+  systemd.services.traefik.environment = {
+    CF_API_EMAIL_FILE = config.age.secrets.cloudflare-api-email.path;
+    CF_DNS_API_TOKEN_FILE = config.age.secrets.cloudflare-api-token.path;
   };
 
   services.traefik = {
