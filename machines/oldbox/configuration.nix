@@ -56,6 +56,16 @@ in
           "traefik.http.services.pihole.loadbalancer.server.port" = "80";
         };
       };
+      homeassistant = {
+        image = "ghcr.io/home-assistant/home-assistant:2024.1";
+        environment.TZ = "Europe/Prague";
+        volumes = [ "home-assistant:/config" ];
+        labels = {
+          "traefik.http.routers.homeassistant.rule" = "Host(`homeassistant.${domain}`)";
+          "traefik.http.routers.homeassistant.entrypoints" = "websecure";
+          "traefik.http.services.homeassistant.loadbalancer.server.port" = "8123";
+        };
+      };
     };
   };
 
