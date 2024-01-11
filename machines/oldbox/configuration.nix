@@ -69,6 +69,8 @@ in
     };
   };
 
+  environment.etc."/persist/containers/home-assistant/config/configuration.yaml".source = ./home-assistant-configuration.yaml;
+
   # Options
   custom = {
     cli-server.enable = true;
