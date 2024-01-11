@@ -56,14 +56,14 @@ in
           "traefik.http.services.pihole.loadbalancer.server.port" = "80";
         };
       };
-      homeassistant = {
+      home-assistant = {
         image = "ghcr.io/home-assistant/home-assistant:2024.1";
         environment.TZ = "Europe/Prague";
-        volumes = [ "home-assistant:/config" ];
+        volumes = [ "/persist/containers/home-assistant/config:/config" ];
         labels = {
-          "traefik.http.routers.homeassistant.rule" = "Host(`homeassistant.${domain}`)";
-          "traefik.http.routers.homeassistant.entrypoints" = "websecure";
-          "traefik.http.services.homeassistant.loadbalancer.server.port" = "8123";
+          "traefik.http.routers.home-assistant.rule" = "Host(`home-assistant.${domain}`)";
+          "traefik.http.routers.home-assistant.entrypoints" = "websecure";
+          "traefik.http.services.home-assistant.loadbalancer.server.port" = "8123";
         };
       };
     };
@@ -214,10 +214,6 @@ in
         version = 1;
         editable = false;
       }];
-      # dashboards.settings.providers = [{
-      #   name = "system";
-      #   options.path = ./dashboards/node.json;
-      # }];
     };
   };
 
