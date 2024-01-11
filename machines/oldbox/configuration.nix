@@ -106,6 +106,7 @@ in
         sendanonymoususage = false;
       };
       accessLog.filePath = "/var/log/traefik/access.log";
+      metrics.prometheus.manualRouting = true;
       entryPoints = {
         web = {
           address = ":80";
@@ -143,6 +144,11 @@ in
             service = "api@internal";
             entrypoints = [ "websecure" ];
           };
+          traefik-metrics = {
+            rule = "Host(`traefik-metrics.${domain}`)";
+            service = "prometheus@internal";
+            entrypoints = [ "websecure" ];
+          };
           grafana = {
             rule = "Host(`grafana.${domain}`)";
             service = "grafana@file";
@@ -166,6 +172,7 @@ in
       middlewares = { };
     };
   };
+
   services.grafana = {
     enable = true;
     declarativePlugins = with pkgs.grafanaPlugins; [ grafana-piechart-panel ];
@@ -207,5 +214,19 @@ in
   services.victoriametrics = {
     enable = true;
     listenAddress = ":${toString victoriametrics.port}";
+    extraOptions =
+      let
+        scrapeConfigFile = builtins.toFile "prometheus-scrape-config.yml" ''
+          scrape_configs:
+          - job_name: traefik
+            static_configs:
+            - targets:
+              - "https://traefik-metrics.${domain}"
+        '';
+      in
+      [
+        # "-promscrape.config.strictParse=false" # required for victoriametrics to parse the config
+        "-promscrape.config=${scrapeConfigFile}"
+      ];
   };
 }
