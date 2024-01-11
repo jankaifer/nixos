@@ -47,8 +47,8 @@ in
           WEBPASSWORD = "pihole";
         };
         volumes = [
-          "/persist/containers/pihole/etc-pihole:/etc/pihole"
-          "/persist/containers/pihole/etc-dnsmasq.d:/etc/dnsmasq.d"
+          "/etc/containers/pihole/etc-pihole:/etc/pihole"
+          "/etc/containers/pihole/etc-dnsmasq.d:/etc/dnsmasq.d"
         ];
         labels = {
           "traefik.http.routers.pihole.rule" = "Host(`pihole.${domain}`)";
@@ -59,7 +59,7 @@ in
       home-assistant = {
         image = "ghcr.io/home-assistant/home-assistant:2024.1";
         environment.TZ = "Europe/Prague";
-        volumes = [ "/persist/containers/home-assistant/config:/config" ];
+        volumes = [ "/etc/containers/home-assistant/config:/config" ];
         labels = {
           "traefik.http.routers.home-assistant.rule" = "Host(`home-assistant.${domain}`)";
           "traefik.http.routers.home-assistant.entrypoints" = "websecure";
@@ -69,7 +69,7 @@ in
     };
   };
 
-  environment.etc."/persist/containers/home-assistant/config/configuration.yaml".source = ./home-assistant-configuration.yaml;
+  environment.etc."containers/home-assistant/config/configuration.yaml".source = ./home-assistant-configuration.yaml;
 
   # Options
   custom = {
