@@ -84,6 +84,18 @@
         "type": "github"
       }
     },
+    "myPublicSshKeys": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-l1Jkw9HX0+dkzTmPqV8WKOGN/8hqisUt+Fj7hQo7vYM=",
+        "type": "file",
+        "url": "https://github.com/jankaifer.keys"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://github.com/jankaifer.keys"
+      }
+    },
     "nixos-hardware": {
       "locked": {
         "lastModified": 1705187059,
@@ -137,6 +149,7 @@
         "agenix": "agenix",
         "fckKeyboardLayout": "fckKeyboardLayout",
         "home-manager": "home-manager",
+        "myPublicSshKeys": "myPublicSshKeys",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable"

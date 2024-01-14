@@ -57,9 +57,10 @@ in
       };
     };
 
-    services.openssh = with lib; {
-      settings.PasswordAuthentication = mkDefault false;
-      settings.PermitRootLogin = mkDefault "no";
+    services.openssh.settings = {
+      PasswordAuthentication = lib.mkDefault false;
+      PubkeyAuthentication = lib.mkDefault true;
+      PermitRootLogin = lib.mkDefault "no";
     };
 
     environment = {

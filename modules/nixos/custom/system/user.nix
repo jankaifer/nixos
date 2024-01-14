@@ -32,15 +32,7 @@ in
       users.${cfg.user} = {
         isNormalUser = true;
         extraGroups = [ "wheel" "networkmanager" "docker" ];
-        openssh.authorizedKeys.keys =
-          let
-            authorizedKeys = pkgs.fetchurl {
-              url = "https://github.com/jankaifer.keys";
-              sha256 = "";
-            };
-          in
-          lib.splitString "\n" (builtins.readFile
-            authorizedKeys);
+        openssh.authorizedKeys.keys = lib.splitString "\n" (builtins.readFile inputs.myPublicSshKeys);
       };
     };
     programs.neovim = {
