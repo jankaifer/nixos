@@ -5,6 +5,7 @@ let
 in
 {
   imports = [
+    ./gui.nix
   ];
 
   options = { };
