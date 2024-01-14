@@ -49,7 +49,7 @@
         let
           defaultModules = (builtins.attrValues outputs.nixosModules) ++ [
             inputs.agenix.nixosModules.default
-            # home-manager.nixosModules.default
+            inputs.home-manager.nixosModules.default
           ];
           specialArgs = { inherit inputs outputs; };
         in

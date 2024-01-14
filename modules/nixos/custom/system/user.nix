@@ -39,7 +39,7 @@ in
               sha256 = "";
             };
           in
-          pkgs.lib.splitString "\n" (builtins.readFile
+          lib.splitString "\n" (builtins.readFile
             authorizedKeys);
       };
     };
