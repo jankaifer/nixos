@@ -47,6 +47,22 @@
         "type": "github"
       }
     },
+    "fckKeyboardLayout": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1663864785,
+        "narHash": "sha256-fWyGiLNZO8mv4ZCnG/SvTx0Utb+XuyVSNpero+tLuGY=",
+        "owner": "JanKaifer",
+        "repo": "fck",
+        "rev": "365095d7d5c9d912b1945ddd1039f787dc72d186",
+        "type": "gitlab"
+      },
+      "original": {
+        "owner": "JanKaifer",
+        "repo": "fck",
+        "type": "gitlab"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -119,6 +135,7 @@
     "root": {
       "inputs": {
         "agenix": "agenix",
+        "fckKeyboardLayout": "fckKeyboardLayout",
         "home-manager": "home-manager",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",

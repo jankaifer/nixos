@@ -16,6 +16,10 @@
         home-manager.follows = "home-manager";
       };
     };
+    fckKeyboardLayout = {
+      flake = false;
+      url = "gitlab:JanKaifer/fck";
+    };
   };
 
   outputs = { self, nixpkgs, agenix, ... }@inputs:

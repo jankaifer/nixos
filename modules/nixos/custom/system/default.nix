@@ -29,13 +29,7 @@ in
       extraLayouts.fck = {
         description = "fck";
         languages = [ "en" "cs" ];
-        symbolsFile =
-          let
-            commit = "365095d7d5c9d912b1945ddd1039f787dc72d186";
-          in
-          builtins.fetchurl {
-            url = "https://gitlab.com/JanKaifer/fck/-/raw/${commit}/fck";
-          };
+        symbolsFile = "${inputs.fckKeyboardLayout}/fck";
       };
     };
 
@@ -43,7 +37,6 @@ in
     nixpkgs.config.allowUnfree = true;
     nix = {
       package = pkgs.nix;
-      extraOptions = [ "nix-command" "flakes" ];
       # Makes sure that nix uses the same version for these flakes
       registry = lib.mapAttrs (_: value: { flake = value; }) inputs;
       nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
@@ -55,6 +48,7 @@ in
       };
       settings = {
         auto-optimise-store = lib.mkDefault true;
+        experimental-features = [ "nix-command" "flakes" ];
         # TODO: setup my other machines as substituters to provide binary caches
         # substituters = map (x: substituters.${x}.url) cfg.nix.substituters;
         # trusted-public-keys = map (x: substituters.${x}.key) cfg.nix.substituters;
@@ -68,7 +62,7 @@ in
 
     environment = {
       systemPackages = [
-        pkgs.agenix
+        inputs.agenix
         pkgs.git
         pkgs.dnsutils
         pkgs.pciutils
