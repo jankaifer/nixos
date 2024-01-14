@@ -9,15 +9,33 @@
     };
   };
 
-  outputs = { self, nixpkgs, ... }@inputs: {
-    nixosConfigurations = {
-      "oldbox" = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-
-        modules = [
-          ./machines/oldbox/configuration.nix
-        ];
-      };
+  outputs = { self, nixpkgs, ... }@inputs:
+    let
+      outputs = self;
+      # nixosModules = import ./modules/nixos;
+      nixosModules = { };
+    in
+    {
+      inherit nixosModules;
+      nixosConfigurations =
+        let
+          defaultModules = (builtins.attrValues nixosModules) ++ [
+            # home-manager.nixosModules.default
+          ];
+          specialArgs = { inherit inputs outputs; };
+        in
+        {
+          "oldbox" = nixpkgs.lib.nixosSystem {
+            inherit specialArgs;
+            modules = defaultModules ++ [
+              ./machines/oldbox/configuration.nix
+            ];
+          };
+          "playground" = nixpkgs.lib.nixosSystem {
+            inherit specialArgs;
+            modules = defaultModules ++ [
+            ];
+          };
+        };
     };
-  };
 }
