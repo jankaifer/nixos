@@ -1,6 +1,6 @@
 # Playground container to tinkering with configurations
 
-Spin up a TTY only container using systemd nspawn to experiment with configuration.
+Spin up a TTY only container using systemd `nspawn` to experiment with configuration.
 
 ```bash
 # Create container from configuration flake

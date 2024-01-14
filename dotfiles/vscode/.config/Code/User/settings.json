@@ -112,6 +112,7 @@
     "nixos",
     "nixpkgs",
     "noatime",
+    "nspawn",
     "oldbox",
     "pearman",
     "pkgs",
