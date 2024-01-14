@@ -6,6 +6,7 @@ in
 {
   imports = [
     ./gui.nix
+    ./user.nix
   ];
 
   options = { };
