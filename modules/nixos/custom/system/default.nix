@@ -18,6 +18,17 @@ in
 
     time.timeZone = lib.mkDefault "Europe/Prague";
     i18n.defaultLocale = lib.mkDefault "en_US.UTF-8";
+    i18n.extraLocaleSettings = lib.mkDefault {
+      LC_ADDRESS = "cs_CZ.utf8";
+      LC_IDENTIFICATION = "cs_CZ.utf8";
+      LC_MEASUREMENT = "cs_CZ.utf8";
+      LC_MONETARY = "cs_CZ.utf8";
+      LC_NAME = "cs_CZ.utf8";
+      LC_NUMERIC = "cs_CZ.utf8";
+      LC_PAPER = "cs_CZ.utf8";
+      LC_TELEPHONE = "cs_CZ.utf8";
+      LC_TIME = "cs_CZ.utf8";
+    };
 
     console = {
       font = lib.mkDefault "ter-i32b";
@@ -25,6 +36,11 @@ in
       useXkbConfig = lib.mkDefault true;
       earlySetup = lib.mkDefault true;
     };
+
+    # Make sude timeout longer
+    security.sudo.extraConfig = ''
+      Defaults        timestamp_timeout=15
+    '';
 
     services.xserver = {
       layout = lib.mkDefault "fck";

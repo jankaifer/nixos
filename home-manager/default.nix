@@ -1,2 +1,3 @@
-# All my computers share the same home setup
-{ }
+{
+  custom.gnome.enable = true;
+}
