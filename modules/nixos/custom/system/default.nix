@@ -63,7 +63,7 @@ in
 
     environment = {
       systemPackages = [
-        inputs.agenix
+        pkgs.agenix
         pkgs.git
         pkgs.dnsutils
         pkgs.pciutils

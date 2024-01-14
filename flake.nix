@@ -22,17 +22,33 @@
     };
   };
 
-  outputs = { self, nixpkgs, agenix, ... }@inputs:
+  outputs = { ... }@inputs:
     let
-      outputs = self;
+      inherit (inputs.nixpkgs) lib;
+      outputs = inputs.self;
+      forAllSystems = lib.genAttrs [ "aarch64-linux" "x86_64-linux" ];
     in
     {
-      overlays = { };
+      overlays = {
+        unstable = _: prev: {
+          unstable = import inputs.nixpkgs-unstable {
+            inherit (prev) system config;
+          };
+        };
+        agenix = inputs.agenix.overlays.default;
+      };
+      legacyPackages = forAllSystems (system:
+        import inputs.nixpkgs {
+          inherit system;
+          overlays = builtins.attrValues outputs.overlays;
+          config.allowUnfree = true;
+        }
+      );
       nixosModules = import ./modules/nixos;
       nixosConfigurations =
         let
           defaultModules = (builtins.attrValues outputs.nixosModules) ++ [
-            agenix.nixosModules.default
+            inputs.agenix.nixosModules.default
             # home-manager.nixosModules.default
           ];
           specialArgs = { inherit inputs outputs; };
@@ -44,7 +60,7 @@
           #     ./machines/oldbox/configuration.nix
           #   ];
           # };
-          "playground" = nixpkgs.lib.nixosSystem {
+          "playground" = lib.nixosSystem {
             inherit specialArgs;
             modules = defaultModules ++ [
               ./nixos/playground

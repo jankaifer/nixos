@@ -18,5 +18,5 @@
   system.stateVersion = "23.11";
   nix.gc.automatic = false;
 
-  custom.system.gui.enable = true;
+  # custom.system.gui.enable = true;
 }

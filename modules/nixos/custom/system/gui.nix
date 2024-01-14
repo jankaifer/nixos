@@ -54,22 +54,6 @@ in
     security.rtkit.enable = true;
     sound.enable = true;
 
-    # Use custom user profile pic
-    # TODO: fix this, it does not work
-    boot.postBootCommands =
-      let
-        gdm_user_conf = ''
-          [User]
-          Session=
-          XSession=
-          Icon=${../profile-pics/profile-pic.png}
-          SystemAccount=false
-        '';
-      in
-      ''
-        echo '${gdm_user_conf}' > /var/lib/AccountsService/users/perman
-      '';
-
     # home-manager.users."${config.custom.options.username}" = { lib, ... }: {
     #   dconf.settings = let gvariant = lib.hm.gvariant; in {
     #     # Allow fractional scaling in wayland - produces blurry image
@@ -231,7 +215,7 @@ in
 
       pkgs.lutris
 
-      inputs.nixpkgs-unsable.pkgs.keymapp
+      pkgs.unstable.keymapp
     ];
 
     ## Force Chromium based apps to render using wayland
