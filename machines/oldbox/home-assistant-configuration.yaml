@@ -1,3 +1,5 @@
+## this file is currently not used, because HA sucks and fails to start when configuration.yaml is a symlink
+
 # Loads default set of integrations. Do not remove.
 default_config:
 

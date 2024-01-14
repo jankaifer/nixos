@@ -16,7 +16,7 @@ in
 {
   imports = [
     ./hardware-configuration.nix
-    ../../modules
+    ../../modules/cleaned-modules
   ];
 
   # We need few volumes to be mounted before our system starts booting
@@ -68,8 +68,6 @@ in
       };
     };
   };
-
-  environment.etc."containers/home-assistant/config/configuration.yaml".source = ./home-assistant-configuration.yaml;
 
   # Options
   custom = {
