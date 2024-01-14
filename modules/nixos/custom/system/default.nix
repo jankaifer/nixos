@@ -1,11 +1,13 @@
 { inputs, outputs, config, lib, pkgs, ... }:
 
 let
-  cfg = config.mySystem;
+  cfg = config.custom.system;
 in
 {
   imports = [
   ];
+
+  options = { };
 
   config = {
     hardware.enableRedistributableFirmware = lib.mkDefault true;

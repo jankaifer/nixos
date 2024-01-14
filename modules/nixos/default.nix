@@ -1,4 +1,4 @@
 {
-  mySystem = import ./custom/system;
-  homelab = import ./custom/homelab;
+  customSystem = import ./custom/system;
+  customHomelab = import ./custom/homelab;
 }
