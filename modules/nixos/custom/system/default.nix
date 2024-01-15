@@ -18,6 +18,13 @@ in
 
     boot.tmp.useTmpfs = lib.mkDefault true;
 
+    # Use the systemd-boot EFI boot loader.
+    boot.loader = {
+      grub.useOSProber = lib.mkDefault false;
+      systemd-boot.enable = lib.mkDefault true;
+      efi.canTouchEfiVariables = lib.mkDefault true;
+    };
+
     time.timeZone = lib.mkDefault "Europe/Prague";
     i18n.defaultLocale = lib.mkDefault "en_US.UTF-8";
     i18n.extraLocaleSettings = lib.mkDefault {
@@ -85,6 +92,8 @@ in
         symbolsFile = "${inputs.fckKeyboardLayout}/fck";
       };
     };
+
+    networking.firewall.enable = false;
 
     nixpkgs.overlays = builtins.attrValues outputs.overlays;
     nixpkgs.config.allowUnfree = true;

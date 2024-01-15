@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, pkgs, ... }:
 
 {
   imports = [
@@ -6,6 +6,7 @@
     ./hardware-configuration.nix
   ];
 
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   nixpkgs.hostPlatform = "x86_64-linux";
   networking.hostName = "pearframe";
   system.stateVersion = "23.11";

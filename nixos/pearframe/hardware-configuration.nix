@@ -19,6 +19,7 @@
     device = "none";
     fsType = "tmpfs";
     options = [ "defaults" "size=8G" "mode=755" ];
+    neededForBoot = true;
   };
 
   fileSystems."/tmp" = {
@@ -36,24 +37,28 @@
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/D23D-3874";
     fsType = "vfat";
+    neededForBoot = true;
   };
 
   fileSystems."/nix" = {
     device = "/dev/disk/by-uuid/2ce825c9-7aa3-4768-8966-4ac6c8ce8a49";
     fsType = "btrfs";
     options = [ "subvol=nix" ];
+    neededForBoot = true;
   };
 
   fileSystems."/persist" = {
     device = "/dev/disk/by-uuid/2ce825c9-7aa3-4768-8966-4ac6c8ce8a49";
     fsType = "btrfs";
     options = [ "subvol=persist" ];
+    neededForBoot = true;
   };
 
   fileSystems."/var/log" = {
     device = "/dev/disk/by-uuid/2ce825c9-7aa3-4768-8966-4ac6c8ce8a49";
     fsType = "btrfs";
     options = [ "subvol=log" ];
+    neededForBoot = true;
   };
 
   swapDevices = [{ device = "/dev/disk/by-uuid/8ca1d57f-3435-4a42-b5df-fd76de5e52d5"; }];
