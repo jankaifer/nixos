@@ -19,7 +19,7 @@ in
     userFiles = userOptions.files // emptyDefault;
   };
 
-  config = lib.mkIf config.custom.impermanence.enable
+  config = lib.mkIf cfg.enable
     {
       environment.persistence.${persistancePath} = {
         hideMounts = true;

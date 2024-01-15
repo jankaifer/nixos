@@ -50,16 +50,17 @@
           config.allowUnfree = true;
         }
       );
-      homeManagerModules = import ./modules/home-manager-custom;
-      nixosModules = import ./modules/nixos;
+      homeManagerModules = (import ./modules/home-manager-custom) // {
+        impermanence = inputs.impermanence.nixosModules.home-manager.impermanence;
+      };
+      nixosModules = (import ./modules/nixos) // {
+        agenix = inputs.agenix.nixosModules.default;
+        home-manager = inputs.home-manager.nixosModules.default;
+        impermanence = inputs.impermanence.nixosModules.impermanence;
+      };
       nixosConfigurations =
         let
-          defaultModules = (builtins.attrValues outputs.nixosModules) ++ [
-            inputs.agenix.nixosModules.default
-            inputs.home-manager.nixosModules.default
-            inputs.impermanence.nixosModules.impermanence
-            inputs.impermanence.nixosModules.home-manager.impermanence
-          ];
+          defaultModules = builtins.attrValues outputs.nixosModules;
           specialArgs = { inherit inputs outputs; };
         in
         {

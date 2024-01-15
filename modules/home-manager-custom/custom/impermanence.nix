@@ -1,7 +1,7 @@
 { config, lib, ... }:
 
 let
-  cfg = config.custom.cli;
+  cfg = config.custom.impermanence;
 in
 {
   options.custom.impermanence = {
