@@ -109,7 +109,7 @@ in
         show-battery-percentage = true;
       };
       "org/gnome/desktop/interface".show-battery-percentage = true;
-      "org/gnome/desktop/session".idle-delay = lib.hm.gvariant.mkUint32 config.custom.gui.idleDelay;
+      "org/gnome/desktop/session".idle-delay = lib.hm.gvariant.mkUint32 cfg.idleDelay;
 
       # Night light
       "org/gnome/settings-daemon/plugins/color" = {
