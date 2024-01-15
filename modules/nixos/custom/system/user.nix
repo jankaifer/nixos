@@ -41,6 +41,7 @@ in
           password = "pass";
         } else {
           password = "pass";
+          # TODO: switch back to actual secure password
           # hashedPasswordFile = config.age.secrets.login-password.path;
         })
         {
