@@ -1,7 +1,9 @@
-{ inputs, outputs, config, lib, pkgs, ... }:
+{ inputs, outputs, config, options, lib, pkgs, ... }:
 
 let
   cfg = config.custom.system;
+  # This options is available only in VMs
+  isVm = options ? virtualisation.memorySize;
 in
 {
   options.custom.system = {
@@ -28,12 +30,20 @@ in
       users.${cfg.user} = import cfg.home-manager.home;
     };
     users = {
+      mutableUsers = false;
       defaultUserShell = pkgs.zsh;
-      users.${cfg.user} = {
-        isNormalUser = true;
-        extraGroups = [ "wheel" "networkmanager" "docker" ];
-        openssh.authorizedKeys.keys = lib.splitString "\n" (builtins.readFile inputs.myPublicSshKeys);
-      };
+      users.${cfg.user} = lib.mkMerge [
+        (if isVm then {
+          password = "pass";
+        } else {
+          hashedPasswordFile = config.age.secrets.login-password.path;
+        })
+        {
+          isNormalUser = true;
+          extraGroups = [ "wheel" "networkmanager" "docker" ];
+          openssh.authorizedKeys.keys = lib.splitString "\n" (builtins.readFile inputs.myPublicSshKeys);
+        }
+      ];
     };
     programs.neovim = {
       enable = true;
