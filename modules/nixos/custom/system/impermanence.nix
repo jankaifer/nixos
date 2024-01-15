@@ -4,19 +4,28 @@ let
   cfg = config.custom.system.impermanence;
   user = config.custom.system.users;
   persistancePath = "/persist";
-  persistancePathOptions = options.environment.persistence.${persistancePath};
-  userOptions = persistancePath.users.${user};
-  emptyDefault = {
-    "default" = [ ];
+  listOption = lib.mkOption {
+    type = lib.type.listOf lib.type.str;
+    default = [ ];
   };
+  # persistancePathOptions = options.environment.persistence.${persistancePath};
+  # userOptions = persistancePath.users.${user};
+  # emptyDefault = {
+  #   "default" = [ ];
+  # };
 in
 {
   options.custom.system.impermanence = {
     enable = lib.mkEnableOption "impermanence";
-    directories = persistancePathOptions.directories // emptyDefault;
-    files = persistancePathOptions.files // emptyDefault;
-    userDirectories = userOptions.directories // emptyDefault;
-    userFiles = userOptions.files // emptyDefault;
+    directories = listOption;
+    files = listOption;
+    userDirectories = listOption;
+    userFiles = listOption;
+    # TODO: add these properly
+    # directories = persistancePathOptions.directories // emptyDefault;
+    # files = persistancePathOptions.files // emptyDefault;
+    # userDirectories = userOptions.directories // emptyDefault;
+    # userFiles = userOptions.files // emptyDefault;
   };
 
   config = lib.mkIf cfg.enable
