@@ -5,7 +5,7 @@ let
   fontSize = config.custom.gnome.font.size;
 in
 {
-  config = lib.mkIf config.myHome.gnome.enable {
+  config = lib.mkIf config.custom.gnome.enable {
     programs.alacritty = {
       enable = true;
       settings = {
@@ -37,7 +37,7 @@ in
           size = fontSize;
         };
         colors = {
-          inherit (config.myHome.colors) primary cursor normal bright;
+          inherit (config.custom.colors) primary cursor normal bright;
         };
       };
     };

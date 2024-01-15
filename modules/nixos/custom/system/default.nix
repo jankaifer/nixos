@@ -42,7 +42,7 @@ in
           gdm.autoSuspend = false;
           autoLogin = {
             enable = true;
-            inherit (config.mySystem) user;
+            inherit (config.custom.system) user;
           };
         };
         nix-serve.enable = lib.mkForce false;
