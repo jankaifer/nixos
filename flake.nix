@@ -70,6 +70,12 @@
               ./nixos/playground
             ];
           };
+          "pearframe" = lib.nixosSystem {
+            inherit specialArgs;
+            modules = defaultModules ++ [
+              ./nixos/pearframe
+            ];
+          };
         };
     };
 }

@@ -109,16 +109,6 @@
       # Inrease temporary storage size
       services.logind.extraConfig = "RuntimeDirectorySize=12G";
 
-      services.lorri.enable = true;
-
-      services.mullvad-vpn.enable = true;
-
-      environment.etc."auto-cpufreq.conf" = {
-        enable = true;
-        source = "${nixosRepoPath}/dotfiles/auto-cpufreq/auto-cpufreq.conf";
-        target = "auto-cpufreq.conf";
-      };
-
       environment.sessionVariables = {
         XDG_CACHE_HOME = "\${HOME}/.cache";
         XDG_CONFIG_HOME = "\${HOME}/.config";

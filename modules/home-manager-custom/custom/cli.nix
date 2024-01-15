@@ -24,7 +24,7 @@ in
         gm = "git merge";
         gps = "git push";
         gpl = "git pull";
-        rebuild = "sudo nixos-rebuild switch --flake .";
+        rebuild = "sudo nixos-rebuild switch --flake /etc/nixos";
       };
       git = {
         enable = true;
@@ -61,8 +61,8 @@ in
       pkgs.lshw
       pkgs.parted
       pkgs.tree
-      pkgs.zsh-you-should-use
       pkgs.nixpkgs-fmt
+      pkgs.fnm
     ];
   };
 }

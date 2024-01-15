@@ -37,6 +37,9 @@ in
       earlySetup = lib.mkDefault true;
     };
 
+    # Enable CUPS to print documents.
+    services.printing.enable = lib.mkDefault true;
+
     # Make sude timeout longer
     security.sudo.extraConfig = ''
       Defaults        timestamp_timeout=15
@@ -88,6 +91,73 @@ in
       ];
       shells = [ pkgs.zsh ];
       pathsToLink = [ "/share/zsh" ];
+
+      sessionVariables = {
+        XDG_CACHE_HOME = "\${HOME}/.cache";
+        XDG_CONFIG_HOME = "\${HOME}/.config";
+        XDG_BIN_HOME = "\${HOME}/.local/bin";
+        XDG_DATA_HOME = "\${HOME}/.local/share";
+
+        EDITOR = "vim";
+
+        PATH = [
+          "\${XDG_BIN_HOME}"
+        ];
+      };
+    };
+
+    # I want to use VSCode server and use node projects normally
+    nix-ld = {
+      enable = true;
+      libraries = [
+        pkgs.alsa-lib
+        pkgs.at-spi2-atk
+        pkgs.at-spi2-core
+        pkgs.atk
+        pkgs.cairo
+        pkgs.cups
+        pkgs.curl
+        pkgs.dbus
+        pkgs.expat
+        pkgs.fontconfig
+        pkgs.freetype
+        pkgs.fuse3
+        pkgs.gdk-pixbuf
+        pkgs.glib
+        pkgs.gtk3
+        pkgs.icu
+        pkgs.libGL
+        pkgs.libappindicator-gtk3
+        pkgs.libdrm
+        pkgs.libnotify
+        pkgs.libpulseaudio
+        pkgs.libuuid
+        pkgs.libxkbcommon
+        pkgs.mesa
+        pkgs.musl
+        pkgs.nspr
+        pkgs.nss
+        pkgs.openssl
+        pkgs.pango
+        pkgs.pipewire
+        pkgs.stdenv.cc.cc
+        pkgs.systemd
+        pkgs.xorg.libX11
+        pkgs.xorg.libXScrnSaver
+        pkgs.xorg.libXcomposite
+        pkgs.xorg.libXcursor
+        pkgs.xorg.libXdamage
+        pkgs.xorg.libXext
+        pkgs.xorg.libXfixes
+        pkgs.xorg.libXi
+        pkgs.xorg.libXrandr
+        pkgs.xorg.libXrender
+        pkgs.xorg.libXtst
+        pkgs.xorg.libxcb
+        pkgs.xorg.libxkbfile
+        pkgs.xorg.libxshmfence
+        pkgs.zlib
+      ];
     };
   };
 }
