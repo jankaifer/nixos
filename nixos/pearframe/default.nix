@@ -3,6 +3,7 @@
 {
   imports = [
     inputs.nixos-hardware.nixosModules."framework-12th-gen-intel"
+    ./hardware-configuration.nix
   ];
 
   nixpkgs.hostPlatform = "x86_64-linux";
