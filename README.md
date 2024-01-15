@@ -16,8 +16,8 @@ Other sources that I used:
 
 ## Running machines
 
-With flakes it's easy to run these configs in a VM.
-It won't be able to get secrets from agenix, but otherwise it should give you exact copy of actual system.
+With flakes, it's easy to run these configs in a VM.
+It won't be able to get secrets from agenix, but otherwise, it should give you an exact copy of the actual system.
 It's great for quick iterations.
 
 ```bash
