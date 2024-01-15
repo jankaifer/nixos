@@ -48,7 +48,6 @@ in
     home.file = {
       # For some reason vscode can't read the config when provided by impermanence
       ".vimrc".source = ../../../dotfiles/vim/.vimrc;
-      ".node-version".text = "v20";
     };
     home.packages = [
       pkgs.curl
