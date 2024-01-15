@@ -14,7 +14,7 @@ Other sources that I used:
 
 - https://mt-caret.github.io/blog/posts/2020-06-29-optin-state.html
 
-## Running machines
+## Running machines in VM
 
 With flakes, it's easy to run these configs in a VM.
 It won't be able to get secrets from agenix, but otherwise, it should give you an exact copy of the actual system.
@@ -23,6 +23,12 @@ It's great for quick iterations.
 ```bash
 # Run this from the root of the repo to run VM of current machine (use `--flake .#machine-name for different machine`)
 nixos-rebuild build-vm --flake . && ./result/bin/run-pearframe-vm
+```
+
+## To use selected configuration you can install it with
+
+```bash
+nixos-rebuild switch --flake .
 ```
 
 # Pre-flake config

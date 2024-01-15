@@ -40,7 +40,8 @@ in
         (if isVm then {
           password = "pass";
         } else {
-          hashedPasswordFile = config.age.secrets.login-password.path;
+          password = "pass";
+          # hashedPasswordFile = config.age.secrets.login-password.path;
         })
         {
           isNormalUser = true;
