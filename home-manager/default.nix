@@ -1,3 +1,6 @@
 {
-  custom.gnome.enable = true;
+  custom = {
+    gnome.enable = true;
+    vscode.enable = true;
+  };
 }
