@@ -24,7 +24,6 @@ in
           This option should not be used on servers and live isos.
         '';
       };
-
       idleDelay = lib.mkOption {
         default = 300;
         example = 60;

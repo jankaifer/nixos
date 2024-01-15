@@ -12,8 +12,14 @@ in
     enable = lib.mkEnableOption "gnome";
     wallpaper = lib.mkOption {
       type = lib.types.package;
-      # TODO: fix wallpaper
       default = pkgs.nierWallpaper;
+    };
+    idleDelay = lib.mkOption {
+      default = 300;
+      example = 60;
+      description = ''
+        How many seconds of inactivity will power-off screen. 0 is infinity
+      '';
     };
     font = {
       package = lib.mkOption {
