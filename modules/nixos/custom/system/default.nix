@@ -58,7 +58,7 @@ in
           source = ../../../..;
           recursive = true;
         };
-        custom.impermanence.nixosRepoPath = ".nixosConfig";
+        custom.impermanence.nixosRepoPath = "/home/${cfg.user}/.nixosConfig";
       };
     };
 
