@@ -48,6 +48,7 @@
           config.allowUnfree = true;
         }
       );
+      homeManagerModules = import ./modules/home-manager-custom;
       nixosModules = import ./modules/nixos;
       nixosConfigurations =
         let

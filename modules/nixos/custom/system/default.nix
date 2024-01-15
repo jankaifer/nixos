@@ -31,6 +31,27 @@ in
       LC_TIME = "cs_CZ.utf8";
     };
 
+    # Set reasonable defaults when running in a VM
+    virtualisation.vmVariant = {
+      virtualisation = {
+        memorySize = lib.mkDefault 4096;
+        cores = lib.mkDefault 4;
+      };
+      services = {
+        xserver.displayManager = {
+          gdm.autoSuspend = false;
+          autoLogin = {
+            enable = true;
+            inherit (config.mySystem) user;
+          };
+        };
+        nix-serve.enable = lib.mkForce false;
+        resolved.extraConfig = lib.mkForce "";
+      };
+      networking.wg-quick.interfaces = lib.mkForce { };
+      virtualisation.docker.storageDriver = lib.mkForce "overlay2";
+    };
+
     console = {
       font = lib.mkDefault "ter-i32b";
       packages = [ pkgs.terminus_font ];
