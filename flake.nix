@@ -16,6 +16,13 @@
         home-manager.follows = "home-manager";
       };
     };
+    impermanence = {
+      url = "github:nix-community/impermanence";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        home-manager.follows = "home-manager";
+      };
+    };
     fckKeyboardLayout = {
       flake = false;
       url = "gitlab:JanKaifer/fck";
@@ -56,6 +63,8 @@
           defaultModules = (builtins.attrValues outputs.nixosModules) ++ [
             inputs.agenix.nixosModules.default
             inputs.home-manager.nixosModules.default
+            inputs.impermanence.nixosModules.impermanence
+            inputs.impermanence.nixosModules.home-manager.impermanence
           ];
           specialArgs = { inherit inputs outputs; };
         in

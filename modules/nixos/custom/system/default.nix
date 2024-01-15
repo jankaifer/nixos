@@ -5,9 +5,10 @@ let
 in
 {
   imports = [
-    ./gui.nix
-    ./user.nix
     ./development.nix
+    ./gui.nix
+    ./impermanence.nix
+    ./user.nix
   ];
 
   options = { };
@@ -103,6 +104,9 @@ in
       PubkeyAuthentication = lib.mkDefault true;
       PermitRootLogin = lib.mkDefault "no";
     };
+
+    # Support zsa keyboards
+    hardware.keyboard.zsa.enable = true;
 
     environment = {
       systemPackages = [

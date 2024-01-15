@@ -22,6 +22,8 @@ in
   };
 
   config = {
+    age.secrets.login-password.file = ../../../../secrets/login-password.age;
+
     home-manager = lib.mkIf cfg.home-manager.enable {
       useGlobalPkgs = lib.mkDefault true;
       useUserPackages = lib.mkDefault true;
@@ -47,6 +49,9 @@ in
         }
       ];
     };
+    age.identityPaths = [
+      "/home/${cfg.user}/.ssh/id_ed25519"
+    ];
     programs.neovim = {
       enable = true;
       defaultEditor = true;
