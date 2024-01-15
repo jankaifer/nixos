@@ -2,10 +2,10 @@
 
 let
   cfg = config.custom.system.impermanence;
-  user = config.custom.system.users;
+  user = config.custom.system.user;
   persistancePath = "/persist";
   listOption = lib.mkOption {
-    type = lib.type.listOf lib.type.str;
+    type = lib.types.listOf lib.types.str;
     default = [ ];
   };
   # persistancePathOptions = options.environment.persistence.${persistancePath};
