@@ -52,9 +52,13 @@ in
       networking.wg-quick.interfaces = lib.mkForce { };
       virtualisation.docker.storageDriver = lib.mkForce "overlay2";
 
-      home-manager.users.${cfg.user}.home.file."/etc/nixos/dotfiles" = {
-        source = ../../../../dotfiles;
-        recursive = true;
+      # When running in VM there won't be my config repo present, so I need to copy over the relevant bits
+      home-manager.users.${cfg.user} = {
+        home.file.".nixosConfig" = {
+          source = ../../../..;
+          recursive = true;
+        };
+        custom.impermanence.nixosRepoPath = ".nixosConfig";
       };
     };
 
