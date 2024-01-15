@@ -8,10 +8,24 @@ If you are looking for some inspiration for your config, make sure to check thes
 - https://github.com/DAlperin/dotfiles
 - https://github.com/gvolpe/nix-config
 - https://github.com/talyz/nixos-config
+- https://github.com/LongerHV/nixos-configuration
 
 Other sources that I used:
 
 - https://mt-caret.github.io/blog/posts/2020-06-29-optin-state.html
+
+## Running machines
+
+With flakes it's easy to run these configs in a VM.
+It won't be able to get secrets from agenix, but otherwise it should give you exact copy of actual system.
+It's great for quick iterations.
+
+```bash
+# Run this from the root of the repo to run VM of current machine (use `--flake .#machine-name for different machine`)
+nixos-rebuild build-vm --flake . && ./result/bin/run-pearframe-vm
+```
+
+# Pre-flake config
 
 ## Install on a new machine
 
