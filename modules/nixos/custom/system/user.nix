@@ -51,6 +51,7 @@ in
     };
     age.identityPaths = [
       "/home/${cfg.user}/.ssh/id_ed25519"
+      "/persist/home/${cfg.user}/.ssh/id_ed25519"
     ];
     programs.neovim = {
       enable = true;
