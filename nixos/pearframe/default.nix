@@ -13,5 +13,6 @@
   custom.system = {
     development.enable = true;
     gui.enable = true;
+    home-manager.enable = true;
   };
 }
