@@ -33,7 +33,8 @@
         zvm_after_init_commands+=("bindkey '^[[B' history-substring-search-down")
         zvm_after_init_commands+=("bindkey '^[OB' history-substring-search-down")
 
-        eval "$(fnm env --use-on-cd --version-file-strategy=recursive)"
+        # TODO: I want to use fnm, but it slows down the start of a new terminal too much
+        # eval "$(fnm env --use-on-cd --version-file-strategy=recursive)"
       '';
       localVariables = {
         ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE = "fg=13,underline";
