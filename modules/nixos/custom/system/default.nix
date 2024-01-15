@@ -7,6 +7,7 @@ in
   imports = [
     ./gui.nix
     ./user.nix
+    ./development.nix
   ];
 
   options = { };
@@ -107,7 +108,7 @@ in
     };
 
     # I want to use VSCode server and use node projects normally
-    nix-ld = {
+    programs.nix-ld = {
       enable = true;
       libraries = [
         pkgs.alsa-lib
