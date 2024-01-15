@@ -16,5 +16,6 @@
     development.enable = true;
     gui.enable = true;
     home-manager.enable = true;
+    impermanence.enable = true;
   };
 }
