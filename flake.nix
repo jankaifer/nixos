@@ -34,6 +34,7 @@
     in
     {
       overlays = {
+        default = import ./overlay;
         unstable = _: prev: {
           unstable = import inputs.nixpkgs-unstable {
             inherit (prev) system config;
