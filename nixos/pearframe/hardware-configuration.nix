@@ -26,12 +26,14 @@
     device = "none";
     fsType = "tmpfs";
     options = [ "defaults" ];
+    neededForBoot = true;
   };
 
   fileSystems."/home" = {
     device = "none";
     fsType = "tmpfs";
     options = [ "defaults" "size=8G" "mode=777" ];
+    neededForBoot = true;
   };
 
   fileSystems."/boot" = {

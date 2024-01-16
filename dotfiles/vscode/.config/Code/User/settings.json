@@ -80,8 +80,8 @@
   "jest.autoRun": "off",
   "keyboard.dispatch": "keyCode",
   "projectManager.git.baseFolders": [
-    "/home/pearman/Projects",
-    "/home/pearman/dev"
+    "/home/jankaifer/Projects",
+    "/home/jankaifer/dev"
   ],
   "projectManager.git.maxDepthRecursion": 2,
   "projectManager.showParentFolderInfoOnDuplicates": true,
@@ -96,7 +96,7 @@
   "update.mode": "none",
   "vim.useSystemClipboard": true,
   "vim.vimrc.enable": true,
-  "vim.vimrc.path": "/home/pearman/.vimrc",
+  "vim.vimrc.path": "/home/jankaifer/.vimrc",
   "workbench.startupEditor": "none",
   "files.associations": {
     ".env*": "dotenv"

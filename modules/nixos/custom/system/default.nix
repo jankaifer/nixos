@@ -11,7 +11,13 @@ in
     ./user.nix
   ];
 
-  options = { };
+  options.custom.system = {
+    nixosRepoPath = lib.mkOption {
+      type = lib.types.str;
+      default = "/persist/home/${cfg.user}/dev/jankaifer/nixos";
+      description = "Path the this nixos config repo, this will be symlinked to /etc/nixos";
+    };
+  };
 
   config = {
     hardware.enableRedistributableFirmware = lib.mkDefault true;
@@ -147,6 +153,13 @@ in
         PATH = [
           "\${XDG_BIN_HOME}"
         ];
+      };
+
+      # Link /etc/nixos to this repo
+      etc.nixos = {
+        enable = true;
+        source = cfg.nixosRepoPath;
+        target = "nixos";
       };
     };
 
