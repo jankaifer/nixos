@@ -82,6 +82,12 @@
               ./nixos/pearframe
             ];
           };
+          "pearbox" = lib.nixosSystem {
+            inherit specialArgs;
+            modules = defaultModules ++ [
+              ./nixos/pearbox
+            ];
+          };
         };
     };
 }

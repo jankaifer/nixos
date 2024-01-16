@@ -1,4 +1,4 @@
-{ config, options, lib, ... }:
+{ config, lib, ... }:
 
 let
   cfg = config.custom.system.impermanence;
@@ -8,11 +8,6 @@ let
     type = lib.types.listOf lib.types.str;
     default = [ ];
   };
-  # persistancePathOptions = options.environment.persistence.${persistancePath};
-  # userOptions = persistancePath.users.${user};
-  # emptyDefault = {
-  #   "default" = [ ];
-  # };
 in
 {
   options.custom.system.impermanence = {
