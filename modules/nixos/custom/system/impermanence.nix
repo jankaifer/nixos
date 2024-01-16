@@ -74,7 +74,6 @@ in
             ".zoom"
             "Documents"
             "Pictures"
-            "VirtualBox VMs"
             "dev"
             "exercism"
           ];
