@@ -230,7 +230,7 @@ in
   age.secrets.cloudflare-credentials-file.file = ../../secrets/cloudflare-credentials.age;
   services.cloudflared = {
     enable = true;
-    tunnels."kaifer.com" = {
+    tunnels."ff121495-6f5b-425f-82ed-a54e06d22ab7" = {
       credentialsFile = config.age.secrets.cloudflare-credentials-file.path;
       default = "http_status:404";
       ingress = {
