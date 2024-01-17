@@ -23,6 +23,7 @@ in
     impermanence.enable = true;
     gui.enable = true;
     development.enable = true;
+    home-manager.home = ../../home-manager/oldbox.nix;
   };
 
   age.secrets.traefik-env.file = ../../secrets/traefik-env.age;
@@ -231,10 +232,10 @@ in
     tunnels."kaifer.com" = {
       credentialsFile = config.age.secrets.cloudflare-credentials-file.path;
       default = "http_status:404";
-      ingress = { 
-        "pihole.kaifer.com" = "https://localhost"; 
-        "grafana.kaifer.com" = "https://localhost"; 
-        "traefik.kaifer.com" = "https://localhost"; 
+      ingress = {
+        "pihole.kaifer.com" = "https://localhost";
+        "grafana.kaifer.com" = "https://localhost";
+        "traefik.kaifer.com" = "https://localhost";
       };
     };
   };
