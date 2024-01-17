@@ -22,7 +22,7 @@ in
     sshd.enable = true;
     impermanence.enable = true;
     gui.enable = true;
-    develoment.enable = true;
+    development.enable = true;
   };
 
   age.secrets.traefik-env.file = ../../secrets/traefik-env.age;
