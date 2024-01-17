@@ -92,7 +92,6 @@ in
   };
 
   systemd.services.traefik.serviceConfig.EnvironmentFile = [ config.age.secrets.traefik-env.path ];
-
   services.traefik = {
     enable = true;
     group = "docker";
@@ -227,7 +226,11 @@ in
   };
 
   # To configure this, you need to create the tunnel locally using `cloudflared tunnel create [tunnel-name]`
-  age.secrets.cloudflare-credentials-file.file = ../../secrets/cloudflare-credentials.age;
+  age.secrets.cloudflare-credentials-file = {
+    file = ../../secrets/cloudflare-credentials.age;
+    owner = "cloudflared";
+    group = "cloudflared";
+  };
   services.cloudflared = {
     enable = true;
     tunnels."ff121495-6f5b-425f-82ed-a54e06d22ab7" = {
