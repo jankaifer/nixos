@@ -19,9 +19,10 @@ in
 
   system.stateVersion = "22.05"; # Did you read the comment?
   custom.system = {
-    home-manager.home = ../../home-manager/server.nix;
     sshd.enable = true;
     impermanence.enable = true;
+    gui.enable = true;
+    develoment.enable = true;
   };
 
   age.secrets.traefik-env.file = ../../secrets/traefik-env.age;
