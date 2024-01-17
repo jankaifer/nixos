@@ -33,21 +33,22 @@ in
       # When there is conflict with existing files, HM now creates a backup of that file and force overwrite
       backupFileExtension = ".home-manager-backup";
     };
+
+
+    virtualisation.vmVariant = {
+      # In VM we can't access secrets so we need to set password here explicitely
+      users.users.${cfg.user}.password = "pass";
+    };
+
     users = {
       mutableUsers = false;
       defaultUserShell = pkgs.zsh;
-      users.${cfg.user} = lib.mkMerge [
-        (if isVm then {
-          password = "pass";
-        } else {
-          hashedPasswordFile = config.age.secrets.login-password.path;
-        })
-        {
-          isNormalUser = true;
-          extraGroups = [ "wheel" "networkmanager" "docker" ];
-          openssh.authorizedKeys.keys = lib.splitString "\n" (builtins.readFile inputs.myPublicSshKeys);
-        }
-      ];
+      users.${cfg.user} = {
+        isNormalUser = true;
+        hashedPasswordFile = config.age.secrets.login-password.path;
+        extraGroups = [ "wheel" "networkmanager" "docker" ];
+        openssh.authorizedKeys.keys = lib.splitString "\n" (builtins.readFile inputs.myPublicSshKeys);
+      };
     };
     age.identityPaths = [
       "/home/${cfg.user}/.ssh/id_ed25519"
