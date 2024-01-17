@@ -1,0 +1,5 @@
+{
+  custom = {
+    impermanence.enable = true;
+  };
+}

@@ -75,6 +75,12 @@ in
       };
     };
 
+    virtualisation.docker = {
+      enable = true;
+      enableOnBoot = true;
+      storageDriver = lib.mkDefault "btrfs";
+    };
+
     console = {
       font = lib.mkDefault "ter-i32b";
       packages = [ pkgs.terminus_font ];

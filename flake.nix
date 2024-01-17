@@ -64,12 +64,12 @@
           specialArgs = { inherit inputs outputs; };
         in
         {
-          # "oldbox" = nixpkgs.lib.nixosSystem {
-          #   inherit specialArgs;
-          #   modules = defaultModules ++ [
-          #     ./machines/oldbox/configuration.nix
-          #   ];
-          # };
+          "oldbox" = lib.nixosSystem {
+            inherit specialArgs;
+            modules = defaultModules ++ [
+              ./nixos/oldbox
+            ];
+          };
           "playground" = lib.nixosSystem {
             inherit specialArgs;
             modules = defaultModules ++ [

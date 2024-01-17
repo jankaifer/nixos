@@ -8,64 +8,57 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" "rtsx_usb_sdmmc" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" = {
-    device = "none";
-    fsType = "tmpfs";
-    options = [ "mode=755" ];
-    neededForBoot = true;
-  };
-
-  fileSystems."/home" = {
-    device = "none";
-    fsType = "tmpfs";
+    device = "/dev/disk/by-uuid/ad4c0da5-a8d3-4fb5-a387-e8c30943eb3f";
+    fsType = "btrfs";
+    options = [ "subvol=root" "noatime" ];
     neededForBoot = true;
   };
 
   fileSystems."/nix" = {
-    device = "/dev/disk/by-uuid/d538d8bf-e8e7-4f82-ac0d-c0cc2c44050f";
+    device = "/dev/disk/by-uuid/ad4c0da5-a8d3-4fb5-a387-e8c30943eb3f";
     fsType = "btrfs";
-    options = [ "subvol=nix" ];
+    options = [ "subvol=nix" "compress=zstd:1" "noatime" ];
     neededForBoot = true;
   };
 
-  boot.initrd.luks.devices."enc".device = "/dev/disk/by-uuid/11870790-c9cd-4f10-8842-4db63bbbe4f7";
-
   fileSystems."/persist" = {
-    device = "/dev/disk/by-uuid/d538d8bf-e8e7-4f82-ac0d-c0cc2c44050f";
+    device = "/dev/disk/by-uuid/ad4c0da5-a8d3-4fb5-a387-e8c30943eb3f";
     fsType = "btrfs";
-    options = [ "subvol=persist" ];
+    options = [ "subvol=persist" "compress=zstd:1" "noatime" ];
     neededForBoot = true;
   };
 
   fileSystems."/var/log" = {
-    device = "/dev/disk/by-uuid/d538d8bf-e8e7-4f82-ac0d-c0cc2c44050f";
+    device = "/dev/disk/by-uuid/ad4c0da5-a8d3-4fb5-a387-e8c30943eb3f";
     fsType = "btrfs";
-    options = [ "subvol=log" ];
+    options = [ "subvol=log" "compress=zstd:3" "noatime" ];
     neededForBoot = true;
   };
 
   fileSystems."/boot" = {
-    device = "/dev/sda1";
+    device = "/dev/disk/by-uuid/B876-8E5B";
     fsType = "vfat";
     neededForBoot = true;
   };
 
-  swapDevices =
-    [{ device = "/dev/disk/by-uuid/6e320e01-c564-495b-808a-db3feff44cc8"; }];
+  swapDevices = [
+    { device = "/dev/disk/by-uuid/16e6c506-41ab-4d87-9c9c-3d9ea2acfb69"; }
+  ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.docker0.useDHCP = lib.mkDefault true;
-  # networking.interfaces.enp4s0.useDHCP = lib.mkDefault true;
+  # networking.interfaces.enp1s0.useDHCP = lib.mkDefault true;
+  # networking.interfaces.wlp0s20f0u3.useDHCP = lib.mkDefault true;
 
-  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

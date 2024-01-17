@@ -22,12 +22,6 @@ in
       pkgs.fira-code-symbols
     ];
 
-    virtualisation.docker = {
-      enable = true;
-      enableOnBoot = true;
-      storageDriver = lib.mkDefault "btrfs";
-    };
-
     environment.systemPackages = [
       # Docker
       pkgs.docker
