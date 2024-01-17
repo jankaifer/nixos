@@ -1,9 +1,7 @@
-{ inputs, outputs, config, options, lib, pkgs, ... }:
+{ inputs, outputs, config, lib, pkgs, ... }:
 
 let
   cfg = config.custom.system;
-  # This options is available only in VMs
-  isVm = options ? virtualisation.memorySize;
 in
 {
   options.custom.system = {
