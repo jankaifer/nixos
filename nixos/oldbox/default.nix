@@ -17,7 +17,10 @@ in
   virtualisation.docker.enable = true;
   virtualisation.docker.storageDriver = "btrfs";
 
-  custom.system.home-manager.home = ../../home-manager/server.nix;
+  custom.system = {
+    home-manager.home = ../../home-manager/server.nix;
+    sshd.enable = true;
+  };
 
   virtualisation.oci-containers = {
     backend = "docker";

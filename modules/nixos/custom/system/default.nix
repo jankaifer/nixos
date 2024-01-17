@@ -8,6 +8,7 @@ in
     ./development.nix
     ./gui.nix
     ./impermanence.nix
+    ./sshd.nix
     ./user.nix
   ];
 
