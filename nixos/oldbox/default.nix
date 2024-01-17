@@ -17,9 +17,17 @@ in
   virtualisation.docker.enable = true;
   virtualisation.docker.storageDriver = "btrfs";
 
+  system.stateVersion = "22.05"; # Did you read the comment?
   custom.system = {
     home-manager.home = ../../home-manager/server.nix;
     sshd.enable = true;
+  };
+
+  age.secrets.traefik-env.file = ../../secrets/traefik-env.age;
+  age.secrets.grafana-password = {
+    file = ../../secrets/grafana-password.age;
+    owner = "grafana";
+    group = "grafana";
   };
 
   virtualisation.oci-containers = {
