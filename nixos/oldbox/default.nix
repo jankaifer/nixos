@@ -21,6 +21,7 @@ in
   custom.system = {
     home-manager.home = ../../home-manager/server.nix;
     sshd.enable = true;
+    impermanence.enable = true;
   };
 
   age.secrets.traefik-env.file = ../../secrets/traefik-env.age;
