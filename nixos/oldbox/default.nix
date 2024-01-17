@@ -226,6 +226,7 @@ in
       ];
   };
 
+  # To configure this, you need to create the tunnel locally using `cloudflared tunnel create [tunnel-name]`
   age.secrets.cloudflare-credentials-file.file = ../../secrets/cloudflare-credentials.age;
   services.cloudflared = {
     enable = true;
