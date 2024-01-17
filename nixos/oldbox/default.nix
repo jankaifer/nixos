@@ -224,4 +224,18 @@ in
         "-promscrape.config=${scrapeConfigFile}"
       ];
   };
+
+  age.secrets.cloudflare-credentials-file.file = ../../secrets/cloudflare-credentials.age;
+  services.cloudflared = {
+    enable = true;
+    tunnels."kaifer.com" = {
+      credentialsFile = config.age.secrets.cloudflare-credentials-file.path;
+      default = "http_status:404";
+      ingress = { 
+        "pihole.kaifer.com" = "https://localhost"; 
+        "grafana.kaifer.com" = "https://localhost"; 
+        "traefik.kaifer.com" = "https://localhost"; 
+      };
+    };
+  };
 }
