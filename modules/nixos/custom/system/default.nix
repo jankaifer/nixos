@@ -206,6 +206,7 @@ in
         pkgs.openssl
         pkgs.pango
         pkgs.pipewire
+        pkgs.pixman
         pkgs.stdenv.cc.cc
         pkgs.systemd
         pkgs.xorg.libX11
