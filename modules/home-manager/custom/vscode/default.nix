@@ -29,6 +29,9 @@ in
 
           # Libs
           ps.zlib
+
+          # Docker
+          ps.docker
         ]
       );
       extensions = pkgs.vscode-utils.extensionsFromVscodeMarketplace (import ./extensions.nix).extensions;
