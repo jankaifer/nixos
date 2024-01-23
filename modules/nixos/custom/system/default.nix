@@ -186,6 +186,7 @@ in
         pkgs.fontconfig
         pkgs.freetype
         pkgs.fuse3
+        pkgs.fuse
         pkgs.gdk-pixbuf
         pkgs.glib
         pkgs.gtk3
