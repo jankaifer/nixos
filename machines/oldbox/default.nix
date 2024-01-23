@@ -244,4 +244,13 @@ in
       };
     };
   };
+
+  systemd.services.hd-idle = {
+    description = "HD spin down daemon, spins down disks after 15 minutes of inactivity";
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = "${pkgs.hd-idle}/bin/hd-idle -i 900";
+    };
+  };
 }
