@@ -24,6 +24,7 @@ in
     gui.enable = true;
     development.enable = true;
     home-manager.home = ../../home-manager/oldbox.nix;
+    home-manager.enable = true;
   };
 
   age.secrets.traefik-env.file = ../../secrets/traefik-env.age;
