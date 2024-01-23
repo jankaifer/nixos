@@ -50,7 +50,7 @@
           config.allowUnfree = true;
         }
       );
-      homeManagerModules = (import ./modules/home-manager-custom) // {
+      homeManagerModules = (import ./modules/home-manager) // {
         impermanence = inputs.impermanence.nixosModules.home-manager.impermanence;
       };
       nixosModules = (import ./modules/nixos) // {
