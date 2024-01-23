@@ -33,8 +33,12 @@
         zvm_after_init_commands+=("bindkey '^[[B' history-substring-search-down")
         zvm_after_init_commands+=("bindkey '^[OB' history-substring-search-down")
 
-        # TODO: I want to use fnm, but it slows down the start of a new terminal too much
-        # eval "$(fnm env --use-on-cd --version-file-strategy=recursive)"
+        # We want need to make sure that some node env is installed for fnm to work
+        {
+          fnm install 20.11
+          fnm default 20.11
+        } 2>&1 > /dev/null 
+        eval "$(fnm env --use-on-cd --version-file-strategy=recursive)"
       '';
       localVariables = {
         ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE = "fg=13,underline";
