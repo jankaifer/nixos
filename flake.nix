@@ -67,25 +67,25 @@
           "oldbox" = lib.nixosSystem {
             inherit specialArgs;
             modules = defaultModules ++ [
-              ./nixos/oldbox
+              ./machines/oldbox
             ];
           };
           "playground" = lib.nixosSystem {
             inherit specialArgs;
             modules = defaultModules ++ [
-              ./nixos/playground
+              ./machines/playground
             ];
           };
           "pearframe" = lib.nixosSystem {
             inherit specialArgs;
             modules = defaultModules ++ [
-              ./nixos/pearframe
+              ./machines/pearframe
             ];
           };
           "pearbox" = lib.nixosSystem {
             inherit specialArgs;
             modules = defaultModules ++ [
-              ./nixos/pearbox
+              ./machines/pearbox
             ];
           };
         };
