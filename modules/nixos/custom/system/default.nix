@@ -194,6 +194,7 @@ in
         pkgs.libGL
         pkgs.libappindicator-gtk3
         pkgs.libdrm
+        pkgs.libfprint
         pkgs.libnotify
         pkgs.libpulseaudio
         pkgs.libuuid
