@@ -48,19 +48,19 @@
     neededForBoot = true;
   };
 
-  fileSystems."/nas/media" = {
-    device = "/dev/disk/by-label/data1";
-    fsType = "btrfs";
-    options = [ "subvol=media" "compress=zstd:3" "noatime" "X-mount.mkdir" ];
-    neededForBoot = true;
-  };
+  # fileSystems."/nas/media" = {
+  #   device = "/dev/disk/by-label/data1";
+  #   fsType = "btrfs";
+  #   options = [ "subvol=media" "compress=zstd:3" "noatime" "X-mount.mkdir" ];
+  #   neededForBoot = true;
+  # };
 
-  fileSystems."/nas/backup" = {
-    device = "/dev/disk/by-label/data1";
-    fsType = "btrfs";
-    options = [ "subvol=backup" "compress=zstd:3" "noatime" "X-mount.mkdir" ];
-    neededForBoot = true;
-  };
+  # fileSystems."/nas/backup" = {
+  #   device = "/dev/disk/by-label/data1";
+  #   fsType = "btrfs";
+  #   options = [ "subvol=backup" "compress=zstd:3" "noatime" "X-mount.mkdir" ];
+  #   neededForBoot = true;
+  # };
 
   swapDevices = [{ device = "/dev/disk/by-label/swap"; }];
 

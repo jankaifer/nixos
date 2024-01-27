@@ -15,7 +15,7 @@ in
       zsh.shellAliases = {
         ll = "eza -l --icons=auto";
         la = "eza -la --icons=auto";
-        pls = "sudo !!";
+        pls = "sudo";
         n = "pnpm";
         y = "yarn";
         gpf = "git push --force-with-lease";
