@@ -253,4 +253,10 @@ in
       ExecStart = "${pkgs.hd-idle}/bin/hd-idle -i 900";
     };
   };
+
+  # Stop Gnome from suspending, copied from https://discourse.nixos.org/t/stop-pc-from-sleep/5757/2
+  systemd.targets.sleep.enable = false;
+  systemd.targets.suspend.enable = false;
+  systemd.targets.hibernate.enable = false;
+  systemd.targets.hybrid-sleep.enable = false;
 }
