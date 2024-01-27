@@ -29,6 +29,10 @@ in
 
       # Rust
       pkgs.rustup
+
+      # Nix
+      pkgs.nixpkgs-fmt
+      pkgs.nil
     ];
   };
 }
