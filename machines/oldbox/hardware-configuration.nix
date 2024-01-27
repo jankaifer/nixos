@@ -47,21 +47,21 @@
     neededForBoot = true;
   };
 
-  fileSystems."/persist-media" = {
+  fileSystems."/nas/media" = {
     device = "/dev/disk/by-label/data1";
     fsType = "btrfs";
     options = [ "subvol=media" "compress=zstd:3" "noatime" ];
     neededForBoot = true;
   };
 
-  fileSystems."/persist-backup" = {
+  fileSystems."/nas/backup" = {
     device = "/dev/disk/by-label/data1";
     fsType = "btrfs";
     options = [ "subvol=backup" "compress=zstd:3" "noatime" ];
     neededForBoot = true;
   };
 
-  swapDevices = [ { device = "/dev/disk/by-label/swap"; } ];
+  swapDevices = [{ device = "/dev/disk/by-label/swap"; }];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
