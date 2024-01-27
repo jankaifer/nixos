@@ -24,7 +24,7 @@ in
         gm = "git merge";
         gps = "git push";
         gpl = "git pull";
-        rebuild = "sudo nixos-rebuild switch --flake \"\$(readlink -f '/etc/nixos')\"";
+        rebuild = "sudo nixos-rebuild --flake \"\$(readlink -f '/etc/nixos')\"";
       };
       git = {
         enable = true;
