@@ -44,7 +44,7 @@
   fileSystems."/boot" = {
     device = "/dev/disk/by-label/BOOT";
     fsType = "vfat";
-    optins = [ "X-mount.mkdir" ];
+    options = [ "X-mount.mkdir" ];
     neededForBoot = true;
   };
 
