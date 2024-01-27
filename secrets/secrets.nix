@@ -1,5 +1,11 @@
 let
-  ghKeys = import ../modules/public-ssh-keys.nix;
+  ghKeys = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKHVIfXNuROWZRJhqcEGW9eohIH5Fg3PblefvMu+JaNw"
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDzPJ15GG8/uHf86p7jg0Tud7lZ5rjySwAjlD4ZxEtZn"
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID2Yfd6UdZmYwlA9BOJvInQzeAbAKiuukraiNGILAO/R"
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGVQQAILmV9csI6tLonpbI5r1WDPDNmJXwQ4LXQS5WXd"
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJe9IWxd3nIG9qm86UMTZeVHHeHN5eh6nHu7KwU+x/fz"
+  ];
 in
 {
   "wifi-passwords.age".publicKeys = ghKeys;
@@ -8,4 +14,6 @@ in
   "traefik-env.age".publicKeys = ghKeys;
   "grafana-password.age".publicKeys = ghKeys;
   "cloudflare-credentials.age".publicKeys = ghKeys;
+  "restic-password.age".publicKeys = ghKeys;
+  "restic-wasabi-env-file.age".publicKeys = ghKeys;
 }
