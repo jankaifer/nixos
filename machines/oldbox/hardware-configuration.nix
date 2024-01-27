@@ -16,28 +16,28 @@
   fileSystems."/" = {
     device = "/dev/disk/by-label/nixos";
     fsType = "btrfs";
-    options = [ "subvol=root" "noatime" ];
+    options = [ "subvol=root" "noatime" "X-mount.mkdir" ];
     neededForBoot = true;
   };
 
   fileSystems."/nix" = {
     device = "/dev/disk/by-label/nixos";
     fsType = "btrfs";
-    options = [ "subvol=nix" "compress=zstd:1" "noatime" ];
+    options = [ "subvol=nix" "compress=zstd:1" "noatime" "X-mount.mkdir" ];
     neededForBoot = true;
   };
 
   fileSystems."/persist" = {
     device = "/dev/disk/by-label/nixos";
     fsType = "btrfs";
-    options = [ "subvol=persist" "compress=zstd:1" "noatime" ];
+    options = [ "subvol=persist" "compress=zstd:1" "noatime" "X-mount.mkdir" ];
     neededForBoot = true;
   };
 
   fileSystems."/var/log" = {
     device = "/dev/disk/by-label/nixos";
     fsType = "btrfs";
-    options = [ "subvol=log" "compress=zstd:3" "noatime" ];
+    options = [ "subvol=log" "compress=zstd:3" "noatime" "X-mount.mkdir" ];
     neededForBoot = true;
   };
 
@@ -45,20 +45,21 @@
     # device = "/dev/disk/by-uuid/B876-8E5B";
     device = "/dev/disk/by-label/BOOT";
     fsType = "vfat";
+    optins = [ "X-mount.mkdir" ];
     neededForBoot = true;
   };
 
   # fileSystems."/nas/media" = {
   #   device = "/dev/disk/by-label/data1";
   #   fsType = "btrfs";
-  #   options = [ "subvol=media" "compress=zstd:3" "noatime" ];
+  #   options = [ "subvol=media" "compress=zstd:3" "noatime" "X-mount.mkdir" ];
   #   neededForBoot = true;
   # };
 
   # fileSystems."/nas/backup" = {
   #   device = "/dev/disk/by-label/data1";
   #   fsType = "btrfs";
-  #   options = [ "subvol=backup" "compress=zstd:3" "noatime" ];
+  #   options = [ "subvol=backup" "compress=zstd:3" "noatime" "X-mount.mkdir" ];
   #   neededForBoot = true;
   # };
 
