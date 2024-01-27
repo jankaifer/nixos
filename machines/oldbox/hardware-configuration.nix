@@ -16,35 +16,34 @@
   fileSystems."/" = {
     device = "/dev/disk/by-label/nixos";
     fsType = "btrfs";
-    options = [ "subvol=root" "noatime" "X-mount.mkdir" ];
+    options = [ "subvol=root" "noatime" ];
     neededForBoot = true;
   };
 
   fileSystems."/nix" = {
     device = "/dev/disk/by-label/nixos";
     fsType = "btrfs";
-    options = [ "subvol=nix" "compress=zstd:1" "noatime" "X-mount.mkdir" ];
+    options = [ "subvol=nix" "compress=zstd:1" "noatime" ];
     neededForBoot = true;
   };
 
   fileSystems."/persist" = {
     device = "/dev/disk/by-label/nixos";
     fsType = "btrfs";
-    options = [ "subvol=persist" "compress=zstd:1" "noatime" "X-mount.mkdir" ];
+    options = [ "subvol=persist" "compress=zstd:1" "noatime" ];
     neededForBoot = true;
   };
 
   fileSystems."/var/log" = {
     device = "/dev/disk/by-label/nixos";
     fsType = "btrfs";
-    options = [ "subvol=log" "compress=zstd:3" "noatime" "X-mount.mkdir" ];
+    options = [ "subvol=log" "compress=zstd:3" "noatime" ];
     neededForBoot = true;
   };
 
   fileSystems."/boot" = {
     device = "/dev/disk/by-label/BOOT";
     fsType = "vfat";
-    options = [ "X-mount.mkdir" ];
     neededForBoot = true;
   };
 
