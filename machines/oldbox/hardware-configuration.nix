@@ -42,24 +42,25 @@
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-label/BOOT";
+    device = "/dev/disk/by-uuid/B876-8E5B";
+    # device = "/dev/disk/by-label/BOOT";
     fsType = "vfat";
     neededForBoot = true;
   };
 
-  fileSystems."/nas/media" = {
-    device = "/dev/disk/by-label/data1";
-    fsType = "btrfs";
-    options = [ "subvol=media" "compress=zstd:3" "noatime" ];
-    neededForBoot = true;
-  };
+  # fileSystems."/nas/media" = {
+  #   device = "/dev/disk/by-label/data1";
+  #   fsType = "btrfs";
+  #   options = [ "subvol=media" "compress=zstd:3" "noatime" ];
+  #   neededForBoot = true;
+  # };
 
-  fileSystems."/nas/backup" = {
-    device = "/dev/disk/by-label/data1";
-    fsType = "btrfs";
-    options = [ "subvol=backup" "compress=zstd:3" "noatime" ];
-    neededForBoot = true;
-  };
+  # fileSystems."/nas/backup" = {
+  #   device = "/dev/disk/by-label/data1";
+  #   fsType = "btrfs";
+  #   options = [ "subvol=backup" "compress=zstd:3" "noatime" ];
+  #   neededForBoot = true;
+  # };
 
   swapDevices = [{ device = "/dev/disk/by-label/swap"; }];
 
