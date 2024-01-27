@@ -262,23 +262,27 @@ in
 
   age.secrets.restic-password.file = ../../secrets/restic-password.age;
   age.secrets.restic-wasabi-env-file.file = ../../secrets/restic-wasabi-env-file.age;
-  services.restic.backups = {
-    localbackup = {
-      initialize = true;
-      passwordFile = config.age.secrets.restic-password.path;
-      paths = [ "/persist" ];
-      repository = "/nas/backups/oldbox";
-    };
-    remotebackup = {
-      initialize = true;
-      passwordFile = config.age.secrets.restic-password.path;
-      paths = [ "/persist" ];
-      repository = "s3:https://s3.eu-central-2.wasabisys.com/oldbox-backup";
-      environmentFile = config.age.secrets.restic-wasabi-env-file.path;
-      timerConfig = {
-        OnCalendar = "00:05";
-        RandomizedDelaySec = "5h";
+  services.restic.backups =
+    let
+      backup = {
+        passwordFile = config.age.secrets.restic-password.path;
+        paths = [ "/persist" ];
+        exclude = [ "/persist/home/*/.cache" "/persist/var/lib/docker" ];
+      };
+    in
+    {
+      localbackup = backup // {
+        initialize = true;
+        repository = "/nas/backups/oldbox";
+      };
+      remotebackup = backup // {
+        initialize = true;
+        repository = "s3:https://s3.eu-central-2.wasabisys.com/oldbox-backup";
+        environmentFile = config.age.secrets.restic-wasabi-env-file.path;
+        timerConfig = {
+          OnCalendar = "00:05";
+          RandomizedDelaySec = "5h";
+        };
       };
     };
-  };
 }

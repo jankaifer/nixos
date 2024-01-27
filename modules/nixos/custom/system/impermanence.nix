@@ -33,6 +33,7 @@ in
           "/etc/ssh"
           "/etc/NetworkManager/system-connections"
           "/var/lib/bluetooth"
+          # TODO: do not persist docker on server
           "/var/lib/docker"
           "/var/lib/flatpak"
           "/var/lib/fprint"
