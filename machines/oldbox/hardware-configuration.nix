@@ -54,10 +54,10 @@
     neededForBoot = true;
   };
 
-  fileSystems."/nas/backup" = {
+  fileSystems."/nas/backups" = {
     device = "/dev/disk/by-label/data1";
     fsType = "btrfs";
-    options = [ "subvol=backup" "compress=zstd:3" "noatime" ];
+    options = [ "subvol=backups" "compress=zstd:3" "noatime" ];
     neededForBoot = true;
   };
 
