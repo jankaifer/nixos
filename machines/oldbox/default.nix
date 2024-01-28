@@ -321,7 +321,7 @@ in
       listenAddress = ":${toString restic.port}";
       extraFlags = [
         # We don't allow auth. We use the server only for prometheus metrics export
-        "--htpasswd-file='${pkgs.writeText ".htpasswd" ""}'"
+        "--htpasswd-file=${pkgs.writeText ".htpasswd" ""}"
         "--prometheus-no-auth"
       ];
     };
