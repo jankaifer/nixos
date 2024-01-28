@@ -24,7 +24,7 @@ in
     font = {
       package = lib.mkOption {
         type = lib.types.package;
-        default = pkgs.nerdfonts.override { fonts = [ "Hack" ]; };
+        default = pkgs.nerdfonts;
       };
       name = lib.mkOption {
         type = lib.types.str;
