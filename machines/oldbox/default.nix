@@ -314,61 +314,68 @@ in
 
   age.secrets.restic-password.file = ../../secrets/restic-password.age;
   age.secrets.restic-wasabi-env-file.file = ../../secrets/restic-wasabi-env-file.age;
-  services.restic.backups =
-    let
-      oldboxBackup = {
-        passwordFile = config.age.secrets.restic-password.path;
-        paths = [ "/persist" ];
-        exclude = [
-          "/.cache/"
-          "/persist/home/*/.cache"
-          "/persist/home/*/.vscode-server"
-          "/persist/var/lib/docker"
-          "/persist/var/lib/private/victoriametrics/cache"
-          "/var/cache/"
-        ];
-      };
-      googleDriveBackup = {
-        passwordFile = config.age.secrets.restic-password.path;
-        paths = [ "/nas/google-drive" ];
-      };
-      googlePhotosBackup = {
-        passwordFile = config.age.secrets.restic-password.path;
-        paths = [ "/nas/google-photos" ];
-      };
-    in
-    {
-      localOldboxbackup = oldboxBackup // {
-        initialize = true;
-        repository = "/nas/backups/oldbox";
-      };
-      remoteOldboxBackup = oldboxBackup // {
-        initialize = true;
-        repository = "s3:https://s3.eu-central-2.wasabisys.com/jankaifer-oldbox-backup";
-        environmentFile = config.age.secrets.restic-wasabi-env-file.path;
-        timerConfig = dailyBackupTimerConfig;
-      };
-      localGoogleDriveBackup = googleDriveBackup // {
-        initialize = true;
-        repository = "/nas/backups/google-drive";
-      };
-      remoteGoogleDriveBackup = googleDriveBackup // {
-        initialize = true;
-        repository = "s3:https://s3.eu-central-2.wasabisys.com/jankaifer-google-drive-backup";
-        environmentFile = config.age.secrets.restic-wasabi-env-file.path;
-        timerConfig = dailyBackupTimerConfig;
-      };
-      localGooglephotosBackup = googlePhotosBackup // {
-        initialize = true;
-        repository = "/nas/backups/google-photos";
-      };
-      remoteGooglePhotosBackup = googlePhotosBackup // {
-        initialize = true;
-        repository = "s3:https://s3.eu-central-2.wasabisys.com/jankaifer-google-photos-backup";
-        environmentFile = config.age.secrets.restic-wasabi-env-file.path;
-        timerConfig = dailyBackupTimerConfig;
-      };
+  services.restic = {
+    server = {
+      enable = true;
+      prometheus = true;
+      listenAddress = ":${toString restic.port}";
     };
+    backups =
+      let
+        oldboxBackup = {
+          passwordFile = config.age.secrets.restic-password.path;
+          paths = [ "/persist" ];
+          exclude = [
+            "/.cache/"
+            "/persist/home/*/.cache"
+            "/persist/home/*/.vscode-server"
+            "/persist/var/lib/docker"
+            "/persist/var/lib/private/victoriametrics/cache"
+            "/var/cache/"
+          ];
+        };
+        googleDriveBackup = {
+          passwordFile = config.age.secrets.restic-password.path;
+          paths = [ "/nas/google-drive" ];
+        };
+        googlePhotosBackup = {
+          passwordFile = config.age.secrets.restic-password.path;
+          paths = [ "/nas/google-photos" ];
+        };
+      in
+      {
+        localOldboxbackup = oldboxBackup // {
+          initialize = true;
+          repository = "/nas/backups/oldbox";
+        };
+        remoteOldboxBackup = oldboxBackup // {
+          initialize = true;
+          repository = "s3:https://s3.eu-central-2.wasabisys.com/jankaifer-oldbox-backup";
+          environmentFile = config.age.secrets.restic-wasabi-env-file.path;
+          timerConfig = dailyBackupTimerConfig;
+        };
+        localGoogleDriveBackup = googleDriveBackup // {
+          initialize = true;
+          repository = "/nas/backups/google-drive";
+        };
+        remoteGoogleDriveBackup = googleDriveBackup // {
+          initialize = true;
+          repository = "s3:https://s3.eu-central-2.wasabisys.com/jankaifer-google-drive-backup";
+          environmentFile = config.age.secrets.restic-wasabi-env-file.path;
+          timerConfig = dailyBackupTimerConfig;
+        };
+        localGooglephotosBackup = googlePhotosBackup // {
+          initialize = true;
+          repository = "/nas/backups/google-photos";
+        };
+        remoteGooglePhotosBackup = googlePhotosBackup // {
+          initialize = true;
+          repository = "s3:https://s3.eu-central-2.wasabisys.com/jankaifer-google-photos-backup";
+          environmentFile = config.age.secrets.restic-wasabi-env-file.path;
+          timerConfig = dailyBackupTimerConfig;
+        };
+      };
+  };
 
   # Mount google drive
   age.secrets.rclone-config-google-drive.file = ../../secrets/rclone-config-google-drive.age;
