@@ -329,6 +329,7 @@ in
       script = ''
         ${pkgs.rclone}/bin/rclone mount google-drive: ${mountdir} \
           --config "${config.age.secrets.rclone-config-google-drive.path}" \
+          --tpslimit 10
           --dir-cache-time 48h \
           --vfs-cache-mode full \
           --vfs-cache-max-age 48h \
@@ -357,6 +358,7 @@ in
       script = ''
         ${pkgs.rclone}/bin/rclone mount google-photos: ${mountdir} \
           --config "${config.age.secrets.rclone-config-google-photos.path}" \
+          --tpslimit 1
           --dir-cache-time 48h \
           --vfs-cache-mode full \
           --vfs-cache-max-age 48h \
