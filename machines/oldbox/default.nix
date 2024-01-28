@@ -450,10 +450,10 @@ in
         exportToVmScript = pkgs.writeText "export.js" ''
           const vmUrl = "${vmUrl}";
 
-          const data = JSON.parse(await Bun.stdin.text())
-          console.log("We got the following data from speed test:")
-          console.log(data)
-          console.log()
+          const data = JSON.parse(await Bun.stdin.text());
+          console.log("We got the following data from speed test:");
+          console.log(data);
+          console.log();
 
           const serializeTest = (testData) => ["min", "q1", "median", "q3", "max", "avg"]
             .map(percentile => [
@@ -461,20 +461,18 @@ in
               testData.test_type.toLowerCase(),
               '_',
               percentile,
-              ' }{payload_size="'
+              '{payload_size="',
               testData.payload_size,
               '"} '
               testData[percentile],
-              '}'
               ].map(String).join("")
-            )
-            .join("\n")
-          const metrics = data.map(serializeTest).join("\n")
+            ).join("\n");
+          const metrics = data.map(serializeTest).join("\n");
 
-          console.log("Uploading to ", vmUrl)
-          console.log("Metrics being uploaded:")
-          console.log(metrics)
-          console.log()
+          console.log("Uploading to ", vmUrl);
+          console.log("Metrics being uploaded:");
+          console.log(metrics);
+          console.log();
 
           await fetch(vmUrl, {
               method: 'POST',
@@ -482,9 +480,9 @@ in
                   'Content-Type': 'text/plain'
               },
               body: metrics.trim(),
-          })
+          });
 
-          console.log("Done")
+          console.log("Done");
         '';
       in
       ''
