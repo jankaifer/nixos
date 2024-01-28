@@ -443,12 +443,10 @@ in
   systemd.services.cfspeedtest-metric-exporter = {
     description = "Measure internet speed with cfspeedtest and export to victoriametrics";
     after = [ "network-online.target" ];
-    path = [ pkgs.nix ]; # This is needed so that nix-shell works
     script =
       let
-        vmUrl = "https://victoriametrics.${domain}/api/v1/import/prometheus";
         exportToVmScript = pkgs.writeText "export.js" ''
-          const vmUrl = "${vmUrl}";
+          const vmUrl = "https://victoriametrics.${domain}/api/v1/import/prometheus";
 
           const data = JSON.parse(await Bun.stdin.text());
           console.log("We got the following data from speed test:");
