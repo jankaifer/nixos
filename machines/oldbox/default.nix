@@ -277,6 +277,7 @@ in
         passwordFile = config.age.secrets.restic-password.path;
         paths = [ "/persist" ];
         exclude = [
+          "/.cache/"
           "/persist/home/*/.cache"
           "/persist/var/lib/docker"
           "/persist/var/lib/private/victoriametrics/cache"
