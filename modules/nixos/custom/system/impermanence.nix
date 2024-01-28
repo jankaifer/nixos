@@ -74,6 +74,7 @@ in
             ".local/share"
             ".rustup"
             ".ssh"
+            ".vscode-server"
             ".zoom"
             "Documents"
             "Pictures"
