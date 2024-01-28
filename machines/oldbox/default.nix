@@ -8,6 +8,9 @@ let
   victoriametrics = {
     port = 8003;
   };
+  restic = {
+    port = 8004;
+  };
   dailyBackupTimerConfig = {
     OnCalendar = "00:05";
     RandomizedDelaySec = "5h";
@@ -263,6 +266,10 @@ in
             static_configs:
             - targets:
               - "https://traefik-metrics.${domain}"
+          - job_name: restic
+            static_configs:
+            - targets:
+              - "http://localhost:${toString restic.port}"
         '';
       in
       [
