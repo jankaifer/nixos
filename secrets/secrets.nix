@@ -16,4 +16,5 @@ in
   "cloudflare-credentials.age".publicKeys = ghKeys;
   "restic-password.age".publicKeys = ghKeys;
   "restic-wasabi-env-file.age".publicKeys = ghKeys;
+  "rclone-config-google-drive.age".publicKeys = ghKeys;
 }

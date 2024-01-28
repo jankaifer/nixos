@@ -285,4 +285,54 @@ in
         };
       };
     };
+
+  # Mount google drive
+  age.secrets.rclone-config-google-drive.file = ../../secrets/rclone-config-google-drive.age;
+  systemd.services.rclone-google-drive-mount =
+    let
+      mountdir = "/nas/google-drive";
+    in
+    {
+      Unit = {
+        Description = "mount google drive";
+        After = [ "network-online.target" ];
+      };
+      Install.WantedBy = [ "multi-user.target" ];
+      Service = {
+        ExecStartPre = "/run/current-system/sw/bin/mkdir -p ${mountdir}";
+        ExecStart = ''
+          ${pkgs.rclone}/bin/rclone mount google-drive: ${mountdir} \
+            --config "${config.age.secrets.rclone-config-google-drive.path}" \
+            --dir-cache-time 48h \
+            --vfs-cache-mode full \
+            --vfs-cache-max-age 48h \
+            --vfs-read-chunk-size 10M \
+            --vfs-read-chunk-size-limit 512M \
+            --no-modtime \
+            --buffer-size 512M
+        '';
+        ExecStop = "/run/wrappers/bin/umount ${mountdir}";
+        Type = "notify";
+        Restart = "always";
+        RestartSec = "10s";
+        Environment = [ "PATH=/run/wrappers/bin/" ];
+      };
+    };
+
+  systemd.services.rclone-backup-google-drive = {
+    serviceConfig.Type = "oneshot";
+    script = ''
+      echo "Google drive backup is starting"
+      echo "Google drive backup finisheie"
+    '';
+  };
+
+  systemd.timers.rclone-backup-google-drive = {
+    wantedBy = [ "timers.target" ];
+    partOf = [ "rclone-backup-google-drive.service" ];
+    timerConfig = {
+      OnCalendar = "00:05";
+      RandomizedDelaySec = "5h";
+    };
+  };
 }
