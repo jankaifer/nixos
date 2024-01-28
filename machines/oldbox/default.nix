@@ -75,6 +75,11 @@ in
     };
   };
 
+  # Erase root partition
+  boot.initrd.postDeviceCommands = lib.mkAfter ''
+    zfs rollback -r rpool/local/root@blank
+  '';
+
   networking.hostName = "oldbox";
 
   # Traefik
@@ -271,7 +276,7 @@ in
       oldboxBackup = {
         passwordFile = config.age.secrets.restic-password.path;
         paths = [ "/persist" ];
-        exclude = [ "/persist/home/*/.cache" "/persist/var/lib/docker" ];
+        exclude = [ "/persist/home/*/.cache" "/persist/var/lib/docker" "/persist/var/lib/private/victoriametrics/cache" ];
       };
       googleDriveBackup = {
         passwordFile = config.age.secrets.restic-password.path;

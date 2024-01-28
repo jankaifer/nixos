@@ -39,6 +39,7 @@ in
           "/var/lib/fprint"
           "/var/lib/libvirt"
           "/var/lib/systemd/coredump"
+          "/var/lib/private/victoriametrics"
         ];
         files = cfg.files ++ [
           "/etc/machine-id"
