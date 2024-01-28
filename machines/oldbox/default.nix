@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, config, lib, ... }:
 
 let
   domain = "oldbox.kaifer.cz";
@@ -293,29 +293,26 @@ in
       mountdir = "/nas/google-drive";
     in
     {
-      Unit = {
-        Description = "mount google drive";
-        After = [ "network-online.target" ];
-      };
-      Install.WantedBy = [ "multi-user.target" ];
-      Service = {
-        ExecStartPre = "/run/current-system/sw/bin/mkdir -p ${mountdir}";
-        ExecStart = ''
-          ${pkgs.rclone}/bin/rclone mount google-drive: ${mountdir} \
-            --config "${config.age.secrets.rclone-config-google-drive.path}" \
-            --dir-cache-time 48h \
-            --vfs-cache-mode full \
-            --vfs-cache-max-age 48h \
-            --vfs-read-chunk-size 10M \
-            --vfs-read-chunk-size-limit 512M \
-            --no-modtime \
-            --buffer-size 512M
-        '';
-        ExecStop = "/run/wrappers/bin/umount ${mountdir}";
-        Type = "notify";
-        Restart = "always";
+      description = "mount google drive";
+      after = [ "network-online.target" ];
+      wantedBy = [ "multi-user.target" ];
+      preStart = "/run/current-system/sw/bin/mkdir -p ${mountdir}";
+      script = ''
+        ${pkgs.rclone}/bin/rclone mount google-drive: ${mountdir} \
+          --config "${config.age.secrets.rclone-config-google-drive.path}" \
+          --dir-cache-time 48h \
+          --vfs-cache-mode full \
+          --vfs-cache-max-age 48h \
+          --vfs-read-chunk-size 10M \
+          --vfs-read-chunk-size-limit 512M \
+          --no-modtime \
+          --buffer-size 512M
+      '';
+      preStop = "/run/wrappers/bin/umount ${mountdir}";
+      environment = [ "PATH=/run/wrappers/bin/" ];
+      serviceConfig = {
+        Restart = lib.mkForce "always";
         RestartSec = "10s";
-        Environment = [ "PATH=/run/wrappers/bin/" ];
       };
     };
 
