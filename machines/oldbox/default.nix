@@ -276,7 +276,12 @@ in
       oldboxBackup = {
         passwordFile = config.age.secrets.restic-password.path;
         paths = [ "/persist" ];
-        exclude = [ "/persist/home/*/.cache" "/persist/var/lib/docker" "/persist/var/lib/private/victoriametrics/cache" ];
+        exclude = [
+          "/persist/home/*/.cache"
+          "/persist/var/lib/docker"
+          "/persist/var/lib/private/victoriametrics/cache"
+          "/var/cache/"
+        ];
       };
       googleDriveBackup = {
         passwordFile = config.age.secrets.restic-password.path;
