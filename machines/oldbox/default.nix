@@ -477,7 +477,7 @@ in
           await fetch(vmUrl, {
               method: 'POST',
               headers: {
-                  'Content-Type': 'text/plain'
+                  'Content-Type': 'text/plain',
               },
               body: metrics.trim(),
           });
