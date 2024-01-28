@@ -396,14 +396,14 @@ in
       script = ''
         ${pkgs.rclone}/bin/rclone mount google-drive: ${mountdir} \
           --config "${config.age.secrets.rclone-config-google-drive.path}" \
-            --tpslimit 10 \
-            --dir-cache-time 48h \
-            --vfs-cache-mode full \
-            --vfs-cache-max-age 48h \
-            --vfs-read-chunk-size 10M \
-            --vfs-read-chunk-size-limit 512M \
-            --no-modtime \
-            --buffer-size 512M
+          --tpslimit 10 \
+          --dir-cache-time 48h \
+          --vfs-cache-mode full \
+          --vfs-cache-max-age 48h \
+          --vfs-read-chunk-size 10M \
+          --vfs-read-chunk-size-limit 512M \
+          --no-modtime \
+          --buffer-size 512M
       '';
       preStop = "/run/wrappers/bin/umount ${mountdir}";
       environment = {
