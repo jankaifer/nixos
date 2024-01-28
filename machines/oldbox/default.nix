@@ -319,6 +319,9 @@ in
       enable = true;
       prometheus = true;
       listenAddress = ":${toString restic.port}";
+      extraFlags = [
+        "--prometheus-no-auth"
+      ];
     };
     backups =
       let
