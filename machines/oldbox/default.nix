@@ -439,6 +439,24 @@ in
         PATH = lib.mkForce "${pkgs.fuse3}/bin:$PATH";
       };
     };
+
+  systemd.services.cfspeedtest-metric-exporter = {
+    description = "Measure internet speed with cfspeedtest and export to victoriametrics";
+    after = [ "network-online.target" ];
+    script = ''
+      ${pkgs.cfspeedtest}/bin/cfspeedtest -o json | ${./scripts/push-cf-speed-test-result-to-vm.js} "https://victoriametrics.${domain}/api/v1/import/prometheus"
+    '';
+  };
+
+  systemd.timers.cfspeedtest-metric-exporter = {
+    description = "Timer for the cfspeedtest-metric-exporter service";
+    wantedBy = [ "timers.target" ];
+    partOf = [ "cfspeedtest-metric-exporter.service" ];
+    timerConfig = {
+      OnCalendar = "hourly";
+      Persistent = true;
+    };
+  };
 }
 
 
