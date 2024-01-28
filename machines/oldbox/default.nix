@@ -277,6 +277,10 @@ in
         passwordFile = config.age.secrets.restic-password.path;
         paths = [ "/nas/google-drive" ];
       };
+      googlePhotosBackup = {
+        passwordFile = config.age.secrets.restic-password.path;
+        paths = [ "/nas/google-photos" ];
+      };
     in
     {
       localOldboxbackup = oldboxBackup // {
@@ -296,6 +300,16 @@ in
       remoteGoogleDriveBackup = googleDriveBackup // {
         initialize = true;
         repository = "s3:https://s3.eu-central-2.wasabisys.com/jankaifer-google-drive-backup";
+        environmentFile = config.age.secrets.restic-wasabi-env-file.path;
+        timerConfig = dailyBackupTimerConfig;
+      };
+      localGooglephotosBackup = googlePhotosBackup // {
+        initialize = true;
+        repository = "/nas/backups/google-photos";
+      };
+      remoteGooglePhotosBackup = googlePhotosBackup // {
+        initialize = true;
+        repository = "s3:https://s3.eu-central-2.wasabisys.com/jankaifer-google-photos-backup";
         environmentFile = config.age.secrets.restic-wasabi-env-file.path;
         timerConfig = dailyBackupTimerConfig;
       };
