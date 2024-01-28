@@ -328,4 +328,32 @@ in
         PATH = lib.mkForce "${pkgs.fuse3}/bin:$PATH";
       };
     };
+
+  # Mount google photos
+  age.secrets.rclone-config-google-photos.file = ../../secrets/rclone-config-google-photos.age;
+  systemd.services.rclone-mount-google-photos =
+    let
+      mountdir = "/nas/google-photos";
+    in
+    {
+      description = "mount google photos";
+      after = [ "network-online.target" ];
+      wantedBy = [ "multi-user.target" ];
+      preStart = "/run/current-system/sw/bin/mkdir -p ${mountdir}";
+      script = ''
+        ${pkgs.rclone}/bin/rclone mount google-photos: ${mountdir} \
+          --config "${config.age.secrets.rclone-config-google-photos.path}" \
+          --dir-cache-time 48h \
+          --vfs-cache-mode full \
+          --vfs-cache-max-age 48h \
+          --vfs-read-chunk-size 10M \
+          --vfs-read-chunk-size-limit 512M \
+          --no-modtime \
+          --buffer-size 512M
+      '';
+      preStop = "/run/wrappers/bin/umount ${mountdir}";
+      environment = {
+        PATH = lib.mkForce "${pkgs.fuse3}/bin:$PATH";
+      };
+    };
 }
