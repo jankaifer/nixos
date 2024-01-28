@@ -423,9 +423,7 @@ in
       wantedBy = [ "multi-user.target" ];
       preStart = "/run/current-system/sw/bin/mkdir -p ${mountdir}";
       script = ''
-        ${pkgs.rclone}/bin/rclone
-        mount
-        google-photos: ${mountdir} \
+        ${pkgs.rclone}/bin/rclone mount google-photos: ${mountdir} \
           --config "${config.age.secrets.rclone-config-google-photos.path}" \
           --tpslimit 1
           --dir-cache-time 48h \
