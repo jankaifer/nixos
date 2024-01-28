@@ -321,6 +321,7 @@ in
       listenAddress = ":${toString restic.port}";
       extraFlags = [
         "--prometheus-no-auth"
+        "--htpasswd-file='${pkgs.writeText ".htpasswd" ""}'"
       ];
     };
     backups =
@@ -394,14 +395,26 @@ in
       script = ''
         ${pkgs.rclone}/bin/rclone mount google-drive: ${mountdir} \
           --config "${config.age.secrets.rclone-config-google-drive.path}" \
-          --tpslimit 10
-          --dir-cache-time 48h \
-          --vfs-cache-mode full \
-          --vfs-cache-max-age 48h \
-          --vfs-read-chunk-size 10M \
-          --vfs-read-chunk-size-limit 512M \
-          --no-modtime \
-          --buffer-size 512M
+        --tpslimit
+        10
+        --dir-cache-time
+        48
+        h \
+        --vfs-cache-mode
+        full \
+        --vfs-cache-max-age
+        48
+        h \
+        --vfs-read-chunk-size
+        10
+        M \
+        --vfs-read-chunk-size-limit
+        512
+        M \
+        --no-modtime \
+        --buffer-size
+        512
+        M
       '';
       preStop = "/run/wrappers/bin/umount ${mountdir}";
       environment = {
@@ -421,16 +434,18 @@ in
       wantedBy = [ "multi-user.target" ];
       preStart = "/run/current-system/sw/bin/mkdir -p ${mountdir}";
       script = ''
-        ${pkgs.rclone}/bin/rclone mount google-photos: ${mountdir} \
-          --config "${config.age.secrets.rclone-config-google-photos.path}" \
-          --tpslimit 1
-          --dir-cache-time 48h \
-          --vfs-cache-mode full \
-          --vfs-cache-max-age 48h \
-          --vfs-read-chunk-size 10M \
-          --vfs-read-chunk-size-limit 512M \
-          --no-modtime \
-          --buffer-size 512M
+        ${pkgs.rclone}/bin/rclone
+        mount
+        google-photos: ${mountdir} \
+          - -config "${config.age.secrets.rclone-config-google-photos.path}" \
+          - -tpslimit 1
+          - -dir-cache-time 48 h \
+          - -vfs-cache-mode full \
+          - -vfs-cache-max-age 48 h \
+          - -vfs-read-chunk-size 10 M \
+          - -vfs-read-chunk-size-limit 512 M \
+          - -no-modtime \
+          - -buffer-size 512 M
       '';
       preStop = "/run/wrappers/bin/umount ${mountdir}";
       environment = {
@@ -438,3 +453,8 @@ in
       };
     };
 }
+
+
+
+
+
