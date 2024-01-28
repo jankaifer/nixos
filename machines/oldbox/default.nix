@@ -457,14 +457,14 @@ in
 
           const serializeTest = (testData) => ["min", "q1", "median", "q3", "max", "avg"]
             .map(percentile => [
-              'cf_speed_test_',
-              testData.test_type.toLowerCase(),
-              '_',
-              percentile,
-              '{payload_size="',
-              testData.payload_size,
-              '"} '
-              testData[percentile],
+                'cf_speed_test_',
+                testData.test_type.toLowerCase(),
+                '_',
+                percentile,
+                '{payload_size="',
+                testData.payload_size,
+                '"} ',
+                testData[percentile],
               ].map(String).join("")
             ).join("\n");
           const metrics = data.map(serializeTest).join("\n");
