@@ -8,6 +8,10 @@ let
   victoriametrics = {
     port = 8003;
   };
+  dailyBackupTimerConfig = {
+    OnCalendar = "00:05";
+    RandomizedDelaySec = "5h";
+  };
 in
 {
   imports = [
@@ -264,31 +268,42 @@ in
   age.secrets.restic-wasabi-env-file.file = ../../secrets/restic-wasabi-env-file.age;
   services.restic.backups =
     let
-      backup = {
+      oldboxBackup = {
         passwordFile = config.age.secrets.restic-password.path;
         paths = [ "/persist" ];
         exclude = [ "/persist/home/*/.cache" "/persist/var/lib/docker" ];
       };
+      googleDriveBackup = {
+        passwordFile = config.age.secrets.restic-password.path;
+        paths = [ "/nas/google-drive" ];
+      };
     in
     {
-      localbackup = backup // {
+      localOldboxbackup = oldboxBackup // {
         initialize = true;
         repository = "/nas/backups/oldbox";
       };
-      remotebackup = backup // {
+      remoteOldboxBackup = oldboxBackup // {
         initialize = true;
-        repository = "s3:https://s3.eu-central-2.wasabisys.com/oldbox-backup";
+        repository = "s3:https://s3.eu-central-2.wasabisys.com/jankaifer-oldbox-backup";
         environmentFile = config.age.secrets.restic-wasabi-env-file.path;
-        timerConfig = {
-          OnCalendar = "00:05";
-          RandomizedDelaySec = "5h";
-        };
+        timerConfig = dailyBackupTimerConfig;
+      };
+      localGoogleDriveBackup = googleDriveBackup // {
+        initialize = true;
+        repository = "/nas/backups/google-drive";
+      };
+      remoteGoogleDriveBackup = googleDriveBackup // {
+        initialize = true;
+        repository = "s3:https://s3.eu-central-2.wasabisys.com/jankaifer-google-drive-backup";
+        environmentFile = config.age.secrets.restic-wasabi-env-file.path;
+        timerConfig = dailyBackupTimerConfig;
       };
     };
 
   # Mount google drive
   age.secrets.rclone-config-google-drive.file = ../../secrets/rclone-config-google-drive.age;
-  systemd.services.rclone-google-drive-mount =
+  systemd.services.rclone-mount-google-drive =
     let
       mountdir = "/nas/google-drive";
     in
@@ -309,27 +324,8 @@ in
           --buffer-size 512M
       '';
       preStop = "/run/wrappers/bin/umount ${mountdir}";
-      environment = [ "PATH=/run/wrappers/bin/" ];
-      serviceConfig = {
-        Restart = lib.mkForce "always";
-        RestartSec = "10s";
+      environment = {
+        PATH = lib.mkForce "${pkgs.fuse3}/bin:$PATH";
       };
     };
-
-  systemd.services.rclone-backup-google-drive = {
-    serviceConfig.Type = "oneshot";
-    script = ''
-      echo "Google drive backup is starting"
-      echo "Google drive backup finisheie"
-    '';
-  };
-
-  systemd.timers.rclone-backup-google-drive = {
-    wantedBy = [ "timers.target" ];
-    partOf = [ "rclone-backup-google-drive.service" ];
-    timerConfig = {
-      OnCalendar = "00:05";
-      RandomizedDelaySec = "5h";
-    };
-  };
 }
