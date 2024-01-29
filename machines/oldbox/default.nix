@@ -646,10 +646,10 @@ in
             host = "oldbox";
           };
         };
-        relabel_configs = {
+        relabel_configs = [{
           source_labels = [ "__journal__systemd_unit" ];
           target_label = "unit";
-        };
+        }];
       }];
     };
   };
