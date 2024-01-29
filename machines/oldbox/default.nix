@@ -555,11 +555,13 @@ in
         max_transfer_retries = 0; # Chunk transfers disabled
       };
 
+      storage_config.filesystem.directory = "/var/lib/loki/";
+
       schema_config = {
         configs = [
           {
             from = "2024-01-01";
-            store = "boltdb-shipper";
+            store = "filesystem";
             object_store = "filesystem";
             schema = "v11";
             index = {

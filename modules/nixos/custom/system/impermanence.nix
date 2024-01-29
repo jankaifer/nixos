@@ -39,6 +39,7 @@ in
           "/var/lib/fprint"
           "/var/lib/grafana"
           "/var/lib/libvirt"
+          "/var/lib/loki"
           "/var/lib/private/victoriametrics"
           "/var/lib/systemd/coredump"
           "/var/lib/traefik"
