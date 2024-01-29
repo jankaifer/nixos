@@ -610,6 +610,19 @@ in
     };
   };
 
+  systemd.services.promtail-data-folder = {
+    description = "Ensure folder exists for promtail";
+    wantedBy = [ "promtail.service" ];
+    script = ''
+      #! ${pkgs.bash}/bin/bash
+      FOLDER_PATH="/var/log/promtail"
+      if [ ! -d "$FOLDER_PATH" ]; then
+        mkdir -p "$FOLDER_PATH"
+      fi
+      chown -R promtail:promtail "$FOLDER_PATH"
+    '';
+  };
+
   services.promtail = {
     enable = true;
     configuration = {
@@ -618,7 +631,7 @@ in
         grpc_listen_port = 0;
       };
 
-      positions.filename = "/tmp/positions.yaml";
+      positions.filename = "/var/log/promtail/positions.yaml";
 
       clients = [
         { url = "http://127.0.0.1:${toString loki.port}/loki/api/v1/push"; }
