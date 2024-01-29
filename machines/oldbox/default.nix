@@ -561,7 +561,7 @@ in
         configs = [
           {
             from = "2024-01-01";
-            store = "filesystem";
+            store = "boltdb-shipper";
             object_store = "filesystem";
             schema = "v11";
             index = {
