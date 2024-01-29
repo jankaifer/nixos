@@ -654,14 +654,21 @@ in
         }
         {
           job_name = "system";
-          pipeline_stages = { };
+          pipeline_stages = [ ];
           static_configs = [
             {
               labels = {
                 job = "traefik-access-log";
                 host = "oldbox";
+                __path__ = "/var/log/traefik/access.log";
               };
-              __path__ = "/var/log/traefik/access.log";
+            }
+            {
+              labels = {
+                job = "mullvad";
+                host = "oldbox";
+                __path__ = "/var/log/mullvad-vpn/daemon.log";
+              };
             }
           ];
         }
