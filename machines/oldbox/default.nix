@@ -637,20 +637,35 @@ in
         { url = "http://127.0.0.1:${toString loki.port}/loki/api/v1/push"; }
       ];
 
-      scrape_configs = [{
-        job_name = "journal";
-        journal = {
-          max_age = "12h";
-          labels = {
-            job = "systemd-journal";
-            host = "oldbox";
+      scrape_configs = [
+        {
+          job_name = "journal";
+          journal = {
+            max_age = "12h";
+            labels = {
+              job = "systemd-journal";
+              host = "oldbox";
+            };
           };
-        };
-        relabel_configs = [{
-          source_labels = [ "__journal__systemd_unit" ];
-          target_label = "unit";
-        }];
-      }];
+          relabel_configs = [{
+            source_labels = [ "__journal__systemd_unit" ];
+            target_label = "unit";
+          }];
+        }
+        {
+          job_name = "system";
+          pipeline_stages = { };
+          static_configs = [
+            {
+              labels = {
+                job = "traefik-access-log";
+                host = "oldbox";
+              };
+              __path__ = "/var/log/traefik/access.log";
+            }
+          ];
+        }
+      ];
     };
   };
 }
