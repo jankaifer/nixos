@@ -366,6 +366,10 @@ in
         googleDriveBackup = {
           passwordFile = config.age.secrets.restic-password.path;
           paths = [ "/nas/google-drive" ];
+          exclude = [
+            # There is a lot of stuff I don't care about, like movies
+            "/nas/google-drive/Backup/Backup Goran"
+          ];
         };
         googlePhotosBackup = {
           passwordFile = config.age.secrets.restic-password.path;
