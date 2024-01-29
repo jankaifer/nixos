@@ -14,6 +14,12 @@ let
   prometheusNodeCollector = {
     port = 8005;
   };
+  loki = {
+    port = 8006;
+  };
+  promtail = {
+    port = 8007;
+  };
   dailyBackupTimerConfig = {
     OnCalendar = "00:05";
     RandomizedDelaySec = "5h";
@@ -245,16 +251,28 @@ in
       panels.disable_sanitize_html = true;
     };
     provision = {
-      datasources.settings.datasources = [{
-        name = "VictoriaMetrics";
-        type = "prometheus";
-        uid = "vm";
-        access = "proxy";
-        url = "http://localhost:${toString victoriametrics.port}";
-        isDefault = true;
-        version = 1;
-        editable = false;
-      }];
+      datasources.settings.datasources = [
+        {
+          name = "VictoriaMetrics";
+          type = "prometheus";
+          uid = "vm";
+          access = "proxy";
+          url = "http://localhost:${toString victoriametrics.port}";
+          isDefault = true;
+          version = 1;
+          editable = false;
+        }
+        {
+          name = "Loki";
+          type = "loki";
+          uid = "loki";
+          access = "proxy";
+          url = "http://localhost:${toString loki.port}";
+          isDefault = false;
+          version = 1;
+          editable = false;
+        }
+      ];
     };
   };
 
@@ -507,12 +525,94 @@ in
     };
   };
 
-  # Prometheus node exporter
-  services.prometheus.exporters = {
-    node = {
-      enable = true;
-      enabledCollectors = [ "systemd" ];
-      port = prometheusNodeCollector.port;
+  services.prometheus.exporters.node = {
+    enable = true;
+    enabledCollectors = [ "systemd" ];
+    port = prometheusNodeCollector.port;
+  };
+
+
+  # Loki and promtail setup stolen from https://xeiaso.net/blog/prometheus-grafana-loki-nixos-2020-11-20/
+  services.loki = {
+    enable = true;
+    configuration = {
+      auth_enabled = false;
+
+      server.http_listen_port = loki.port;
+
+      ingester = {
+        lifecycler = {
+          address = "0.0.0.0";
+          ring = {
+            kvstore.store = "inmemory";
+            replication_factor = 1;
+          };
+          final_sleep = "0s";
+        };
+        chunk_idle_period = "1h"; # Any chunk not receiving new logs in this time will be flushed
+        max_chunk_age = "1h"; # All chunks will be flushed when they hit this age, default is 1h
+        chunk_target_size = "1048576"; # Loki will attempt to build chunks up to 1.5MB, flushing first if chunk_idle_period or max_chunk_age is reached first
+        chunk_retain_period = "30s"; # Must be greater than index read cache TTL if using an index cache (Default index read cache TTL is 5m)
+        max_transfer_retries = 0; # Chunk transfers disabled
+      };
+
+      schema_config = {
+        configs = [
+          {
+            from = "2024-01-01";
+            store = "boltdb-shipper";
+            object_store = "filesystem";
+            schema = "v11";
+            index = {
+              prefix = "index_";
+              period = "24h";
+            };
+          }
+        ];
+      };
+
+      limits_config = {
+        reject_old_samples = true;
+        reject_old_samples_max_age = "168h";
+      };
+
+      chunk_store_config = {
+        max_look_back_period = "0s";
+      };
+
+      table_manager = {
+        retention_deletes_enabled = false;
+        retention_period = "0s";
+      };
+    };
+  };
+
+  services.promtail = {
+    enable = true;
+    configuration = {
+      server = {
+        http_listen_port = promtail.port;
+        grpc_listen_port = 0;
+      };
+
+      positions.filename = "/tmp/positions.yaml";
+
+      clients.url = "http://127.0.0.1:${toString loki.port}/loki/api/v1/push";
+
+      scrape_configs = {
+        job_name = "journal";
+        journal = {
+          max_age = "12h";
+          labels = {
+            job = "systemd-journal";
+            host = "chrysalis";
+          };
+          relabel_configs = {
+            source_labels = [ "__journal__systemd_unit" ];
+            target_label = "unit";
+          };
+        };
+      };
     };
   };
 }
