@@ -574,7 +574,6 @@ in
         filesystem.directory = "/var/log/loki/filesystem";
         boltdb_shipper = {
           active_index_directory = "/var/log/loki/boltdb_shipper/active_index_directory";
-          shared_store = "/var/log/loki/boltdb_shipper/shared_store";
           cache_location = "/var/log/loki/boltdb_shipper/cache";
         };
       };
@@ -633,10 +632,10 @@ in
             job = "systemd-journal";
             host = "chrysalis";
           };
-          relabel_configs = {
-            source_labels = [ "__journal__systemd_unit" ];
-            target_label = "unit";
-          };
+        };
+        relabel_configs = {
+          source_labels = [ "__journal__systemd_unit" ];
+          target_label = "unit";
         };
       }];
     };
