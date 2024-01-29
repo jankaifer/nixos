@@ -11,6 +11,9 @@ let
   restic = {
     port = 8004;
   };
+  prometheusNodeCollector = {
+    port = 8005;
+  };
   dailyBackupTimerConfig = {
     OnCalendar = "00:05";
     RandomizedDelaySec = "5h";
@@ -270,6 +273,10 @@ in
             static_configs:
             - targets:
               - "http://localhost:${toString restic.port}"
+          - job_name: node_exporter
+            static_configs:
+            - targets:
+              - "http://localhost:${toString prometheusNodeCollector.port}"
         '';
       in
       [
@@ -496,6 +503,15 @@ in
     timerConfig = {
       OnCalendar = "hourly";
       Persistent = true;
+    };
+  };
+
+  # Prometheus node exporter
+  services.prometheus.exporters = {
+    node = {
+      enable = true;
+      enabledCollectors = [ "systemd" ];
+      port = prometheusNodeCollector.port;
     };
   };
 }
