@@ -262,16 +262,16 @@ in
           version = 1;
           editable = false;
         }
-        {
-          name = "Loki";
-          type = "loki";
-          uid = "loki";
-          access = "proxy";
-          url = "http://localhost:${toString loki.port}";
-          isDefault = false;
-          version = 1;
-          editable = false;
-        }
+        # {
+        #   name = "Loki";
+        #   type = "loki";
+        #   uid = "loki";
+        #   access = "proxy";
+        #   url = "http://localhost:${toString loki.port}";
+        #   isDefault = false;
+        #   version = 1;
+        #   editable = false;
+        # }
       ];
     };
   };
@@ -597,9 +597,11 @@ in
 
       positions.filename = "/tmp/positions.yaml";
 
-      clients.url = "http://127.0.0.1:${toString loki.port}/loki/api/v1/push";
+      clients = [
+        { url = "http://127.0.0.1:${toString loki.port}/loki/api/v1/push"; }
+      ];
 
-      scrape_configs = {
+      scrape_configs = [{
         job_name = "journal";
         journal = {
           max_age = "12h";
@@ -612,7 +614,7 @@ in
             target_label = "unit";
           };
         };
-      };
+      }];
     };
   };
 }
