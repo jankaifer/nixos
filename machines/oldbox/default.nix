@@ -530,6 +530,18 @@ in
     port = prometheusNodeCollector.port;
   };
 
+  systemd.services.loki-data-folder = {
+    description = "Ensure folder exists for loki";
+    wantedBy = [ "loki.service" ];
+    script = ''
+      #! ${pkgs.bash}/bin/bash
+      FOLDER_PATH="/var/log/loki"
+      if [ ! -d "$FOLDER_PATH" ]; then
+        mkdir -p "$FOLDER_PATH"
+      fi
+      chown -R loki:loki "$FOLDER_PATH"
+    '';
+  };
 
   # Loki and promtail setup stolen from https://xeiaso.net/blog/prometheus-grafana-loki-nixos-2020-11-20/
   services.loki = {
