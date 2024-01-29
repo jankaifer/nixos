@@ -132,14 +132,14 @@ in
 
   systemd.services.traefik-log-folder = {
     description = "Ensure folder exists for traefik";
-    wantedBy = [ "multi-user.target" ];
+    wantedBy = [ "traefik.service" ];
     script = ''
       #! ${pkgs.bash}/bin/bash
       FOLDER_PATH="/var/log/traefik"
       if [ ! -d "$FOLDER_PATH" ]; then
         mkdir -p "$FOLDER_PATH"
-        chown -R traefik:traefik "$FOLDER_PATH"
       fi
+      chown -R traefik:traefik "$FOLDER_PATH"
     '';
   };
 
