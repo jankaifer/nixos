@@ -406,7 +406,7 @@ in
           --tpslimit 10 \
           --dir-cache-time 48h \
           --vfs-cache-mode full \
-          --vfs-cache-max-age 48h \
+          --vfs-cache-max-age 1w \
           --vfs-read-chunk-size 10M \
           --vfs-read-chunk-size-limit 512M \
           --no-modtime \
@@ -415,7 +415,7 @@ in
       preStop = "/run/wrappers/bin/umount ${mountdir}";
       environment = {
         PATH = lib.mkForce "${pkgs.fuse3}/bin:$PATH";
-        TMPDIR = "/var/tmp/rclone"; # This could potentially store a lot of data, we don't want to put that into RAM
+        TMPDIR = "/nas/cache";
       };
     };
 
@@ -436,7 +436,7 @@ in
           --tpslimit 10
           --dir-cache-time 48h \
           --vfs-cache-mode full \
-          --vfs-cache-max-age 48h \
+          --vfs-cache-max-age 1w \
           --vfs-read-chunk-size 10M \
           --vfs-read-chunk-size-limit 512M \
           --no-modtime \
@@ -445,6 +445,7 @@ in
       preStop = "/run/wrappers/bin/umount ${mountdir}";
       environment = {
         PATH = lib.mkForce "${pkgs.fuse3}/bin:$PATH";
+        TMPDIR = "/nas/cache";
       };
     };
 
