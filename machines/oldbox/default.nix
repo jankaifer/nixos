@@ -408,6 +408,7 @@ in
       preStop = "/run/wrappers/bin/umount ${mountdir}";
       environment = {
         PATH = lib.mkForce "${pkgs.fuse3}/bin:$PATH";
+        TMPDIR = "/var/tmp/rclone"; # This could potentially store a lot of data, we don't want to put that into RAM
       };
     };
 
