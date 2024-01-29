@@ -534,6 +534,9 @@ in
   # Loki and promtail setup stolen from https://xeiaso.net/blog/prometheus-grafana-loki-nixos-2020-11-20/
   services.loki = {
     enable = true;
+    extraFlags = [
+      # "--log.level=debug"
+    ];
     configuration = {
       auth_enabled = false;
 
@@ -555,7 +558,15 @@ in
         max_transfer_retries = 0; # Chunk transfers disabled
       };
 
-      storage_config.filesystem.directory = "/var/lib/loki/";
+      storage_config = {
+        filesystem.directory = "/var/log/loki/filesystem";
+        boltdb_shipper = {
+          active_index_directory = "/var/log/loki/boltdb_shipper/active_index_directory";
+          shared_store = "/var/log/loki/boltdb_shipper/shared_store";
+          cache_location = "/var/log/loki/boltdb_shipper/cache";
+        };
+      };
+      compactor.working_directory = "/var/log/loki/compactor";
 
       schema_config = {
         configs = [
