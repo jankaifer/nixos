@@ -262,16 +262,16 @@ in
           version = 1;
           editable = false;
         }
-        # {
-        #   name = "Loki";
-        #   type = "loki";
-        #   uid = "loki";
-        #   access = "proxy";
-        #   url = "http://localhost:${toString loki.port}";
-        #   isDefault = false;
-        #   version = 1;
-        #   editable = false;
-        # }
+        {
+          name = "Loki";
+          type = "loki";
+          uid = "loki";
+          access = "proxy";
+          url = "http://localhost:${toString loki.port}";
+          isDefault = false;
+          version = 1;
+          editable = false;
+        }
       ];
     };
   };
@@ -298,7 +298,6 @@ in
         '';
       in
       [
-        # "-promscrape.config.strictParse=false" # required for victoriametrics to parse the config
         "-promscrape.config=${scrapeConfigFile}"
       ];
   };
