@@ -61,6 +61,14 @@
     neededForBoot = true;
   };
 
+  # This is used mainly by rclone when mounting google drive and photos so it can store everything in cache
+  fileSystems."/nas/cache" = {
+    device = "/dev/disk/by-label/data1";
+    fsType = "btrfs";
+    options = [ "subvol=cache" "compress=zstd:3" "noatime" ];
+    neededForBoot = true;
+  };
+
   swapDevices = [{ device = "/dev/disk/by-label/swap"; }];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
