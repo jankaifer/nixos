@@ -399,7 +399,7 @@ in
           environmentFile = config.age.secrets.restic-backblaze-env-file.path;
           timerConfig = dailyBackupTimerConfig;
         };
-        localGooglephotosBackup = googlePhotosBackup // {
+        localGooglePhotosBackup = googlePhotosBackup // {
           initialize = true;
           repository = "/nas/backups/google-photos";
         };
