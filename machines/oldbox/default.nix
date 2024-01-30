@@ -153,6 +153,7 @@ in
   services.traefik = {
     enable = true;
     group = "docker";
+    dataDir = "/var/lib/traefik";
     staticConfigOptions = {
       log.level = "info";
       providers.docker = { };
