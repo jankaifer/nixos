@@ -379,7 +379,7 @@ in
         getBackblazeS3Url = bucketName: "s3:s3.eu-central-003.backblazeb2.com/${bucketName}";
       in
       {
-        localOldboxbackup = oldboxBackup // {
+        localOldboxBackup = oldboxBackup // {
           initialize = true;
           repository = "/nas/backups/oldbox";
         };
