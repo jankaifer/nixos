@@ -456,7 +456,7 @@ in
       script = ''
         ${pkgs.rclone}/bin/rclone mount google-photos: ${mountdir} \
           --config "${config.age.secrets.rclone-config-google-photos.path}" \
-          --tpslimit 10
+          --tpslimit 3 \
           --dir-cache-time 48h \
           --vfs-cache-mode full \
           --vfs-cache-max-age 1w \
