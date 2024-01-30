@@ -338,6 +338,7 @@ in
 
   age.secrets.restic-password.file = ../../secrets/restic-password.age;
   age.secrets.restic-wasabi-env-file.file = ../../secrets/restic-wasabi-env-file.age;
+  age.secrets.restic-backblaze-env-file.file = ../../secrets/restic-backblaze-env-file.age;
   services.restic = {
     server = {
       enable = true;
@@ -375,6 +376,7 @@ in
           passwordFile = config.age.secrets.restic-password.path;
           paths = [ "/nas/google-photos" ];
         };
+        getBackblazeS3Url = bucketName: "s3:s3.eu-central-003.backblazeb2.com/${bucketName}";
       in
       {
         localOldboxbackup = oldboxBackup // {
@@ -383,8 +385,8 @@ in
         };
         remoteOldboxBackup = oldboxBackup // {
           initialize = true;
-          repository = "s3:https://s3.eu-central-2.wasabisys.com/jankaifer-oldbox-backup";
-          environmentFile = config.age.secrets.restic-wasabi-env-file.path;
+          repository = getBackblazeS3Url "jankaifer-oldbox-backup";
+          environmentFile = config.age.secrets.restic-backblaze-env-file.path;
           timerConfig = dailyBackupTimerConfig;
         };
         localGoogleDriveBackup = googleDriveBackup // {
@@ -393,8 +395,8 @@ in
         };
         remoteGoogleDriveBackup = googleDriveBackup // {
           initialize = true;
-          repository = "s3:https://s3.eu-central-2.wasabisys.com/jankaifer-google-drive-backup";
-          environmentFile = config.age.secrets.restic-wasabi-env-file.path;
+          repository = getBackblazeS3Url "jankaifer-google-drive-backup";
+          environmentFile = config.age.secrets.restic-backblaze-env-file.path;
           timerConfig = dailyBackupTimerConfig;
         };
         localGooglephotosBackup = googlePhotosBackup // {
@@ -403,8 +405,8 @@ in
         };
         remoteGooglePhotosBackup = googlePhotosBackup // {
           initialize = true;
-          repository = "s3:https://s3.eu-central-2.wasabisys.com/jankaifer-google-photos-backup";
-          environmentFile = config.age.secrets.restic-wasabi-env-file.path;
+          repository = getBackblazeS3Url "jankaifer-google-photos-backup";
+          environmentFile = config.age.secrets.restic-backblaze-env-file.path;
           timerConfig = dailyBackupTimerConfig;
         };
       };
