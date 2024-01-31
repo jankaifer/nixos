@@ -315,9 +315,9 @@ in
       credentialsFile = config.age.secrets.cloudflare-credentials-file.path;
       default = "http_status:404";
       ingress = {
-        "pihole.kaifer.com" = "https://localhost";
-        "grafana.kaifer.com" = "https://localhost";
-        "traefik.kaifer.com" = "https://localhost";
+        "pihole.${domain}" = "https://localhost";
+        "grafana.${domain}" = "https://localhost";
+        "traefik.${domain}" = "https://localhost";
       };
     };
   };
