@@ -326,7 +326,7 @@ in
   };
   systemd.services."prepare-cloudflare-dns" = {
     description = "Prepare cloudflare DNS";
-    wantedBy = [ "cloudflared-tunnel-${cloudflare.tunnelId}" ];
+    wantedBy = [ "cloudflared-tunnel-${cloudflare.tunnelId}.service" ];
     script = ''
       #! ${pkgs.bash}/bin/bash
       ${pkgs.cloudflared}/bin/cloudflared tunnel route dns ${cloudflare.tunnelId} pihole.${domain}
