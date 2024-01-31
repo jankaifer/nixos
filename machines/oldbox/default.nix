@@ -24,6 +24,9 @@ let
     OnCalendar = "00:05";
     RandomizedDelaySec = "5h";
   };
+  cloudflare = {
+    tunnelId = "ff121495-6f5b-425f-82ed-a54e06d22ab7";
+  };
 in
 {
   imports = [
@@ -311,7 +314,7 @@ in
   };
   services.cloudflared = {
     enable = true;
-    tunnels."ff121495-6f5b-425f-82ed-a54e06d22ab7" = {
+    tunnels.${cloudflare.tunnelId} = {
       credentialsFile = config.age.secrets.cloudflare-credentials-file.path;
       default = "http_status:404";
       ingress = {
@@ -320,6 +323,16 @@ in
         "traefik.${domain}" = "https://localhost";
       };
     };
+  };
+  systemd.services."prepare-cloudflare-dns" = {
+    description = "Prepare cloudflare DNS";
+    wantedBy = [ "cloudflared-tunnel-${cloudflare.tunnelId}" ];
+    script = ''
+      #! ${pkgs.bash}/bin/bash
+      ${pkgs.cloudflared}/bin/cloudflared tunnel route dns ${cloudflare.tunnelId} pihole.${domain}
+      ${pkgs.cloudflared}/bin/cloudflared tunnel route dns ${cloudflare.tunnelId} grafana.${domain}
+      ${pkgs.cloudflared}/bin/cloudflared tunnel route dns ${cloudflare.tunnelId} traefik.${domain}
+    '';
   };
 
   systemd.services.hd-idle = {
