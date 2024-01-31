@@ -44,7 +44,15 @@ in
         enable = true;
         extraConfig = builtins.readFile ../../../dotfiles/vim/.vimrc;
       };
+      ssh = {
+        enable = true;
+        extraConfig = ''
+          Host ssh-oldbox.kaifer.cz
+            ProxyCommand ${pkgs.cloudflared}/bin/cloudflared access ssh --hostname %h
+        '';
+      };
     };
+
     home.file = {
       # For some reason vscode can't read the config when provided by impermanence
       ".vimrc".source = ../../../dotfiles/vim/.vimrc;

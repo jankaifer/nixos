@@ -136,11 +136,6 @@ in
       PermitRootLogin = lib.mkDefault "no";
     };
 
-    programs.ssh.extraConfig = ''
-      Host ssh-oldbox.kaifer.cz
-        ProxyCommand ${pkgs.cloudflared}/bin/cloudflared access ssh --hostname %h
-    '';
-
     # Support zsa keyboards
     hardware.keyboard.zsa.enable = true;
 
