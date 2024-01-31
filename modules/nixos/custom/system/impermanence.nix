@@ -25,6 +25,10 @@ in
 
   config = lib.mkIf cfg.enable
     {
+      # Fix ordering problems with NetworkManager
+      systemd.services."persist-\x27-persist-var-lib-NetworkManager-secret_key\x27.service".wantedBy = [ "network.target" ];
+      systemd.services."persist-\x27-persist-var-lib-NetworkManager-timestamps\x27.service".wantedBy = [ "network.target" ];
+
       environment.persistence.${persistancePath} = {
         hideMounts = true;
         directories = cfg.directories ++ [
