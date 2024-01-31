@@ -50,13 +50,15 @@ in
       # For some reason vscode can't read the config when provided by impermanence
       ".vimrc".source = ../../../dotfiles/vim/.vimrc;
       # we can't use programs.ssh because it uses wrong permissions
-      ".ssh/config" = {
+      ".ssh/config.source" = {
         text = ''
           Host ssh-oldbox.kaifer.cz
             ProxyCommand ${pkgs.cloudflared}/bin/cloudflared access ssh --hostname %h
         '';
         onChange = ''
-          chmod 600 $out
+          rm -f .ssh/config
+          cp .ssh/config.source .ssh/config
+          chmod 600 .ssh/config
         '';
       };
     };
