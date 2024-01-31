@@ -72,7 +72,7 @@ in
           "/persist/containers/pihole/etc-dnsmasq.d:/etc/dnsmasq.d"
         ];
         labels = {
-          "traefik.http.routers.pihole.rule" = "Host(`pihole.${domain}`)";
+          "traefik.http.routers.pihole.rule" = "Host(`pihole-${domain}`)";
           "traefik.http.routers.pihole.entrypoints" = "websecure";
           "traefik.http.services.pihole.loadbalancer.server.port" = "80";
         };
@@ -82,7 +82,7 @@ in
         environment.TZ = "Europe/Prague";
         volumes = [ "/persist/containers/home-assistant/config:/config" ];
         labels = {
-          "traefik.http.routers.home-assistant.rule" = "Host(`home-assistant.${domain}`)";
+          "traefik.http.routers.home-assistant.rule" = "Host(`home-assistant-${domain}`)";
           "traefik.http.routers.home-assistant.entrypoints" = "websecure";
           "traefik.http.services.home-assistant.loadbalancer.server.port" = "8123";
         };
@@ -137,7 +137,7 @@ in
   # stolen from https://github.com/LongerHV/nixos-configuration/blob/87ac6a7370811698385d4c52fc28fab94addaea2/modules/nixos/homelab/traefik.nix
 
   networking.firewall.allowedTCPPorts = [ 80 443 ];
-  networking.hosts."127.0.0.1" = [ "traefik.${domain}" ];
+  networking.hosts."127.0.0.1" = [ "traefik-${domain}" ];
 
   systemd.services.traefik-log-folder = {
     description = "Ensure folder exists for traefik";
@@ -179,7 +179,7 @@ in
           address = ":443";
           http.tls = {
             certResolver = "cloudflare";
-            domains = [{ main = "${domain}"; sans = [ "*.${domain}" ]; }];
+            domains = [{ main = "kaifer.cz"; sans = [ "*.kaifer.cz" ]; }];
           };
         };
       };
@@ -201,22 +201,22 @@ in
       http = {
         routers = {
           traefik = {
-            rule = "Host(`traefik.${domain}`)";
+            rule = "Host(`traefik-${domain}`)";
             service = "api@internal";
             entrypoints = [ "websecure" ];
           };
           traefik-metrics = {
-            rule = "Host(`traefik-metrics.${domain}`)";
+            rule = "Host(`traefik-metrics-${domain}`)";
             service = "prometheus@internal";
             entrypoints = [ "websecure" ];
           };
           grafana = {
-            rule = "Host(`grafana.${domain}`)";
+            rule = "Host(`grafana-${domain}`)";
             service = "grafana@file";
             entrypoints = [ "websecure" ];
           };
           victoriametrics = {
-            rule = "Host(`victoriametrics.${domain}`)";
+            rule = "Host(`victoriametrics-${domain}`)";
             service = "victoriametrics@file";
             entrypoints = [ "websecure" ];
           };
@@ -239,7 +239,7 @@ in
     declarativePlugins = with pkgs.grafanaPlugins; [ grafana-piechart-panel ];
     settings = {
       server = {
-        domain = "grafana.${domain}";
+        domain = "grafana-${domain}";
         http_port = grafana.port;
       };
       analytics = {
@@ -290,7 +290,7 @@ in
           - job_name: traefik
             static_configs:
             - targets:
-              - "https://traefik-metrics.${domain}"
+              - "https://traefik-metrics-${domain}"
           - job_name: restic
             static_configs:
             - targets:
@@ -318,9 +318,9 @@ in
       credentialsFile = config.age.secrets.cloudflare-credentials-file.path;
       default = "http_status:404";
       ingress = {
-        "pihole.${domain}" = "https://localhost";
-        "grafana.${domain}" = "https://localhost";
-        "traefik.${domain}" = "https://localhost";
+        "pihole-${domain}" = "https://localhost";
+        "grafana-${domain}" = "https://localhost";
+        "traefik-${domain}" = "https://localhost";
       };
     };
   };
@@ -329,9 +329,9 @@ in
     wantedBy = [ "cloudflared-tunnel-${cloudflare.tunnelId}.service" ];
     script = ''
       #! ${pkgs.bash}/bin/bash
-      ${pkgs.cloudflared}/bin/cloudflared tunnel route dns ${cloudflare.tunnelId} pihole.${domain}
-      ${pkgs.cloudflared}/bin/cloudflared tunnel route dns ${cloudflare.tunnelId} grafana.${domain}
-      ${pkgs.cloudflared}/bin/cloudflared tunnel route dns ${cloudflare.tunnelId} traefik.${domain}
+      ${pkgs.cloudflared}/bin/cloudflared tunnel route dns ${cloudflare.tunnelId} pihole-${domain}
+      ${pkgs.cloudflared}/bin/cloudflared tunnel route dns ${cloudflare.tunnelId} grafana-${domain}
+      ${pkgs.cloudflared}/bin/cloudflared tunnel route dns ${cloudflare.tunnelId} traefik-${domain}
     '';
     environment = {
       TUNNEL_CRED_FILE = config.age.secrets.cloudflare-credentials-file.path;
@@ -495,7 +495,7 @@ in
     script =
       let
         exportToVmScript = pkgs.writeText "export.js" ''
-          const vmUrl = "https://victoriametrics.${domain}/api/v1/import/prometheus";
+          const vmUrl = "https://victoriametrics-${domain}/api/v1/import/prometheus";
 
           const data = JSON.parse(await Bun.stdin.text());
           console.log("We got the following data from speed test:");
