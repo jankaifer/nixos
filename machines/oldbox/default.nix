@@ -314,6 +314,7 @@ in
   };
   services.cloudflared = {
     enable = true;
+
     tunnels.${cloudflare.tunnelId} = {
       credentialsFile = config.age.secrets.cloudflare-credentials-file.path;
       default = "http_status:404";
@@ -321,7 +322,7 @@ in
         "pihole-${domain}" = "https://pihole-${domain}";
         "grafana-${domain}" = "https://grafana-${domain}";
         "traefik-${domain}" = "https://traefik-${domain}";
-        "ssh-${domain}" = "localhost:22";
+        "ssh-${domain}" = "ssh://localhost:22";
       };
     };
   };
