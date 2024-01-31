@@ -29,7 +29,7 @@ in
       sharedModules = builtins.attrValues outputs.homeManagerModules;
       users.${cfg.user} = import cfg.home-manager.home;
       # When there is conflict with existing files, HM now creates a backup of that file and force overwrite
-      backupFileExtension = ".home-manager-backup";
+      backupFileExtension = "home-manager-backup";
     };
 
 
