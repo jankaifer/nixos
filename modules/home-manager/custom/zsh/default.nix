@@ -37,7 +37,7 @@
         {
           fnm install 20.11
           fnm default 20.11
-        } 2>&1 > /dev/null 
+        } > /dev/null 2>&1
         eval "$(fnm env --use-on-cd --version-file-strategy=recursive)"
       '';
       localVariables = {
