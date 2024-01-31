@@ -333,6 +333,9 @@ in
       ${pkgs.cloudflared}/bin/cloudflared tunnel route dns ${cloudflare.tunnelId} grafana.${domain}
       ${pkgs.cloudflared}/bin/cloudflared tunnel route dns ${cloudflare.tunnelId} traefik.${domain}
     '';
+    environment = {
+      TUNNEL_CRED_FILE = config.age.secrets.cloudflare-credentials-file.path;
+    };
   };
 
   systemd.services.hd-idle = {
