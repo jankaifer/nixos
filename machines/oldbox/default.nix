@@ -322,6 +322,7 @@ in
         "pihole-${domain}" = "https://pihole-${domain}";
         "grafana-${domain}" = "https://grafana-${domain}";
         "traefik-${domain}" = "https://traefik-${domain}";
+        "home-assistant-${domain}" = "https://home-assistant-${domain}";
         "ssh-${domain}" = "ssh://localhost:22";
       };
     };
