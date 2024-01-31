@@ -1,4 +1,4 @@
-{ lib, config, pkgs, ... }: {
+{ pkgs, ... }: {
   imports = [
     ../../modules
     ../../modules/raspberry-shared.nix

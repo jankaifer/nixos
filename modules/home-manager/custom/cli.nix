@@ -54,6 +54,8 @@ in
         text = ''
           Host ssh-oldbox.kaifer.cz
             ProxyCommand ${pkgs.cloudflared}/bin/cloudflared access ssh --hostname %h
+            ForwardAgent yes
+
         '';
         onChange = ''
           rm -f .ssh/config
@@ -75,6 +77,7 @@ in
       pkgs.tree
       pkgs.nixpkgs-fmt
       pkgs.fnm
+      pkgs.cloudflared
     ];
   };
 }
