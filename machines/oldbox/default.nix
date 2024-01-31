@@ -324,19 +324,6 @@ in
       };
     };
   };
-  systemd.services."prepare-cloudflare-dns" = {
-    description = "Prepare cloudflare DNS";
-    wantedBy = [ "cloudflared-tunnel-${cloudflare.tunnelId}.service" ];
-    script = ''
-      #! ${pkgs.bash}/bin/bash
-      ${pkgs.cloudflared}/bin/cloudflared tunnel route dns ${cloudflare.tunnelId} pihole-${domain}
-      ${pkgs.cloudflared}/bin/cloudflared tunnel route dns ${cloudflare.tunnelId} grafana-${domain}
-      ${pkgs.cloudflared}/bin/cloudflared tunnel route dns ${cloudflare.tunnelId} traefik-${domain}
-    '';
-    environment = {
-      TUNNEL_CRED_FILE = config.age.secrets.cloudflare-credentials-file.path;
-    };
-  };
 
   systemd.services.hd-idle = {
     description = "HD spin down daemon, spins down disks after 15 minutes of inactivity";
