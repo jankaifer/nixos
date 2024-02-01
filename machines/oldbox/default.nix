@@ -91,6 +91,7 @@ in
         };
         extraOptions = [
           "--network=host"
+          "--device=/dev/ttyACM0:/dev/ttyACM0" # Forward usb devices
         ];
       };
     };
