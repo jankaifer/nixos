@@ -292,6 +292,9 @@ in
     extraOptions =
       let
         scrapeConfigFile = builtins.toFile "prometheus-scrape-config.yml" ''
+          global:
+            scrape_interval: 10s
+
           scrape_configs:
           - job_name: traefik
             static_configs:
@@ -305,6 +308,11 @@ in
             static_configs:
             - targets:
               - "http://localhost:${toString prometheusNodeCollector.port}"
+          - job_name: home-assistant
+            static_configs:
+            - targets:
+              - "https://home-assistant-${domain}/api/prometheus"
+       
         '';
       in
       [
