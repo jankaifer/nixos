@@ -80,7 +80,10 @@ in
       home-assistant = {
         image = "ghcr.io/home-assistant/home-assistant:2024.1";
         environment.TZ = "Europe/Prague";
-        volumes = [ "/persist/containers/home-assistant/config:/config" ];
+        volumes = [
+          "/persist/containers/home-assistant/config:/config"
+          "/etc/localtime:/etc/localtime:ro"
+        ];
         labels = {
           "traefik.http.routers.home-assistant.rule" = "Host(`home-assistant-${domain}`)";
           "traefik.http.routers.home-assistant.entrypoints" = "websecure";
