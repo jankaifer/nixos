@@ -86,6 +86,9 @@ in
           "traefik.http.routers.home-assistant.entrypoints" = "websecure";
           "traefik.http.services.home-assistant.loadbalancer.server.port" = "8123";
         };
+        extraOptions = [
+          "--network=host"
+        ];
       };
     };
   };
