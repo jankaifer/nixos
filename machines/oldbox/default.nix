@@ -705,7 +705,7 @@ in
   };
 
   # Run libre chat as docker compose 
-  systemd.services."docker-compose-service" = {
+  systemd.services."librechat" = {
     after = [ "docker.service" ];
     requires = [ "docker.service" ];
     wantedBy = [ "multi-user.target" ];
