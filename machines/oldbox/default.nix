@@ -322,9 +322,9 @@ in
             editable = false;
           }
         ];
-        deleteDatasources = {
+        deleteDatasources = [{
           uid = "vm";
-        };
+        }];
       };
     };
   };
