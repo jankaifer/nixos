@@ -99,6 +99,22 @@
         "type": "github"
       }
     },
+    "libreChat": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1706887890,
+        "narHash": "sha256-R6zBnHC8oVlmgmqPFoR20kxlKFqGzeopwW1oR6zmJDA=",
+        "owner": "danny-avila",
+        "repo": "LibreChat",
+        "rev": "296967eff0df1abb4fdcc2fadc3f0677124b87bb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "danny-avila",
+        "repo": "LibreChat",
+        "type": "github"
+      }
+    },
     "myPublicSshKeys": {
       "flake": false,
       "locked": {
@@ -165,6 +181,7 @@
         "fckKeyboardLayout": "fckKeyboardLayout",
         "home-manager": "home-manager",
         "impermanence": "impermanence",
+        "libreChat": "libreChat",
         "myPublicSshKeys": "myPublicSshKeys",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",

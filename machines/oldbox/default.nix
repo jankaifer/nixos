@@ -706,7 +706,7 @@ in
 
   systemd.services."librechat" = {
     script = ''
-      docker-compose -f '${inputs.libreChat}/docker-compose.yml'
+      ${pkgs.docker-compose}/bin/docker-compose -f '${inputs.libreChat}/docker-compose.yml'
     '';
     wantedBy = [ "multi-user.target" ];
     after = [ "docker.service" "docker.socket" ];
