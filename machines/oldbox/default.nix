@@ -290,7 +290,7 @@ in
           {
             name = "VictoriaMetrics";
             type = "prometheus";
-            uid = "vm1";
+            uid = "vm";
             access = "proxy";
             url = "http://localhost:${toString victoriametrics.port}";
             isDefault = true;
