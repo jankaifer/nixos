@@ -315,7 +315,7 @@ in
       let
         scrapeConfigFile = builtins.toFile "prometheus-scrape-config.yml" ''
           global:
-            scrape_interval: 10s
+            scrape_interval: 5s
 
           scrape_configs:
           - job_name: traefik
@@ -334,7 +334,6 @@ in
             static_configs:
             - targets:
               - "https://home-assistant-${domain}/api/prometheus"
-       
         '';
       in
       [
