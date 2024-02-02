@@ -719,6 +719,13 @@ in
                 __path__ = "/var/log/mullvad-vpn/daemon.log";
               };
             }
+            {
+              labels = {
+                job = "jellyfin";
+                host = "oldbox";
+                __path__ = "/var/lib/jellyfin/log";
+              };
+            }
           ];
         }
       ];
@@ -741,5 +748,20 @@ in
   services.jellyfin = {
     enable = true;
     openFirewall = true;
+  };
+
+  # Enable hardware acceleration for jellyfin, taken from https://nixos.wiki/wiki/Jellyfin
+  nixpkgs.config.packageOverrides = pkgs: {
+    vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
+  };
+  hardware.opengl = {
+    enable = true;
+    extraPackages = with pkgs; [
+      intel-media-driver
+      vaapiIntel
+      vaapiVdpau
+      libvdpau-va-gl
+      intel-compute-runtime # OpenCL filter support (hardware tonemapping and subtitle burn-in)
+    ];
   };
 }

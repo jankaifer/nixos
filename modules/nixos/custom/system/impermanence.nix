@@ -47,6 +47,7 @@ in
           "/var/lib/systemd/coredump"
           "/var/lib/traefik"
           "/var/lib/vmagent"
+          "/var/lib/jellyfin"
         ];
         files = cfg.files ++ [
           "/etc/machine-id"
