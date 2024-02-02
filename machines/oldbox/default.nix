@@ -97,7 +97,7 @@ in
       };
       chatbot-ui = {
         image = "ghcr.io/mckaywrigley/chatbot-ui:main";
-        environmentFile = config.age.secrets.chatbot-ui-env-file.path;
+        environmentFiles = [ config.age.secrets.chatbot-ui-env-file.path ];
         labels = {
           "traefik.http.routers.chatbot-ui.rule" = "Host(`chatbot-ui-${domain}`)";
           "traefik.http.routers.chatbot-ui.entrypoints" = "websecure";
