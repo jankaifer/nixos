@@ -1,4 +1,4 @@
-{ pkgs, config, lib, ... }:
+{ inputs, pkgs, config, lib, ... }:
 
 let
   domain = "oldbox.kaifer.cz";
@@ -701,6 +701,25 @@ in
           ];
         }
       ];
+    };
+  };
+
+  # Run libre chat as docker compose 
+  systemd.services."docker-compose-service" = {
+    after = [ "docker.service" ];
+    requires = [ "docker.service" ];
+    wantedBy = [ "multi-user.target" ];
+    script = ''
+      cd '${inputs.libreChat}'
+      ${pkgs.docker-compose}/bin/docker-compose up -d
+    '';
+    preStop = ''
+      cd '${inputs.libreChat}'
+      ${pkgs.docker-compose}/bin/docker-compose down
+    '';
+    serviceConfig = {
+      Restart = "always";
+      RestartSec = "30";
     };
   };
 }
