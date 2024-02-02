@@ -20,6 +20,9 @@ let
   promtail = {
     port = 8007;
   };
+  jellyfin = {
+    port = 8096;
+  };
   dailyBackupTimerConfig = {
     OnCalendar = "00:05";
     RandomizedDelaySec = "5h";
@@ -237,6 +240,11 @@ in
             service = "victoriametrics@file";
             entrypoints = [ "websecure" ];
           };
+          jellyfin = {
+            rule = "Host(`jellyfin-${domain}`)";
+            service = "jellyfin@file";
+            entrypoints = [ "websecure" ];
+          };
         };
         services = {
           grafana.loadBalancer.servers = [
@@ -244,6 +252,9 @@ in
           ];
           victoriametrics.loadBalancer.servers = [
             { url = "http://localhost:${toString victoriametrics.port}"; }
+          ];
+          jellyfin.loadBalancer.servers = [
+            { url = "http://localhost:${toString jellyfin.port}"; }
           ];
         };
       };
@@ -725,5 +736,10 @@ in
       RestartSec = "30";
     };
     environment = { };
+  };
+
+  services.jellyfin = {
+    enable = true;
+    openFirewall = true;
   };
 }
