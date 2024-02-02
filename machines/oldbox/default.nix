@@ -300,17 +300,17 @@ in
       datasources.settings = {
         apiVersion = 1;
         datasources = [
-          {
-            name = "VictoriaMetrics";
-            type = "prometheus";
-            uid = "vm";
-            access = "proxy";
-            url = "http://localhost:${toString victoriametrics.port}";
-            isDefault = true;
-            version = 2;
-            editable = false;
-            jsonData.timeInterval = victoriametrics.scrapeInterval;
-          }
+          # {
+          #   name = "VictoriaMetrics";
+          #   type = "prometheus";
+          #   uid = "vm";
+          #   access = "proxy";
+          #   url = "http://localhost:${toString victoriametrics.port}";
+          #   isDefault = true;
+          #   version = 2;
+          #   editable = false;
+          #   jsonData.timeInterval = victoriametrics.scrapeInterval;
+          # }
           {
             name = "Loki";
             type = "loki";
@@ -322,6 +322,9 @@ in
             editable = false;
           }
         ];
+        deleteDatasources = {
+          uid = "vm";
+        };
       };
     };
   };
