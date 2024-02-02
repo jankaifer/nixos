@@ -284,29 +284,32 @@ in
       panels.disable_sanitize_html = true;
     };
     provision = {
-      datasources.settings.datasources = [
-        {
-          name = "VictoriaMetrics";
-          type = "prometheus";
-          uid = "vm";
-          access = "proxy";
-          url = "http://localhost:${toString victoriametrics.port}";
-          isDefault = true;
-          version = 1;
-          editable = false;
-          jsonData.timeInterval = victoriametrics.scrapeInterval;
-        }
-        {
-          name = "Loki";
-          type = "loki";
-          uid = "loki";
-          access = "proxy";
-          url = "http://localhost:${toString loki.port}";
-          isDefault = false;
-          version = 1;
-          editable = false;
-        }
-      ];
+      datasources.settings = {
+        apiVersion = 1;
+        datasources = [
+          {
+            name = "VictoriaMetrics";
+            type = "prometheus";
+            uid = "vm1";
+            access = "proxy";
+            url = "http://localhost:${toString victoriametrics.port}";
+            isDefault = true;
+            version = 1;
+            editable = false;
+            jsonData.timeInterval = victoriametrics.scrapeInterval;
+          }
+          {
+            name = "Loki";
+            type = "loki";
+            uid = "loki";
+            access = "proxy";
+            url = "http://localhost:${toString loki.port}";
+            isDefault = false;
+            version = 1;
+            editable = false;
+          }
+        ];
+      };
     };
   };
 
