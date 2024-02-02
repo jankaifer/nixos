@@ -294,7 +294,7 @@ in
           isDefault = true;
           version = 1;
           editable = false;
-          scrapeInterval = victoriametrics.scrapeInterval;
+          jsonData.timeInterval = victoriametrics.scrapeInterval;
         }
         {
           name = "Loki";
