@@ -276,8 +276,10 @@ in
     enable = true;
     declarativePlugins = with pkgs.grafanaPlugins; [ grafana-piechart-panel ];
     settings = {
-      log.mode = "console file";
-      level = "debug";
+      log = {
+        mode = "console file";
+        level = "debug";
+      };
       server = {
         domain = "grafana-${domain}";
         http_port = grafana.port;
