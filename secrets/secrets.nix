@@ -19,4 +19,5 @@ in
   "restic-backblaze-env-file.age".publicKeys = ghKeys;
   "rclone-config-google-drive.age".publicKeys = ghKeys;
   "rclone-config-google-photos.age".publicKeys = ghKeys;
+  "chatbot-ui-env-file.age".publicKeys = ghKeys;
 }

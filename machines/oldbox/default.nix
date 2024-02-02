@@ -52,6 +52,7 @@ in
     owner = "grafana";
     group = "grafana";
   };
+  age.secrets.chatbot-ui-env-file.file = ../../secrets/chatbot-ui-env.age;
 
   virtualisation.oci-containers = {
     backend = "docker";
@@ -93,6 +94,15 @@ in
           "--network=host"
           "--device=/dev/ttyACM0:/dev/ttyACM0" # Forward usb devices
         ];
+      };
+      chatbot-ui = {
+        image = "ghcr.io/mckaywrigley/chatbot-ui:main";
+        environmentFile = config.age.secrets.chatbot-ui-env-file.path;
+        labels = {
+          "traefik.http.routers.chatbot-ui.rule" = "Host(`chatbot-ui-${domain}`)";
+          "traefik.http.routers.chatbot-ui.entrypoints" = "websecure";
+          "traefik.http.services.chatbot-ui.loadbalancer.server.port" = "3000";
+        };
       };
     };
   };
