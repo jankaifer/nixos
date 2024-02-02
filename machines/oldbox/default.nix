@@ -704,22 +704,16 @@ in
     };
   };
 
-  # Run libre chat as docker compose 
   systemd.services."librechat" = {
-    after = [ "docker.service" ];
-    requires = [ "docker.service" ];
-    wantedBy = [ "multi-user.target" ];
     script = ''
-      cd '${inputs.libreChat}'
-      ${pkgs.docker-compose}/bin/docker-compose up -d
+      docker-compose -f '${inputs.libreChat}/docker-compose.yml'
     '';
-    preStop = ''
-      cd '${inputs.libreChat}'
-      ${pkgs.docker-compose}/bin/docker-compose down
-    '';
+    wantedBy = [ "multi-user.target" ];
+    after = [ "docker.service" "docker.socket" ];
     serviceConfig = {
       Restart = "always";
       RestartSec = "30";
     };
+    environment = { };
   };
 }
