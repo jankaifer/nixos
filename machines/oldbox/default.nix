@@ -7,6 +7,7 @@ let
   };
   victoriametrics = {
     port = 8003;
+    scrapeInterval = "5s";
   };
   restic = {
     port = 8004;
@@ -293,6 +294,7 @@ in
           isDefault = true;
           version = 1;
           editable = false;
+          scrapeInterval = victoriametrics.scrapeInterval;
         }
         {
           name = "Loki";
@@ -315,7 +317,7 @@ in
       let
         scrapeConfigFile = builtins.toFile "prometheus-scrape-config.yml" ''
           global:
-            scrape_interval: 5s
+            scrape_interval: ${victoriametrics.scrapeInterval}
 
           scrape_configs:
           - job_name: traefik
