@@ -307,7 +307,7 @@ in
             access = "proxy";
             url = "http://localhost:${toString victoriametrics.port}";
             isDefault = true;
-            version = 1;
+            version = 2;
             editable = false;
             jsonData.timeInterval = victoriametrics.scrapeInterval;
           }
