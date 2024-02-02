@@ -172,6 +172,15 @@ in
       chown -R traefik:traefik "$FOLDER_PATH"
     '';
   };
+  systemd.services.traefik-data-folder = {
+    description = "Ensure folder has correct permissions for traefik";
+    wantedBy = [ "traefik.service" ];
+    script = ''
+      #! ${pkgs.bash}/bin/bash
+      FOLDER_PATH="/var/lib/traefik"
+      chown -R traefik:traefik "$FOLDER_PATH"
+    '';
+  };
 
   systemd.services.traefik.serviceConfig.EnvironmentFile = [ config.age.secrets.traefik-env.path ];
   services.traefik = {
@@ -267,6 +276,8 @@ in
     enable = true;
     declarativePlugins = with pkgs.grafanaPlugins; [ grafana-piechart-panel ];
     settings = {
+      log.mode = "console file";
+      level = "debug";
       server = {
         domain = "grafana-${domain}";
         http_port = grafana.port;
