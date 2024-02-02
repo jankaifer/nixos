@@ -52,7 +52,7 @@ in
     owner = "grafana";
     group = "grafana";
   };
-  age.secrets.chatbot-ui-env-file.file = ../../secrets/chatbot-ui-env.age;
+  age.secrets.chatbot-ui-env-file.file = ../../secrets/chatbot-ui-env-file.age;
 
   virtualisation.oci-containers = {
     backend = "docker";
