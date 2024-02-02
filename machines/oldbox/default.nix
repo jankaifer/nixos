@@ -360,6 +360,7 @@ in
         "grafana-${domain}" = "https://grafana-${domain}";
         "traefik-${domain}" = "https://traefik-${domain}";
         "home-assistant-${domain}" = "https://home-assistant-${domain}";
+        "chatbot-ui-${domain}" = "https://chatbot-ui-${domain}";
         "ssh-${domain}" = "ssh://localhost:22";
       };
     };
