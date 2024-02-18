@@ -53,14 +53,7 @@
         }
       ]
     },
-    "textMateRules": [
-      {
-        "scope": "keyword.other.dotenv",
-        "settings": {
-          "foreground": "#FF000000"
-        }
-      }
-    ]
+    "textMateRules": []
   },
   "explorer.confirmDelete": false,
   "explorer.confirmDragAndDrop": false,
@@ -130,5 +123,6 @@
       "formatting": { "command": ["nixpkgs-fmt"] }
     }
   },
-  "security.workspace.trust.untrustedFiles": "open"
+  "security.workspace.trust.untrustedFiles": "open",
+  "dotenv.enableAutocloaking": false
 }
