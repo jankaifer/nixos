@@ -25,10 +25,6 @@
       flake = false;
       url = "https://github.com/jankaifer.keys";
     };
-    libreChat = {
-      flake = false;
-      url = "github:danny-avila/LibreChat";
-    };
   };
 
   outputs = { ... }@inputs:
