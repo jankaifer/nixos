@@ -126,12 +126,6 @@
     sha256 = "1nz4yx4s79lww4af88q3q8xxakzwdxva5sm7bffhilpqy5k8nmqa";
   }
   {
-    name = "makefile-tools";
-    publisher = "ms-vscode";
-    version = "0.9.7";
-    sha256 = "0s5v1hjdjm61m1rg7nxkqigqb9gzcsas798j2scin82435yznr1l";
-  }
-  {
     name = "remote-explorer";
     publisher = "ms-vscode";
     version = "0.5.2024021909";
