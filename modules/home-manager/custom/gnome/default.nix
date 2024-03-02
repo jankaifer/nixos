@@ -140,6 +140,7 @@ in
         switch-to-workspace-right = [ "<Control><Super>o" "<Control><Super>Right" ];
         move-to-workspace-left = [ "<Shift><Control><Super>n" "<Shift><Control><Super>Left" ];
         move-to-workspace-right = [ "<Shift><Control><Super>o" "<Shift><Control><Super>Right" ];
+        switch-windows = [ "<Alt>Tab" ];
         maximize = [ "<Shift><Super>i" "<Shift><Super>Up" ];
         unmaximize = [ "<Shift><Super>e" "<Shift><Super>Down" ];
       };
