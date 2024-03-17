@@ -85,6 +85,7 @@ in
             "Pictures"
             "dev"
             "exercism"
+            "vms"
           ];
 
           files = cfg.userFiles ++ [
