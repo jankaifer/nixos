@@ -44,7 +44,7 @@ in
       users.${cfg.user} = {
         isNormalUser = true;
         hashedPasswordFile = config.age.secrets.login-password.path;
-        extraGroups = [ "wheel" "networkmanager" "docker" ];
+        extraGroups = [ "wheel" "networkmanager" "docker" "libvirtd" ];
         openssh.authorizedKeys.keys = lib.splitString "\n" (builtins.readFile inputs.myPublicSshKeys);
       };
     };
