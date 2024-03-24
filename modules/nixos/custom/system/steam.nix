@@ -4,8 +4,8 @@ let
   cfg = config.custom.system.sshd;
 in
 {
-  options.custom.system.sshd = {
-    enable = lib.mkEnableOption "sshd";
+  options.custom.system.steam = {
+    enable = lib.mkEnableOption "steam";
   };
 
   config = lib.mkIf cfg.enable {
