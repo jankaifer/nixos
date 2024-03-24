@@ -17,6 +17,7 @@
     gui.enable = true;
     home-manager.enable = true;
     impermanence.enable = true;
+    steam.enable = true;
   };
 
   environment.systemPackages = with pkgs; [

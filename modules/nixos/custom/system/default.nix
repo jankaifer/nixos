@@ -9,6 +9,7 @@ in
     ./gui.nix
     ./impermanence.nix
     ./sshd.nix
+    ./steam.nix
     ./user.nix
   ];
 
