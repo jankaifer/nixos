@@ -1,7 +1,7 @@
 { config, lib, ... }:
 
 let
-  cfg = config.custom.system.sshd;
+  cfg = config.custom.system.steam;
 in
 {
   options.custom.system.steam = {
