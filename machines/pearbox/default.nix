@@ -2,7 +2,6 @@
 
 {
   imports = [
-    inputs.nixos-hardware.nixosModules."framework-12th-gen-intel"
     ./hardware-configuration.nix
   ];
 
@@ -28,5 +27,7 @@
     gui.enable = true;
     home-manager.enable = true;
     impermanence.enable = true;
+    steam.enable = true;
+    user = "pearman";
   };
 }
