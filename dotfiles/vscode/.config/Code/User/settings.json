@@ -89,7 +89,7 @@
   "update.mode": "none",
   "vim.useSystemClipboard": true,
   "vim.vimrc.enable": true,
-  "vim.vimrc.path": "/home/jankaifer/.vimrc",
+  "vim.vimrc.path": "$HOME/.vimrc",
   "workbench.startupEditor": "none",
   "files.associations": {
     ".env*": "dotenv"
