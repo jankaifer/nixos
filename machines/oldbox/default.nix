@@ -274,7 +274,7 @@ in
 
   services.grafana = {
     enable = true;
-    declarativePlugins = with pkgs.grafanaPlugins; [ grafana-piechart-panel ];
+    declarativePlugins = [ ];
     settings = {
       log = {
         mode = "console file";
