@@ -752,19 +752,6 @@ in
     };
   };
 
-  systemd.services."librechat" = {
-    script = ''
-      ${pkgs.docker-compose}/bin/docker-compose -f '${inputs.libreChat}/docker-compose.yml'
-    '';
-    wantedBy = [ "multi-user.target" ];
-    after = [ "docker.service" "docker.socket" ];
-    serviceConfig = {
-      Restart = "always";
-      RestartSec = "30";
-    };
-    environment = { };
-  };
-
   services.jellyfin = {
     enable = true;
     openFirewall = true;
