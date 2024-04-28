@@ -180,12 +180,6 @@
     sha256 = "0m5gdyvd3yg52d8zxwdw188wqjfvdyyvwnw5dz57pn633g5bi49v";
   }
   {
-    name = "volar";
-    publisher = "Vue";
-    version = "2.0.8";
-    sha256 = "1vnyafbl9k1ns8px69if37grj4b67nhv6cwdi4pbkcwf5cnwq49q";
-  }
-  {
     name = "markdown-all-in-one";
     publisher = "yzhang";
     version = "3.6.2";
