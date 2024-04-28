@@ -203,15 +203,3 @@ It's easy to deploy configuration to remote machine, just use the following comm
 ```bash
 rebuild-remote -h raspberry-1
 ```
-
-## TODO
-
-- [x] - setup local dns
-- [ ] - setup tailscale remote access
-- [ ] - setup Home assistant
-- [ ] - setup NAS
-  - probably with ZFS on oldbox
-- [ ] - Setup plex server with \*arr stack for media playback
-- [ ] - Figure out how to cast music from snapcast to chromecast devices to centralize playback
-- [ ] - Start backing up google drive
-- [ ] - Migrate away from google drive and google photos for data storage (with something like next-cloud)
