@@ -274,7 +274,7 @@ in
 
   services.grafana = {
     enable = true;
-    declarativePlugins = [ ];
+    declarativePlugins = [ pkgs.grafana-image-renderer ];
     settings = {
       log = {
         mode = "console file";
