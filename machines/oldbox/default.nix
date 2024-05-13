@@ -1,4 +1,4 @@
-{ inputs, pkgs, config, lib, ... }:
+{ pkgs, config, lib, ... }:
 
 let
   domain = "oldbox.kaifer.cz";
