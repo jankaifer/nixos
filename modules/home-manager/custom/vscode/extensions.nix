@@ -150,12 +150,6 @@
     sha256 = "0i76gf7zr0j4dr02zmxwfphk6yy8rvlj9rzq3k8pvnlfzkmh9ri9";
   }
   {
-    name = "code-spell-checker-czech";
-    publisher = "streetsidesoftware";
-    version = "1.0.6";
-    sha256 = "1k7illi9j9hbr5hzqqaln59rvhkx9fj2x66ji4pz14j2raxxnpap";
-  }
-  {
     name = "pdf";
     publisher = "tomoki1207";
     version = "1.2.2";
