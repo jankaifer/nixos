@@ -23,10 +23,10 @@ in
           type = "librespot";
           location = "${pkgs.librespot}/bin/librespot";
           query = {
-            devicename = config.custom.options.hostName;
+            devicename = config.networking.hostName;
             normalize = "true";
             autoplay = "false";
-            cache = "/home/${config.custom.options.username}/.cache/librespot";
+            cache = "/home/${config.custom.system.user}/.cache/librespot";
             killall = "true";
             params = "--cache-size-limit=4G";
           };
@@ -37,6 +37,7 @@ in
     # pass Spotify credentials to librespot with a file containing:
     # LIBRESPOT_USERNAME=username
     # LIBRESPOT_PASSWORD=password
+    age.secrets.snapserver-env-file.file = ../../../../secrets/snapserver/env-file.age;
     systemd.services.snapserver.serviceConfig.EnvironmentFile = [ config.age.secrets.snapserver-env-file.path ];
   };
 }
