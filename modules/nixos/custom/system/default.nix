@@ -8,6 +8,7 @@ in
     ./development.nix
     ./gui.nix
     ./impermanence.nix
+    ./snapcast.nix
     ./sshd.nix
     ./steam.nix
     ./user.nix
