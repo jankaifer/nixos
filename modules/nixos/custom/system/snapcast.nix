@@ -1,20 +1,14 @@
 # Stolen from: https://github.com/sweenu/nixfiles
 { config, lib, pkgs, ... }:
 let
-  option-name = "snapcast";
+  cfg = config.custom.system.snapcast;
 in
 {
-  options.custom."${option-name}" = {
-    enable = lib.mkOption {
-      default = false;
-      example = true;
-      description = ''
-        Enable snapcast server.
-      '';
-    };
+  options.custom.system.snapcast = {
+    enable = lib.mkEnableOption "snapcast";
   };
 
-  config = lib.mkIf config.custom."${option-name}".enable {
+  config = lib.mkIf cfg.enable {
     services.snapserver = {
       enable = true;
       openFirewall = true;
