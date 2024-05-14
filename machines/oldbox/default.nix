@@ -24,6 +24,9 @@ let
   jellyfin = {
     port = 8096;
   };
+  snapcast = {
+    port = 1780;
+  };
   dailyBackupTimerConfig = {
     OnCalendar = "00:05";
     RandomizedDelaySec = "5h";
@@ -162,8 +165,6 @@ in
     # Traefik
     80
     443
-    # Snapcast
-    1780
   ];
   networking.hosts."127.0.0.1" = [ "traefik-${domain}" ];
 
@@ -262,6 +263,11 @@ in
             service = "jellyfin@file";
             entrypoints = [ "websecure" ];
           };
+          snapcast = {
+            rule = "Host(`snapcast-${domain}`)";
+            service = "snapcast@file";
+            entrypoints = [ "websecure" ];
+          };
         };
         services = {
           grafana.loadBalancer.servers = [
@@ -272,6 +278,9 @@ in
           ];
           jellyfin.loadBalancer.servers = [
             { url = "http://localhost:${toString jellyfin.port}"; }
+          ];
+          snapcast.loadBalancer.servers = [
+            { url = "http://localhost:${toString snapcast.port}"; }
           ];
         };
       };
