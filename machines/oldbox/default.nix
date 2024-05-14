@@ -158,7 +158,13 @@ in
   # Traefik
   # stolen from https://github.com/LongerHV/nixos-configuration/blob/87ac6a7370811698385d4c52fc28fab94addaea2/modules/nixos/homelab/traefik.nix
 
-  networking.firewall.allowedTCPPorts = [ 80 443 ];
+  networking.firewall.allowedTCPPorts = [
+    # Traefik
+    80
+    443
+    # Snapcast
+    1780
+  ];
   networking.hosts."127.0.0.1" = [ "traefik-${domain}" ];
 
   systemd.services.traefik-log-folder = {
