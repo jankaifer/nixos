@@ -8,16 +8,17 @@ let
   ];
 in
 {
-  "wifi-passwords.age".publicKeys = ghKeys;
-  "login-password.age".publicKeys = ghKeys;
-  "snapserver/env-file.age".publicKeys = ghKeys;
-  "traefik-env.age".publicKeys = ghKeys;
-  "grafana-password.age".publicKeys = ghKeys;
+  "chatbot-ui-env-file.age".publicKeys = ghKeys;
   "cloudflare-credentials.age".publicKeys = ghKeys;
-  "restic-password.age".publicKeys = ghKeys;
-  "restic-wasabi-env-file.age".publicKeys = ghKeys;
-  "restic-backblaze-env-file.age".publicKeys = ghKeys;
+  "coolify-env-file.age".publicKeys = ghKeys;
+  "grafana-password.age".publicKeys = ghKeys;
+  "login-password.age".publicKeys = ghKeys;
   "rclone-config-google-drive.age".publicKeys = ghKeys;
   "rclone-config-google-photos.age".publicKeys = ghKeys;
-  "chatbot-ui-env-file.age".publicKeys = ghKeys;
+  "restic-backblaze-env-file.age".publicKeys = ghKeys;
+  "restic-password.age".publicKeys = ghKeys;
+  "restic-wasabi-env-file.age".publicKeys = ghKeys;
+  "snapserver/env-file.age".publicKeys = ghKeys;
+  "traefik-env.age".publicKeys = ghKeys;
+  "wifi-passwords.age".publicKeys = ghKeys;
 }
