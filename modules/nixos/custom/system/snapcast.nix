@@ -15,8 +15,7 @@ in
       http = {
         enable = true;
         listenAddress = "0.0.0.0";
-        docRoot = "${/home/jankaifer/dev/jankaifer/snapweb/dist}";
-        # docRoot = "${pkgs.snapcast}/share/snapserver/snapweb/";
+        docRoot = "${pkgs.snapcast}/share/snapserver/snapweb/";
       };
       streams = {
         Spotify = {
