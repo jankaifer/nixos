@@ -33,6 +33,7 @@ in
         hideMounts = true;
         directories = cfg.directories ++ [
           "/.cache/nix/"
+          "/data/coolify"
           "/etc/NetworkManager/system-connections"
           "/etc/ssh" # I need to persist ssh keys, this persists a bit more, persising only keys broke permissions
           "/var/cache/"

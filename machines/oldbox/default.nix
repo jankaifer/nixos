@@ -787,4 +787,22 @@ in
       intel-compute-runtime # OpenCL filter support (hardware tonemapping and subtitle burn-in)
     ];
   };
+
+  # Add Coolify
+  systemd.services.coolify-data-folders = {
+    description = "Ensure folders exists for coolify";
+    wantedBy = [ "coolify.service" ];
+    script = ''
+      #! ${pkgs.bash}/bin/bash
+      NAMES='source:ssh:applications:databases:backups:services:proxy:webhooks-during-maintenance:ssh/keys:ssh/mux:proxy/dynamic'
+      for NAME in $NAMES
+      do
+        FOLDER_PATH="/data/coolify/$NAME"
+        if [ ! -d "$FOLDER_PATH" ]; then
+          mkdir -p "$FOLDER_PATH"
+        fi
+        chown -R coolify:coolify "$FOLDER_PATH"
+      done
+    '';
+  };
 }
