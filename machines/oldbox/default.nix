@@ -27,6 +27,9 @@ let
   snapcast = {
     port = 1780;
   };
+  coolify = {
+    port = 8008;
+  };
   dailyBackupTimerConfig = {
     OnCalendar = "00:05";
     RandomizedDelaySec = "5h";
@@ -268,6 +271,11 @@ in
             service = "snapcast@file";
             entrypoints = [ "websecure" ];
           };
+          coolify = {
+            rule = "Host(`coolify-${domain}`)";
+            service = "coolify@file";
+            entrypoints = [ "websecure" ];
+          };
         };
         services = {
           grafana.loadBalancer.servers = [
@@ -281,6 +289,9 @@ in
           ];
           snapcast.loadBalancer.servers = [
             { url = "http://localhost:${toString snapcast.port}"; }
+          ];
+          coolify.loadBalancer.servers = [
+            { url = "http://localhost:${toString coolify.port}"; }
           ];
         };
       };
@@ -805,12 +816,12 @@ in
         fi
       done
 
-      cp "${./coolify/docker-compose.yml}" /data/coolify/source/docker-compose.yml
-      cp "${./coolify/docker-compose.prod.yml}" /data/coolify/source/docker-compose.prod.yml
-      cp "${ config.age.secrets.traefik-env.path }" /data/coolify/source/.env
-      cp "${./coolify/upgrade.sh}" /data/coolify/source/upgrade.sh
+      cp -f "${./coolify/docker-compose.yml}" /data/coolify/source/docker-compose.yml
+      cp -f "${./coolify/docker-compose.prod.yml}" /data/coolify/source/docker-compose.prod.yml
+      cp -f "${ config.age.secrets.coolify-env.path }" /data/coolify/source/.env
+      cp -f "${./coolify/upgrade.sh}" /data/coolify/source/upgrade.sh
 
-      // Generate SSH key if not ready
+      # Generate SSH key if not ready
       if [ ! -f "/data/coolify/ssh/keys/id.root@host.docker.internal" ]; then
         ssh-keygen -f /data/coolify/ssh/keys/id.root@host.docker.internal -t ed25519 -N "" -C root@coolify
       fi
@@ -818,5 +829,12 @@ in
       chown -R 9999:root /data/coolify
       chmod -R 700 /data/coolify
     '';
+  };
+  systemd.services.coolify = {
+    script = ''
+      APP_PORT="${toString coolify.port}" "${pkgs.docker}/bin/docker" compose --env-file /data/coolify/source/.env -f /data/coolify/source/docker-compose.yml -f /data/coolify/source/docker-compose.prod.yml up -d --pull always --remove-orphans --force-recreate
+    '';
+    after = [ "docker.service" "docker.socket" ];
+    wantedBy = [ "multi-user.target" ];
   };
 }
