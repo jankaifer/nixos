@@ -800,6 +800,11 @@ in
   };
 
   # Add Coolify
+  # This key was generated on first start of coolify
+  # Coolify needs root login
+  services.openssh.settings.PermitRootLogin = "prohibit-password";
+  users.users.root.openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPQW4odGjy5ZsIZ6gh4pCes74eFJbb6EbLXDqf8HJyVe root@coolify" ];
+
   age.secrets.coolify-env.file = ../../secrets/coolify-env-file.age;
   systemd.services.coolify-prepare-files = {
     description = "Setup files for coolify";

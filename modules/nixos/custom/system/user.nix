@@ -45,10 +45,7 @@ in
         isNormalUser = true;
         hashedPasswordFile = config.age.secrets.login-password.path;
         extraGroups = [ "wheel" "networkmanager" "docker" "libvirtd" ];
-        openssh.authorizedKeys.keys =
-          (lib.splitString "\n" (builtins.readFile inputs.myPublicSshKeys))
-          ++
-          [ "SHA256:Das4erPF6/vtMtbjv178tG+PWwIHVamoFoDk6gcJHS0 root@coolify" ];
+        openssh.authorizedKeys.keys = lib.splitString "\n" (builtins.readFile inputs.myPublicSshKeys);
       };
     };
     age.identityPaths = [
