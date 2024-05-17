@@ -29,7 +29,9 @@ let
   };
   coolify = {
     port = 8008;
+    websocketPort = 8009;
   };
+  websocketPort = 444;
   dailyBackupTimerConfig = {
     OnCalendar = "00:05";
     RandomizedDelaySec = "5h";
@@ -168,6 +170,7 @@ in
     # Traefik
     80
     443
+    websocketPort
   ];
   networking.hosts."127.0.0.1" = [ "traefik-${domain}" ];
 
@@ -223,6 +226,13 @@ in
             domains = [{ main = "kaifer.cz"; sans = [ "*.kaifer.cz" ]; }];
           };
         };
+        websocket = {
+          address = ":${toString websocketPort}";
+          http.tls = {
+            certResolver = "cloudflare";
+            domains = [{ main = "kaifer.cz"; sans = [ "*.kaifer.cz" ]; }];
+          };
+        };
       };
       certificatesResolvers = {
         cloudflare = {
@@ -273,8 +283,13 @@ in
           };
           coolify = {
             rule = "Host(`coolify-${domain}`)";
-            service = "coolify@file";
+            service = "websecure-coolify-source@docker";
             entrypoints = [ "websecure" ];
+          };
+          coolify-websocket = {
+            rule = "Host(`coolify-${domain}`)";
+            service = "websocket-coolify-source@docker";
+            entrypoints = [ "websocket" ];
           };
         };
         services = {
@@ -289,9 +304,6 @@ in
           ];
           snapcast.loadBalancer.servers = [
             { url = "http://localhost:${toString snapcast.port}"; }
-          ];
-          coolify.loadBalancer.servers = [
-            { url = "http://localhost:${toString coolify.port}"; }
           ];
         };
       };
@@ -837,7 +849,7 @@ in
   };
   systemd.services.coolify = {
     script = ''
-      APP_PORT="${toString coolify.port}" "${pkgs.docker}/bin/docker" compose --env-file /data/coolify/source/.env -f /data/coolify/source/docker-compose.yml -f /data/coolify/source/docker-compose.prod.yml up -d --pull always --remove-orphans --force-recreate
+      APP_PORT="${toString coolify.port}" SOKETI_PORT="${toString coolify.websocketPort}" "${pkgs.docker}/bin/docker" compose --env-file /data/coolify/source/.env -f /data/coolify/source/docker-compose.yml -f /data/coolify/source/docker-compose.prod.yml up -d --pull always --remove-orphans --force-recreate
     '';
     after = [ "docker.service" "docker.socket" ];
     wantedBy = [ "multi-user.target" ];
