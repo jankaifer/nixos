@@ -99,11 +99,11 @@ in
       pkgs.xournalpp
       pkgs.audacity
       pkgs.virt-manager
+      pkgs.prusa-slicer
 
       # Electron evil apps
       pkgs.bitwarden
       pkgs.etcher
-      pkgs.gitkraken
       pkgs.signal-desktop
       pkgs.slack
       pkgs.spotify

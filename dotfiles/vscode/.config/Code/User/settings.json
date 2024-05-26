@@ -127,5 +127,6 @@
     }
   },
   "security.workspace.trust.untrustedFiles": "open",
-  "dotenv.enableAutocloaking": false
+  "dotenv.enableAutocloaking": false,
+  "prisma.showPrismaDataPlatformNotification": false
 }
