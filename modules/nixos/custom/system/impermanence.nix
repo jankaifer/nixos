@@ -75,6 +75,7 @@ in
             ".config/paradox-launcher-v2"
             ".config/spotify"
             ".config/turborepo"
+            ".config/PrusaSlicer"
             ".config/unity3d" # Used by unity games like Overcoocked2
             ".factorio"
             ".local/share"
