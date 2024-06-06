@@ -128,5 +128,6 @@
   },
   "security.workspace.trust.untrustedFiles": "open",
   "dotenv.enableAutocloaking": false,
-  "prisma.showPrismaDataPlatformNotification": false
+  "prisma.showPrismaDataPlatformNotification": false,
+  "workbench.colorTheme": "Default High Contrast"
 }
