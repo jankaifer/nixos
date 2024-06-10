@@ -47,7 +47,7 @@
         ZSHZ_CASE = "smart";
         ZSHZ_ECHO = 1;
       };
-      autosuggestions.enable = true;
+      autosuggestion.enable = true;
       enableCompletion = true;
       syntaxHighlighting.enable = true;
       enableVteIntegration = true;
