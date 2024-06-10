@@ -75,11 +75,6 @@ in
       pkgs.gnome.gnome-weather
     ];
 
-    nixpkgs.config.permittedInsecurePackages = [
-      # Needed for etcher: https://github.com/NixOS/nixpkgs/issues/153537
-      "electron-19.1.9"
-    ];
-
     environment.systemPackages = [
       pkgs.brave
       pkgs.firefox
@@ -102,7 +97,6 @@ in
 
       # Electron evil apps
       pkgs.bitwarden
-      pkgs.etcher
       pkgs.signal-desktop
       pkgs.slack
       pkgs.spotify
