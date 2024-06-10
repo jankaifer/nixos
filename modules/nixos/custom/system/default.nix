@@ -99,7 +99,7 @@ in
       Defaults        timestamp_timeout=15
     '';
 
-    services.xserver = {
+    services.xserver.xkb = {
       layout = lib.mkDefault "fck";
       extraLayouts.fck = {
         description = "fck";

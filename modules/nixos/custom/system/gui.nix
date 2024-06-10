@@ -34,7 +34,7 @@ in
     '';
 
     # Touchpad configs
-    services.xserver.libinput = {
+    services.libinput = {
       enable = true;
       touchpad.naturalScrolling = true;
       touchpad.additionalOptions = ''MatchIsTouchpad "on"'';
@@ -65,7 +65,6 @@ in
       pkgs.gnome-console
       pkgs.gnome-connections
       pkgs.gnome.cheese # webcam tool
-      pkgs.gnome.gedit # text editor
       pkgs.gnome.epiphany # web browser
       pkgs.gnome.geary # email reader
       pkgs.gnome.evince # document viewer
