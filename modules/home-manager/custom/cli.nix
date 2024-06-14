@@ -56,6 +56,9 @@ in
             ProxyCommand ${pkgs.cloudflared}/bin/cloudflared access ssh --hostname %h
             ForwardAgent yes
 
+          Host vps1.kaifer.cz
+            User root
+            ForwardAgent yes
         '';
         onChange = ''
           rm -f .ssh/config
