@@ -46,6 +46,7 @@ in
           "/var/lib/jellyfin"
           "/var/lib/libvirt"
           "/var/lib/pgadmin"
+          "/var/lib/postgresql"
           "/var/lib/private/victoriametrics"
           "/var/lib/systemd/coredump"
           "/var/lib/traefik"

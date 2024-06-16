@@ -89,7 +89,7 @@ in
       pkgs.gparted
       pkgs.krita
       pkgs.libsForQt5.filelight
-      pkgs.pgadmin4
+      pkgs.pgadmin4-desktopmode
       pkgs.playerctl
       pkgs.prusa-slicer
       pkgs.virt-manager
