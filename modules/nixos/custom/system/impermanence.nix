@@ -43,12 +43,13 @@ in
           "/var/lib/flatpak"
           "/var/lib/fprint"
           "/var/lib/grafana"
+          "/var/lib/jellyfin"
           "/var/lib/libvirt"
+          "/var/lib/pgadmin"
           "/var/lib/private/victoriametrics"
           "/var/lib/systemd/coredump"
           "/var/lib/traefik"
           "/var/lib/vmagent"
-          "/var/lib/jellyfin"
         ];
         files = cfg.files ++ [
           "/etc/machine-id"
