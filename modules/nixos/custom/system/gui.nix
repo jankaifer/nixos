@@ -76,24 +76,25 @@ in
     ];
 
     environment.systemPackages = [
+      pkgs.audacity
       pkgs.brave
       pkgs.firefox
       pkgs.gnome.dconf-editor
+      pkgs.gnome.gnome-boxes
       pkgs.gnome.gnome-software
       pkgs.gnome.gnome-tweaks
-      pkgs.gnome.gnome-boxes
       pkgs.gnome.seahorse
       pkgs.gnomeExtensions.pop-shell
       pkgs.google-chrome
       pkgs.gparted
       pkgs.krita
       pkgs.libsForQt5.filelight
+      pkgs.pgadmin4
       pkgs.playerctl
+      pkgs.prusa-slicer
+      pkgs.virt-manager
       pkgs.vlc
       pkgs.xournalpp
-      pkgs.audacity
-      pkgs.virt-manager
-      pkgs.prusa-slicer
 
       # Electron evil apps
       pkgs.bitwarden
