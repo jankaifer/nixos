@@ -32,6 +32,7 @@ in
 
           # Docker
           ps.docker
+          ps.docker-compose
         ]
       );
       extensions = pkgs.vscode-utils.extensionsFromVscodeMarketplace (import ./extensions.nix).extensions;
