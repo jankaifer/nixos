@@ -88,6 +88,13 @@
               ./machines/pearbox
             ];
           };
+          "iso" = lib.nixosSystem {
+            inherit specialArgs;
+            modules = defaultModules ++ [
+              "${inputs.nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
+              ./machines/iso
+            ];
+          };
         };
     };
 }
