@@ -9,7 +9,7 @@
   # Make compression faster
   isoImage.squashfsCompression = "gzip -Xcompression-level 1";
 
-  services.xserver.displayManager.autoLogin = lib.mkForce {
+  services.displayManager.autoLogin = lib.mkForce {
     enable = true;
     user = config.custom.system.user;
   };
