@@ -14,6 +14,9 @@ Other sources that I used:
 
 - https://mt-caret.github.io/blog/posts/2020-06-29-optin-state.html
 
+> Warning: Documentation can be (and probably is) outdated.
+> If something is not clear, then feel free to open new Github issue and I'll try to help you.
+
 ## Running machines in VM
 
 With flakes, it's easy to run these configs in a VM.
