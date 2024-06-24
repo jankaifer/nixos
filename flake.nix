@@ -91,7 +91,7 @@
           "iso" = lib.nixosSystem {
             inherit specialArgs;
             modules = defaultModules ++ [
-              "${inputs.nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
+              "${inputs.nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-graphical-gnome.nix"
               ./machines/iso
             ];
           };
