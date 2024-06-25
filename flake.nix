@@ -88,6 +88,13 @@
               ./machines/pearbox
             ];
           };
+          "hydrogen" = lib.nixosSystem {
+            inherit specialArgs;
+            modules = defaultModules ++ [
+              ./machines/hydrogen
+            ];
+          };
+
           "iso" = lib.nixosSystem {
             inherit specialArgs;
             modules = defaultModules ++ [
