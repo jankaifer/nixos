@@ -34,8 +34,6 @@ nixos-rebuild build-vm --flake . && ./result/bin/run-pearframe-vm
 nixos-rebuild switch --flake .
 ```
 
-# Pre-flake config
-
 ## Install on a new machine
 
 To install this config on a new machine, you can use [custom iso](./machines/jankaifer-iso/README.md).
@@ -103,33 +101,41 @@ sudo mount /dev/disk/by-label/BOOT /mnt/boot
 Now let nixos generate hardware config:
 
 ```bash
-nixos-generate-config --root /mnt
+sudo nixos-generate-config --root /mnt
 ```
 
 Move generated config and use custom config instead:
 
 ```bash
-mv /mnt/etc/nixos/ /mnt/etc/nixos-old
-mkdir -p /mnt/persist/home/jankaifer/dev/jankaifer
+sudo mv /mnt/etc/nixos/ /mnt/etc/nixos-old
+sudo mkdir -p /mnt/persist/home/jankaifer/dev/jankaifer
 cd /mnt/persist/home/jankaifer/dev/jankaifer
-git clone --recurse-submodules https://github.com/jankaifer/nixos
+sudo git clone --recurse-submodules https://github.com/jankaifer/nixos
 cd -
-ln -s /mnt/persist/home/jankaifer/dev/jankaifer/nixos /mnt/etc/nixos
+sudo ln -s /mnt/persist/home/jankaifer/dev/jankaifer/nixos /mnt/etc/nixos
 ```
 
 Create new machine config files in this repo:
 
 ```bash
-cp /mnt/etc/nixos-old/ /mnt/etc/nixos/machines/machine-name -r
+sudo cp /mnt/etc/nixos-old/ /mnt/etc/nixos/machines/machine-name -r
 ```
 
 You can tweak the configuration now. Make sure that hardware configuration contains all options that we want like compression and `noatime`. Also make sure that logs have `neededForBoot = true;` otherwise boot logs won't be persisted.
 
-We can't easily provide a different config to `nixos-install` so we will need to create file at original location to import our config. And we manually provide correct nixpkgs to use with `-I` option.
+In order to properly start the system you need some secrets provided by agenix. For that you need to:
+1. create a new ssh key on new machine
+2. add it to your github account
+3. regenerate agenix secrets on computer with access to the secrets
 
+To generate new ssh key you can use:
 ```bash
-echo '{ config, lib, pkgs, ... }:{imports = [./machines/oldbox/configuration.nix];' > /mnt/etc/nixos/configuration.nix
-nixos-install --no-root-passwd -I nixpkgs=/mnt/etc/nixos/modules/nixpkgs
+ssh-keygen -t ed25519 -C "jankaifer@machine-name"
+```
+
+And now you can install the config via flakes by running this:
+```bash
+sudo nixos-install --flake /mnt/persist/home/jankaifer/dev/jankaifer/nixos#machine-name
 ```
 
 ---
