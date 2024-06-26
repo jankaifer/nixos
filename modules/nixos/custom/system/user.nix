@@ -43,15 +43,14 @@ in
       defaultUserShell = pkgs.zsh;
       users.${cfg.user} = {
         isNormalUser = true;
-        # hashedPasswordFile = config.age.secrets.login-password.path;
-        password = "jankaifer";
+        hashedPasswordFile = config.age.secrets.login-password.path;
         extraGroups = [ "wheel" "networkmanager" "docker" "libvirtd" ];
         openssh.authorizedKeys.keys = lib.splitString "\n" (builtins.readFile inputs.myPublicSshKeys);
       };
     };
     age.identityPaths = [
       "/home/${cfg.user}/.ssh/id_ed25519"
-      "/persist/home/${cfg.user}/.ssh/id_ed25519"  
+      "/persist/home/${cfg.user}/.ssh/id_ed25519"
       "/mnt/home/${cfg.user}/.ssh/id_ed25519"
       "/mnt/persist/home/${cfg.user}/.ssh/id_ed25519"
     ];
