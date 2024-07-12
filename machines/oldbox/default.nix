@@ -54,7 +54,7 @@ in
     impermanence.enable = true;
     gui.enable = true;
     development.enable = true;
-    home-manager.home = import ../../home-manager/oldbox.nix;
+    home-manager.home = ../../home-manager/oldbox.nix;
     home-manager.enable = true;
     snapcast.enable = true;
   };
