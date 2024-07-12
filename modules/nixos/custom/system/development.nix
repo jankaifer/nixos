@@ -44,7 +44,7 @@ in
       script = ''
         source '${config.age.secrets.docker-config.path}'
         echo "$GHCR_TOKEN" | '${pkgs.docker}/bin/docker' login ghcr.io -u jankaifer --password-stdin
-        echo "$GHCR_TOKEN" | su -c '${pkgs.docker}/bin/docker' '${config.custom.system.user}' login ghcr.io -u jankaifer --password-stdin
+        echo "$GHCR_TOKEN" | '${pkgs.su}/bin/su' -c '${pkgs.docker}/bin/docker' '${config.custom.system.user}' login ghcr.io -u jankaifer --password-stdin
       '';
     };
 
