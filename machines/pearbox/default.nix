@@ -31,18 +31,19 @@
     user = "pearman";
   };
 
-  environment.etc =
-    let
-      json = pkgs.formats.json { };
-    in
-    {
-      "pipewire/pipewire.d/91-fix-shutters.conf".source = json.generate "91-fix-shutters.conf" {
-        context.properties = {
-          default.clock.rate = 192000;
-          default.clock.quantum = 512;
-          default.clock.min-quantum = 32;
-          default.clock.max-quantum = 4096;
-        };
-      };
-    };
+  # There was shutter present in previous versions
+  # environment.etc =
+  #   let
+  #     json = pkgs.formats.json { };
+  #   in
+  #   {
+  #     "pipewire/pipewire.d/91-fix-shutters.conf".source = json.generate "91-fix-shutters.conf" {
+  #       context.properties = {
+  #         default.clock.rate = 192000;
+  #         default.clock.quantum = 512;
+  #         default.clock.min-quantum = 32;
+  #         default.clock.max-quantum = 4096;
+  #       };
+  #     };
+  #   };
 }

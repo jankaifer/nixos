@@ -51,12 +51,10 @@ in
           "/var/lib/systemd/coredump"
           "/var/lib/traefik"
           "/var/lib/vmagent"
+          "/var/lib/NetworkManager"
         ];
         files = cfg.files ++ [
           "/etc/machine-id"
-          "/var/lib/NetworkManager/secret_key"
-          "/var/lib/NetworkManager/seen-bssids"
-          "/var/lib/NetworkManager/timestamps"
         ];
 
         users.${user} = {
