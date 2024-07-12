@@ -44,6 +44,7 @@ in
       script = ''
         source '${config.age.secrets.docker-config.path}'
         echo "$GHCR_TOKEN" | ${pkgs.docker}/bin/docker login ghcr.io -u USERNAME --password-stdin
+        echo "$GHCR_TOKEN" | sudo -u '${config.custom.system.user}' ${pkgs.docker}/bin/docker login ghcr.io -u USERNAME --password-stdin
       '';
     };
 
