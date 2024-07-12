@@ -670,7 +670,7 @@ in
         pkgs = import
           (builtins.fetchTarball {
             url = "https://github.com/NixOS/nixpkgs/archive/e89cf1c932006531f454de7d652163a9a5c86668.tar.gz";
-            sha256 = "b9ee60e237d0f54e06d227f8276ec9a187bced0dc6875133df3909f6e7818272";
+            sha256 = "09cbqscrvsd6p0q8rswwxy7pz1p1qbcc8cdkr6p6q8sx0la9r12c";
           })
           { };
       in
