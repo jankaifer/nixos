@@ -36,7 +36,7 @@ in
     ];
 
     # Authenticate docker registery
-    age.secrets.docker-config.file = ../../secrets/docker-config.age;
+    age.secrets.docker-config.file = ../../../secrets/docker-config.age;
     systemd.services.docker-login = {
       description = "Authenticate docker container registries";
       wantedBy = [ "multi-user.target" ];
