@@ -40,8 +40,8 @@ in
     systemd.services.docker-login = {
       description = "Authenticate docker container registries";
       wantedBy = [ "multi-user.target" ];
+      wants = [ "docker.service" ];
       script = ''
-        #! ${pkgs.bash}/bin/bash
         source '${config.age.secrets.docker-config.path}'
         echo "$GHCR_TOKEN" | ${pkgs.docker}/bin/docker login ghcr.io -u USERNAME --password-stdin
       '';
