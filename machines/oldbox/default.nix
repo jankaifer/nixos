@@ -427,6 +427,7 @@ in
         "web.kaifer.dev" = "https://web.kaifer.dev";
         "www.kaifer.dev" = "https://www.kaifer.dev";
         "kaifer.dev" = "https://kaifer.dev";
+        "web.kaifer.cz" = "https://web.kaifer.cz";
         "www.kaifer.cz" = "https://www.kaifer.cz";
         "kaifer.cz" = "https://kaifer.cz";
       };
