@@ -283,12 +283,12 @@ in
           };
           coolify = {
             rule = "Host(`coolify-${domain}`)";
-            service = "websecure-coolify-source@docker";
+            service = "coolify@file";
             entrypoints = [ "websecure" ];
           };
           coolify-websocket = {
             rule = "Host(`coolify-${domain}`)";
-            service = "websocket-coolify-source@docker";
+            service = "coolify-websocket@file";
             entrypoints = [ "websocket" ];
           };
         };
@@ -304,6 +304,12 @@ in
           ];
           snapcast.loadBalancer.servers = [
             { url = "http://localhost:${toString snapcast.port}"; }
+          ];
+          coolify.loadBalancer.servers = [
+            { url = "http://localhost:${toString coolify.port}"; }
+          ];
+          coolify-websocket.loadBalancer.servers = [
+            { url = "http://localhost:${toString coolify.websocketPort}"; }
           ];
         };
       };
