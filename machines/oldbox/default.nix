@@ -660,6 +660,20 @@ in
   # Loki and promtail setup stolen from https://xeiaso.net/blog/prometheus-grafana-loki-nixos-2020-11-20/
   services.loki = {
     enable = true;
+    # Loki 3.0 does not work with nix configuration well, it throws this
+    ## failed parsing config: /nix/store/xigv76bvgcakdnbzmcdk65ddbharbkym-loki-config.json: yaml: unmarshal errors:
+    ##   line 4: field max_look_back_period not found in type config.ChunkStoreConfig
+    ##   line 24: field max_transfer_retries not found in type ingester.Config. Use `-config.expand-env=true` flag if you want to expand environment variables in your config file
+
+    package =
+      let
+        pkgs = import
+          (builtins.fetchTarball {
+            url = "https://github.com/NixOS/nixpkgs/archive/e89cf1c932006531f454de7d652163a9a5c86668.tar.gz";
+          })
+          { };
+      in
+      pkgs.grafana-loki;
     extraFlags = [
       # "--log.level=debug"
     ];
