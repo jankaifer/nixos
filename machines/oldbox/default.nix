@@ -27,10 +27,6 @@ let
   snapcast = {
     port = 1780;
   };
-  coolify = {
-    port = 8008;
-    websocketPort = 8009;
-  };
   websocketPort = 444;
   dailyBackupTimerConfig = {
     OnCalendar = "00:05";
@@ -87,7 +83,7 @@ in
         ];
         labels = {
           "traefik.http.routers.pihole.rule" = "Host(`pihole-${domain}`)";
-          "traefik.http.routers.pihole.entrypoints" = "websecure";
+          "traefik.http.routers.pihole.entrypoints" = "https";
           "traefik.http.services.pihole.loadbalancer.server.port" = "80";
         };
       };
@@ -100,7 +96,7 @@ in
         ];
         labels = {
           "traefik.http.routers.home-assistant.rule" = "Host(`home-assistant-${domain}`)";
-          "traefik.http.routers.home-assistant.entrypoints" = "websecure";
+          "traefik.http.routers.home-assistant.entrypoints" = "https";
           "traefik.http.services.home-assistant.loadbalancer.server.port" = "8123";
         };
         extraOptions = [
@@ -113,7 +109,7 @@ in
         environmentFiles = [ config.age.secrets.chatbot-ui-env-file.path ];
         labels = {
           "traefik.http.routers.chatbot-ui.rule" = "Host(`chatbot-ui-${domain}`)";
-          "traefik.http.routers.chatbot-ui.entrypoints" = "websecure";
+          "traefik.http.routers.chatbot-ui.entrypoints" = "https";
           "traefik.http.services.chatbot-ui.loadbalancer.server.port" = "3000";
         };
       };
@@ -211,29 +207,33 @@ in
       };
       accessLog.filePath = "/var/log/traefik/access.log";
       metrics.prometheus.manualRouting = true;
-      entryPoints = {
-        web = {
-          address = ":80";
-          http.redirections.entryPoint = {
-            to = "websecure";
-            scheme = "https";
-          };
-        };
-        websecure = {
-          address = ":443";
-          http.tls = {
+      entryPoints =
+        let
+          tls = {
             certResolver = "cloudflare";
-            domains = [{ main = "kaifer.cz"; sans = [ "*.kaifer.cz" ]; }];
+            domains = [
+              { main = "kaifer.cz"; sans = [ "*.kaifer.cz" ]; }
+              { main = "kaifer.dev"; sans = [ "*.kaifer.dev" ]; }
+            ];
+          };
+        in
+        {
+          http = {
+            address = ":80";
+            http.redirections.entryPoint = {
+              to = "https";
+              scheme = "https";
+            };
+          };
+          https = {
+            address = ":443";
+            http.tls = tls;
+          };
+          websocket = {
+            address = ":${toString websocketPort}";
+            http.tls = tls;
           };
         };
-        websocket = {
-          address = ":${toString websocketPort}";
-          http.tls = {
-            certResolver = "cloudflare";
-            domains = [{ main = "kaifer.cz"; sans = [ "*.kaifer.cz" ]; }];
-          };
-        };
-      };
       certificatesResolvers = {
         cloudflare = {
           acme = {
@@ -254,42 +254,32 @@ in
           traefik = {
             rule = "Host(`traefik-${domain}`)";
             service = "api@internal";
-            entrypoints = [ "websecure" ];
+            entrypoints = [ "https" ];
           };
           traefik-metrics = {
             rule = "Host(`traefik-metrics-${domain}`)";
             service = "prometheus@internal";
-            entrypoints = [ "websecure" ];
+            entrypoints = [ "https" ];
           };
           grafana = {
             rule = "Host(`grafana-${domain}`)";
             service = "grafana@file";
-            entrypoints = [ "websecure" ];
+            entrypoints = [ "https" ];
           };
           victoriametrics = {
             rule = "Host(`victoriametrics-${domain}`)";
             service = "victoriametrics@file";
-            entrypoints = [ "websecure" ];
+            entrypoints = [ "https" ];
           };
           jellyfin = {
             rule = "Host(`jellyfin-${domain}`)";
             service = "jellyfin@file";
-            entrypoints = [ "websecure" ];
+            entrypoints = [ "https" ];
           };
           snapcast = {
             rule = "Host(`snapcast-${domain}`)";
             service = "snapcast@file";
-            entrypoints = [ "websecure" ];
-          };
-          coolify = {
-            rule = "Host(`coolify-${domain}`)";
-            service = "coolify@file";
-            entrypoints = [ "websecure" ];
-          };
-          coolify-websocket = {
-            rule = "Host(`coolify-${domain}`)";
-            service = "coolify-websocket@file";
-            entrypoints = [ "websocket" ];
+            entrypoints = [ "https" ];
           };
         };
         services = {
@@ -304,12 +294,6 @@ in
           ];
           snapcast.loadBalancer.servers = [
             { url = "http://localhost:${toString snapcast.port}"; }
-          ];
-          coolify.loadBalancer.servers = [
-            { url = "http://localhost:${toString coolify.port}"; }
-          ];
-          coolify-websocket.loadBalancer.servers = [
-            { url = "http://localhost:${toString coolify.websocketPort}"; }
           ];
         };
       };
