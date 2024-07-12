@@ -43,7 +43,7 @@ in
       script = ''
         #! ${pkgs.bash}/bin/bash
         source '${config.age.secrets.docker-config.path}'
-        echo "$GHCR_TOKEN" | docker login ghcr.io -u USERNAME --password-stdin
+        echo "$GHCR_TOKEN" | ${pkgs.docker}/bin/docker login ghcr.io -u USERNAME --password-stdin
       '';
     };
 
