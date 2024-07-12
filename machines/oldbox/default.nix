@@ -815,7 +815,9 @@ in
   # This key was generated on first start of coolify
   # Coolify needs root login
   services.openssh.settings.PermitRootLogin = "prohibit-password";
-  users.users.root.openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPQW4odGjy5ZsIZ6gh4pCes74eFJbb6EbLXDqf8HJyVe root@coolify" ];
+  users.users.root.openssh.authorizedKeys.keys = [
+    "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCdae7j5X3pyHPTqeRcEyz/Sqjhe5zro0jmicwiHONSp/0UWTRE2l2uOlgzw6/5T2da8Jxr53MsPrEH/t9jAlZf+pt7xKgJWm7KYWJKJn5ipBil66lQoI4Hdh1E4fFdz8YmZYOis24GFntPc9sqszyDmrG3RuHsR6HPBN01AUAFNykoFOc/eDQ6iExXo2CGtfgtq7EQvp8AhLt7+yFcqdUaXsdokqDFfTJKrUpWyo6wrK9k0lP8aCR8Y8O5pwRdKgH3ocQ9f/+2tVgimMZ3L7Xf7cHH/pxqjYdwM3FpNw9hWbD7XCHYj/kI7lTiX3+uaRRkI4WHGa4SpyhxNpPPubA1 coolify-generated-ssh-key"
+  ];
 
   age.secrets.coolify-env.file = ../../secrets/coolify-env-file.age;
   systemd.services.coolify-prepare-files = {
