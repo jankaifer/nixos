@@ -4,6 +4,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-grafana-loki.url = "github:NixOS/nixpkgs/nixos-unstable?rev=e89cf1c932006531f454de7d652163a9a5c86668";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     home-manager = {
       url = "github:nix-community/home-manager/release-24.05";
@@ -42,6 +43,13 @@
           };
         };
         agenix = inputs.agenix.overlays.default;
+        loki = (_: prev: {
+          # Loki 3.0 does not work with nix configuration well, it throws this
+          ## failed parsing config: /nix/store/xigv76bvgcakdnbzmcdk65ddbharbkym-loki-config.json: yaml: unmarshal errors:
+          ##   line 4: field max_look_back_period not found in type config.ChunkStoreConfig
+          ##   line 24: field max_transfer_retries not found in type ingester.Config. Use `-config.expand-env=true` flag if you want to expand environment variables in your config file
+          grafana-loki = inputs.nixpkgs-grafana-loki.legacyPackages.${prev.system}.grafana-loki;
+        });
       };
       legacyPackages = forAllSystems (system:
         import inputs.nixpkgs {
