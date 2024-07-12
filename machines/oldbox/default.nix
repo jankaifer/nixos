@@ -58,6 +58,8 @@ in
     home-manager.enable = true;
     snapcast.enable = true;
   };
+  # for some reason nerdfonts can't be build on oldbox
+  custom.gnome.font = pkgs.noto-fonts;
 
   age.secrets.traefik-env.file = ../../secrets/traefik-env.age;
   age.secrets.grafana-password = {
