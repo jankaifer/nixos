@@ -34,7 +34,24 @@ let
   };
   cloudflare = {
     tunnelId = "ff121495-6f5b-425f-82ed-a54e06d22ab7";
+    domains = [
+      "traefik-${domain}"
+      "pihole-${domain}"
+      "grafana-${domain}"
+      "traefik-${domain}"
+      "home-assistant-${domain}"
+      "jellyfin-${domain}"
+      "chatbot-ui-${domain}"
+      "oldbox.kaifer.cz"
+      "www.kaifer.cz"
+      "web.kaifer.cz"
+      "kaifer.cz"
+      "www.kaifer.dev"
+      "kaifer.dev"
+    ];
   };
+  cloudflareDomainSet = builtins.listToAttrs (map (domain: { name = domain; value = domain; }) cloudflare.domains);
+  cloudflareDomainMapping = builtins.mapAttrs (name: value: "https://${value}") cloudflareDomainSet;
 in
 {
   imports = [
@@ -168,7 +185,7 @@ in
     443
     websocketPort
   ];
-  networking.hosts."127.0.0.1" = [ "traefik-${domain}" ];
+  networking.hosts."127.0.0.1" = cloudflare.domains;
 
   systemd.services.traefik-log-folder = {
     description = "Ensure folder exists for traefik";
@@ -400,20 +417,8 @@ in
     tunnels.${cloudflare.tunnelId} = {
       credentialsFile = config.age.secrets.cloudflare-credentials-file.path;
       default = "http_status:404";
-      ingress = {
-        "pihole-${domain}" = "https://pihole-${domain}";
-        "grafana-${domain}" = "https://grafana-${domain}";
-        "traefik-${domain}" = "https://traefik-${domain}";
-        "home-assistant-${domain}" = "https://home-assistant-${domain}";
-        "jellyfin-${domain}" = "https://jellyfin-${domain}";
-        "chatbot-ui-${domain}" = "https://chatbot-ui-${domain}";
+      ingress = cloudflareDomainMapping // {
         "ssh-${domain}" = "ssh://localhost:22";
-        "web.kaifer.dev" = "https://web.kaifer.dev";
-        "www.kaifer.dev" = "https://www.kaifer.dev";
-        "kaifer.dev" = "https://kaifer.dev";
-        "web.kaifer.cz" = "https://web.kaifer.cz";
-        "www.kaifer.cz" = "https://www.kaifer.cz";
-        "kaifer.cz" = "https://kaifer.cz";
       };
     };
   };
