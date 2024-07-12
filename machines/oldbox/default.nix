@@ -49,6 +49,7 @@ let
       "www.kaifer.dev"
       "web.kaifer.dev"
       "kaifer.dev"
+      "copy-anything.kaifer.dev"
     ];
   };
   cloudflareDomainSet = builtins.listToAttrs (map (domain: { name = domain; value = domain; }) cloudflare.domains);
