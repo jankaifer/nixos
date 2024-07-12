@@ -47,6 +47,7 @@ let
       "web.kaifer.cz"
       "kaifer.cz"
       "www.kaifer.dev"
+      "web.kaifer.dev"
       "kaifer.dev"
     ];
   };
