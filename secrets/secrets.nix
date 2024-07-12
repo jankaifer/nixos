@@ -22,4 +22,5 @@ in
   "snapserver/env-file.age".publicKeys = ghKeys;
   "traefik-env.age".publicKeys = ghKeys;
   "wifi-passwords.age".publicKeys = ghKeys;
+  "docker-config.age".publicKeys = ghKeys;
 }

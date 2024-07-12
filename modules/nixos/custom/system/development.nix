@@ -34,5 +34,18 @@ in
       pkgs.nixpkgs-fmt
       pkgs.nil
     ];
+
+    # Authenticate docker registery
+    age.secrets.docker-config.file = ../../secrets/docker-config.age;
+    systemd.services.docker-login = {
+      description = "Authenticate docker container registries";
+      wantedBy = [ "multi-user.target" ];
+      script = ''
+        #! ${pkgs.bash}/bin/bash
+        source '${config.age.secrets.docker-config.path}'
+        echo "$GHCR_TOKEN" | docker login ghcr.io -u USERNAME --password-stdin
+      '';
+    };
+
   };
 }
