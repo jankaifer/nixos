@@ -43,8 +43,8 @@ in
       wants = [ "docker.service" ];
       script = ''
         source '${config.age.secrets.docker-config.path}'
-        echo "$GHCR_TOKEN" | ${pkgs.docker}/bin/docker login ghcr.io -u jankaifer --password-stdin
-        echo "$GHCR_TOKEN" | sudo -u '${config.custom.system.user}' ${pkgs.docker}/bin/docker login ghcr.io -u jankaifer --password-stdin
+        echo "$GHCR_TOKEN" | '${pkgs.docker}/bin/docker' login ghcr.io -u jankaifer --password-stdin
+        echo "$GHCR_TOKEN" | '${pkgs.sudo}/bin/sudo' -u '${config.custom.system.user}' '${pkgs.docker}/bin/docker' login ghcr.io -u jankaifer --password-stdin
       '';
     };
 
