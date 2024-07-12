@@ -228,7 +228,7 @@ in
       entryPoints =
         let
           tls = {
-            certResolver = "cloudflare";
+            certResolver = "letsencrypt";
             domains = [
               { main = "kaifer.cz"; sans = [ "*.kaifer.cz" ]; }
               { main = "kaifer.dev"; sans = [ "*.kaifer.dev" ]; }
@@ -253,7 +253,7 @@ in
           };
         };
       certificatesResolvers = {
-        cloudflare = {
+        letsencrypt = {
           acme = {
             email = "jan@kaifer.cz";
             storage = "${config.services.traefik.dataDir}/acme.json";
