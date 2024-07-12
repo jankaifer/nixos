@@ -424,6 +424,11 @@ in
         "jellyfin-${domain}" = "https://jellyfin-${domain}";
         "chatbot-ui-${domain}" = "https://chatbot-ui-${domain}";
         "ssh-${domain}" = "ssh://localhost:22";
+        "web.kaifer.dev" = "https://web.kaifer.dev";
+        "www.kaifer.dev" = "https://www.kaifer.dev";
+        "kaifer.dev" = "https://kaifer.dev";
+        "www.kaifer.cz" = "https://www.kaifer.cz";
+        "kaifer.cz" = "https://kaifer.cz";
       };
     };
   };
