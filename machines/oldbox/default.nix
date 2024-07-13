@@ -42,14 +42,10 @@ let
       "home-assistant-${domain}"
       "jellyfin-${domain}"
       "chatbot-ui-${domain}"
-      "oldbox.kaifer.cz"
       "www.kaifer.cz"
-      "web.kaifer.cz"
       "kaifer.cz"
       "www.kaifer.dev"
-      "web.kaifer.dev"
       "kaifer.dev"
-      "copy-anything.kaifer.dev"
     ];
   };
   cloudflareDomainSet = builtins.listToAttrs (map (domain: { name = domain; value = domain; }) cloudflare.domains);
