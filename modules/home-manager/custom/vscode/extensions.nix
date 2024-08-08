@@ -8,8 +8,8 @@
   {
     name = "vscode-tailwindcss";
     publisher = "bradlc";
-    version = "0.11.66";
-    sha256 = "14lm69i7prigmwgzckgimy5ils3wn4byf7d40i6zly81qm5b8r1z";
+    version = "0.13.25";
+    sha256 = "09l2anjgyn1cx2cbj9mxh0b91gzwda7rd9kc3vj8jhv3q4hldxpr";
   }
   {
     name = "postcss";
@@ -20,8 +20,8 @@
   {
     name = "vscode-eslint";
     publisher = "dbaeumer";
-    version = "3.0.5";
-    sha256 = "1cmkgi1i5c7qkrr8cif36i803yl6mrv87y9gmzfb701pcfg8yxx9";
+    version = "3.0.11";
+    sha256 = "0np0yzrqi8pv3ja0d5dsy9b4vrc7vqg6085yr34bcavsgksrrmms";
   }
   {
     name = "dotenv-vscode";
@@ -32,18 +32,18 @@
   {
     name = "theme-dracula";
     publisher = "dracula-theme";
-    version = "2.24.3";
-    sha256 = "1gg9wrjz6w2khr1h449fwap34w1ydkndyi97r5bpbbdw9fa7q7fw";
+    version = "2.25.1";
+    sha256 = "1h3xxwgzgzpwb9fkfl3psm2clvp1jwfhp6asc6chj3cv59v9ncca";
   }
   {
     name = "gitlens";
     publisher = "eamodio";
-    version = "2024.5.1305";
-    sha256 = "0rz9llzqdlqdbhfizisl844qxlrif7vj0d25cd9p44cw3c5ww2sw";
+    version = "2024.8.705";
+    sha256 = "0pxscq9sazknhysmfl7naax0lmdi8rlnr7sv1dg9z0zsps6939vk";
   }
   {
-    name = "EditorConfig";
-    publisher = "EditorConfig";
+    name = "editorconfig";
+    publisher = "editorconfig";
     version = "0.16.4";
     sha256 = "0fa4h9hk1xq6j3zfxvf483sbb4bd17fjl5cdm3rll7z9kaigdqwg";
   }
@@ -55,21 +55,21 @@
   }
   {
     name = "vscode-pull-request-github";
-    publisher = "GitHub";
-    version = "0.89.2024051304";
-    sha256 = "1wwjf3hc32mgmzzh0hlcsfa6j75q3gy4c27nl18asyf80d2d7mdd";
+    publisher = "github";
+    version = "0.95.2024080708";
+    sha256 = "07jk7jbzwgqh6v7w0955awwfqjcg86b8yx55h2b0hqf0ssxgw7dp";
   }
   {
     name = "todo-tree";
-    publisher = "Gruntfuggly";
+    publisher = "gruntfuggly";
     version = "0.0.226";
     sha256 = "0yrc9qbdk7zznd823bqs1g6n2i5xrda0f9a7349kknj9wp1mqgqn";
   }
   {
     name = "nix-ide";
     publisher = "jnoortheen";
-    version = "0.3.1";
-    sha256 = "1cpfckh6zg8byi6x1llkdls24w9b0fvxx4qybi9zfcy5gc60r6nk";
+    version = "0.3.3";
+    sha256 = "1rhb845l32r9ncwxynngq1zji2lf487ryc54n8hw8y9hph95pw7y";
   }
   {
     name = "git-graph";
@@ -86,14 +86,14 @@
   {
     name = "remote-containers";
     publisher = "ms-vscode-remote";
-    version = "0.365.0";
-    sha256 = "0s597nlir5b1hzs4524aqchl8n4vppcap6n8pivdzcaiflc2yk7k";
+    version = "0.381.0";
+    sha256 = "0ckky1s1ppw8abn7h9crd6h3qfr5vhdgp0z2zdqis16h86jcnq58";
   }
   {
     name = "remote-ssh";
     publisher = "ms-vscode-remote";
-    version = "0.112.2024050815";
-    sha256 = "0b8j2iv7fd9nzmlfm1xh5bfhdffdinb98zcq1jvfizlckh308y3d";
+    version = "0.114.2024080515";
+    sha256 = "098kk72cr1m6rp09v67974fsk18x865lxpj3xxk7r9agw06swvl3";
   }
   {
     name = "remote-ssh-edit";
@@ -116,14 +116,14 @@
   {
     name = "remote-explorer";
     publisher = "ms-vscode";
-    version = "0.5.2024031109";
-    sha256 = "1r8wdlz7p0k4kzfcmqiizns043lhghf5v34sf0gays02x8x9xh5p";
+    version = "0.5.2024070409";
+    sha256 = "1ifncgg2hwlkspias8m6yizh9syfkslqnl43jrhz0kmw51kaq2b3";
   }
   {
     name = "remote-server";
     publisher = "ms-vscode";
-    version = "1.6.2024042409";
-    sha256 = "17f6kqv5ph948ilfvj1yn87zls0j3lbaqv7jkdddi6whxj8iiwww";
+    version = "1.6.2024070809";
+    sha256 = "0vbbwgh3y0rx75fcxjmjigdmglpssvrh7bm2qym8qsvg7p5gjxwa";
   }
   {
     name = "vscode-js-profile-flame";
@@ -134,20 +134,20 @@
   {
     name = "vsliveshare";
     publisher = "ms-vsliveshare";
-    version = "1.0.5918";
-    sha256 = "1m4mpy6irj3vzjw6mzmjjp6appgf000zfhmkjwxw65sl4wmjckaf";
+    version = "1.0.5936";
+    sha256 = "0l5r93zx6q1srfjz7y29xcsgjfx8z4hsd1bwa02ysgdxk2iwldpf";
   }
   {
     name = "prisma";
-    publisher = "Prisma";
-    version = "5.13.1";
-    sha256 = "0qsy3xpvkjc1xzb1b3q6rby0yngblq99ak8zcc3k04yvv2qx15pg";
+    publisher = "prisma";
+    version = "5.18.0";
+    sha256 = "0klpdyqalfgd6p2i0rwid06z9szy18qzkrz0z78lxbgg9crsil0h";
   }
   {
     name = "code-spell-checker";
     publisher = "streetsidesoftware";
-    version = "3.0.1";
-    sha256 = "0i76gf7zr0j4dr02zmxwfphk6yy8rvlj9rzq3k8pvnlfzkmh9ri9";
+    version = "4.0.7";
+    sha256 = "0gpgjry30w30wpsz3k8li1vq9qk8578vayq1pkd5izlsngr47v6b";
   }
   {
     name = "pdf";
@@ -157,21 +157,21 @@
   }
   {
     name = "sort-lines";
-    publisher = "Tyriar";
+    publisher = "tyriar";
     version = "1.11.0";
     sha256 = "0c8y2b64gsfbwjy6yvzkz86vj9vqhsrf50ah0645yybc737hzzig";
   }
   {
     name = "errorlens";
     publisher = "usernamehw";
-    version = "3.17.0";
-    sha256 = "12fjvhfx837wv07qf1xh18y5fd220zz10i541jzjnsm4ig6h0h8k";
+    version = "3.20.0";
+    sha256 = "0gfjp17f54439hsg83v5x522qjp0bhbsjwy7b4f42zmbxvx9606j";
   }
   {
     name = "vim";
     publisher = "vscodevim";
-    version = "1.27.2";
-    sha256 = "0m5gdyvd3yg52d8zxwdw188wqjfvdyyvwnw5dz57pn633g5bi49v";
+    version = "1.27.3";
+    sha256 = "1k5sccfblslfn086rpiswgxhxmylj0bj2bi7slk7vf73ngk4dqwy";
   }
   {
     name = "markdown-all-in-one";
