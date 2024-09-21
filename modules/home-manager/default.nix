@@ -20,6 +20,7 @@
         publicShare = lib.mkDefault "${config.home.homeDirectory}/Public";
       };
     };
+    services.easyeffects.enable = true;
   };
   custom = import ./custom;
 }
