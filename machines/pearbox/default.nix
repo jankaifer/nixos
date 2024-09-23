@@ -7,7 +7,7 @@
 
   # It's delayed a little (nvidia protrietary drivers don't work on bleeding edge)
   # It also has some better defaut for gaming which is nice I guess
-  boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
+  boot.kernelPackages = pkgs.linuxPackages_xanmod_stable;
   nixpkgs.hostPlatform = "x86_64-linux";
   networking.hostName = "pearbox";
   system.stateVersion = "23.11";
