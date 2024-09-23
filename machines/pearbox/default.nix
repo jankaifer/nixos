@@ -5,9 +5,8 @@
     ./hardware-configuration.nix
   ];
 
-  # It's delayed a little (nvidia protrietary drivers don't work on bleeding edge)
-  # It also has some better defaut for gaming which is nice I guess
-  boot.kernelPackages = pkgs.linuxPackages_xanmod_stable;
+  # Nvidia protrietary drivers don't work on bleeding edge, so we need to pin older kernel
+  boot.kernelPackages = pkgs.linuxPackages_6_9;
   nixpkgs.hostPlatform = "x86_64-linux";
   networking.hostName = "pearbox";
   system.stateVersion = "23.11";
