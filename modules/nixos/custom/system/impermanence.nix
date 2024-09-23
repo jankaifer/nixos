@@ -37,6 +37,7 @@ in
           "/etc/NetworkManager/system-connections"
           "/etc/ssh" # I need to persist ssh keys, this persists a bit more, persising only keys broke permissions
           "/var/cache/"
+          "/var/lib/NetworkManager"
           "/var/lib/bluetooth"
           "/var/lib/cups"
           "/var/lib/docker" # TODO: do not persist docker on server
@@ -45,13 +46,13 @@ in
           "/var/lib/grafana"
           "/var/lib/jellyfin"
           "/var/lib/libvirt"
+          "/var/lib/nixos"
           "/var/lib/pgadmin"
           "/var/lib/postgresql"
           "/var/lib/private/victoriametrics"
           "/var/lib/systemd/coredump"
           "/var/lib/traefik"
           "/var/lib/vmagent"
-          "/var/lib/NetworkManager"
         ];
         files = cfg.files ++ [
           "/etc/machine-id"
