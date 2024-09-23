@@ -6,7 +6,7 @@
   ];
 
   # Nvidia protrietary drivers don't work on bleeding edge, so we need to pin older kernel
-  boot.kernelPackages = pkgs.linuxPackages_6_9;
+  boot.kernelPackages = pkgs.linuxPackages_6_10;
   nixpkgs.hostPlatform = "x86_64-linux";
   networking.hostName = "pearbox";
   system.stateVersion = "23.11";
