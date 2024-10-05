@@ -5,7 +5,7 @@
     ./hardware-configuration.nix
   ];
 
-  # Nvidia protrietary drivers don't work on bleeding edge, so we need to pin older kernel
+  # Nvidia protrietary drivers sometimes don't work on bleeding edge, so we might need to pin older kernel
   boot.kernelPackages = pkgs.linuxPackages_6_6;
   nixpkgs.hostPlatform = "x86_64-linux";
   networking.hostName = "pearbox";
@@ -21,6 +21,10 @@
   hardware.nvidia = {
     package = config.boot.kernelPackages.nvidiaPackages.production;
     modesetting.enable = true;
+    # this fixes issues with corrupted video output after suspend
+    powerManagement.enable = true;
+    # This means nvidia open source drivers (not nouveau), my 1080 is not supported
+    open = false;
   };
 
   custom.system = {
