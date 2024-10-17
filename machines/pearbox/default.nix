@@ -32,6 +32,7 @@
     gui.enable = true;
     home-manager.enable = true;
     impermanence.enable = true;
+    impermanence.persistHome = true;
     steam.enable = true;
     user = "pearman";
   };

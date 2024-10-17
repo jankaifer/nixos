@@ -21,6 +21,7 @@ in
     # files = persistancePathOptions.files // emptyDefault;
     # userDirectories = userOptions.directories // emptyDefault;
     # userFiles = userOptions.files // emptyDefault;
+    persistHome = lib.mkEnableOption "persistHome";
   };
 
   config = lib.mkIf cfg.enable
@@ -60,7 +61,7 @@ in
 
         users.${user} = {
           # TODO: Collocate these with the actual apps using them
-          directories = cfg.userDirectories ++ [
+          directories = (if cfg.persistHome then [ "." ] else [ ]) ++ cfg.userDirectories ++ [
             ".cache"
             ".cargo"
             ".config/Bitwarden"
