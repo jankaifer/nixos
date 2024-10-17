@@ -54,14 +54,15 @@ in
           "/var/lib/systemd/coredump"
           "/var/lib/traefik"
           "/var/lib/vmagent"
-        ];
+        ] ++ (if cfg.persistHome then [ "/home/${user}" ] else [ ]);
         files = cfg.files ++ [
           "/etc/machine-id"
         ];
 
         users.${user} = {
           # TODO: Collocate these with the actual apps using them
-          directories = (if cfg.persistHome then [ "." ] else [ ]) ++ cfg.userDirectories ++ [
+          directories = (if cfg.persistHome then [ ] else
+          (cfg.userDirectories ++ [
             ".cache"
             ".cargo"
             ".config/Bitwarden"
@@ -90,7 +91,7 @@ in
             "dev"
             "exercism"
             "vms"
-          ];
+          ]));
 
           files = cfg.userFiles ++ [
             # TODO: collocate into gnome
