@@ -41,7 +41,6 @@ let
       "traefik-${domain}"
       "home-assistant-${domain}"
       "jellyfin-${domain}"
-      "chatbot-ui-${domain}"
       "www.kaifer.cz"
       "kaifer.cz"
       "www.kaifer.dev"
@@ -76,7 +75,6 @@ in
     owner = "grafana";
     group = "grafana";
   };
-  age.secrets.chatbot-ui-env-file.file = ../../secrets/chatbot-ui-env-file.age;
 
   virtualisation.oci-containers = {
     backend = "docker";
@@ -118,15 +116,6 @@ in
           "--network=host"
           "--device=/dev/ttyACM0:/dev/ttyACM0" # Forward usb devices
         ];
-      };
-      chatbot-ui = {
-        image = "ghcr.io/mckaywrigley/chatbot-ui:main";
-        environmentFiles = [ config.age.secrets.chatbot-ui-env-file.path ];
-        labels = {
-          "traefik.http.routers.chatbot-ui.rule" = "Host(`chatbot-ui-${domain}`)";
-          "traefik.http.routers.chatbot-ui.entrypoints" = "https";
-          "traefik.http.services.chatbot-ui.loadbalancer.server.port" = "3000";
-        };
       };
     };
   };

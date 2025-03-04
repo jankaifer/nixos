@@ -9,7 +9,6 @@ let
   ];
 in
 {
-  "chatbot-ui-env-file.age".publicKeys = ghKeys;
   "cloudflare-credentials.age".publicKeys = ghKeys;
   "coolify-env-file.age".publicKeys = ghKeys;
   "grafana-password.age".publicKeys = ghKeys;
