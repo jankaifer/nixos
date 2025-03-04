@@ -103,7 +103,7 @@ in
         };
       };
       home-assistant = {
-        image = "ghcr.io/home-assistant/home-assistant:2024.1";
+        image = "ghcr.io/home-assistant/home-assistant:2024.12.5";
         environment.TZ = "Europe/Prague";
         volumes = [
           "/persist/containers/home-assistant/config:/config"
