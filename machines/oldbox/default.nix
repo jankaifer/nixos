@@ -438,7 +438,7 @@ in
     server = {
       enable = true;
       prometheus = true;
-      listenAddress = toString restic.port;
+      listenAddress = services.restic.port;
       extraFlags = [
         # We don't allow auth. We use the server only for prometheus metrics export
         "--htpasswd-file=${pkgs.writeText ".htpasswd" ""}"
@@ -629,7 +629,7 @@ in
   services.prometheus.exporters.node = {
     enable = true;
     enabledCollectors = [ "systemd" ];
-    port = prometheusNodeCollector.port;
+    port = services.prometheusNodeCollector.port;
   };
 
   systemd.services.loki-data-folder = {
@@ -730,7 +730,7 @@ in
     enable = true;
     configuration = {
       server = {
-        http_listen_port = promtail.port;
+        http_listen_port = services.promtail.port;
         grpc_listen_port = 0;
       };
 
