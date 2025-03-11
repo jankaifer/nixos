@@ -322,8 +322,7 @@ in
             type = "prometheus";
             uid = "vm";
             access = "proxy";
-            # TODO: get https here
-            url = "http://localhost:${services.victoriametrics.port}";
+            url = "https://${services.victoriametrics.domain}";
             isDefault = true;
             version = 1;
             editable = false;
@@ -334,8 +333,7 @@ in
             type = "loki";
             uid = "loki";
             access = "proxy";
-            # TODO: get https here
-            url = "http://localhost:${services.loki.port}";
+            url = "https://${services.loki.domain}";
             isDefault = false;
             version = 1;
             editable = false;
