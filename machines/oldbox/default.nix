@@ -4,7 +4,6 @@ let
   localDomain = "hobitin.eu";
   services = {
     home-assistant = {
-      port = "8123";
       domain = "ha.${localDomain}";
     };
     grafana = {
@@ -45,6 +44,9 @@ let
     };
     traefik-metrics = {
       domain = "traefik-metrics.${localDomain}";
+    };
+    frigate = {
+      domain = "frigate.${localDomain}";
     };
   };
   domains = lib.mapAttrsToList (name: service: service.domain) services;
@@ -93,13 +95,37 @@ in
         labels = {
           "traefik.http.routers.home-assistant.rule" = "Host(`${services.home-assistant.domain}`)";
           "traefik.http.routers.home-assistant.entrypoints" = "https";
-          "traefik.http.services.home-assistant.loadbalancer.server.port" = services.home-assistant.port;
+          "traefik.http.services.home-assistant.loadbalancer.server.port" = "8123";
         };
         extraOptions = [
           "--network=host"
           # Forward usb devices, we need to pick correct device name
           # "--device=/dev/ttyACM0:/dev/ttyACM0"
           "--device=/dev/ttyUSB0:/dev/ttyUSB0"
+        ];
+      };
+      frigate = {
+        image = "ghcr.io/blakeblackshear/frigate:0.15.0";
+        volumes = [
+          "/persist/containers/frigate/config:/config"
+          "/nas/frigate:/media/frigate"
+          {
+            type = "tmpfs";
+            target = "/tmp/cache";
+            tmpfs = {
+              size = 1000000000; # 1GB of memory, reduces SSD/SD Card wear
+            };
+          }
+        ];
+        labels = {
+          "traefik.http.routers.frigate.rule" = "Host(`${services.frigate.domain}`)";
+          "traefik.http.routers.frigate.entrypoints" = "https";
+          "traefik.http.services.frigate.loadbalancer.server.port" = "8971";
+        };
+        ports = [
+          "8554:8554" # RTSP feeds
+          "8555:8555/tcp" # WebRTC over tcp
+          "8555:8555/udp" # WebRTC over udp
         ];
       };
     };
