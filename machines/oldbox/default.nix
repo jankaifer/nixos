@@ -2,7 +2,6 @@
 
 let
   localDomain = "hobitin.eu";
-  domain = "oldbox.kaifer.cz";
   services = {
     home-assistant = {
       port = "8001";
@@ -54,23 +53,6 @@ let
     OnCalendar = "00:05";
     RandomizedDelaySec = "5h";
   };
-  cloudflare = {
-    tunnelId = "ff121495-6f5b-425f-82ed-a54e06d22ab7";
-    domains = [
-      "traefik-${domain}"
-      "pihole-${domain}"
-      "grafana-${domain}"
-      "traefik-${domain}"
-      "home-assistant-${domain}"
-      "jellyfin-${domain}"
-      "www.kaifer.cz"
-      "kaifer.cz"
-      "www.kaifer.dev"
-      "kaifer.dev"
-    ];
-  };
-  cloudflareDomainSet = builtins.listToAttrs (map (domain: { name = domain; value = domain; }) cloudflare.domains);
-  cloudflareDomainMapping = builtins.mapAttrs (name: value: "https://${value}") cloudflareDomainSet;
 in
 {
   imports = [
@@ -219,8 +201,6 @@ in
           tls = {
             certResolver = "letsencrypt";
             domains = [
-              { main = "kaifer.cz"; sans = [ "*.kaifer.cz" ]; }
-              { main = "kaifer.dev"; sans = [ "*.kaifer.dev" ]; }
               { main = "hobitin.eu"; sans = [ "*.hobitin.eu" ]; }
             ];
           };
@@ -398,24 +378,6 @@ in
       ];
   };
 
-  # # To configure this, you need to create the tunnel locally using `cloudflared tunnel create [tunnel-name]`
-  # age.secrets.cloudflare-credentials-file = {
-  #   file = ../../secrets/cloudflare-credentials.age;
-  #   owner = "cloudflared";
-  #   group = "cloudflared";
-  # };
-  # services.cloudflared = {
-  #   enable = true;
-
-  #   tunnels.${cloudflare.tunnelId} = {
-  #     credentialsFile = config.age.secrets.cloudflare-credentials-file.path;
-  #     default = "http_status:404";
-  #     ingress = cloudflareDomainMapping // {
-  #       "ssh-${domain}" = "ssh://localhost:22";
-  #     };
-  #   };
-  # };
-
   systemd.services.hd-idle = {
     description = "HD spin down daemon, spins down disks after 15 minutes of inactivity";
     wantedBy = [ "multi-user.target" ];
@@ -574,7 +536,7 @@ in
     script =
       let
         exportToVmScript = pkgs.writeText "export.js" ''
-          const vmUrl = "https://victoriametrics-${domain}/api/v1/import/prometheus";
+          const vmUrl = "https://${services.victoriametrics.domain}/api/v1/import/prometheus";
 
           const data = JSON.parse(await Bun.stdin.text());
           console.log("We got the following data from speed test:");
