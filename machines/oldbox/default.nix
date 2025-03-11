@@ -4,7 +4,7 @@ let
   localDomain = "hobitin.eu";
   services = {
     home-assistant = {
-      port = "8001";
+      port = "8123";
       domain = "ha.${localDomain}";
     };
     grafana = {
