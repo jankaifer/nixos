@@ -106,10 +106,31 @@ in
       };
       frigate = {
         image = "ghcr.io/blakeblackshear/frigate:0.15.0";
-        volumes = [
-          "/persist/containers/frigate/config:/config"
-          "/nas/frigate:/media/frigate"
-        ];
+        volumes =
+          let
+            configFile = pkgs.writeText "config.yml"
+              ''
+                mqtt:
+                  enabled: False
+
+                tls:
+                  enabled: False
+
+                cameras:
+                  dummy_camera: # <--- this will be changed to your actual camera later
+                    enabled: False
+                    ffmpeg:
+                      inputs:
+                        - path: rtsp://127.0.0.1:554/rtsp
+                          roles:
+                            - detect
+              '';
+          in
+          [
+            "${configFile}:/config/config.yml"
+            "/persist/containers/frigate/config:/config"
+            "/nas/frigate:/media/frigate"
+          ];
         extraOptions = [
           "--tmpfs=/tmp/cache:rw,size=1000000000" # 1GB of memory, reduces SSD/SD Card wear
         ];
