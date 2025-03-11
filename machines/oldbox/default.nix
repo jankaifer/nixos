@@ -1,32 +1,54 @@
 { pkgs, config, lib, ... }:
 
 let
+  localDomain = "hobitin.eu";
   domain = "oldbox.kaifer.cz";
-  grafana = {
-    port = 8002;
+  services = {
+    home-assistant = {
+      port = "8001";
+      domain = "ha.${localDomain}";
+    };
+    grafana = {
+      port = "8002";
+      domain = "grafana.${localDomain}";
+    };
+    victoriametrics = {
+      port = "8003";
+      domain = "vm.${localDomain}";
+      scrapeInterval = "5s";
+    };
+    restic = {
+      port = "8004";
+      domain = "restic.${localDomain}";
+    };
+    prometheusNodeCollector = {
+      port = "8005";
+      domain = "prometheus-node-collector.${localDomain}";
+    };
+    loki = {
+      port = "8006";
+      domain = "loki.${localDomain}";
+    };
+    promtail = {
+      port = "8007";
+      domain = "promtail.${localDomain}";
+    };
+    jellyfin = {
+      port = "8096";
+      domain = "jellyfin.${localDomain}";
+    };
+    snapcast = {
+      port = "1780";
+      domain = "snapcast.${localDomain}";
+    };
+    traefik = {
+      domain = "traefik.${localDomain}";
+    };
+    traefik-metrics = {
+      domain = "traefik-metrics.${localDomain}";
+    };
   };
-  victoriametrics = {
-    port = 8003;
-    scrapeInterval = "5s";
-  };
-  restic = {
-    port = 8004;
-  };
-  prometheusNodeCollector = {
-    port = 8005;
-  };
-  loki = {
-    port = 8006;
-  };
-  promtail = {
-    port = 8007;
-  };
-  jellyfin = {
-    port = 8096;
-  };
-  snapcast = {
-    port = 1780;
-  };
+  domains = lib.mapAttrsToList (name: service: service.domain) services;
   websocketPort = 444;
   dailyBackupTimerConfig = {
     OnCalendar = "00:05";
@@ -62,11 +84,11 @@ in
   custom.system = {
     sshd.enable = true;
     impermanence.enable = true;
-    gui.enable = true;
-    development.enable = true;
+    # gui.enable = true;
+    # development.enable = true;
     home-manager.home = ../../home-manager/oldbox.nix;
     home-manager.enable = true;
-    snapcast.enable = true;
+    # snapcast.enable = true;
   };
 
   age.secrets.traefik-env.file = ../../secrets/traefik-env.age;
@@ -79,27 +101,6 @@ in
   virtualisation.oci-containers = {
     backend = "docker";
     containers = {
-      pihole = {
-        image = "pihole/pihole:2023.11.0";
-        ports = [
-          "53:53/tcp"
-          "53:53/udp"
-          "67:67/udp"
-        ];
-        environment = {
-          TZ = "Europe/Prague";
-          WEBPASSWORD = "pihole";
-        };
-        volumes = [
-          "/persist/containers/pihole/etc-pihole:/etc/pihole"
-          "/persist/containers/pihole/etc-dnsmasq.d:/etc/dnsmasq.d"
-        ];
-        labels = {
-          "traefik.http.routers.pihole.rule" = "Host(`pihole-${domain}`)";
-          "traefik.http.routers.pihole.entrypoints" = "https";
-          "traefik.http.services.pihole.loadbalancer.server.port" = "80";
-        };
-      };
       home-assistant = {
         image = "ghcr.io/home-assistant/home-assistant:2024.12.5";
         environment.TZ = "Europe/Prague";
@@ -108,9 +109,9 @@ in
           "/etc/localtime:/etc/localtime:ro"
         ];
         labels = {
-          "traefik.http.routers.home-assistant.rule" = "Host(`home-assistant-${domain}`)";
+          "traefik.http.routers.home-assistant.rule" = "Host(`${services.home-assistant.domain}`)";
           "traefik.http.routers.home-assistant.entrypoints" = "https";
-          "traefik.http.services.home-assistant.loadbalancer.server.port" = "8123";
+          "traefik.http.services.home-assistant.loadbalancer.server.port" = services.home-assistant.port;
         };
         extraOptions = [
           "--network=host"
@@ -174,7 +175,7 @@ in
     443
     websocketPort
   ];
-  networking.hosts."127.0.0.1" = cloudflare.domains;
+  networking.hosts."127.0.0.1" = domains;
 
   systemd.services.traefik-log-folder = {
     description = "Ensure folder exists for traefik";
@@ -220,6 +221,7 @@ in
             domains = [
               { main = "kaifer.cz"; sans = [ "*.kaifer.cz" ]; }
               { main = "kaifer.dev"; sans = [ "*.kaifer.dev" ]; }
+              { main = "hobitin.eu"; sans = [ "*.hobitin.eu" ]; }
             ];
           };
         in
@@ -258,48 +260,48 @@ in
       http = {
         routers = {
           traefik = {
-            rule = "Host(`traefik-${domain}`)";
+            rule = "Host(`${services.traefik.domain}`)";
             service = "api@internal";
             entrypoints = [ "https" ];
           };
           traefik-metrics = {
-            rule = "Host(`traefik-metrics-${domain}`)";
+            rule = "Host(`${services.traefik-metrics.domain}`)";
             service = "prometheus@internal";
             entrypoints = [ "https" ];
           };
           grafana = {
-            rule = "Host(`grafana-${domain}`)";
+            rule = "Host(`${services.grafana.domain}`)";
             service = "grafana@file";
             entrypoints = [ "https" ];
           };
           victoriametrics = {
-            rule = "Host(`victoriametrics-${domain}`)";
+            rule = "Host(`${services.victoriametrics.domain}`)";
             service = "victoriametrics@file";
             entrypoints = [ "https" ];
           };
           jellyfin = {
-            rule = "Host(`jellyfin-${domain}`)";
+            rule = "Host(`${services.jellyfin.domain}`)";
             service = "jellyfin@file";
             entrypoints = [ "https" ];
           };
           snapcast = {
-            rule = "Host(`snapcast-${domain}`)";
+            rule = "Host(`${services.snapcat.domain}`)";
             service = "snapcast@file";
             entrypoints = [ "https" ];
           };
         };
         services = {
           grafana.loadBalancer.servers = [
-            { url = "http://localhost:${toString grafana.port}"; }
+            { url = "http://localhost:${services.grafana.port}"; }
           ];
           victoriametrics.loadBalancer.servers = [
-            { url = "http://localhost:${toString victoriametrics.port}"; }
+            { url = "http://localhost:${services.victoriametrics.port}"; }
           ];
           jellyfin.loadBalancer.servers = [
-            { url = "http://localhost:${toString jellyfin.port}"; }
+            { url = "http://localhost:${services.jellyfin.port}"; }
           ];
           snapcast.loadBalancer.servers = [
-            { url = "http://localhost:${toString snapcast.port}"; }
+            { url = "http://localhost:${services.snapcast.port}"; }
           ];
         };
       };
@@ -316,8 +318,8 @@ in
         level = "debug";
       };
       server = {
-        domain = "grafana-${domain}";
-        http_port = grafana.port;
+        domain = services.grafana.domain;
+        http_port = services.grafana.port;
       };
       analytics = {
         reporting_enabled = false;
@@ -340,18 +342,20 @@ in
             type = "prometheus";
             uid = "vm";
             access = "proxy";
-            url = "http://localhost:${toString victoriametrics.port}";
+            # TODO: get https here
+            url = "http://localhost:${services.victoriametrics.port}";
             isDefault = true;
             version = 1;
             editable = false;
-            jsonData.timeInterval = victoriametrics.scrapeInterval;
+            jsonData.timeInterval = services.victoriametrics.scrapeInterval;
           }
           {
             name = "Loki";
             type = "loki";
             uid = "loki";
             access = "proxy";
-            url = "http://localhost:${toString loki.port}";
+            # TODO: get https here
+            url = "http://localhost:${services.loki.port}";
             isDefault = false;
             version = 1;
             editable = false;
@@ -363,30 +367,30 @@ in
 
   services.victoriametrics = {
     enable = true;
-    listenAddress = ":${toString victoriametrics.port}";
+    listenAddress = ":${services.victoriametrics.port}";
     extraOptions =
       let
         scrapeConfigFile = builtins.toFile "prometheus-scrape-config.yml" ''
           global:
-            scrape_interval: ${victoriametrics.scrapeInterval}
+            scrape_interval: ${services.victoriametrics.scrapeInterval}
 
           scrape_configs:
           - job_name: traefik
             static_configs:
             - targets:
-              - "https://traefik-metrics-${domain}"
+              - "https://${services.traefik-metrics.domain}"
           - job_name: restic
             static_configs:
             - targets:
-              - "http://localhost:${toString restic.port}"
+              - "http://localhost:${services.restic.port}"
           - job_name: node_exporter
             static_configs:
             - targets:
-              - "http://localhost:${toString prometheusNodeCollector.port}"
+              - "http://localhost:${services.prometheusNodeCollector.port}"
           - job_name: home-assistant
             static_configs:
             - targets:
-              - "https://home-assistant-${domain}/api/prometheus"
+              - "https://${services.home-assistant.domain}/api/prometheus"
         '';
       in
       [
@@ -394,23 +398,23 @@ in
       ];
   };
 
-  # To configure this, you need to create the tunnel locally using `cloudflared tunnel create [tunnel-name]`
-  age.secrets.cloudflare-credentials-file = {
-    file = ../../secrets/cloudflare-credentials.age;
-    owner = "cloudflared";
-    group = "cloudflared";
-  };
-  services.cloudflared = {
-    enable = true;
+  # # To configure this, you need to create the tunnel locally using `cloudflared tunnel create [tunnel-name]`
+  # age.secrets.cloudflare-credentials-file = {
+  #   file = ../../secrets/cloudflare-credentials.age;
+  #   owner = "cloudflared";
+  #   group = "cloudflared";
+  # };
+  # services.cloudflared = {
+  #   enable = true;
 
-    tunnels.${cloudflare.tunnelId} = {
-      credentialsFile = config.age.secrets.cloudflare-credentials-file.path;
-      default = "http_status:404";
-      ingress = cloudflareDomainMapping // {
-        "ssh-${domain}" = "ssh://localhost:22";
-      };
-    };
-  };
+  #   tunnels.${cloudflare.tunnelId} = {
+  #     credentialsFile = config.age.secrets.cloudflare-credentials-file.path;
+  #     default = "http_status:404";
+  #     ingress = cloudflareDomainMapping // {
+  #       "ssh-${domain}" = "ssh://localhost:22";
+  #     };
+  #   };
+  # };
 
   systemd.services.hd-idle = {
     description = "HD spin down daemon, spins down disks after 15 minutes of inactivity";
@@ -651,7 +655,7 @@ in
     configuration = {
       auth_enabled = false;
 
-      server.http_listen_port = loki.port;
+      server.http_listen_port = services.loki.port;
 
       ingester = {
         lifecycler = {
@@ -733,7 +737,7 @@ in
       positions.filename = "/var/log/promtail/positions.yaml";
 
       clients = [
-        { url = "http://127.0.0.1:${toString loki.port}/loki/api/v1/push"; }
+        { url = "http://127.0.0.1:${services.loki.port}/loki/api/v1/push"; }
       ];
 
       scrape_configs = [
@@ -760,13 +764,6 @@ in
                 job = "traefik-access-log";
                 host = "oldbox";
                 __path__ = "/var/log/traefik/access.log";
-              };
-            }
-            {
-              labels = {
-                job = "mullvad";
-                host = "oldbox";
-                __path__ = "/var/log/mullvad-vpn/daemon.log";
               };
             }
             {
