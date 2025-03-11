@@ -85,6 +85,7 @@ in
             ".rustup"
             ".ssh"
             ".vscode-server"
+            ".cursor-server"
             ".zoom"
             "Documents"
             "Pictures"

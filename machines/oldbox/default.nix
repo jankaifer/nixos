@@ -416,6 +416,7 @@ in
             "/.cache/"
             "/persist/home/*/.cache"
             "/persist/home/*/.vscode-server"
+            "/persist/home/*/.cursor-server"
             "/persist/var/lib/docker"
             "/persist/var/lib/private/victoriametrics/cache"
             "/var/cache/"
