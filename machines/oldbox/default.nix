@@ -109,13 +109,9 @@ in
         volumes = [
           "/persist/containers/frigate/config:/config"
           "/nas/frigate:/media/frigate"
-          {
-            type = "tmpfs";
-            target = "/tmp/cache";
-            tmpfs = {
-              size = 1000000000; # 1GB of memory, reduces SSD/SD Card wear
-            };
-          }
+        ];
+        extraOptions = [
+          "--tmpfs=/tmp/cache:rw,size=1000000000" # 1GB of memory, reduces SSD/SD Card wear
         ];
         labels = {
           "traefik.http.routers.frigate.rule" = "Host(`${services.frigate.domain}`)";
