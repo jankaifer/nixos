@@ -285,7 +285,7 @@ in
             entrypoints = [ "https" ];
           };
           snapcast = {
-            rule = "Host(`${services.snapcat.domain}`)";
+            rule = "Host(`${services.snapcast.domain}`)";
             service = "snapcast@file";
             entrypoints = [ "https" ];
           };
@@ -319,7 +319,7 @@ in
       };
       server = {
         domain = services.grafana.domain;
-        http_port = services.grafana.port;
+        http_port = builtins.fromJSON services.grafana.port;
       };
       analytics = {
         reporting_enabled = false;
@@ -629,7 +629,7 @@ in
   services.prometheus.exporters.node = {
     enable = true;
     enabledCollectors = [ "systemd" ];
-    port = services.prometheusNodeCollector.port;
+    port = builtins.fromJSON services.prometheusNodeCollector.port;
   };
 
   systemd.services.loki-data-folder = {
@@ -655,7 +655,7 @@ in
     configuration = {
       auth_enabled = false;
 
-      server.http_listen_port = services.loki.port;
+      server.http_listen_port = builtins.fromJSON services.loki.port;
 
       ingester = {
         lifecycler = {
