@@ -479,6 +479,7 @@ in
     {
       description = "mount google drive";
       after = [ "network-online.target" ];
+      wants = [ "network-online.target" ];
       wantedBy = [ "multi-user.target" ];
       preStart = "/run/current-system/sw/bin/mkdir -p ${mountdir}";
       script = ''
@@ -509,6 +510,7 @@ in
     {
       description = "mount google photos";
       after = [ "network-online.target" ];
+      wants = [ "network-online.target" ];
       wantedBy = [ "multi-user.target" ];
       preStart = "/run/current-system/sw/bin/mkdir -p ${mountdir}";
       script = ''
@@ -534,6 +536,7 @@ in
   systemd.services.cfspeedtest-metric-exporter = {
     description = "Measure internet speed with cfspeedtest and export to victoriametrics";
     after = [ "network-online.target" ];
+    wants = [ "network-online.target" ];
     script =
       let
         exportToVmScript = pkgs.writeText "export.js" ''
