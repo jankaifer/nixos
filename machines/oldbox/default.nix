@@ -682,13 +682,17 @@ in
   systemd.services.promtail-data-folder = {
     description = "Ensure folder exists for promtail";
     wantedBy = [ "promtail.service" ];
+    after = [ "users.target" ];
+    wants = [ "users.target" ];
     script = ''
       #! ${pkgs.bash}/bin/bash
+      set -x  # Print commands as they execute
+
       FOLDER_PATH="/var/log/promtail"
       if [ ! -d "$FOLDER_PATH" ]; then
-        mkdir -p "$FOLDER_PATH"
+        mkdir -p "$FOLDER_PATH" || { echo "Failed to create directory"; exit 1; }
       fi
-      chown -R promtail:promtail "$FOLDER_PATH"
+      chown -R promtail:promtail "$FOLDER_PATH" || { echo "Failed to set ownership"; exit 1; }
     '';
   };
 
