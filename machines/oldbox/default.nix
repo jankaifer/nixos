@@ -705,7 +705,7 @@ in
       positions.filename = "/var/log/promtail/positions.yaml";
 
       clients = [
-        { url = "http://127.0.0.1:${services.loki.port}/loki/api/v1/push"; }
+        { url = "https://${services.loki.domain}/loki/api/v1/push"; }
       ];
 
       scrape_configs = [
