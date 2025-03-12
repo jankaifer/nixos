@@ -127,13 +127,10 @@ in
               '';
           in
           [
-            "/persist/containers/frigate/config:/config"
-            "${configFile}:/frigate_config.yml"
+            # "/persist/containers/frigate/config:/config"
+            "${configFile}:/config/config.yml"
             "/nas/frigate:/media/frigate"
           ];
-        environment = {
-          FRIGATE_CONFIG_FILE = "/frigate_config.yml";
-        };
         extraOptions = [
           "--tmpfs=/tmp/cache:rw,size=1000000000" # 1GB of memory, reduces SSD/SD Card wear
         ];
