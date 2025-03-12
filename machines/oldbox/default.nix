@@ -128,7 +128,7 @@ in
           in
           [
             "/persist/containers/frigate/config:/config"
-            "${configFile}:/frigate_config.yml:ro"
+            "${configFile}:/frigate_config.yml"
             "/nas/frigate:/media/frigate"
           ];
         environment = {
