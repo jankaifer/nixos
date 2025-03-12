@@ -240,7 +240,7 @@ in
     };
 
     systemd.services.create-constant-files = {
-      description = "Create constatnt files";
+      description = "Create constant files";
       wantedBy = [ "multi-user.target" ];
       wants = [ "impermanence.target" ];
       serviceConfig = {
