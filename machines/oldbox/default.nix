@@ -107,20 +107,22 @@ in
     {
       path = "/persist/containers/frigate/config/config.yml";
       content = ''
-          mqtt:
-            enabled: False
+        mqtt:
+          enabled: false
 
         tls:
-          enabled: False
+          enabled: false
 
         cameras:
           dummy_camera: # <--- this will be changed to your actual camera later
-            enabled: False
+            enabled: false
             ffmpeg:
               inputs:
                 - path: rtsp://127.0.0.1:554/rtsp
                   roles:
                     - detect
+
+        version: 0.15 - 1
       '';
     }
   ];
