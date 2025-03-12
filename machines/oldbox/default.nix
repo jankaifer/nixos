@@ -103,29 +103,6 @@ in
     ];
   };
 
-  custom.system.constantFiles = [
-    {
-      path = "/persist/containers/frigate/config/config.yml";
-      content = ''
-        mqtt:
-          enabled: false
-
-        tls:
-          enabled: false
-
-        cameras:
-          dummy_camera: # <--- this will be changed to your actual camera later
-            enabled: false
-            ffmpeg:
-              inputs:
-                - path: rtsp://127.0.0.1:554/rtsp
-                  roles:
-                    - detect
-
-        version: 0.15 - 1
-      '';
-    }
-  ];
   virtualisation.oci-containers.containers.frigate = {
     image = "ghcr.io/blakeblackshear/frigate:0.15.0";
     volumes = [
