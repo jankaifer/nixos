@@ -103,23 +103,26 @@ in
     ];
   };
 
-  systemd.tmpfiles.rules = [
-    "F /persist/containers/frigate/config/config.yml 0444 root root - ${''
-      mqtt:
-        enabled: False
+  custom.system.constantFiles = [
+    {
+      path = "/persist/containers/frigate/config/config.yml";
+      content = ''
+          mqtt:
+            enabled: False
 
-      tls:
-        enabled: False
-
-      cameras:
-        dummy_camera: # <--- this will be changed to your actual camera later
+        tls:
           enabled: False
-          ffmpeg:
-            inputs:
-              - path: rtsp://127.0.0.1:554/rtsp
-                roles:
-                  - detect
-      ''}"
+
+        cameras:
+          dummy_camera: # <--- this will be changed to your actual camera later
+            enabled: False
+            ffmpeg:
+              inputs:
+                - path: rtsp://127.0.0.1:554/rtsp
+                  roles:
+                    - detect
+      '';
+    }
   ];
   virtualisation.oci-containers.containers.frigate = {
     image = "ghcr.io/blakeblackshear/frigate:0.15.0";
@@ -555,41 +558,41 @@ in
     script =
       let
         exportToVmScript = pkgs.writeText "export.js" ''
-          const vmUrl = "https://${services.victoriametrics.domain}/api/v1/import/prometheus";
+              const vmUrl = "https://${services.victoriametrics.domain}/api/v1/import/prometheus";
 
-          const data = JSON.parse(await Bun.stdin.text());
-          console.log("We got the following data from speed test:");
-          console.log(data);
-          console.log();
+              const data = JSON.parse(await Bun.stdin.text());
+              console.log("We got the following data from speed test:");
+              console.log(data);
+              console.log();
 
-          const serializeTest = (testData) => ["min", "q1", "median", "q3", "max", "avg"]
-            .map(percentile => [
-                'cf_speed_test_',
-                testData.test_type.toLowerCase(),
-                '_',
-                percentile,
-                '{payload_size="',
-                testData.payload_size,
-                '"} ',
-                testData[percentile],
-              ].map(String).join("")
-            ).join("\n");
-          const metrics = data.map(serializeTest).join("\n");
+              const serializeTest = (testData) => ["min", "q1", "median", "q3", "max", "avg"]
+                .map(percentile => [
+                    'cf_speed_test_',
+                    testData.test_type.toLowerCase(),
+                    '_',
+                    percentile,
+                    '{payload_size="',
+          testData.payload_size,
+          '"} ',
+                    testData[percentile],
+                  ].map(String).join("")
+                ).join("\n");
+              const metrics = data.map(serializeTest).join("\n");
 
-          console.log("Uploading to ", vmUrl);
-          console.log("Metrics being uploaded:");
-          console.log(metrics);
-          console.log();
+              console.log("Uploading to ", vmUrl);
+              console.log("Metrics being uploaded:");
+              console.log(metrics);
+              console.log();
 
-          await fetch(vmUrl, {
-              method: 'POST',
-              headers: {
-                  'Content-Type': 'text/plain',
-              },
-              body: metrics.trim(),
-          });
+              await fetch(vmUrl, {
+                  method: 'POST',
+                  headers: {
+                      'Content-Type': 'text/plain',
+                  },
+                  body: metrics.trim(),
+              });
 
-          console.log("Done");
+              console.log("Done");
         '';
       in
       ''
@@ -791,3 +794,11 @@ in
     "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCdae7j5X3pyHPTqeRcEyz/Sqjhe5zro0jmicwiHONSp/0UWTRE2l2uOlgzw6/5T2da8Jxr53MsPrEH/t9jAlZf+pt7xKgJWm7KYWJKJn5ipBil66lQoI4Hdh1E4fFdz8YmZYOis24GFntPc9sqszyDmrG3RuHsR6HPBN01AUAFNykoFOc/eDQ6iExXo2CGtfgtq7EQvp8AhLt7+yFcqdUaXsdokqDFfTJKrUpWyo6wrK9k0lP8aCR8Y8O5pwRdKgH3ocQ9f/+2tVgimMZ3L7Xf7cHH/pxqjYdwM3FpNw9hWbD7XCHYj/kI7lTiX3+uaRRkI4WHGa4SpyhxNpPPubA1 coolify-generated-ssh-key"
   ];
 }
+
+
+
+
+
+
+
+

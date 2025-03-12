@@ -20,6 +20,16 @@ in
       default = "/persist/home/${cfg.user}/dev/jankaifer/nixos";
       description = "Path the this nixos config repo, this will be symlinked to /etc/nixos";
     };
+    constantFiles = lib.mkOption {
+      type = lib.types.listOf (lib.types.submodule {
+        options = {
+          path = lib.mkOption { type = lib.types.str; };
+          content = lib.mkOption { type = lib.types.str; };
+        };
+      });
+      default = [ ];
+      description = "Files that will be created on the system during startup, they will be immutable";
+    };
   };
 
   config = {
@@ -227,6 +237,31 @@ in
         pkgs.xorg.libxshmfence
         pkgs.zlib
       ];
+    };
+
+    systemd.services.create-constant-files = {
+      description = "Create constatnt files";
+      wantedBy = [ "multi-user.target" ];
+      wants = [ "impermanence.target" ];
+      serviceConfig = {
+        Type = "oneshot";
+        RemainAfterExit = true;
+        ExecStart = pkgs.writeShellScript "create-constant-files"
+          (
+            lib.concatStringsSep "\n\n"
+              (map
+                (file: ''
+                  echo "Creating file: ${file.path}"
+                  mkdir -p "$(dirname "${file.path}")"
+                  cat > "${file.path}" << 'CONSTANT_FILE_EOF'
+                  ${file.content}
+                  CONSTANT_FILE_EOF
+                  chmod 644 "${file.path}"
+                '')
+                cfg.constantFiles
+              )
+          );
+      };
     };
   };
 }
