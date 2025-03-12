@@ -82,70 +82,64 @@ in
     group = "grafana";
   };
 
-  virtualisation.oci-containers = {
-    backend = "docker";
-    containers = {
-      home-assistant = {
-        image = "ghcr.io/home-assistant/home-assistant:2024.12.5";
-        environment.TZ = "Europe/Prague";
-        volumes = [
-          "/persist/containers/home-assistant/config:/config"
-          "/etc/localtime:/etc/localtime:ro"
-        ];
-        labels = {
-          "traefik.http.routers.home-assistant.rule" = "Host(`${services.home-assistant.domain}`)";
-          "traefik.http.routers.home-assistant.entrypoints" = "https";
-          "traefik.http.services.home-assistant.loadbalancer.server.port" = "8123";
-        };
-        extraOptions = [
-          "--network=host"
-          # Forward usb devices, we need to pick correct device name
-          # "--device=/dev/ttyACM0:/dev/ttyACM0"
-          "--device=/dev/ttyUSB0:/dev/ttyUSB0"
-        ];
-      };
-      frigate = {
-        image = "ghcr.io/blakeblackshear/frigate:0.15.0";
-        volumes =
-          let
-            configFile = pkgs.writeText "config.yml"
-              ''
-                mqtt:
-                  enabled: False
-
-                tls:
-                  enabled: False
-
-                cameras:
-                  dummy_camera: # <--- this will be changed to your actual camera later
-                    enabled: False
-                    ffmpeg:
-                      inputs:
-                        - path: rtsp://127.0.0.1:554/rtsp
-                          roles:
-                            - detect
-              '';
-          in
-          [
-            # "/persist/containers/frigate/config:/config"
-            "${configFile}:/config/config.yml"
-            "/nas/frigate:/media/frigate"
-          ];
-        extraOptions = [
-          "--tmpfs=/tmp/cache:rw,size=1000000000" # 1GB of memory, reduces SSD/SD Card wear
-        ];
-        labels = {
-          "traefik.http.routers.frigate.rule" = "Host(`${services.frigate.domain}`)";
-          "traefik.http.routers.frigate.entrypoints" = "https";
-          "traefik.http.services.frigate.loadbalancer.server.port" = "8971";
-        };
-        ports = [
-          "8554:8554" # RTSP feeds
-          "8555:8555/tcp" # WebRTC over tcp
-          "8555:8555/udp" # WebRTC over udp
-        ];
-      };
+  virtualisation.oci-containers.backend = "docker";
+  virtualisation.oci-containers.containers.home-assistant = {
+    image = "ghcr.io/home-assistant/home-assistant:2024.12.5";
+    environment.TZ = "Europe/Prague";
+    volumes = [
+      "/persist/containers/home-assistant/config:/config"
+      "/etc/localtime:/etc/localtime:ro"
+    ];
+    labels = {
+      "traefik.http.routers.home-assistant.rule" = "Host(`${services.home-assistant.domain}`)";
+      "traefik.http.routers.home-assistant.entrypoints" = "https";
+      "traefik.http.services.home-assistant.loadbalancer.server.port" = "8123";
     };
+    extraOptions = [
+      "--network=host"
+      # Forward usb devices, we need to pick correct device name
+      # "--device=/dev/ttyACM0:/dev/ttyACM0"
+      "--device=/dev/ttyUSB0:/dev/ttyUSB0"
+    ];
+  };
+
+  systemd.tmpfiles.rules = [
+    "F /persist/containers/frigate/config/config.yml 0444 root root - ${''
+      mqtt:
+        enabled: False
+
+      tls:
+        enabled: False
+
+      cameras:
+        dummy_camera: # <--- this will be changed to your actual camera later
+          enabled: False
+          ffmpeg:
+            inputs:
+              - path: rtsp://127.0.0.1:554/rtsp
+                roles:
+                  - detect
+      ''}"
+  ];
+  virtualisation.oci-containers.containers.frigate = {
+    image = "ghcr.io/blakeblackshear/frigate:0.15.0";
+    volumes = [
+      "/persist/containers/frigate/config:/config"
+      "/nas/frigate:/media/frigate"
+    ];
+    extraOptions = [
+      "--tmpfs=/tmp/cache:rw,size=1000000000" # 1GB of memory, reduces SSD/SD Card wear
+    ];
+    labels = {
+      "traefik.http.routers.frigate.rule" = "Host(`${services.frigate.domain}`)";
+      "traefik.http.routers.frigate.entrypoints" = "https";
+      "traefik.http.services.frigate.loadbalancer.server.port" = "8971";
+    };
+    ports = [
+      "8554:8554" # RTSP feeds
+      "8555:8555/tcp" # WebRTC over tcp
+      "8555:8555/udp" # WebRTC over udp
+    ];
   };
 
   # Erase root partition
