@@ -22,10 +22,7 @@
       flake = false;
       url = "gitlab:JanKaifer/fck";
     };
-    myPublicSshKeys = {
-      flake = false;
-      url = "https://github.com/jankaifer.keys";
-    };
+    myPublicSshKeys = (import ./myPublicSshKeys.nix);
   };
 
   outputs = { ... }@inputs:
