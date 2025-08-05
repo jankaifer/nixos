@@ -45,7 +45,7 @@ in
         isNormalUser = true;
         hashedPasswordFile = config.age.secrets.login-password.path;
         extraGroups = [ "wheel" "networkmanager" "docker" "libvirtd" ];
-        openssh.authorizedKeys.keys = lib.splitString "\n" (builtins.readFile inputs.myPublicSshKeys);
+        openssh.authorizedKeys.keys = import ../../../../myPublicSshKeys.nix;
       };
     };
     age.identityPaths = [
