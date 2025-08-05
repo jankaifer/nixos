@@ -99,18 +99,6 @@
         "type": "github"
       }
     },
-    "myPublicSshKeys": {
-      "flake": false,
-      "locked": {
-        "narHash": "sha256-Hr+8/CVu5BucqyT+MmPDoBRudejwNUpLkIbWN0cU4fo=",
-        "type": "file",
-        "url": "https://github.com/jankaifer.keys"
-      },
-      "original": {
-        "type": "file",
-        "url": "https://github.com/jankaifer.keys"
-      }
-    },
     "nixos-hardware": {
       "locked": {
         "lastModified": 1745503349,
@@ -181,7 +169,6 @@
         "fckKeyboardLayout": "fckKeyboardLayout",
         "home-manager": "home-manager",
         "impermanence": "impermanence",
-        "myPublicSshKeys": "myPublicSshKeys",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
         "nixpkgs-grafana-loki": "nixpkgs-grafana-loki",
