@@ -23,10 +23,10 @@ let
       port = "8005";
       domain = "prometheus-node-collector.${localDomain}";
     };
-    loki = {
-      port = "8006";
-      domain = "loki.${localDomain}";
-    };
+    # loki = {
+    #   port = "8006";
+    #   domain = "loki.${localDomain}";
+    # };
     promtail = {
       port = "8007";
       domain = "promtail.${localDomain}";
@@ -327,16 +327,16 @@ in
             editable = false;
             jsonData.timeInterval = services.victoriametrics.scrapeInterval;
           }
-          {
-            name = "Loki";
-            type = "loki";
-            uid = "loki";
-            access = "proxy";
-            url = "https://${services.loki.domain}";
-            isDefault = false;
-            version = 1;
-            editable = false;
-          }
+          # {
+          #   name = "Loki";
+          #   type = "loki";
+          #   uid = "loki";
+          #   access = "proxy";
+          #   url = "https://${services.loki.domain}";
+          #   isDefault = false;
+          #   version = 1;
+          #   editable = false;
+          # }
         ];
       };
     };
@@ -595,86 +595,86 @@ in
     port = builtins.fromJSON services.prometheusNodeCollector.port;
   };
 
-  systemd.services.loki-data-folder = {
-    description = "Ensure folder exists for loki";
-    wantedBy = [ "loki.service" ];
-    script = ''
-      #! ${pkgs.bash}/bin/bash
-      FOLDER_PATH="/var/log/loki"
-      if [ ! -d "$FOLDER_PATH" ]; then
-        mkdir -p "$FOLDER_PATH"
-      fi
-      chown -R loki:loki "$FOLDER_PATH"
-    '';
-  };
+  # systemd.services.loki-data-folder = {
+  #   description = "Ensure folder exists for loki";
+  #   wantedBy = [ "loki.service" ];
+  #   script = ''
+  #     #! ${pkgs.bash}/bin/bash
+  #     FOLDER_PATH="/var/log/loki"
+  #     if [ ! -d "$FOLDER_PATH" ]; then
+  #       mkdir -p "$FOLDER_PATH"
+  #     fi
+  #     chown -R loki:loki "$FOLDER_PATH"
+  #   '';
+  # };
 
   # Loki and promtail setup stolen from https://xeiaso.net/blog/prometheus-grafana-loki-nixos-2020-11-20/
-  services.loki = {
-    enable = true;
-    # package = pkgs.grafana-loki;
-    extraFlags = [
-      # "--log.level=debug"
-    ];
-    configuration = {
-      auth_enabled = false;
+  # services.loki = {
+  #   enable = true;
+  #   # package = pkgs.grafana-loki;
+  #   extraFlags = [
+  #     # "--log.level=debug"
+  #   ];
+  #   configuration = {
+  #     auth_enabled = false;
 
-      server.http_listen_port = builtins.fromJSON services.loki.port;
+  #     server.http_listen_port = builtins.fromJSON services.loki.port;
 
-      ingester = {
-        lifecycler = {
-          address = "0.0.0.0";
-          ring = {
-            kvstore.store = "inmemory";
-            replication_factor = 1;
-          };
-          final_sleep = "0s";
-        };
-        chunk_idle_period = "1h"; # Any chunk not receiving new logs in this time will be flushed
-        max_chunk_age = "1h"; # All chunks will be flushed when they hit this age, default is 1h
-        chunk_target_size = 1048576; # Loki will attempt to build chunks up to 1.5MB, flushing first if chunk_idle_period or max_chunk_age is reached first
-        chunk_retain_period = "30s"; # Must be greater than index read cache TTL if using an index cache (Default index read cache TTL is 5m)
-        max_transfer_retries = 0; # Chunk transfers disabled
-      };
+  #     ingester = {
+  #       lifecycler = {
+  #         address = "0.0.0.0";
+  #         ring = {
+  #           kvstore.store = "inmemory";
+  #           replication_factor = 1;
+  #         };
+  #         final_sleep = "0s";
+  #       };
+  #       chunk_idle_period = "1h"; # Any chunk not receiving new logs in this time will be flushed
+  #       max_chunk_age = "1h"; # All chunks will be flushed when they hit this age, default is 1h
+  #       chunk_target_size = 1048576; # Loki will attempt to build chunks up to 1.5MB, flushing first if chunk_idle_period or max_chunk_age is reached first
+  #       chunk_retain_period = "30s"; # Must be greater than index read cache TTL if using an index cache (Default index read cache TTL is 5m)
+  #       max_transfer_retries = 0; # Chunk transfers disabled
+  #     };
 
-      storage_config = {
-        filesystem.directory = "/var/log/loki/filesystem";
-        boltdb_shipper = {
-          active_index_directory = "/var/log/loki/boltdb_shipper/active_index_directory";
-          cache_location = "/var/log/loki/boltdb_shipper/cache";
-        };
-      };
-      compactor.working_directory = "/var/log/loki/compactor";
+  #     storage_config = {
+  #       filesystem.directory = "/var/log/loki/filesystem";
+  #       boltdb_shipper = {
+  #         active_index_directory = "/var/log/loki/boltdb_shipper/active_index_directory";
+  #         cache_location = "/var/log/loki/boltdb_shipper/cache";
+  #       };
+  #     };
+  #     compactor.working_directory = "/var/log/loki/compactor";
 
-      schema_config = {
-        configs = [
-          {
-            from = "2024-01-01";
-            store = "boltdb-shipper";
-            object_store = "filesystem";
-            schema = "v11";
-            index = {
-              prefix = "index_";
-              period = "24h";
-            };
-          }
-        ];
-      };
+  #     schema_config = {
+  #       configs = [
+  #         {
+  #           from = "2024-01-01";
+  #           store = "boltdb-shipper";
+  #           object_store = "filesystem";
+  #           schema = "v11";
+  #           index = {
+  #             prefix = "index_";
+  #             period = "24h";
+  #           };
+  #         }
+  #       ];
+  #     };
 
-      limits_config = {
-        reject_old_samples = true;
-        reject_old_samples_max_age = "168h";
-      };
+  #     limits_config = {
+  #       reject_old_samples = true;
+  #       reject_old_samples_max_age = "168h";
+  #     };
 
-      chunk_store_config = {
-        max_look_back_period = "0s";
-      };
+  #     chunk_store_config = {
+  #       max_look_back_period = "0s";
+  #     };
 
-      table_manager = {
-        retention_deletes_enabled = false;
-        retention_period = "0s";
-      };
-    };
-  };
+  #     table_manager = {
+  #       retention_deletes_enabled = false;
+  #       retention_period = "0s";
+  #     };
+  #   };
+  # };
 
   systemd.services.promtail-data-folder = {
     description = "Ensure folder exists for promtail";
@@ -704,7 +704,7 @@ in
       positions.filename = "/var/log/promtail/positions.yaml";
 
       clients = [
-        { url = "https://${services.loki.domain}/loki/api/v1/push"; }
+        # { url = "https://${services.loki.domain}/loki/api/v1/push"; }
       ];
 
       scrape_configs = [
@@ -755,7 +755,7 @@ in
   nixpkgs.config.packageOverrides = pkgs: {
     vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
   };
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
     extraPackages = with pkgs; [
       intel-media-driver
