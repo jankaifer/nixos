@@ -16,15 +16,14 @@
       history = {
         size = 10000;
       };
-      initExtraBeforeCompInit = /* bash */ ''
+      initContent = /* bash */ ''
         # Completion
         zstyle ':completion:*' menu yes select
 
         # Prompt
         source ${pkgs.spaceship-prompt}/lib/spaceship-prompt/spaceship.zsh
         autoload -U promptinit; promptinit
-      '';
-      initExtra = /* bash */ ''
+
         bindkey '^[[Z' reverse-menu-complete
 
         # Workaround for ZVM overwriting keybindings
