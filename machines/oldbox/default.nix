@@ -64,6 +64,7 @@ in
   virtualisation.docker.enable = true;
   virtualisation.docker.storageDriver = "btrfs";
 
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   system.stateVersion = "22.05"; # Did you read the comment?
   custom.system = {
     sshd.enable = true;

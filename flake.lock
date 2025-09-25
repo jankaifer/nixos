@@ -131,22 +131,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-grafana-loki": {
-      "locked": {
-        "lastModified": 1712473363,
-        "narHash": "sha256-TIScFAVdI2yuybMxxNjC4YZ/j++c64wwuKbpnZnGiyU=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "e89cf1c932006531f454de7d652163a9a5c86668",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "e89cf1c932006531f454de7d652163a9a5c86668",
-        "type": "github"
-      }
-    },
     "nixpkgs-unstable": {
       "locked": {
         "lastModified": 1754498491,
@@ -171,7 +155,6 @@
         "impermanence": "impermanence",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
-        "nixpkgs-grafana-loki": "nixpkgs-grafana-loki",
         "nixpkgs-unstable": "nixpkgs-unstable"
       }
     },
