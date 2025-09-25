@@ -16,7 +16,7 @@
       history = {
         size = 10000;
       };
-      initContent = /* bash */ ''
+      initExtra = /* bash */ ''
         # Completion
         zstyle ':completion:*' menu yes select
 
