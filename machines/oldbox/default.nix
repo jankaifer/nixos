@@ -156,6 +156,14 @@ in
     80
     443
     websocketPort
+    # NFS
+    2049
+    111
+  ];
+  networking.firewall.allowedUDPPorts = [
+    # NFS
+    2049
+    111
   ];
   networking.hosts."127.0.0.1" = domains;
 
@@ -750,6 +758,14 @@ in
   services.jellyfin = {
     enable = true;
     openFirewall = true;
+  };
+
+  # NFS Server to expose /nas on local network
+  services.nfs.server = {
+    enable = true;
+    exports = ''
+      /nas 192.168.0.0/16(rw,sync,no_subtree_check)
+    '';
   };
 
   # Enable hardware acceleration for jellyfin, taken from https://nixos.wiki/wiki/Jellyfin
