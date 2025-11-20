@@ -22,4 +22,5 @@ in
   "traefik-env.age".publicKeys = ghKeys;
   "wifi-passwords.age".publicKeys = ghKeys;
   "docker-config.age".publicKeys = ghKeys;
+  "github-pat.age".publicKeys = ghKeys;
 }

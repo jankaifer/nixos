@@ -140,6 +140,9 @@ in
         # substituters = map (x: substituters.${x}.url) cfg.nix.substituters;
         # trusted-public-keys = map (x: substituters.${x}.key) cfg.nix.substituters;
       };
+      extraOptions = ''
+        !include ${config.age.secrets.github-pat.path}
+      '';
     };
 
     services.openssh.settings = {
