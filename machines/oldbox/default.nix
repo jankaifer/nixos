@@ -45,9 +45,9 @@ let
     traefik-metrics = {
       domain = "traefik-metrics.${localDomain}";
     };
-    frigate = {
-      domain = "frigate.${localDomain}";
-    };
+    # frigate = {
+    #   domain = "frigate.${localDomain}";
+    # };
   };
   domains = lib.mapAttrsToList (name: service: service.domain) services;
   websocketPort = 444;
@@ -104,26 +104,26 @@ in
     ];
   };
 
-  virtualisation.oci-containers.containers.frigate = {
-    image = "ghcr.io/blakeblackshear/frigate:0.15.0";
-    volumes = [
-      "/persist/containers/frigate/config:/config"
-      "/nas/frigate:/media/frigate"
-    ];
-    extraOptions = [
-      "--tmpfs=/tmp/cache:rw,size=1000000000" # 1GB of memory, reduces SSD/SD Card wear
-    ];
-    labels = {
-      "traefik.http.routers.frigate.rule" = "Host(`${services.frigate.domain}`)";
-      "traefik.http.routers.frigate.entrypoints" = "https";
-      "traefik.http.services.frigate.loadbalancer.server.port" = "8971";
-    };
-    ports = [
-      "8554:8554" # RTSP feeds
-      "8555:8555/tcp" # WebRTC over tcp
-      "8555:8555/udp" # WebRTC over udp
-    ];
-  };
+  # virtualisation.oci-containers.containers.frigate = {
+  #   image = "ghcr.io/blakeblackshear/frigate:0.15.0";
+  #   volumes = [
+  #     "/persist/containers/frigate/config:/config"
+  #     "/nas/frigate:/media/frigate"
+  #   ];
+  #   extraOptions = [
+  #     "--tmpfs=/tmp/cache:rw,size=1000000000" # 1GB of memory, reduces SSD/SD Card wear
+  #   ];
+  #   labels = {
+  #     "traefik.http.routers.frigate.rule" = "Host(`${services.frigate.domain}`)";
+  #     "traefik.http.routers.frigate.entrypoints" = "https";
+  #     "traefik.http.services.frigate.loadbalancer.server.port" = "8971";
+  #   };
+  #   ports = [
+  #     "8554:8554" # RTSP feeds
+  #     "8555:8555/tcp" # WebRTC over tcp
+  #     "8555:8555/udp" # WebRTC over udp
+  #   ];
+  # };
 
   # Erase root partition
   boot.initrd.postDeviceCommands = lib.mkBefore ''
