@@ -120,6 +120,8 @@ in
 
     networking.firewall.enable = false;
 
+    age.secrets.github-pat.file = ../../../../secrets/github-pat.age;
+
     nixpkgs.overlays = builtins.attrValues outputs.overlays;
     nixpkgs.config.allowUnfree = true;
     nix = {
