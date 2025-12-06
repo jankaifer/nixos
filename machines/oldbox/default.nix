@@ -803,6 +803,29 @@ in
   ];
 
   ## EVCC
+  # Ensure /var/lib/private exists with proper permissions for DynamicUser services
+  systemd.services.evcc-private-directory = {
+    description = "Ensure /var/lib/private directory exists for evcc";
+    wantedBy = [ "evcc.service" ];
+    before = [ "evcc.service" ];
+    after = [ "users.target" ];
+    wants = [ "users.target" ];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+    };
+    script = ''
+      #! ${pkgs.bash}/bin/bash
+      set -e
+      
+      PRIVATE_DIR="/var/lib/private"
+      if [ ! -d "$PRIVATE_DIR" ]; then
+        mkdir -p "$PRIVATE_DIR"
+      fi
+      chmod 700 "$PRIVATE_DIR"
+    '';
+  };
+
   services.evcc = {
     enable = true;
     settings = {
