@@ -48,6 +48,10 @@ let
     # frigate = {
     #   domain = "frigate.${localDomain}";
     # };
+    evcc = {
+      port = "7070";
+      domain = "evcc.${localDomain}";
+    };
   };
   domains = lib.mapAttrsToList (name: service: service.domain) services;
   websocketPort = 444;
@@ -277,6 +281,11 @@ in
             service = "snapcast@file";
             entrypoints = [ "https" ];
           };
+          evcc = {
+            rule = "Host(`${services.evcc.domain}`)";
+            service = "evcc@file";
+            entrypoints = [ "https" ];
+          };
         };
         services = {
           grafana.loadBalancer.servers = [
@@ -290,6 +299,9 @@ in
           ];
           snapcast.loadBalancer.servers = [
             { url = "http://localhost:${services.snapcast.port}"; }
+          ];
+          evcc.loadBalancer.servers = [
+            { url = "http://localhost:${services.evcc.port}"; }
           ];
         };
       };
@@ -789,6 +801,19 @@ in
   users.users.root.openssh.authorizedKeys.keys = [
     "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCdae7j5X3pyHPTqeRcEyz/Sqjhe5zro0jmicwiHONSp/0UWTRE2l2uOlgzw6/5T2da8Jxr53MsPrEH/t9jAlZf+pt7xKgJWm7KYWJKJn5ipBil66lQoI4Hdh1E4fFdz8YmZYOis24GFntPc9sqszyDmrG3RuHsR6HPBN01AUAFNykoFOc/eDQ6iExXo2CGtfgtq7EQvp8AhLt7+yFcqdUaXsdokqDFfTJKrUpWyo6wrK9k0lP8aCR8Y8O5pwRdKgH3ocQ9f/+2tVgimMZ3L7Xf7cHH/pxqjYdwM3FpNw9hWbD7XCHYj/kI7lTiX3+uaRRkI4WHGa4SpyhxNpPPubA1 coolify-generated-ssh-key"
   ];
+
+  ## EVCC
+  services.evcc = {
+    enable = true;
+    settings = {
+      network = {
+        schema = "https";
+        host = services.evcc.domain;
+        port = services.evcc.port;
+      };
+      interval = "30s";
+    };
+  };
 }
 
 
