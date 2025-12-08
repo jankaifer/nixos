@@ -23,4 +23,5 @@ in
   "wifi-passwords.age".publicKeys = ghKeys;
   "docker-config.age".publicKeys = ghKeys;
   "github-pat.age".publicKeys = ghKeys;
+  "evcc-env-file.age".publicKeys = ghKeys;
 }

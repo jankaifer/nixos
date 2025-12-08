@@ -828,13 +828,96 @@ in
 
   services.evcc = {
     enable = true;
+    
     settings = {
       network = {
         schema = "https";
         host = services.evcc.domain;
         port = services.evcc.port;
       };
+      log = "debug";
+      levels = {
+        cache = "error";
+      };
+      plant = "4fdec5ca0579e35e8febb12d47feae646072fe4b692d58de596decf38c2458c2";
       interval = "30s";
+      meters = [
+        {
+          type = "template";
+          template = "victron-energy";
+          usage = "grid";
+          host = "einstein.hobitin.eu";
+          port = 502;
+          minsoc = 20;
+          maxsoc = 100;
+          name = "grid1";
+        }
+        {
+          type = "template";
+          template = "victron-energy";
+          usage = "pv";
+          host = "einstein.hobitin.eu";
+          port = 502;
+          minsoc = 20;
+          maxsoc = 100;
+          name = "pv2";
+        }
+        {
+          type = "template";
+          template = "victron-energy";
+          usage = "battery";
+          host = "einstein.hobitin.eu";
+          port = 502;
+          minsoc = 20;
+          maxsoc = 100;
+          name = "battery3";
+        }
+      ];
+      chargers = [
+        {
+          type = "template";
+          template = "victron-evcs";
+          id = 1;
+          host = "evcs.hobitin.eu";
+          port = 502;
+          modbus = "tcpip";
+          name = "wallbox5";
+        }
+      ];
+      vehicles = [
+        {
+          type = "template";
+          template = "tesla";
+          icon = "car";
+          capacity = 75;
+          phases = 3;
+          mode = "minpv";
+          minCurrent = 5;
+          maxCurrent = 16;
+          clientId = "$EVCC_TESLA_API_CLIENT_ID";
+          accessToken = "$EVCC_TESLA_API_ACCESS_TOKEN";
+          refreshToken = "$EVCC_TESLA_API_REFRESH_TOKEN";
+          commandProxy = "https://api.myteslamate.com";
+          cache = "15m";
+          name = "ev4";
+        }
+      ];
+      loadpoints = [
+        {
+          title = "Garage";
+          charger = "wallbox5";
+          vehicle = "ev4";
+          mode = "off";
+        }
+      ];
+      site = {
+        title = "Home";
+        meters = {
+          grid = "grid1";
+          pv = [ "pv2" ];
+          battery = [ "battery3" ];
+        };
+      };
     };
   };
 }
